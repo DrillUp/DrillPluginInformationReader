@@ -1,29 +1,195 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>DrillPluginInformationReaderClass</class>
- <widget class="QMainWindow" name="DrillPluginInformationReaderClass" >
-  <property name="objectName" >
-   <string notr="true">DrillPluginInformationReaderClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QMainWindow" name="DrillPluginInformationReaderClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>743</width>
+    <height>497</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>DrillPluginInformationReader</string>
   </property>
-  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QWidget" name="main_widget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="nav" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>52</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>52</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#nav{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fff, stop:0.4 #fff,stop:1 #eaecef );
+}
+
+/* 选项卡中的 按钮 样式 */
+#nav QToolButton{
+	padding:1px;
+	padding-bottom:4px;
+	border: 1px solid transparent;
+	background: rgba(255,255,255,0);
+}
+#nav QToolButton:hover{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fdecad, stop:0.3 #fde48c, stop:0.9 #fce58c, stop:1 #fdfadf )
+}
+#nav QToolButton:pressed{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}
+
+#nav QPushButton{
+	border: 1px solid transparent;
+	background: rgba(255,255,255,0);
+}
+#nav QPushButton:hover{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fdecad, stop:0.3 #fde48c, stop:0.9 #fce58c, stop:1 #fdfadf );
+}
+#nav QPushButton:pressed{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}</string>
+      </property>
+      <widget class="QToolButton" name="toolButton_rmmv">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>10</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>rmmv交互</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../drillplugininformationreader.qrc">
+         <normaloff>:/DrillPluginInformationReader/Resources/icons/nav/Open_rmmv.png</normaloff>:/DrillPluginInformationReader/Resources/icons/nav/Open_rmmv.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="Line" name="line_2">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>10</y>
+         <width>31</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="toolButton_userManual">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>10</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>帮助</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../drillplugininformationreader.qrc">
+         <normaloff>:/DrillPluginInformationReader/Resources/icons/nav/Help.png</normaloff>:/DrillPluginInformationReader/Resources/icons/nav/Help.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QToolButton" name="toolButton_about">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>10</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="toolTip">
+        <string>关于...</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../drillplugininformationreader.qrc">
+         <normaloff>:/DrillPluginInformationReader/Resources/icons/nav/About.png</normaloff>:/DrillPluginInformationReader/Resources/icons/nav/About.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="widget_information" native="true"/>
+    </item>
+   </layout>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
  <resources>
-   <include location="drillplugininformationreader.qrc"/>
+  <include location="../../drillplugininformationreader.qrc"/>
  </resources>
  <connections/>
-</UI>
+</ui>

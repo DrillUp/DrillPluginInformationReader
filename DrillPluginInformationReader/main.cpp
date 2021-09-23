@@ -5,7 +5,8 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	DrillPluginInformationReader w;
-	w.show();
+	
+	DrillPluginInformationReader::getInstance()->show();
+
 	return a.exec();
 }

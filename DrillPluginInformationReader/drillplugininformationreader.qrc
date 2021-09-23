@@ -1,4 +1,11 @@
 <RCC>
-    <qresource prefix="DrillPluginInformationReader">
-    </qresource>
+  <qresource prefix="DrillPluginInformationReader">
+    <file>Resources/icons/global/drill_logo_64x64.png</file>
+    <file>Resources/icons/global/drill_logo_200x200.png</file>
+    <file>Resources/icons/global/HoverCursor_1.png</file>
+    <file>Resources/icons/global/HoverCursor_2.png</file>
+    <file>Resources/icons/nav/About.png</file>
+    <file>Resources/icons/nav/Help.png</file>
+    <file>Resources/icons/nav/Open_rmmv.png</file>
+  </qresource>
 </RCC>

@@ -28,6 +28,51 @@
     <Filter Include="源文件\【 主窗体 MainModule】">
       <UniqueIdentifier>{ba1ffb30-c256-4483-820f-1e83af3ceab3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】">
+      <UniqueIdentifier>{c453fb24-231f-46ea-a122-3211dd19dfcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】">
+      <UniqueIdentifier>{cf0a6586-c793-4787-9a25-8e8c802db4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\管理器工具（manager）">
+      <UniqueIdentifier>{5bd2b77a-6c4d-4dbf-806d-f1044ee43398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\通用工具（common）">
+      <UniqueIdentifier>{9b577ece-6102-413d-87fd-6844d8e809c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器">
+      <UniqueIdentifier>{a6bb9e66-d7ff-4d80-a78d-87cdde85ebbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器">
+      <UniqueIdentifier>{f7b5c3ba-c08d-47e9-a1dc-6f6a2ca7b22c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件存储数据管理器">
+      <UniqueIdentifier>{2de722da-8c5c-4472-be72-0659ce9e2fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器">
+      <UniqueIdentifier>{323facdb-5bd8-4ed6-aac6-fcc714f5a494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\集合组件">
+      <UniqueIdentifier>{3ba398a2-c0d3-4eb6-a883-a530b131a6ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\最大值编辑器（无）">
+      <UniqueIdentifier>{988fb124-e00a-4c8d-ab46-baca5eb576b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】">
+      <UniqueIdentifier>{48847f0e-79bd-4e85-a841-53f61785aa10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 主窗体 MainModule】\关于">
+      <UniqueIdentifier>{e0cdf29b-993b-414e-a6ec-05b4360fa4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 主窗体 MainModule】\首页提示">
+      <UniqueIdentifier>{27ecfa15-522c-4ced-850d-9fec0833bb20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 项目管理模块 ProjectModule】">
+      <UniqueIdentifier>{a84fd180-43aa-49da-b4e5-ce9fe40b6fb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件-全局">
+      <UniqueIdentifier>{254748ec-d387-4f36-bd3b-c571b61ec422}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +93,84 @@
     <ClCompile Include="Source\MainModule\stdafx.cpp">
       <Filter>源文件\【 主窗体 MainModule】</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\common\TTool.cpp">
+      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\txtRead\p_TxtFastReader.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\txtRead\p_TxtFastReaderWithRecord.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\txtRead\s_TxtReadingManager.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_TxtReadingManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_TxtReadingManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\callManager\s_CallManager.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_CallManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_CallManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_ScriptAnnotationReader.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_ScriptAnnotationReader.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\storageData\c_PluginData.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\storageData\s_PluginDataContainer.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_PluginDataContainer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_PluginDataContainer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainModule\about\w_SoftwareAbout.cpp">
+      <Filter>源文件\【 主窗体 MainModule】\关于</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_SoftwareAbout.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareAbout.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MainModule\firstTip\w_SoftwareFirstTip.cpp">
+      <Filter>源文件\【 主窗体 MainModule】\首页提示</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_SoftwareFirstTip.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareFirstTip.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProjectModule\storageGlobal\s_IniManager.cpp">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_IniManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_IniManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -58,6 +181,33 @@
     </CustomBuild>
     <CustomBuild Include="Source\MainModule\drillplugininformationreader.ui">
       <Filter>源文件\【 主窗体 MainModule】</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\manager\txtRead\s_TxtReadingManager.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\manager\callManager\s_CallManager.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\PluginModule\storageData\s_PluginDataContainer.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据管理器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\about\w_SoftwareAbout.h">
+      <Filter>源文件\【 主窗体 MainModule】\关于</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\about\w_SoftwareAbout.ui">
+      <Filter>源文件\【 主窗体 MainModule】\关于</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\firstTip\w_SoftwareFirstTip.h">
+      <Filter>源文件\【 主窗体 MainModule】\首页提示</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\firstTip\w_SoftwareFirstTip.ui">
+      <Filter>源文件\【 主窗体 MainModule】\首页提示</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\ProjectModule\storageGlobal\s_IniManager.h">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -70,5 +220,31 @@
     <ClInclude Include="Source\MainModule\stdafx.h">
       <Filter>源文件\【 主窗体 MainModule】</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Utils\common\TTool.h">
+      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\manager\txtRead\p_TxtFastReader.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\manager\txtRead\p_TxtFastReaderWithRecord.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\storageData\c_PluginData.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据管理器</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_SoftwareAbout.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_SoftwareFirstTip.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\PluginModule\scriptReader\注释参数集合.docx">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
+    </None>
   </ItemGroup>
 </Project>
