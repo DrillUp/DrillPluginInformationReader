@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+/DrillPluginInformationReader/Debug
+/DrillPluginInformationReader/GeneratedFiles
+/DrillPluginInformationReader.sdf
+/DrillPluginInformationReader.v12.suo
+/ipch
+/Win32
+/DrillPluginInformationReader.opensdf
+/DrillPluginInformationReader/DrillPluginInformationReader.vcxproj.user
