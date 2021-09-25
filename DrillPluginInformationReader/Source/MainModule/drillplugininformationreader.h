@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_drillplugininformationreader.h"
+#include "Source/InformationModule/p_InformationPart.h"
 
 /*
 -----==========================================================-----
@@ -27,6 +28,8 @@ class DrillPluginInformationReader : public QMainWindow
 
 	//-----------------------------------
 	//----¿Ø¼þ
+	public:
+		P_InformationPart* m_P_InformationPart;
 	public slots:
 								//¿Ø¼þ - °ïÖúÎÄµµ
 		void openUserManual();

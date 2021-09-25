@@ -73,6 +73,24 @@
     <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件-全局">
       <UniqueIdentifier>{254748ec-d387-4f36-bd3b-c571b61ec422}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\指令搜索器块">
+      <UniqueIdentifier>{688276f9-2829-407c-ac6a-0bad093d7213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块">
+      <UniqueIdentifier>{2aab864a-9a2c-461c-bf93-840c5ea07c33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块">
+      <UniqueIdentifier>{04127d9d-bbe7-4934-9c81-2c19eb23824b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）">
+      <UniqueIdentifier>{d7523bb9-603d-496e-8e80-5acfff532cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡">
+      <UniqueIdentifier>{0e6ce0f5-7ddb-427a-97b9-20667b2318ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类">
+      <UniqueIdentifier>{da67bfbf-1023-4add-ae1a-4424e2988c1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -171,6 +189,63 @@
     <ClCompile Include="GeneratedFiles\Release\moc_s_IniManager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\InformationModule\p_InformationPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_InformationPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_InformationPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_PluginListPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_PluginListPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\p_PluginListPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\p_PluginDetailPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_PluginDetailPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_PluginDetailPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\commandSearcherPart\p_CommandSearcherPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_CommandSearcherPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_CommandSearcherPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\p_FoldableTabRelater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_FoldableTabRelater.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_FoldableTabRelater.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\private\c_FoldableTabPrivate.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_FoldableTabChildWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_FoldableTabChildWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -209,6 +284,39 @@
     <CustomBuild Include="Source\ProjectModule\storageGlobal\s_IniManager.h">
       <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局</Filter>
     </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\p_InformationPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\p_InformationPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\p_PluginListPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\p_PluginListPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\p_PluginDetailPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\p_PluginDetailPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\commandSearcherPart\p_CommandSearcherPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\commandSearcherPart\p_CommandSearcherPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\p_FoldableTabRelater.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.ui">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DrillPluginInformationReader.rc" />
@@ -241,10 +349,33 @@
     <ClInclude Include="GeneratedFiles\ui_w_SoftwareFirstTip.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_InformationPart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_PluginListPart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_PluginDetailPart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_CommandSearcherPart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\widgetForm\foldableTabWindow\private\c_FoldableTabPrivate.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_FoldableTabChildWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\PluginModule\scriptReader\注释参数集合.docx">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Source\Utils\widgetForm\foldableTabWindow\程序入口.txt">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
+    </Text>
   </ItemGroup>
 </Project>

@@ -11,7 +11,7 @@
 /*
 -----==========================================================-----
 		类：		Drill_up工具包.h
-		版本：		v1.19
+		版本：		v1.20
 		作者：		drill_up
 		编码：		UTF-8
 		所属模块：	工具模块
@@ -565,6 +565,9 @@ class TTool
 		/*控件块 - 创建外部包裹块
 			【说明】：快速创建包裹块，将目标QWidget包裹起来。 */
 		static QWidget* _CreateQWidget_containsTarget_(QWidget* target, int padding);
+		/*控件块 - 修改下拉框项高度
+			【说明】：快速修改下拉框子项的高度。 */
+		static QStyledItemDelegate* _ChangeCombox_itemHeight_(QComboBox* target, int item_height);
 
 };
 

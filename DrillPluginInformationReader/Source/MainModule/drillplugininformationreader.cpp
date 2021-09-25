@@ -47,6 +47,14 @@ void DrillPluginInformationReader::_init() {
 	flags |= Qt::WindowMinimizeButtonHint;
 	this->setWindowFlags(flags);
 
+
+	//-----------------------------------
+	//----ui初始化
+	this->m_P_InformationPart = new P_InformationPart(ui.widget_information);
+	QVBoxLayout* layout = new QVBoxLayout(ui.widget_information);
+	layout->setMargin(6);
+	layout->addWidget(this->m_P_InformationPart);
+
 	//-----------------------------------
 	//----事件绑定
 	connect(ui.toolButton_userManual, &QToolButton::clicked, this, &DrillPluginInformationReader::openUserManual);

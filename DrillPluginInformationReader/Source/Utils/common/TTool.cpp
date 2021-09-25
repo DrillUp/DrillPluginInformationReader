@@ -4,7 +4,7 @@
 /*
 -----==========================================================-----
 		类：		Drill_up工具包.cpp
-		版本：		v1.19
+		版本：		v1.20
 		作者：		drill_up
 		编码：		UTF-8
 		所属模块：	工具模块
@@ -1125,4 +1125,10 @@ QWidget* TTool::_CreateQWidget_containsTarget_(QWidget* target, int padding){
 	q_layout->setMargin(padding);
 	q_layout->addWidget(target);
 	return q_w;
+}
+QStyledItemDelegate* TTool::_ChangeCombox_itemHeight_(QComboBox* target, int item_height){
+	QStyledItemDelegate* delegate = new QStyledItemDelegate(target);
+	target->setItemDelegate(delegate);
+	target->setStyleSheet("QComboBox QAbstractItemView::item {min-height: " + QString::number(item_height) + "px;}");
+	return delegate;
 }
