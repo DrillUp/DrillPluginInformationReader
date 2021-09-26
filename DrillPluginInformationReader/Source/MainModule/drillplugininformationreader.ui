@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DrillPluginInformationReader</string>
+   <string>插件信息读取器（DrillPluginInformationReader）</string>
   </property>
   <widget class="QWidget" name="main_widget">
    <layout class="QVBoxLayout" name="verticalLayout">
