@@ -23,9 +23,22 @@ class P_PluginListPart : public QWidget
 		~P_PluginListPart();
 		
 	//-----------------------------------
-	//----控件
-	public slots: 
+	//----树结构
+	public:
+		bool slot_block;			//事件阻塞
+		QTreeWidget* m_root;		//树根
+		QList<QTreeWidgetItem*> list_PluginTreeItems;
+	public:
+										//树结构 - 初始化
+		void initTree(QTreeWidget* tree);
+										//树结构 - 刷新树
+		void refreshTree();
 
+	public slots:
+										//树结构 - 双击树节点
+		void treeDoubled(QTreeWidgetItem *item, int col);
+										//树结构 - 右键树节点
+		void treeRightClicked(QPoint p);
 
 	//-----------------------------------
 	//----块

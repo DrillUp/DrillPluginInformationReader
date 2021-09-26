@@ -224,7 +224,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget_information" native="true"/>
+     <widget class="QWidget" name="widget_information" native="true">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

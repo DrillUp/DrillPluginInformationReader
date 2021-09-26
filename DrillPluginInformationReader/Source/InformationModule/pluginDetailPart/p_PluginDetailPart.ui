@@ -34,6 +34,9 @@
 }
 #scrollAreaWidgetContents{
 	background-color: #fff;
+}
+#scrollAreaWidgetContents:disabled{
+	background-color: #ECECEC;
 }</string>
      </property>
      <property name="widgetResizable">

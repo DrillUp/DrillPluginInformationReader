@@ -4,6 +4,7 @@
 #include "pluginListPart/p_PluginListPart.h"
 #include "pluginDetailPart/p_PluginDetailPart.h"
 #include "commandSearcherPart/p_CommandSearcherPart.h"
+
 #include "Source/Utils/common/TTool.h"
 
 /*

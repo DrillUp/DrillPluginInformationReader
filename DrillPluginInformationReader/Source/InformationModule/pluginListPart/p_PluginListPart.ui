@@ -74,7 +74,23 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTableWidget" name="tableWidget_configedPlugin"/>
+        <widget class="QTreeWidget" name="treeWidget_configedPlugin">
+         <column>
+          <property name="text">
+           <string>   插件名</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>状态</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>中文名</string>
+          </property>
+         </column>
+        </widget>
        </item>
       </layout>
      </widget>

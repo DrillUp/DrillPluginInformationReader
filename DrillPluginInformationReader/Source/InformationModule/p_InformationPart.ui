@@ -28,6 +28,11 @@
    </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true">#tabWidget&gt;QWidget:disabled{
+	background-color: #ECECEC;
+}</string>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>

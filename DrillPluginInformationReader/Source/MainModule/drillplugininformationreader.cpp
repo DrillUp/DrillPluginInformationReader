@@ -2,6 +2,7 @@
 #include "drillplugininformationreader.h"
 
 #include "Source/ProjectModule/storageGlobal/s_IniManager.h"
+#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "about/w_SoftwareAbout.h"
 
 /*
@@ -51,6 +52,7 @@ void DrillPluginInformationReader::_init() {
 	//-----------------------------------
 	//----ui初始化
 	S_RmmvDataContainer::getInstance();
+	S_PluginDataContainer::getInstance();
 
 	// > UI读取
 	this->ui_loadConfig();
@@ -69,7 +71,7 @@ void DrillPluginInformationReader::_init() {
 	connect(ui.toolButton_Import, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_importProject);
 	connect(ui.toolButton_userManual, &QToolButton::clicked, this, &DrillPluginInformationReader::openUserManual);
 	connect(ui.toolButton_about, &QToolButton::clicked, this, &DrillPluginInformationReader::openAbout);
-
+	
 }
 
 /* --------------------------------------------------------------
@@ -117,6 +119,7 @@ void DrillPluginInformationReader::btn_selectProject(){
 
 	this->m_temp_data = temp;
 	this->refreshNav();
+	ui.widget_information->setEnabled(false);	//（选择后强制置灰）
 }
 /*-------------------------------------------------
 		工程 - 导入工程
@@ -125,9 +128,21 @@ void DrillPluginInformationReader::btn_importProject(){
 
 	// > 标题修改
 	this->setWindowTitle("插件信息读取器（DrillPluginInformationReader） - " + this->m_temp_data.getName());
+	ui.widget_information->setEnabled(true);
 	
 	// > 全局工程参数变化
 	S_RmmvDataContainer::getInstance()->modify(this->m_temp_data);
+
+	// > 读取插件文件
+	QFileInfo plugin_info = S_RmmvDataContainer::getInstance()->getRmmvFile_PluginsData();
+	QFile plugin_file(plugin_info.absoluteFilePath());
+	if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		QMessageBox::warning(nullptr, "错误", "未找到plugins.js文件。", QMessageBox::Yes);
+		return;
+	}
+	QString plugin_context = plugin_file.readAll();
+	S_PluginDataContainer::getInstance()->loadPluginData(plugin_context);
+	plugin_file.close();
 }
 
 /*-------------------------------------------------
