@@ -4,7 +4,7 @@
 
 /*
 -----==========================================================-----
-		类：		脚本注解解析器.h
+		类：		插件注解读取器.h
 		所属模块：	插件模块
 		功能：		读取js文件内的所有数据 @的注解 内容。
 					（详细见.cpp）
@@ -25,10 +25,19 @@ class S_ScriptAnnotationReader : public QObject
 	//----读取
 	public:
 										//读取 - 插件参数（简要）
-		C_ScriptAnnotation readPlugin_simple(QString plugin_context);
+										//		【参数】：文件完整路径，"C:/aaa/ccc/DrillTip1.js"。
+										//		【说明】：只含 插件名、插件详细、作者、帮助信息。
+		C_ScriptAnnotation readPlugin_simple(QString file_fullPath);
 										//读取 - 插件参数（完整）
-		C_ScriptAnnotation readPlugin_complete(QString plugin_context);
-
+										//		【参数】：文件完整路径，"C:/aaa/ccc/DrillTip1.js"。
+										//		【说明】：包含插件全部完整的信息。
+		C_ScriptAnnotation readPlugin_complete(QString file_fullPath);
+	
+	private:
+										//私有 - 解析帮助信息 获取到 数据
+		C_ScriptHelpDetail* readScriptHelpDetail(QString help_context);
+										//私有 - 解析插件信息 获取到 参数
+		C_ScriptDictionary* readScriptDictionary(QString plugin_context);
 		
 	//-----------------------------------
 	//----解析

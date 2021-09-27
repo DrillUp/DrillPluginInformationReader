@@ -100,6 +100,15 @@
     <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件">
       <UniqueIdentifier>{e3171ef0-3ce5-46e5-8452-17075a7bbd6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）">
+      <UniqueIdentifier>{eebae6fa-536a-48e5-b503-4dd03d81b3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\注解字典（%40param）">
+      <UniqueIdentifier>{8e3ec55b-25cb-4708-8013-0a8291a36c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 交互模块 RmmvInteractiveModule】\专用交互">
+      <UniqueIdentifier>{630af739-43d5-48a0-96e7-3077f96ca8de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -279,6 +288,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_s_StorageManager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\注解字典（%40param）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\注解字典（%40param）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvInteractiveModule\custom\s_InformationDataContainer.cpp">
+      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\专用交互</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_InformationDataContainer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_InformationDataContainer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -356,6 +383,9 @@
     <CustomBuild Include="Source\ProjectModule\storage\s_StorageManager.h">
       <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
     </CustomBuild>
+    <CustomBuild Include="Source\RmmvInteractiveModule\custom\s_InformationDataContainer.h">
+      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\专用交互</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DrillPluginInformationReader.rc" />
@@ -411,6 +441,15 @@
     </ClInclude>
     <ClInclude Include="Source\ProjectModule\storage\s_StorageManagerTemplate.h">
       <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\注解字典（%40param）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\注解字典（%40param）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

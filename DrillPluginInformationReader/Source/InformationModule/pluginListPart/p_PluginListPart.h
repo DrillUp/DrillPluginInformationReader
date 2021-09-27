@@ -25,19 +25,30 @@ class P_PluginListPart : public QWidget
 	//-----------------------------------
 	//----树结构
 	public:
-		bool slot_block;			//事件阻塞
-		QTreeWidget* m_root;		//树根
-		QList<QTreeWidgetItem*> list_PluginTreeItems;
-	public:
+		bool slot_block;							//事件阻塞
+		QTreeWidget* m_tree;						//树结构
+		QList<QTreeWidgetItem*> m_treeItemList;		//树叶
+	public slots:
 										//树结构 - 初始化
 		void initTree(QTreeWidget* tree);
-										//树结构 - 刷新树
+										//树结构 - 下拉框变化
+		void treeModeChanged(QString text);
+										//树结构 - 刷新树（自动）
 		void refreshTree();
+										//树结构 - 刷新树（配置的插件）
+		void refreshTree_configedPlugin();
+										//树结构 - 刷新树（全部插件）
+		void refreshTree_allPlugin();
+	private:
+										//私有 - 添加一行
+		void addOneRow(QString pluginName);
 
+	//-----------------------------------
+	//----树事件
 	public slots:
-										//树结构 - 双击树节点
+										//树事件 - 双击树节点
 		void treeDoubled(QTreeWidgetItem *item, int col);
-										//树结构 - 右键树节点
+										//树事件 - 右键树节点
 		void treeRightClicked(QPoint p);
 
 	//-----------------------------------

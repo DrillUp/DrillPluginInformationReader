@@ -3,6 +3,7 @@
 
 #include "Source/ProjectModule/storageGlobal/s_IniManager.h"
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "about/w_SoftwareAbout.h"
 
 /*
@@ -53,6 +54,7 @@ void DrillPluginInformationReader::_init() {
 	//----ui³õÊ¼»¯
 	S_RmmvDataContainer::getInstance();
 	S_PluginDataContainer::getInstance();
+	S_InformationDataContainer::getInstance();
 
 	// > UI¶ÁÈ¡
 	this->ui_loadConfig();
