@@ -4,6 +4,8 @@
 #include <QtWidgets>
 #include "ui_P_PluginListPart.h"
 
+#include "buttonPart/p_PluginAttr_ButtonPart.h"
+
 /*
 -----==========================================================-----
 		类：		插件列表 编辑块.h
@@ -25,9 +27,10 @@ class P_PluginListPart : public QWidget
 	//-----------------------------------
 	//----树结构
 	public:
-		bool slot_block;							//事件阻塞
-		QTreeWidget* m_tree;						//树结构
-		QList<QTreeWidgetItem*> m_treeItemList;		//树叶
+		bool slot_block;									//事件阻塞
+		QTreeWidget* m_tree;								//树结构
+		QList<QTreeWidgetItem*> m_treeItemList;				//树叶
+		QList<P_PluginAttr_ButtonPart*> m_treeBtnList;		//属性按钮组
 	public slots:
 										//树结构 - 初始化
 		void initTree(QTreeWidget* tree);

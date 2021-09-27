@@ -100,6 +100,7 @@ void P_PluginListPart::refreshTree_configedPlugin(){
 	if (this->m_tree == nullptr){ return; }
 	this->m_tree->clear();
 	this->m_treeItemList.clear();
+	this->m_treeBtnList.clear();
 
 	// > 配置的插件
 	QList<C_PluginData*> data_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
@@ -117,6 +118,7 @@ void P_PluginListPart::refreshTree_allPlugin(){
 	if (this->m_tree == nullptr){ return; }
 	this->m_tree->clear();
 	this->m_treeItemList.clear();
+	this->m_treeBtnList.clear();
 
 	// > 全部插件
 	QList<C_ScriptAnnotation> data_list = S_InformationDataContainer::getInstance()->getAnnotationTank();
@@ -130,16 +132,25 @@ void P_PluginListPart::refreshTree_allPlugin(){
 */
 void P_PluginListPart::addOneRow(QString pluginName){
 	QTreeWidgetItem* new_item = new QTreeWidgetItem(this->m_tree);
+	this->m_tree->addTopLevelItem(new_item);
+	this->m_treeItemList.append(new_item);
 	new_item->setText(0, pluginName);
 
 	C_PluginData* c_p = S_PluginDataContainer::getInstance()->getPluginData(pluginName);
-
 	C_ScriptAnnotation data = S_InformationDataContainer::getInstance()->getAnnotation(pluginName);
 
+	// > 分割线
 	if (pluginName.contains("---")){
-
 		new_item->setText(4, data.getPlugindesc());
+
+	// > 插件行
 	}else{
+		
+		// 注意，这里创建100次速度会非常慢
+		//P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this->m_tree);
+		//this->m_tree->setItemWidget(new_item, 1, btn_part);
+		//this->m_treeBtnList.append(btn_part);
+
 		QString version = data.getPlugindesc_version();
 		if (version.isEmpty() == false){
 			new_item->setText(2, version);
@@ -154,7 +165,6 @@ void P_PluginListPart::addOneRow(QString pluginName){
 			new_item->setText(5, c_p->status ? "ON" : "OFF");
 		}
 	}
-	this->m_treeItemList.append(new_item);
 }
 
 
