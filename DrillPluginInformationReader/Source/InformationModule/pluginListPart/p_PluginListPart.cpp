@@ -22,25 +22,41 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 
 	//-----------------------------------
 	//----初始化参数
-	this->m_treeItemList = QList<QTreeWidgetItem*>();
+
 
 	//-----------------------------------
 	//----控件初始化
 	TTool::_ChangeCombox_itemHeight_(ui.comboBox_pluginMode, 30);
-	this->initTree(ui.treeWidget_plugin);
+	this->initTable(ui.treeWidget_plugin);
 	ui.widget->setVisible(false);
+
+	// > 树按钮控件
+	this->m_treeBtnList = QList<P_PluginAttr_ButtonPart*>();
+	for (int i = 0; i < 100; i++){
+		P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this);
+		btn_part->setVisible(false);
+		this->m_treeBtnList.append(btn_part);
+	}
+
+	// > 分页控件
+	this->m_p_PageNavigator = new P_PageNavigator();
+	this->m_p_PageNavigator->initNavigator(100, 100, 5);
+	ui.verticalLayout->addWidget(this->m_p_PageNavigator);
 
 	//-----------------------------------
 	//----事件绑定
 
 	// > 数据全变时，重刷树
-	connect(S_PluginDataContainer::getInstance(), &S_PluginDataContainer::pluginDataReloaded, this, &P_PluginListPart::refreshTree);
+	connect(S_PluginDataContainer::getInstance(), &S_PluginDataContainer::pluginDataReloaded, this, &P_PluginListPart::refreshTable);
 
 	// > 数据全变时，重刷交互中的注释数据
 	connect(S_PluginDataContainer::getInstance(), &S_PluginDataContainer::pluginDataReloaded, S_InformationDataContainer::getInstance(), &S_InformationDataContainer::loadAllAnnotationData);
 
 	// > 下拉框变化时，刷新
 	connect(ui.comboBox_pluginMode, &QComboBox::currentTextChanged, this, &P_PluginListPart::treeModeChanged);
+
+	// > 分页变化时
+	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_PluginListPart::refreshTableAuto);
 
 }
 P_PluginListPart::~P_PluginListPart(){
@@ -50,20 +66,22 @@ P_PluginListPart::~P_PluginListPart(){
 /*-------------------------------------------------
 		树结构 - 初始化
 */
-void P_PluginListPart::initTree(QTreeWidget* tree){
-	this->m_tree = tree;
+void P_PluginListPart::initTable(QTableWidget* table){
+	this->m_table = table;
 
 	// > ui初始化
-	this->m_tree->header()->resizeSection(0, 260);
-	this->m_tree->header()->resizeSection(1, 120);
-	this->m_tree->header()->resizeSection(2, 100);
-	this->m_tree->header()->resizeSection(3, 70);
-	this->m_tree->header()->resizeSection(4, 200);
-	this->m_tree->header()->resizeSection(5, 70);
+	this->m_table->horizontalHeader()->resizeSection(0, 260);
+	this->m_table->horizontalHeader()->resizeSection(1, 120);
+	this->m_table->horizontalHeader()->resizeSection(2, 100);
+	this->m_table->horizontalHeader()->resizeSection(3, 70);
+	this->m_table->horizontalHeader()->resizeSection(4, 200);
+	this->m_table->horizontalHeader()->resizeSection(5, 70);
 
 	// > 事件绑定
-	connect(this->m_tree, &QTreeWidget::itemDoubleClicked, this, &P_PluginListPart::treeDoubled);
-	connect(this->m_tree, &QTreeWidget::customContextMenuRequested, this, &P_PluginListPart::treeRightClicked);
+	connect(this->m_table, &QTreeWidget::itemDoubleClicked, this, &P_PluginListPart::treeDoubled);
+	connect(this->m_table, &QTreeWidget::customContextMenuRequested, this, &P_PluginListPart::treeRightClicked);
+
+
 }
 
 /*-------------------------------------------------
@@ -80,57 +98,89 @@ void P_PluginListPart::treeModeChanged(QString text){
 	}
 	
 	// > 刷新树
-	this->refreshTree();
+	this->refreshTable();
 }
+/*-------------------------------------------------
+		树结构 - 清理项
+*/
+void P_PluginListPart::clearTreeItem(){
+
+	// > 退按钮组
+	if (this->m_tree->columnCount() >= 2){
+		for (int i = this->m_treeItemList.count() - 1; i >= 0; i--){
+			QTreeWidgetItem* item = this->m_treeItemList.at(i);
+			QWidget* widget = this->m_tree->itemWidget(item, 1);
+			if (widget != nullptr){
+				widget->setVisible(false);
+				this->m_tree->setItemWidget(item, 1, nullptr);
+			}
+		}
+	}
+
+	// > 清除树控件
+	this->m_treeItemList.clear();
+	this->m_tree->clear();
+}
+
 /*-------------------------------------------------
 		树结构 - 刷新树（自动）
 */
-void P_PluginListPart::refreshTree(){
+void P_PluginListPart::refreshTable(){
+	this->refreshTableAuto(0, 99);
+}
+void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
 	if (ui.comboBox_pluginMode->currentIndex() == 0){
-		this->refreshTree_configedPlugin();
+		this->refreshTable_configedPlugin(start_index, end_index);
 	}
 	if (ui.comboBox_pluginMode->currentIndex() == 1){
-		this->refreshTree_allPlugin();
+		this->refreshTable_allPlugin(start_index, end_index);
 	}
 }
 /*-------------------------------------------------
 		树结构 - 刷新树（配置的插件）
 */
-void P_PluginListPart::refreshTree_configedPlugin(){
+void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_index){
 	if (this->m_tree == nullptr){ return; }
-	this->m_tree->clear();
-	this->m_treeItemList.clear();
-	this->m_treeBtnList.clear();
+	this->clearTreeItem();
 
 	// > 配置的插件
 	QList<C_PluginData*> data_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
-	for (int i = 0; i < data_list.count(); i++){
+	for (int i = start_index; i < end_index; i++){
+		if (i >= data_list.count()){ return; }
 		C_PluginData* c_p = data_list.at(i);
-		this->addOneRow(c_p->name);
+
+		int index = i - start_index;
+		this->addOneRow(c_p->name, this->getButtonPartByIndex(index));
 	}
 
+	// > 刷新分页器
+	this->m_p_PageNavigator->setAllCount(data_list.count());
 }
 
 /*-------------------------------------------------
 		树结构 - 刷新树（全部插件）
 */
-void P_PluginListPart::refreshTree_allPlugin(){
+void P_PluginListPart::refreshTable_allPlugin(int start_index, int end_index){
 	if (this->m_tree == nullptr){ return; }
-	this->m_tree->clear();
-	this->m_treeItemList.clear();
-	this->m_treeBtnList.clear();
+	this->clearTreeItem();
 
 	// > 全部插件
 	QList<C_ScriptAnnotation> data_list = S_InformationDataContainer::getInstance()->getAnnotationTank();
-	for (int i = 0; i < data_list.count(); i++){
+	for (int i = start_index; i < end_index; i++){
+		if (i >= data_list.count()){ return; }
 		C_ScriptAnnotation data = data_list.at(i);
-		this->addOneRow(data.getName());
+		
+		int index = i - start_index;
+		this->addOneRow(data.getName(), this->getButtonPartByIndex(index));
 	}
+
+	// > 刷新分页器
+	this->m_p_PageNavigator->setAllCount(data_list.count());
 }
 /*-------------------------------------------------
 		私有 - 添加一行
 */
-void P_PluginListPart::addOneRow(QString pluginName){
+void P_PluginListPart::addOneRow(QString pluginName, QWidget* widget){
 	QTreeWidgetItem* new_item = new QTreeWidgetItem(this->m_tree);
 	this->m_tree->addTopLevelItem(new_item);
 	this->m_treeItemList.append(new_item);
@@ -146,11 +196,13 @@ void P_PluginListPart::addOneRow(QString pluginName){
 	// > 插件行
 	}else{
 		
-		// 注意，这里创建100次速度会非常慢
-		//P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this->m_tree);
-		//this->m_tree->setItemWidget(new_item, 1, btn_part);
-		//this->m_treeBtnList.append(btn_part);
+		// > 按钮组
+		if (widget != nullptr){
+			this->m_tree->setItemWidget(new_item, 1, widget);
+			widget->setVisible(true);
+		}
 
+		// > 文本
 		QString version = data.getPlugindesc_version();
 		if (version.isEmpty() == false){
 			new_item->setText(2, version);
@@ -167,6 +219,14 @@ void P_PluginListPart::addOneRow(QString pluginName){
 	}
 }
 
+/*-------------------------------------------------
+		按钮组 - 获取按钮组
+*/
+P_PluginAttr_ButtonPart* P_PluginListPart::getButtonPartByIndex(int index){
+	if (index < 0){ return nullptr; }
+	if (index >= this->m_treeBtnList.count()){ return nullptr; }
+	return this->m_treeBtnList.at(index);
+}
 
 
 /*-------------------------------------------------

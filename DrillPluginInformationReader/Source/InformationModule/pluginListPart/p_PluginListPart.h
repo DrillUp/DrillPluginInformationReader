@@ -5,6 +5,7 @@
 #include "ui_P_PluginListPart.h"
 
 #include "buttonPart/p_PluginAttr_ButtonPart.h"
+#include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
 /*
 -----==========================================================-----
@@ -23,36 +24,50 @@ class P_PluginListPart : public QWidget
 	public:
 		P_PluginListPart(QWidget *parent = 0);
 		~P_PluginListPart();
-		
-	//-----------------------------------
-	//----树结构
-	public:
-		bool slot_block;									//事件阻塞
-		QTreeWidget* m_tree;								//树结构
-		QList<QTreeWidgetItem*> m_treeItemList;				//树叶
-		QList<P_PluginAttr_ButtonPart*> m_treeBtnList;		//属性按钮组
-	public slots:
-										//树结构 - 初始化
-		void initTree(QTreeWidget* tree);
-										//树结构 - 下拉框变化
-		void treeModeChanged(QString text);
-										//树结构 - 刷新树（自动）
-		void refreshTree();
-										//树结构 - 刷新树（配置的插件）
-		void refreshTree_configedPlugin();
-										//树结构 - 刷新树（全部插件）
-		void refreshTree_allPlugin();
-	private:
-										//私有 - 添加一行
-		void addOneRow(QString pluginName);
 
 	//-----------------------------------
-	//----树事件
+	//----表格结构
+	public:
+		bool slot_block;					//事件阻塞
+		QTableWidget* m_table;				//表格结构
 	public slots:
-										//树事件 - 双击树节点
-		void treeDoubled(QTreeWidgetItem *item, int col);
-										//树事件 - 右键树节点
-		void treeRightClicked(QPoint p);
+										//表格 - 初始化
+		void initTable(QTableWidget* table);
+										//表格 - 下拉框变化
+		void treeModeChanged(QString text);
+										//表格 - 清理项
+		void clearTreeItem();
+										//表格 - 刷新表格（自动）
+		void refreshTable();
+		void refreshTableAuto( int start_index, int end_index );
+										//表格 - 刷新表格（配置的插件）
+		void refreshTable_configedPlugin( int start_index, int end_index );
+										//表格 - 刷新表格（全部插件）
+		void refreshTable_allPlugin( int start_index, int end_index );
+	private:
+										//私有 - 添加一行
+		void addOneRow(QString pluginName, QWidget* widget = nullptr);
+
+	//-----------------------------------
+	//----按钮组
+	protected:
+		QList<P_PluginAttr_ButtonPart*> m_treeBtnList;		//属性按钮组
+	protected:
+										//按钮组 - 获取按钮组
+		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);
+
+	//-----------------------------------
+	//----表格事件
+	public slots:
+										//表格事件 - 双击表格
+		//void treeDoubled(QTreeWidgetItem *item, int col);
+										//表格事件 - 右键表格
+		//void treeRightClicked(QPoint p);
+		
+	//-----------------------------------
+	//----分页
+	public:
+		P_PageNavigator* m_p_PageNavigator;
 
 	//-----------------------------------
 	//----块
