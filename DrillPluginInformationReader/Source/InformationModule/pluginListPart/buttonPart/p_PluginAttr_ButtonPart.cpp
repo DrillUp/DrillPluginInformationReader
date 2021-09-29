@@ -23,7 +23,10 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
 
 	//-----------------------------------
 	//----初始化ui
-	ui.toolButton_src->setIcon(QIcon(QRC_IconSrcPath + "/menu/ExportImage.png"));
+	ui.toolButton_src->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_src.png"));
+	ui.toolButton_word->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_word.png"));
+	ui.toolButton_highConsumption->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_highConsumption.png"));
+	ui.toolButton_hasTool->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_hasTool.png"));
 
 	//-----------------------------------
 	//----事件绑定

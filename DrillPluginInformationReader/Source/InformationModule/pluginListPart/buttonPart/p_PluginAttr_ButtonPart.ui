@@ -71,16 +71,85 @@ QToolButton:checked{
        <number>0</number>
       </property>
       <item>
-       <widget class="QToolButton" name="toolButton_src">
+       <widget class="QToolButton" name="toolButton_word">
         <property name="toolTip">
-         <string>选择模式</string>
+         <string>帮助文档</string>
         </property>
         <property name="text">
-         <string>选择模式</string>
+         <string>帮助文档</string>
         </property>
         <property name="icon">
          <iconset resource="../../../../drillplugininformationreader.qrc">
-          <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/ExportImage.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/ExportImage.png</iconset>
+          <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_word.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_word.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_src">
+        <property name="toolTip">
+         <string>资源图片</string>
+        </property>
+        <property name="text">
+         <string>资源图片</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../../../drillplugininformationreader.qrc">
+          <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_src.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_src.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_highConsumption">
+        <property name="toolTip">
+         <string>高消耗</string>
+        </property>
+        <property name="text">
+         <string>高消耗</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../../../drillplugininformationreader.qrc">
+          <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_highConsumption.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_highConsumption.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="toolButton_hasTool">
+        <property name="toolTip">
+         <string>小工具支持</string>
+        </property>
+        <property name="text">
+         <string>小工具支持</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../../../drillplugininformationreader.qrc">
+          <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_hasTool.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_hasTool.png</iconset>
         </property>
         <property name="iconSize">
          <size>

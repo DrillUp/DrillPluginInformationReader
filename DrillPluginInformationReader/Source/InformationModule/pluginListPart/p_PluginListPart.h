@@ -34,9 +34,9 @@ class P_PluginListPart : public QWidget
 										//表格 - 初始化
 		void initTable(QTableWidget* table);
 										//表格 - 下拉框变化
-		void treeModeChanged(QString text);
+		void modeChanged(QString text);
 										//表格 - 清理项
-		void clearTreeItem();
+		void clearTableItem();
 										//表格 - 刷新表格（自动）
 		void refreshTable();
 		void refreshTableAuto( int start_index, int end_index );
@@ -46,12 +46,12 @@ class P_PluginListPart : public QWidget
 		void refreshTable_allPlugin( int start_index, int end_index );
 	private:
 										//私有 - 添加一行
-		void addOneRow(QString pluginName, QWidget* widget = nullptr);
+		void setOneRow(int row, QString pluginName, QWidget* widget = nullptr);
 
 	//-----------------------------------
 	//----按钮组
 	protected:
-		QList<P_PluginAttr_ButtonPart*> m_treeBtnList;		//属性按钮组
+		QList<P_PluginAttr_ButtonPart*> m_btnPartList;		//属性按钮组
 	protected:
 										//按钮组 - 获取按钮组
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);

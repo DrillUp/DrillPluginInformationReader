@@ -1,6 +1,9 @@
 <RCC>
   <qresource prefix="/DrillPluginInformationReader">
-    <file>Resources/icons/menu/ExportImage.png</file>
+    <file>Resources/icons/menu/attr_hasTool.png</file>
+    <file>Resources/icons/menu/attr_highConsumption.png</file>
+    <file>Resources/icons/menu/attr_src.png</file>
+    <file>Resources/icons/menu/attr_word.png</file>
     <file>Resources/icons/nav/Import_rmmv.png</file>
     <file>Resources/icons/global/drill_logo_64x64.png</file>
     <file>Resources/icons/global/drill_logo_200x200.png</file>
