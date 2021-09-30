@@ -328,6 +328,12 @@
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.cpp" />
@@ -478,6 +484,12 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../Source/InformationModule/pluginListPart/buttonPart/p_PluginAttr_ButtonPart.h"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\Source\MainModule"</Command>
     </CustomBuild>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.h" />
     <ClInclude Include="Source\ProjectModule\storage\s_StorageManagerTemplate.h" />

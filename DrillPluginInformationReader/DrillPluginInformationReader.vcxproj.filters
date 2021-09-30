@@ -115,6 +115,24 @@
     <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组">
       <UniqueIdentifier>{35db1b85-6f2b-4cb8-b394-8e5bb1f1f4b1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域">
+      <UniqueIdentifier>{064c9f1e-fc8d-46bd-8db9-cd27d2242bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展">
+      <UniqueIdentifier>{1de890a9-e3e8-49e6-9506-db5272911a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档">
+      <UniqueIdentifier>{34213b7e-af3a-4d08-88ad-f33e64b2114d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明">
+      <UniqueIdentifier>{7a79bdea-60b8-48a9-8fc0-1633d7484bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能">
+      <UniqueIdentifier>{3b1211da-6c74-4740-ae4d-98a2bbc92bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令">
+      <UniqueIdentifier>{432b5226-d7f7-4b65-9fc6-26c5a10bded4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -330,6 +348,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_PageNavigator.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -492,6 +528,24 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_PageNavigator.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

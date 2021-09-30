@@ -35,7 +35,7 @@ QString C_ScriptAnnotation::getAuthor(){ return this->author; }
 //数据 - 获取帮助信息全文（@help）
 QString C_ScriptAnnotation::getHelp(){
 	if (this->helpDetail == nullptr){ return ""; }
-	return this->helpDetail->help;
+	return this->helpDetail->getHelpContext();
 }
 //数据 - 是否为完整解析的内容
 bool C_ScriptAnnotation::isCompleted(){

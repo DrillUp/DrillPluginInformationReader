@@ -131,7 +131,8 @@ C_ScriptAnnotation S_ScriptAnnotationReader::readPlugin_complete(QString file_fu
 C_ScriptHelpDetail* S_ScriptAnnotationReader::readScriptHelpDetail(QString help_context){
 	C_ScriptHelpDetail* helpDetail = new C_ScriptHelpDetail();
 
-	helpDetail->help = help_context;
+	helpDetail->setHelpContext( help_context );
+	//（具体解析见 detail类 中的方法）
 
 	return helpDetail;
 }
