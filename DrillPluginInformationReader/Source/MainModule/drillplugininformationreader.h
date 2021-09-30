@@ -5,6 +5,7 @@
 #include "ui_drillplugininformationreader.h"
 #include "Source/InformationModule/p_InformationPart.h"
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
+#include "Source/Utils/widgetForm/loadingTip/w_LoadingTip.h"
 
 /*
 -----==========================================================-----
@@ -30,6 +31,7 @@ class DrillPluginInformationReader : public QMainWindow
 	//-----------------------------------
 	//----控件
 	public:
+		W_LoadingTip* m_tip;
 		P_InformationPart* m_P_InformationPart;
 	public slots:
 								//控件 - 刷新导航栏内容

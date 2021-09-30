@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "ui_P_PluginListPart.h"
 
+#include "buttonPart/w_PluginAttrComment.h"
 #include "buttonPart/p_PluginAttr_ButtonPart.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
@@ -47,13 +48,16 @@ class P_PluginListPart : public QWidget
 	private:
 										//私有 - 添加一行
 		void setOneRow(int row, QString pluginName, QWidget* widget = nullptr);
+										//私有 - 将指定字符串标蓝
+		QLabel* getLabelWithSign(QString text, QString searching_text);
 
 	//-----------------------------------
-	//----按钮组
+	//----属性
 	protected:
+		W_PluginAttrComment* m_w_PluginAttrComment;			//属性说明窗口
 		QList<P_PluginAttr_ButtonPart*> m_btnPartList;		//属性按钮组
 	protected:
-										//按钮组 - 获取按钮组
+										//属性 - 获取按钮组
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);
 
 	//-----------------------------------

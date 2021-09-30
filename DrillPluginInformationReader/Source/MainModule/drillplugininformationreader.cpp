@@ -6,6 +6,7 @@
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "about/w_SoftwareAbout.h"
 
+
 /*
 -----==========================================================-----
 		类：		主窗体.cpp
@@ -67,6 +68,8 @@ void DrillPluginInformationReader::_init() {
 	layout->setMargin(6);
 	layout->addWidget(this->m_P_InformationPart);
 
+	this->m_tip = new W_LoadingTip("插件读取中...", this);
+
 	//-----------------------------------
 	//----事件绑定
 	connect(ui.toolButton_rmmv, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_selectProject);
@@ -127,6 +130,7 @@ void DrillPluginInformationReader::btn_selectProject(){
 		工程 - 导入工程
 */
 void DrillPluginInformationReader::btn_importProject(){
+	this->m_tip->show();
 
 	// > 标题修改
 	this->setWindowTitle("插件信息读取器（DrillPluginInformationReader） - " + this->m_temp_data.getName());
@@ -145,6 +149,8 @@ void DrillPluginInformationReader::btn_importProject(){
 	QString plugin_context = plugin_file.readAll();
 	S_PluginDataContainer::getInstance()->loadPluginData(plugin_context);
 	plugin_file.close();
+
+	this->m_tip->close();
 }
 
 /*-------------------------------------------------

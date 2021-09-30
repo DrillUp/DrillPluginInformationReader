@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/DrillPluginInformationReader">
+    <file>Resources/icons/menu/attr_foreignKey.png</file>
     <file>Resources/icons/menu/attr_hasTool.png</file>
     <file>Resources/icons/menu/attr_highConsumption.png</file>
     <file>Resources/icons/menu/attr_src.png</file>

@@ -192,41 +192,108 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 
 	C_PluginData* c_p = S_PluginDataContainer::getInstance()->getPluginData(pluginName);
 	C_ScriptAnnotation data = S_InformationDataContainer::getInstance()->getAnnotation(pluginName);
+	QString search_text = ui.lineEdit_searchPlugin->text();
 
-	this->m_table->setItem(row, 0, new QTableWidgetItem(pluginName));
+	// > 不标蓝情况
+	if(  ui.comboBox_pluginMode->currentIndex() == 0 || 
+		(ui.comboBox_pluginMode->currentIndex() == 1 && search_text.isEmpty())){
 
-	// > 分割线
-	if (pluginName.contains("---")){
-		this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
+		this->m_table->setItem(row, 0, new QTableWidgetItem(pluginName));
 
-	// > 插件行
-	}else{
+		// > 分割线
+		if (pluginName.contains("---")){
+			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
+
+		// > 插件行
+		}else{
 		
-		// > 按钮组
-		if (widget != nullptr){
-			widget->setParent(this->m_table);
-			widget->setVisible(true);
-			this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//【必须夹个中间widget层】
-		}else{
-			qDebug() << row;
-			Q_ASSERT(false);
-		}
+			// > 按钮组
+			if (widget != nullptr){
+				widget->setParent(this->m_table);
+				widget->setVisible(true);
+				this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//【必须夹个中间widget层】
+			}else{
+				qDebug() << row;
+				Q_ASSERT(false);
+			}
 
-		// > 文本
-		QString version = data.getPlugindesc_version();
-		if (version.isEmpty() == false){
-			this->m_table->setItem(row, 2, new QTableWidgetItem(version));
-			this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
-			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc_name()));
-		}else{
-			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//（读不到版本时，显示全名）
+			// > 文本
+			QString version = data.getPlugindesc_version();
+			if (version.isEmpty() == false){
+				this->m_table->setItem(row, 2, new QTableWidgetItem(version));
+				this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
+				this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc_name()));
+			}else{
+				this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//（读不到版本时，显示全名）
+			}
+			if (c_p == nullptr){
+				this->m_table->setItem(row, 5, new QTableWidgetItem("未装载"));			//（配置中未找到的，标记 未装载）
+			}else{
+				this->m_table->setItem(row, 5, new QTableWidgetItem(c_p->status ? "ON" : "OFF"));
+			}
 		}
-		if (c_p == nullptr){
-			this->m_table->setItem(row, 5, new QTableWidgetItem("未装载"));			//（配置中未找到的，标记 未装载）
-		}else{
-			this->m_table->setItem(row, 5, new QTableWidgetItem(c_p->status ? "ON" : "OFF"));
+	
+	// > 标蓝情况
+	}else{
+
+		this->m_table->setCellWidget(row, 0, this->getLabelWithSign(pluginName, search_text));
+
+		// > 分割线
+		if (pluginName.contains("---")){
+			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
+
+			// > 插件行
+		}
+		else{
+
+			// > 按钮组
+			if (widget != nullptr){
+				widget->setParent(this->m_table);
+				widget->setVisible(true);
+				this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//【必须夹个中间widget层】
+			}
+			else{
+				qDebug() << row;
+				Q_ASSERT(false);
+			}
+
+			// > 文本
+			QString version = data.getPlugindesc_version();
+			if (version.isEmpty() == false){
+				this->m_table->setCellWidget(row, 2, this->getLabelWithSign(version, search_text));
+				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), search_text));
+				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc_name(), search_text));
+			}else{
+				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), search_text));
+			}
+			if (c_p == nullptr){
+				this->m_table->setItem(row, 5, new QTableWidgetItem("未装载"));			//（配置中未找到的，标记 未装载）
+			}else{
+				this->m_table->setItem(row, 5, new QTableWidgetItem(c_p->status ? "ON" : "OFF"));
+			}
 		}
 	}
+
+}
+/*-------------------------------------------------
+		私有 - 将指定字符串标蓝
+*/
+QLabel* P_PluginListPart::getLabelWithSign(QString text, QString searching_text){
+	if (text.contains(searching_text) == false){
+		return new QLabel(text);
+	}
+	QStringList data_list = text.split(searching_text);
+	QString result_text = "<p>";
+	for (int i = 0; i < data_list.count(); i++){
+		result_text.append(data_list.at(i));
+		if (i < data_list.count()-1){
+			result_text.append("<span style=\"background-color:#5fc2ff;\">");
+			result_text.append(searching_text);
+			result_text.append("</span>");
+		}
+	}
+	result_text.append("<\p>");
+	return new QLabel(result_text);
 }
 
 /*-------------------------------------------------
