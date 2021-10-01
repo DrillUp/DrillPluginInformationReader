@@ -6,6 +6,9 @@
 
 #include "buttonPart/w_PluginAttrComment.h"
 #include "buttonPart/p_PluginAttr_ButtonPart.h"
+
+#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
 /*
@@ -25,6 +28,17 @@ class P_PluginListPart : public QWidget
 	public:
 		P_PluginListPart(QWidget *parent = 0);
 		~P_PluginListPart();
+		
+	//-----------------------------------
+	//----数据
+	protected:
+		QString m_searchText;							//搜索的文本
+		QList<C_PluginData*> m_allPluginData;			//当前数据（配置的插件）
+		QList<C_ScriptAnnotation> m_allAnnotationData;	//当前数据（搜索的插件）
+	public:
+										//数据 - 搜索插件
+		void btn_search();
+
 
 	//-----------------------------------
 	//----表格结构
@@ -38,12 +52,13 @@ class P_PluginListPart : public QWidget
 		void modeChanged(QString text);
 										//表格 - 清理项
 		void clearTableItem();
-										//表格 - 刷新表格（自动）
+										//表格 - 重刷表格
 		void refreshTable();
+										//表格 - 刷新表格（自动）
 		void refreshTableAuto( int start_index, int end_index );
 										//表格 - 刷新表格（配置的插件）
 		void refreshTable_configedPlugin( int start_index, int end_index );
-										//表格 - 刷新表格（全部插件）
+										//表格 - 刷新表格（全部插件，含搜索）
 		void refreshTable_allPlugin( int start_index, int end_index );
 	private:
 										//私有 - 添加一行

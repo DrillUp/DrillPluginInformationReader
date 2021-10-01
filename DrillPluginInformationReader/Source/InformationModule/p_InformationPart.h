@@ -28,7 +28,7 @@ class P_InformationPart : public QWidget
 		
 	//-----------------------------------
 	//----大控件
-	protected:
+	public:
 		P_FoldableTabRelater* m_p_FoldableTabRelater;	//可折叠选项卡
 		P_PluginListPart* m_p_pluginListPart;
 		P_PluginDetailPart* m_p_pluginDetailPart;

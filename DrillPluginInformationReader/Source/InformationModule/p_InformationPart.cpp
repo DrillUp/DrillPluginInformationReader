@@ -41,6 +41,7 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	//-----------------------------------
 	//----ÊÂ¼þ°ó¶¨
 
+
 }
 
 P_InformationPart::~P_InformationPart(){

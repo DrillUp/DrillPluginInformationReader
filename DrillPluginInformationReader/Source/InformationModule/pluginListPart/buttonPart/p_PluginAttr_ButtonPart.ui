@@ -163,7 +163,7 @@ QToolButton:checked{
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_hasTool_2">
+       <widget class="QToolButton" name="toolButton_foreignKey">
         <property name="toolTip">
          <string>外键</string>
         </property>

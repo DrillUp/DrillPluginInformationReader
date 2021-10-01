@@ -21,6 +21,19 @@ class W_PluginAttrComment : public QDialog
 		W_PluginAttrComment(QWidget *parent = 0);		//构造函数
 		~W_PluginAttrComment();							//析构函数
 		
+	//-----------------------------------
+	//----控件
+	public:
+									//控件 - 显示信息 - 帮助文档
+		void showInformation_word(QString pluginName);
+									//控件 - 显示信息 - 资源路径
+		void showInformation_src(QString pluginName);
+									//控件 - 显示信息 - 高消耗
+		void showInformation_highConsumption(QString pluginName);
+									//控件 - 显示信息 - 小工具支持
+		void showInformation_hasTool(QString pluginName);
+									//控件 - 显示信息 - 外键
+		void showInformation_foreignKey(QString pluginName);
 		
 	//-----------------------------------
 	//----窗口

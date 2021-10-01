@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "p_PluginListPart.h"
 
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/Utils/common/TTool.h"
 
 /*
@@ -33,9 +31,10 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	ui.widget_search->setVisible(false);
 
 	// > 树按钮控件
+	this->m_w_PluginAttrComment = new W_PluginAttrComment(this);
 	this->m_btnPartList = QList<P_PluginAttr_ButtonPart*>();
 	for (int i = 0; i < 100; i++){
-		P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this);
+		P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this->m_w_PluginAttrComment, this);
 		btn_part->setVisible(false);
 		this->m_btnPartList.append(btn_part);
 	}
@@ -48,14 +47,9 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	//-----------------------------------
 	//----事件绑定
 
-	// > 数据全变时，重刷树
-	connect(S_PluginDataContainer::getInstance(), &S_PluginDataContainer::pluginDataReloaded, this, &P_PluginListPart::refreshTable);
-
-	// > 数据全变时，重刷交互中的注释数据
-	connect(S_PluginDataContainer::getInstance(), &S_PluginDataContainer::pluginDataReloaded, S_InformationDataContainer::getInstance(), &S_InformationDataContainer::loadAllAnnotationData);
-
 	// > 下拉框变化时，刷新
 	connect(ui.comboBox_pluginMode, &QComboBox::currentTextChanged, this, &P_PluginListPart::modeChanged);
+	connect(ui.pushButton_searchPlugin, &QPushButton::clicked, this, &P_PluginListPart::btn_search);
 
 	// > 分页变化时
 	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_PluginListPart::refreshTableAuto);
@@ -129,17 +123,30 @@ void P_PluginListPart::clearTableItem(){
 }
 
 /*-------------------------------------------------
-		树结构 - 刷新树（自动）
+		树结构 - 重刷表格（读取时）
 */
 void P_PluginListPart::refreshTable(){
+	
+	// > 数据重刷
+	ui.lineEdit_searchPlugin->setText("");
+	this->m_searchText = "";
+	this->m_allPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
+	this->m_allAnnotationData = S_InformationDataContainer::getInstance()->getAnnotationTank();
+
+	// > 刷新
 	this->refreshTableAuto(0, 99);
 }
+/*-------------------------------------------------
+		树结构 - 刷新表格（自动）
+*/
 void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
 	if (ui.comboBox_pluginMode->currentIndex() == 0){
-		this->refreshTable_configedPlugin(start_index, end_index);
+		this->m_p_PageNavigator->setAllCount(this->m_allPluginData.count());	//（刷新分页器）
+		this->refreshTable_configedPlugin(start_index, end_index);				//（刷新表格内容）
 	}
 	if (ui.comboBox_pluginMode->currentIndex() == 1){
-		this->refreshTable_allPlugin(start_index, end_index);
+		this->m_p_PageNavigator->setAllCount(this->m_allAnnotationData.count());	//（刷新分页器）
+		this->refreshTable_allPlugin(start_index, end_index);						//（刷新表格内容）
 	}
 }
 /*-------------------------------------------------
@@ -148,42 +155,70 @@ void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
 void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_index){
 	if (this->m_table == nullptr){ return; }
 	this->clearTableItem();
+	if (start_index < 0){ start_index = 0; }
+	if (end_index <= 0){ return; }
 
 	// > 配置的插件
-	QList<C_PluginData*> data_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
-	if (end_index >= data_list.count()){ end_index = data_list.count()-1; }
+	if (end_index >= this->m_allPluginData.count()){ end_index = this->m_allPluginData.count() - 1; }
 	this->m_table->setRowCount(end_index - start_index + 1);
 	for (int i = start_index; i <= end_index; i++){
-		C_PluginData* c_p = data_list.at(i);
+		C_PluginData* c_p = this->m_allPluginData.at(i);
 
 		int index = i - start_index;
-		this->setOneRow(index, c_p->name, this->getButtonPartByIndex(index));
+		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
+		if (btn_part != nullptr){ btn_part->setPluginName(c_p->name); };
+		this->setOneRow(index, c_p->name, btn_part);
 	}
-
-	// > 刷新分页器
-	this->m_p_PageNavigator->setAllCount(data_list.count());
 }
 
 /*-------------------------------------------------
-		树结构 - 刷新树（全部插件）
+		树结构 - 刷新树（全部插件，含搜索）
 */
 void P_PluginListPart::refreshTable_allPlugin(int start_index, int end_index){
 	if (this->m_table == nullptr){ return; }
 	this->clearTableItem();
+	if (start_index < 0){ start_index = 0; }
+	if (end_index <= 0){ return; }
 
-	// > 全部插件
-	QList<C_ScriptAnnotation> data_list = S_InformationDataContainer::getInstance()->getAnnotationTank();
-	if (end_index >= data_list.count()){ end_index = data_list.count() - 1; }
+	// > 显示的插件
+	if (end_index >= this->m_allAnnotationData.count()){ end_index = this->m_allAnnotationData.count() - 1; }
 	this->m_table->setRowCount(end_index - start_index + 1);
 	for (int i = start_index; i <= end_index; i++){
-		C_ScriptAnnotation data = data_list.at(i);
+		C_ScriptAnnotation data = this->m_allAnnotationData.at(i);
 		
 		int index = i - start_index;
-		this->setOneRow(index, data.getName(), this->getButtonPartByIndex(index));
+		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
+		if (btn_part != nullptr){ btn_part->setPluginName(data.getName()); };
+		this->setOneRow(index, data.getName(), btn_part);
 	}
 
-	// > 刷新分页器
-	this->m_p_PageNavigator->setAllCount(data_list.count());
+}
+/*-------------------------------------------------
+		表格 - 搜索插件
+*/
+void P_PluginListPart::btn_search(){
+
+	this->m_searchText = ui.lineEdit_searchPlugin->text();
+	this->m_allAnnotationData = S_InformationDataContainer::getInstance()->getAnnotationTank();
+
+	// > 全部插件
+	QList<C_ScriptAnnotation> data_list = QList<C_ScriptAnnotation>();
+	if (this->m_searchText == ""){
+		data_list = this->m_allAnnotationData;
+	}else{
+		for (int i = 0; i < this->m_allAnnotationData.count(); i++){
+			C_ScriptAnnotation data = this->m_allAnnotationData.at(i);
+
+			// > 筛选条件
+			if (data.getName().contains(this->m_searchText)){ data_list.append(data); continue; }
+			if (data.getPlugindesc_version().contains(this->m_searchText)){ data_list.append(data); continue; }
+			if (data.getPlugindesc_name().contains(this->m_searchText)){ data_list.append(data); continue; }
+			if (data.getPlugindesc_type().contains(this->m_searchText)){ data_list.append(data); continue; }
+			if (data.getPlugindesc().contains(this->m_searchText)){ data_list.append(data); continue; }
+		}
+	}
+	this->m_allAnnotationData = data_list;	//（修改数据范围）
+	this->refreshTableAuto(0, 99);
 }
 /*-------------------------------------------------
 		私有 - 添加一行
@@ -192,11 +227,10 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 
 	C_PluginData* c_p = S_PluginDataContainer::getInstance()->getPluginData(pluginName);
 	C_ScriptAnnotation data = S_InformationDataContainer::getInstance()->getAnnotation(pluginName);
-	QString search_text = ui.lineEdit_searchPlugin->text();
 
 	// > 不标蓝情况
 	if(  ui.comboBox_pluginMode->currentIndex() == 0 || 
-		(ui.comboBox_pluginMode->currentIndex() == 1 && search_text.isEmpty())){
+		(ui.comboBox_pluginMode->currentIndex() == 1 && this->m_searchText.isEmpty())){
 
 		this->m_table->setItem(row, 0, new QTableWidgetItem(pluginName));
 
@@ -236,7 +270,7 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 	// > 标蓝情况
 	}else{
 
-		this->m_table->setCellWidget(row, 0, this->getLabelWithSign(pluginName, search_text));
+		this->m_table->setCellWidget(row, 0, this->getLabelWithSign(pluginName, this->m_searchText));
 
 		// > 分割线
 		if (pluginName.contains("---")){
@@ -260,11 +294,11 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 			// > 文本
 			QString version = data.getPlugindesc_version();
 			if (version.isEmpty() == false){
-				this->m_table->setCellWidget(row, 2, this->getLabelWithSign(version, search_text));
-				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), search_text));
-				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc_name(), search_text));
+				this->m_table->setCellWidget(row, 2, this->getLabelWithSign(version, this->m_searchText));
+				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), this->m_searchText));
+				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc_name(), this->m_searchText));
 			}else{
-				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), search_text));
+				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), this->m_searchText));
 			}
 			if (c_p == nullptr){
 				this->m_table->setItem(row, 5, new QTableWidgetItem("未装载"));			//（配置中未找到的，标记 未装载）

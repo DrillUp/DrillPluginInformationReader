@@ -4,6 +4,7 @@
 #include "Source/ProjectModule/storageGlobal/s_IniManager.h"
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/InformationModule/pluginListPart/p_PluginListPart.h"
 #include "about/w_SoftwareAbout.h"
 
 
@@ -76,7 +77,7 @@ void DrillPluginInformationReader::_init() {
 	connect(ui.toolButton_Import, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_importProject);
 	connect(ui.toolButton_userManual, &QToolButton::clicked, this, &DrillPluginInformationReader::openUserManual);
 	connect(ui.toolButton_about, &QToolButton::clicked, this, &DrillPluginInformationReader::openAbout);
-	
+
 }
 
 /* --------------------------------------------------------------
@@ -147,8 +148,14 @@ void DrillPluginInformationReader::btn_importProject(){
 		return;
 	}
 	QString plugin_context = plugin_file.readAll();
+	
+	// > 全部数据初始化
 	S_PluginDataContainer::getInstance()->loadPluginData(plugin_context);
-	plugin_file.close();
+	S_InformationDataContainer::getInstance()->loadAllAnnotationData();
+	plugin_file.close(); 
+
+	// > 强制刷新
+	this->m_P_InformationPart->m_p_pluginListPart->refreshTable();	
 
 	this->m_tip->close();
 }
