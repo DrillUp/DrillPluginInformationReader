@@ -40,13 +40,24 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 
 	//-----------------------------------
 	//----事件绑定
-
+	connect(this->m_p_pluginListPart, &P_PluginListPart::pluginTriggered, this, &P_InformationPart::showPluginDetail);
 
 }
 
 P_InformationPart::~P_InformationPart(){
 }
 
+/*-------------------------------------------------
+		控件 - 显示指定插件详细信息
+*/
+void P_InformationPart::showPluginDetail(QString plugin_name){
+	
+	// > 显示内容
+	this->m_p_pluginDetailPart->showPluginDetail(plugin_name);
+
+	// > 切换到标签页
+	this->m_p_FoldableTabRelater->selectTab(" 插件详细信息  ");
+}
 
 /*-------------------------------------------------
 		块 - 本地数据 -> ui数据

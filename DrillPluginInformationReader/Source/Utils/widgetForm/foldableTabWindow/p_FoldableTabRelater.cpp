@@ -57,8 +57,21 @@ P_FoldableTabRelater::~P_FoldableTabRelater(){
 		父控件 - 关闭标签
 */
 void P_FoldableTabRelater::tabClosed(int index){
+	if (index >= this->m_tab->tabBar()->count()){ return; }		//（索引超出时，不操作）
 	QString text = this->m_tab->tabText(index);
 	this->showChildWindow(text);
+}
+/*-------------------------------------------------
+		父控件 - 切换到指定标签
+*/
+void P_FoldableTabRelater::selectTab(QString tab_name){
+	QTabBar* tabBar = this->m_tab->tabBar();
+	for (int i = 0; i < tabBar->count(); i++){
+		if (tabBar->tabText(i) == tab_name){
+			this->m_tab->setCurrentIndex(i);
+			return;
+		}
+	}
 }
 /*-------------------------------------------------
 		父控件 - 标签全归位

@@ -38,6 +38,8 @@ class P_PluginListPart : public QWidget
 	public:
 										//数据 - 搜索插件
 		void btn_search();
+										//数据 - 下拉框变化
+		void modeChanged(QString text);
 
 
 	//-----------------------------------
@@ -48,12 +50,12 @@ class P_PluginListPart : public QWidget
 	public slots:
 										//表格 - 初始化
 		void initTable(QTableWidget* table);
-										//表格 - 下拉框变化
-		void modeChanged(QString text);
+										//表格 - 刷新横向宽度
+		void refreshHorizontalSize(int table_width);
 										//表格 - 清理项
 		void clearTableItem();
 										//表格 - 重刷表格
-		void refreshTable();
+		void rebuildTable();
 										//表格 - 刷新表格（自动）
 		void refreshTableAuto( int start_index, int end_index );
 										//表格 - 刷新表格（配置的插件）
@@ -79,10 +81,13 @@ class P_PluginListPart : public QWidget
 	//----表格事件
 	public slots:
 										//表格事件 - 双击表格
-		//void treeDoubled(QTreeWidgetItem *item, int col);
+		void tableDoubled(QTableWidgetItem *item);
 										//表格事件 - 右键表格
-		//void treeRightClicked(QPoint p);
-		
+		void tableRightClicked(QPoint p);
+	signals:
+										//信号 - 插件选中
+		void pluginTriggered(QString plugin_name);
+
 	//-----------------------------------
 	//----分页
 	public:

@@ -33,6 +33,9 @@ class P_InformationPart : public QWidget
 		P_PluginListPart* m_p_pluginListPart;
 		P_PluginDetailPart* m_p_pluginDetailPart;
 		P_CommandSearcherPart* m_p_commandSearcherPart;
+	public slots:
+										//控件 - 显示指定插件详细信息
+		void showPluginDetail(QString plugin_name );
 
 	//-----------------------------------
 	//----块

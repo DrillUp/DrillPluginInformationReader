@@ -7,7 +7,7 @@
 /*
 -----==========================================================-----
 		类：		可折叠选项卡 管理器.h
-		版本：		v1.02
+		版本：		v1.03
 		作者：		drill_up
 		所属模块：	工具模块
 		功能：		折叠选项卡窗口的管理器。
@@ -30,7 +30,10 @@ class P_FoldableTabRelater : public QObject
 		QString m_tabStyle;				//样式
 	public slots:
 								//父控件 - 关闭标签
+								//		【说明】：index可以越界。
 		void tabClosed(int index);
+								//父控件 - 切换到指定标签
+		void selectTab(QString tab_name);
 								//父控件 - 标签全归位
 		void homingAllTab();
 

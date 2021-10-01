@@ -27,10 +27,11 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	//-----------------------------------
 	//----控件初始化
 	TTool::_ChangeCombox_itemHeight_(ui.comboBox_pluginMode, 30);
-	this->initTable(ui.tableWidget_plugin);
 	ui.widget_search->setVisible(false);
+	this->slot_block = false;
+	this->initTable(ui.tableWidget_plugin);
 
-	// > 树按钮控件
+	// > 表格按钮控件
 	this->m_w_PluginAttrComment = new W_PluginAttrComment(this);
 	this->m_btnPartList = QList<P_PluginAttr_ButtonPart*>();
 	for (int i = 0; i < 100; i++){
@@ -60,28 +61,7 @@ P_PluginListPart::~P_PluginListPart(){
 
 
 /*-------------------------------------------------
-		树结构 - 初始化
-*/
-void P_PluginListPart::initTable(QTableWidget* table){
-	this->m_table = table;
-
-	// > ui初始化
-	this->m_table->horizontalHeader()->resizeSection(0, 280);
-	this->m_table->horizontalHeader()->resizeSection(1, 140);
-	this->m_table->horizontalHeader()->resizeSection(2, 110);
-	this->m_table->horizontalHeader()->resizeSection(3, 80);
-	this->m_table->horizontalHeader()->resizeSection(4, 220);
-	this->m_table->horizontalHeader()->resizeSection(5, 80);
-
-	// > 事件绑定
-	//connect(this->m_table, &QTreeWidget::itemDoubleClicked, this, &P_PluginListPart::treeDoubled);
-	//connect(this->m_table, &QTreeWidget::customContextMenuRequested, this, &P_PluginListPart::treeRightClicked);
-
-
-}
-
-/*-------------------------------------------------
-		树结构 - 下拉框变化
+		数据 - 下拉框变化
 */
 void P_PluginListPart::modeChanged(QString text){
 
@@ -93,108 +73,11 @@ void P_PluginListPart::modeChanged(QString text){
 		ui.widget_search->setVisible(true);
 	}
 	
-	// > 刷新树
-	this->refreshTable();
+	// > 刷新表格
+	this->rebuildTable();
 }
 /*-------------------------------------------------
-		树结构 - 清理项
-*/
-void P_PluginListPart::clearTableItem(){
-
-	// > 退按钮组（转移到别处）
-	for (int i = 0; i < this->m_table->rowCount(); i++){
-		QWidget* w = this->m_table->cellWidget(i,1);
-		if (w == nullptr){ continue; }
-		if (w->layout() == nullptr){ continue; }
-
-		for (int j = 0; j < this->m_btnPartList.count(); j++){
-			P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
-			w->layout()->removeWidget(btn_part);
-		}
-		this->m_table->removeCellWidget(i, 1);		//【必须夹个中间widget层，然后移除Widget】
-	}
-	for (int j = 0; j < this->m_btnPartList.count(); j++){
-		P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
-		btn_part->setParent(this);
-	}
-
-	// > 清除树控件
-	this->m_table->clearContents();
-}
-
-/*-------------------------------------------------
-		树结构 - 重刷表格（读取时）
-*/
-void P_PluginListPart::refreshTable(){
-	
-	// > 数据重刷
-	ui.lineEdit_searchPlugin->setText("");
-	this->m_searchText = "";
-	this->m_allPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
-	this->m_allAnnotationData = S_InformationDataContainer::getInstance()->getAnnotationTank();
-
-	// > 刷新
-	this->refreshTableAuto(0, 99);
-}
-/*-------------------------------------------------
-		树结构 - 刷新表格（自动）
-*/
-void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
-	if (ui.comboBox_pluginMode->currentIndex() == 0){
-		this->m_p_PageNavigator->setAllCount(this->m_allPluginData.count());	//（刷新分页器）
-		this->refreshTable_configedPlugin(start_index, end_index);				//（刷新表格内容）
-	}
-	if (ui.comboBox_pluginMode->currentIndex() == 1){
-		this->m_p_PageNavigator->setAllCount(this->m_allAnnotationData.count());	//（刷新分页器）
-		this->refreshTable_allPlugin(start_index, end_index);						//（刷新表格内容）
-	}
-}
-/*-------------------------------------------------
-		树结构 - 刷新树（配置的插件）
-*/
-void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_index){
-	if (this->m_table == nullptr){ return; }
-	this->clearTableItem();
-	if (start_index < 0){ start_index = 0; }
-	if (end_index <= 0){ return; }
-
-	// > 配置的插件
-	if (end_index >= this->m_allPluginData.count()){ end_index = this->m_allPluginData.count() - 1; }
-	this->m_table->setRowCount(end_index - start_index + 1);
-	for (int i = start_index; i <= end_index; i++){
-		C_PluginData* c_p = this->m_allPluginData.at(i);
-
-		int index = i - start_index;
-		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
-		if (btn_part != nullptr){ btn_part->setPluginName(c_p->name); };
-		this->setOneRow(index, c_p->name, btn_part);
-	}
-}
-
-/*-------------------------------------------------
-		树结构 - 刷新树（全部插件，含搜索）
-*/
-void P_PluginListPart::refreshTable_allPlugin(int start_index, int end_index){
-	if (this->m_table == nullptr){ return; }
-	this->clearTableItem();
-	if (start_index < 0){ start_index = 0; }
-	if (end_index <= 0){ return; }
-
-	// > 显示的插件
-	if (end_index >= this->m_allAnnotationData.count()){ end_index = this->m_allAnnotationData.count() - 1; }
-	this->m_table->setRowCount(end_index - start_index + 1);
-	for (int i = start_index; i <= end_index; i++){
-		C_ScriptAnnotation data = this->m_allAnnotationData.at(i);
-		
-		int index = i - start_index;
-		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
-		if (btn_part != nullptr){ btn_part->setPluginName(data.getName()); };
-		this->setOneRow(index, data.getName(), btn_part);
-	}
-
-}
-/*-------------------------------------------------
-		表格 - 搜索插件
+		数据 - 搜索插件
 */
 void P_PluginListPart::btn_search(){
 
@@ -220,6 +103,142 @@ void P_PluginListPart::btn_search(){
 	this->m_allAnnotationData = data_list;	//（修改数据范围）
 	this->refreshTableAuto(0, 99);
 }
+
+/*-------------------------------------------------
+		表格 - 初始化
+*/
+void P_PluginListPart::initTable(QTableWidget* table){
+	this->m_table = table;
+
+	// > ui初始化
+	this->refreshHorizontalSize(0);
+	//this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//行自适应
+	//（不要自适应，影响性能，且QLabel无法自动换行）
+
+	// > 事件绑定
+	connect(this->m_table, &QTableWidget::itemDoubleClicked, this, &P_PluginListPart::tableDoubled);
+	connect(this->m_table, &QTableWidget::customContextMenuRequested, this, &P_PluginListPart::tableRightClicked);
+	
+}
+/*-------------------------------------------------
+		表格 - 刷新横向宽度
+*/
+void P_PluginListPart::refreshHorizontalSize(int table_width){
+	int ww = table_width;
+	if (ww < 950){
+		this->m_table->horizontalHeader()->resizeSection(0, 280);
+		this->m_table->horizontalHeader()->resizeSection(1, 140);
+		this->m_table->horizontalHeader()->resizeSection(2, 110);
+		this->m_table->horizontalHeader()->resizeSection(3, 80);
+		this->m_table->horizontalHeader()->resizeSection(4, 220);
+		this->m_table->horizontalHeader()->resizeSection(5, 80);
+	}else{
+		ww = ww - 40 - 270;
+		this->m_table->horizontalHeader()->resizeSection(0, ww * 280 / 640);
+		this->m_table->horizontalHeader()->resizeSection(1, ww * 140 / 640);
+		this->m_table->horizontalHeader()->resizeSection(2, 110);
+		this->m_table->horizontalHeader()->resizeSection(3, 80);
+		this->m_table->horizontalHeader()->resizeSection(4, ww * 220 / 640);
+		this->m_table->horizontalHeader()->resizeSection(5, 80);
+	}
+}
+/*-------------------------------------------------
+		表格结构 - 清理项
+*/
+void P_PluginListPart::clearTableItem(){
+
+	// > 退按钮组（转移到别处）
+	for (int i = 0; i < this->m_table->rowCount(); i++){
+		QWidget* w = this->m_table->cellWidget(i,1);
+		if (w == nullptr){ continue; }
+		if (w->layout() == nullptr){ continue; }
+
+		for (int j = 0; j < this->m_btnPartList.count(); j++){
+			P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
+			w->layout()->removeWidget(btn_part);
+		}
+		this->m_table->removeCellWidget(i, 1);		//【必须夹个中间widget层，然后移除Widget】
+	}
+	for (int j = 0; j < this->m_btnPartList.count(); j++){
+		P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
+		btn_part->setParent(this);
+	}
+
+	// > 清除表格控件
+	this->m_table->clearContents();
+}
+
+/*-------------------------------------------------
+		表格结构 - 重刷表格（读取时）
+*/
+void P_PluginListPart::rebuildTable(){
+	
+	// > 数据重刷
+	ui.lineEdit_searchPlugin->setText("");
+	this->m_searchText = "";
+	this->m_allPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
+	this->m_allAnnotationData = S_InformationDataContainer::getInstance()->getAnnotationTank();
+
+	// > 刷新
+	this->refreshTableAuto(0, 99);
+}
+/*-------------------------------------------------
+		表格结构 - 刷新表格（自动）
+*/
+void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
+	if (ui.comboBox_pluginMode->currentIndex() == 0){
+		this->m_p_PageNavigator->setAllCount(this->m_allPluginData.count());	//（刷新分页器）
+		this->refreshTable_configedPlugin(start_index, end_index);				//（刷新表格内容）
+	}
+	if (ui.comboBox_pluginMode->currentIndex() == 1){
+		this->m_p_PageNavigator->setAllCount(this->m_allAnnotationData.count());	//（刷新分页器）
+		this->refreshTable_allPlugin(start_index, end_index);						//（刷新表格内容）
+	}
+}
+/*-------------------------------------------------
+		表格结构 - 刷新表格（配置的插件）
+*/
+void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_index){
+	if (this->m_table == nullptr){ return; }
+	this->clearTableItem();
+	if (start_index < 0){ start_index = 0; }
+	if (end_index <= 0){ return; }
+
+	// > 配置的插件
+	if (end_index >= this->m_allPluginData.count()){ end_index = this->m_allPluginData.count() - 1; }
+	this->m_table->setRowCount(end_index - start_index + 1);
+	for (int i = start_index; i <= end_index; i++){
+		C_PluginData* c_p = this->m_allPluginData.at(i);
+
+		int index = i - start_index;
+		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
+		if (btn_part != nullptr){ btn_part->setPluginName(c_p->name); };
+		this->setOneRow(index, c_p->name, btn_part);
+	}
+}
+
+/*-------------------------------------------------
+		表格结构 - 刷新表格（全部插件，含搜索）
+*/
+void P_PluginListPart::refreshTable_allPlugin(int start_index, int end_index){
+	if (this->m_table == nullptr){ return; }
+	this->clearTableItem();
+	if (start_index < 0){ start_index = 0; }
+	if (end_index <= 0){ return; }
+
+	// > 显示的插件
+	if (end_index >= this->m_allAnnotationData.count()){ end_index = this->m_allAnnotationData.count() - 1; }
+	this->m_table->setRowCount(end_index - start_index + 1);
+	for (int i = start_index; i <= end_index; i++){
+		C_ScriptAnnotation data = this->m_allAnnotationData.at(i);
+		
+		int index = i - start_index;
+		P_PluginAttr_ButtonPart* btn_part = this->getButtonPartByIndex(index);
+		if (btn_part != nullptr){ btn_part->setPluginName(data.getName()); };
+		this->setOneRow(index, data.getName(), btn_part);
+	}
+
+}
 /*-------------------------------------------------
 		私有 - 添加一行
 */
@@ -232,7 +251,10 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 	if(  ui.comboBox_pluginMode->currentIndex() == 0 || 
 		(ui.comboBox_pluginMode->currentIndex() == 1 && this->m_searchText.isEmpty())){
 
-		this->m_table->setItem(row, 0, new QTableWidgetItem(pluginName));
+		QTableWidgetItem* first_item = new QTableWidgetItem();
+		first_item->setText(pluginName);
+		first_item->setToolTip(pluginName);
+		this->m_table->setItem(row, 0, first_item);
 
 		// > 分割线
 		if (pluginName.contains("---")){
@@ -270,6 +292,9 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 	// > 标蓝情况
 	}else{
 
+		QTableWidgetItem* first_item = new QTableWidgetItem();
+		first_item->setToolTip(pluginName);
+		this->m_table->setItem(row, 0, first_item);
 		this->m_table->setCellWidget(row, 0, this->getLabelWithSign(pluginName, this->m_searchText));
 
 		// > 分割线
@@ -294,10 +319,14 @@ void P_PluginListPart::setOneRow(int row, QString pluginName, QWidget* widget){
 			// > 文本
 			QString version = data.getPlugindesc_version();
 			if (version.isEmpty() == false){
+				this->m_table->setItem(row, 2, new QTableWidgetItem());
+				this->m_table->setItem(row, 3, new QTableWidgetItem());
+				this->m_table->setItem(row, 4, new QTableWidgetItem());
 				this->m_table->setCellWidget(row, 2, this->getLabelWithSign(version, this->m_searchText));
 				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), this->m_searchText));
 				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc_name(), this->m_searchText));
 			}else{
+				this->m_table->setItem(row, 4, new QTableWidgetItem());
 				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), this->m_searchText));
 			}
 			if (c_p == nullptr){
@@ -326,7 +355,7 @@ QLabel* P_PluginListPart::getLabelWithSign(QString text, QString searching_text)
 			result_text.append("</span>");
 		}
 	}
-	result_text.append("<\p>");
+	result_text.append("<\\p>");
 	return new QLabel(result_text);
 }
 
@@ -341,39 +370,34 @@ P_PluginAttr_ButtonPart* P_PluginListPart::getButtonPartByIndex(int index){
 
 
 /*-------------------------------------------------
-		树事件 - 双击树节点
-
-void P_PluginListPart::treeDoubled(QTreeWidgetItem *item, int col){
+		表格事件 - 双击表格节点
+*/
+void P_PluginListPart::tableDoubled(QTableWidgetItem *item){
 	if (this->slot_block){ return; };
 	this->slot_block = true;
 
-	QList<C_PluginData*> datas = S_PluginDataContainer::getInstance()->getPluginDataTank();
-	for (int i = 0; i < datas.count(); i++) {
-		C_PluginData* c_p = datas.at(i);
-		if (c_p->name == item->text(0) ) {
-			//...
-		}
-	}
+	QTableWidgetItem * first_item = this->m_table->item(item->row(),0);
+	QString plugin_name = first_item->toolTip();
+	emit pluginTriggered(plugin_name);
 
 	this->slot_block = false;
 }
-*/
 /*-------------------------------------------------
-		树事件 - 右键树节点
-
-void P_PluginListPart::treeRightClicked(QPoint p){
+		表格事件 - 右键表格节点
+*/
+void P_PluginListPart::tableRightClicked(QPoint p){
 	if (this->slot_block){ return; };
 	this->slot_block = true;
 
-	if (this->m_tree->itemAt(p) == nullptr){ return; }
-	QTreeWidgetItem* item = this->m_tree->itemAt(p);	//QPoint返回的是鼠标坐标值，treeWidget可以通过itemAt()获取到item。
+	if (this->m_table->itemAt(p) == nullptr){ return; }
+	QTableWidgetItem* item = this->m_table->itemAt(p);	//QPoint返回的是鼠标坐标值，treeWidget可以通过itemAt()获取到item。
 
-	qDebug() << this->m_tree->indexAt(p);
+	qDebug() << this->m_table->indexAt(p);
 	//...
 
 	this->slot_block = false;
 }
-*/
+
 
 
 /*-------------------------------------------------

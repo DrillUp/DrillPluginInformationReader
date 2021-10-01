@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "c_ScriptHelpDetail.h"
 
+#include "Source/Utils/manager/txtRead/p_TxtFastReader.h"
 
 /*
 -----==========================================================-----
@@ -58,7 +59,34 @@ QString C_ScriptHelpDetail::getHelpContext(){
 		私有 - 帮助信息初始化
 */
 void C_ScriptHelpDetail::initHelpContext(){
-	//...
+	P_TxtFastReader reader = P_TxtFastReader(this->help);
+
+	// > 作用域
+	int i_effectScope = reader.d_indexOf("插件的作用域：");
+	if (i_effectScope != -1){
+		this->m_effectScope = new C_ScriptHelp_EffectScope();
+		QStringList row_list = reader.d_getRows(i_effectScope, 4);
+		for (int k = 0; k < row_list.count(); k++){
+			QString row = row_list.at(k);
+			if (k == 0){
+				QString data = row.split("插件的作用域：").last();
+				data = data.replace(QRegExp("[.。]"), "").trimmed();
+				this->m_effectScope->scope_list = data.split(QRegExp("[，,、]"));
+				continue;
+			}
+			if (row.count() > 0 && row.at(0) == ' '){	//（有空格表示章节没说完）
+				this->m_effectScope->comments.append(row);
+				this->m_effectScope->comments.append("\n");
+			}else{
+				break;
+			}
+		}
+	}
+
+	// > 分段说明
+	int i_nextSubsection = reader.d_indexOf("2.", i_effectScope+1);
+
+
 }
 /*-------------------------------------------------
 		数据 - 获取作用域

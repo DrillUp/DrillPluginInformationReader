@@ -4,6 +4,8 @@
 #include <QtWidgets>
 #include "ui_P_PluginDetailPart.h"
 
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+
 /*
 -----==========================================================-----
 		类：		插件信息 编辑块.h
@@ -24,8 +26,11 @@ class P_PluginDetailPart : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		QString m_curPluginName;
 	public slots: 
-
+										//控件 - 显示指定插件详细信息
+		void showPluginDetail(QString plugin_name );
 
 	//-----------------------------------
 	//----块

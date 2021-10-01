@@ -20,7 +20,7 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 
 	//-----------------------------------
 	//----初始化参数
-
+	this->m_curPluginName = "";
 
 	//-----------------------------------
 	//----控件初始化
@@ -33,6 +33,19 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 P_PluginDetailPart::~P_PluginDetailPart(){
 }
 
+
+/*-------------------------------------------------
+		控件 - 显示指定插件详细信息
+*/
+void P_PluginDetailPart::showPluginDetail(QString plugin_name){
+	if (plugin_name == ""){ return; }
+	if (this->m_curPluginName == plugin_name){ return; }
+	this->m_curPluginName = plugin_name;
+
+	C_ScriptAnnotation annotation = S_InformationDataContainer::getInstance()->getAnnotation(plugin_name);
+
+	ui.plainTextEdit_orgHelp->setPlainText(annotation.getHelp());
+}
 
 /*-------------------------------------------------
 		块 - 本地数据 -> ui数据

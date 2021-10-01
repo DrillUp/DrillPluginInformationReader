@@ -155,7 +155,7 @@ void DrillPluginInformationReader::btn_importProject(){
 	plugin_file.close(); 
 
 	// > 强制刷新
-	this->m_P_InformationPart->m_p_pluginListPart->refreshTable();	
+	this->m_P_InformationPart->m_p_pluginListPart->rebuildTable();	
 
 	this->m_tip->close();
 }
@@ -200,6 +200,12 @@ void DrillPluginInformationReader::resizeEvent(QResizeEvent *event){
 	if (size.width() + 100 < QApplication::desktop()->width() &&
 		size.height() + 80 < QApplication::desktop()->height()){
 		this->m_last_uiSize = size;		//（最大化时不存值，也不存过大的值）
+	}
+
+	// > 刷新插件列表的目录列
+	if (this->m_P_InformationPart &&
+		this->m_P_InformationPart->m_p_pluginListPart ){
+		this->m_P_InformationPart->m_p_pluginListPart->refreshHorizontalSize(this->geometry().width() - 120);
 	}
 
 	event->accept();
