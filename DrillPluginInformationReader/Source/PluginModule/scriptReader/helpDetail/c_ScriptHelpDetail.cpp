@@ -19,6 +19,7 @@ C_ScriptHelpDetail::C_ScriptHelpDetail(){
 
 	this->m_effectScope = nullptr;			//作用域
 	this->m_pluginRelation = nullptr;		//插件扩展
+	this->m_src = nullptr;					//资源路径
 	this->m_docs = nullptr;					//插件文档
 	this->m_subsection = nullptr;			//分段说明
 	this->m_command = nullptr;				//指令
@@ -61,6 +62,12 @@ QString C_ScriptHelpDetail::getHelpContext(){
 void C_ScriptHelpDetail::initHelpContext(){
 	P_TxtFastReader reader = P_TxtFastReader(this->help);
 
+	// > 插件扩展
+	int i_relation = reader.d_indexOf("----插件扩展");
+	if (i_relation != -1){
+
+	}
+
 	// > 作用域
 	int i_effectScope = reader.d_indexOf("插件的作用域：");
 	if (i_effectScope != -1){
@@ -70,7 +77,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 			QString row = row_list.at(k);
 			if (k == 0){
 				QString data = row.split("插件的作用域：").last();
-				data = data.replace(QRegExp("[.。]"), "").trimmed();
+				data = data.replace(QRegExp("[\\.。]"), "").trimmed();
 				this->m_effectScope->scope_list = data.split(QRegExp("[，,、]"));
 				continue;
 			}
@@ -83,9 +90,66 @@ void C_ScriptHelpDetail::initHelpContext(){
 		}
 	}
 
-	// > 分段说明
-	int i_nextSubsection = reader.d_indexOf("2.", i_effectScope+1);
 
+	// > 分段说明
+	int i_mainComment = reader.d_indexOf("----设定注意事项");
+	int i_mainComment_end = reader.d_indexOf("----------------------", i_mainComment + 1);
+	if (i_mainComment != -1){
+		int row_count = i_mainComment_end - i_mainComment - 1;
+		QStringList mainComment = reader.d_getRows(i_mainComment + 1, row_count);
+		P_TxtFastReader main_reader = P_TxtFastReader(mainComment.join("\n"));
+
+		C_ScriptHelp_Subsection* subsection = new C_ScriptHelp_Subsection();
+
+		// > 分段说明 - 主内容
+		int i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));
+		int i_page = i_main;
+		for (int k = 0; k < 15; k++){
+			if (i_main != -1){
+				int i_nextMain = main_reader.d_indexOf(QRegExp("^[^ ]+"), i_main + 1);	//（后续行有空格表示内容没完）
+				if (i_nextMain != -1){
+					int main_count = i_nextMain - i_main;
+					QStringList data = main_reader.d_getRows(i_main, main_count);
+					subsection->main_list.append(data.join("\n"));
+				}else{
+					QStringList data = main_reader.d_getRows(i_main);
+					subsection->main_list.append(data.join("\n"));
+				}
+				i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_main + 1);
+			}else{
+				break;
+			}
+		}
+
+		// > 分段说明 - 章节
+		i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
+		for (int k = 0; k < 15; k++){
+			if (i_page != -1){
+				QStringList title_list = main_reader.d_getRows(i_page - 1, 1);
+				int i_nextPage = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
+				if (i_nextPage != -1){
+					int page_count = i_nextPage - i_page;
+					QStringList data = main_reader.d_getRows(i_page, page_count);
+					subsection->addPage(data.join("\n"));
+					i_page = i_nextPage;
+				}else{
+					QStringList data = main_reader.d_getRows(i_page);
+					subsection->addPage(data.join("\n"));
+					break;
+				}
+			}else{
+				break;
+			}
+		}
+	}
+
+	// > 资源路径
+
+	// > 插件文档
+
+	// > 指令
+
+	// > 插件性能
 
 }
 /*-------------------------------------------------
@@ -99,6 +163,12 @@ C_ScriptHelp_EffectScope* C_ScriptHelpDetail::getEffectScope(){
 */
 C_ScriptHelp_PluginRelation* C_ScriptHelpDetail::getPluginRelation(){
 	return this->m_pluginRelation;
+}
+/*-------------------------------------------------
+		数据 - 获取资源路径
+*/
+C_ScriptHelp_Src* C_ScriptHelpDetail::getSrc(){
+	return this->m_src;
 }
 /*-------------------------------------------------
 		数据 - 获取插件文档

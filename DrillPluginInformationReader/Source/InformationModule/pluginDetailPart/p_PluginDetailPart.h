@@ -5,6 +5,12 @@
 #include "ui_P_PluginDetailPart.h"
 
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_EffectScope.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Subsection.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Src.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Command.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Performance.h"
+#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_PluginRelation.h"
 
 /*
 -----==========================================================-----
@@ -28,6 +34,12 @@ class P_PluginDetailPart : public QWidget
 	//----控件
 	public:
 		QString m_curPluginName;
+		P_ScriptHelp_EffectScope* m_p_ScriptHelp_EffectScope;
+		P_ScriptHelp_Subsection* m_p_ScriptHelp_Subsection;
+		P_ScriptHelp_Src* m_p_ScriptHelp_Src;
+		P_ScriptHelp_Command* m_p_ScriptHelp_Command;
+		P_ScriptHelp_Performance* m_p_ScriptHelp_Performance;
+		P_ScriptHelp_PluginRelation* m_p_ScriptHelp_PluginRelation;
 	public slots: 
 										//控件 - 显示指定插件详细信息
 		void showPluginDetail(QString plugin_name );

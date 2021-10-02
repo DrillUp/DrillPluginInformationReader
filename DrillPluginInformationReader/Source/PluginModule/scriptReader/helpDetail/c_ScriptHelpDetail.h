@@ -4,6 +4,7 @@
 
 #include "c_ScriptHelp_EffectScope.h"
 #include "c_ScriptHelp_PluginRelation.h"
+#include "c_ScriptHelp_Src.h"
 #include "c_ScriptHelp_Docs.h"
 #include "c_ScriptHelp_Subsection.h"
 #include "c_ScriptHelp_Command.h"
@@ -46,6 +47,7 @@ class C_ScriptHelpDetail{
 	protected:
 		C_ScriptHelp_EffectScope* m_effectScope;		//作用域
 		C_ScriptHelp_PluginRelation* m_pluginRelation;	//插件扩展
+		C_ScriptHelp_Src* m_src;						//资源路径
 		C_ScriptHelp_Docs* m_docs;						//插件文档
 		C_ScriptHelp_Subsection* m_subsection;			//分段说明
 		C_ScriptHelp_Command* m_command;				//指令
@@ -55,6 +57,8 @@ class C_ScriptHelpDetail{
 		C_ScriptHelp_EffectScope* getEffectScope();
 									//数据 - 获取插件扩展
 		C_ScriptHelp_PluginRelation* getPluginRelation();
+									//数据 - 获取资源路径
+		C_ScriptHelp_Src* getSrc();
 									//数据 - 获取插件文档
 		C_ScriptHelp_Docs* getDocs();
 									//数据 - 获取分段说明
