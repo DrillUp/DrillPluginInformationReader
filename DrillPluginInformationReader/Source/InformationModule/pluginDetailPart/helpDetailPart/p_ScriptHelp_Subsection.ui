@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>P_ScriptHelp_Subsection</class>
+ <widget class="QWidget" name="P_ScriptHelp_Subsection">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>508</width>
+    <height>157</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* == 整体字体 == */
+QWidget{
+	/*font: 75 10pt &quot;黑体&quot;;*/
+}
+
+/* == 标签 == */
+#P_ScriptHelp_QWidget&gt;QLabel{
+	padding: 5px;
+    border: 1px solid #00D778;
+    border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0FEF3 );
+}
+
+/* == 群组控件 == */
+QGroupBox{
+	margin-top: 0.5em;
+	padding-top: 20px;
+	color:#449ed4;
+    border: 1px solid #449ed4;
+    border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	top: 12px;
+	left: 2px;
+	margin-left: 0px;
+	padding: 0 1px;
+}
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>4</number>
+   </property>
+   <property name="topMargin">
+    <number>4</number>
+   </property>
+   <property name="rightMargin">
+    <number>4</number>
+   </property>
+   <property name="bottomMargin">
+    <number>4</number>
+   </property>
+   <item>
+    <widget class="QWidget" name="P_ScriptHelp_QWidget" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本，&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>细节</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本，&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

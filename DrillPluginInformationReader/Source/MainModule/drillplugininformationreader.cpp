@@ -20,6 +20,7 @@
 DrillPluginInformationReader::DrillPluginInformationReader(QWidget *parent)
 	: QMainWindow(parent)
 {
+	this->m_inited = false;
 	DrillPluginInformationReader::cur_instance = this;
 	ui.setupUi(this);
 	this->_init();
@@ -57,6 +58,7 @@ void DrillPluginInformationReader::_init() {
 	S_RmmvDataContainer::getInstance();
 	S_PluginDataContainer::getInstance();
 	S_InformationDataContainer::getInstance();
+	S_LinkDirector::getInstance();
 
 	// > UI读取
 	this->ui_loadConfig();
@@ -78,6 +80,9 @@ void DrillPluginInformationReader::_init() {
 	connect(ui.toolButton_userManual, &QToolButton::clicked, this, &DrillPluginInformationReader::openUserManual);
 	connect(ui.toolButton_about, &QToolButton::clicked, this, &DrillPluginInformationReader::openAbout);
 
+	//qDebug() << S_LinkDirector::getInstance()->getDocDir();
+	//qDebug() << S_LinkDirector::getInstance()->getDataAllDocDirName();
+	this->m_inited = true;
 }
 
 /* --------------------------------------------------------------
@@ -195,6 +200,7 @@ C_RmmvProjectData DrillPluginInformationReader::callRmmvSelect(){
 		事件 - 窗口切换大小事件
 */
 void DrillPluginInformationReader::resizeEvent(QResizeEvent *event){
+	if (this->m_inited == false){ return; }
 
 	QSize size = event->size();
 	if (size.width() + 100 < QApplication::desktop()->width() &&

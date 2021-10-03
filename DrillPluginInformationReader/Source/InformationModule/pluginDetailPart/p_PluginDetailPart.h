@@ -4,13 +4,13 @@
 #include <QtWidgets>
 #include "ui_P_PluginDetailPart.h"
 
+#include "helpDetailPart/p_ScriptHelp_EffectScope.h"
+#include "helpDetailPart/p_ScriptHelp_Subsection.h"
+#include "helpDetailPart/p_ScriptHelp_Src.h"
+#include "helpDetailPart/p_ScriptHelp_Command.h"
+#include "helpDetailPart/p_ScriptHelp_Performance.h"
+#include "helpDetailPart/p_ScriptHelp_PluginRelation.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_EffectScope.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Subsection.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Src.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Command.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_Performance.h"
-#include "Source/PluginModule/scriptReader/helpDetail/widgetPart/p_ScriptHelp_PluginRelation.h"
 
 /*
 -----==========================================================-----

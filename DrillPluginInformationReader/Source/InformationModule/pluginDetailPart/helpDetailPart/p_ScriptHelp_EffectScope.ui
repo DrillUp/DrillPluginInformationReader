@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
+    <width>415</width>
     <height>65</height>
    </rect>
   </property>
@@ -111,13 +111,16 @@ QToolButton:disabled{
          <property name="bottomMargin">
           <number>2</number>
          </property>
+         <property name="spacing">
+          <number>2</number>
+         </property>
          <item row="0" column="1">
           <widget class="QToolButton" name="toolButton_battle">
            <property name="text">
             <string>战斗界面</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../../drillplugininformationreader.qrc">
+            <iconset>
              <normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -131,7 +134,7 @@ QToolButton:disabled{
             <string>菜单界面</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../../drillplugininformationreader.qrc">
+            <iconset>
              <normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -145,7 +148,7 @@ QToolButton:disabled{
             <string>地图界面</string>
            </property>
            <property name="icon">
-            <iconset resource="../../../../../drillplugininformationreader.qrc">
+            <iconset>
              <normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</normaloff>:/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg</iconset>
            </property>
            <property name="toolButtonStyle">
@@ -159,6 +162,9 @@ QToolButton:disabled{
         <widget class="QLabel" name="label_context">
          <property name="text">
           <string>没有作用域描述。</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

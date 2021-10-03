@@ -99,9 +99,10 @@ void C_ScriptHelpDetail::initHelpContext(){
 		QStringList mainComment = reader.d_getRows(i_mainComment + 1, row_count);
 		P_TxtFastReader main_reader = P_TxtFastReader(mainComment.join("\n"));
 
-		C_ScriptHelp_Subsection* subsection = new C_ScriptHelp_Subsection();
+		this->m_subsection = new C_ScriptHelp_Subsection();
 
 		// > 分段说明 - 主内容
+		QStringList main_context = QStringList();
 		int i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));
 		int i_page = i_main;
 		for (int k = 0; k < 15; k++){
@@ -109,17 +110,24 @@ void C_ScriptHelpDetail::initHelpContext(){
 				int i_nextMain = main_reader.d_indexOf(QRegExp("^[^ ]+"), i_main + 1);	//（后续行有空格表示内容没完）
 				if (i_nextMain != -1){
 					int main_count = i_nextMain - i_main;
-					QStringList data = main_reader.d_getRows(i_main, main_count);
-					subsection->main_list.append(data.join("\n"));
+					QString data = main_reader.d_getRows(i_main, main_count).join("\n");
+					if (data.contains("插件的作用域：") == false){		//（不含作用域的说明）
+						data = data.replace(QRegExp("^[\\d]+[\\.。]"), "");
+						main_context.append(data.trimmed());
+					}
 				}else{
-					QStringList data = main_reader.d_getRows(i_main);
-					subsection->main_list.append(data.join("\n"));
+					QString data = main_reader.d_getRows(i_main).join("\n");
+					if (data.contains("插件的作用域：") == false){		//（不含作用域的说明）
+						data = data.replace(QRegExp("^[\\d]+[\\.。]"), "");
+						main_context.append(data.trimmed());
+					}
 				}
 				i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_main + 1);
 			}else{
 				break;
 			}
 		}
+		this->m_subsection->setMainContext(main_context);
 
 		// > 分段说明 - 章节
 		i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
@@ -130,11 +138,11 @@ void C_ScriptHelpDetail::initHelpContext(){
 				if (i_nextPage != -1){
 					int page_count = i_nextPage - i_page;
 					QStringList data = main_reader.d_getRows(i_page, page_count);
-					subsection->addPage(data.join("\n"));
+					this->m_subsection->addPage(data.join("\n"));
 					i_page = i_nextPage;
 				}else{
 					QStringList data = main_reader.d_getRows(i_page);
-					subsection->addPage(data.join("\n"));
+					this->m_subsection->addPage(data.join("\n"));
 					break;
 				}
 			}else{

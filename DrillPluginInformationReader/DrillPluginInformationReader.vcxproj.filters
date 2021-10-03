@@ -115,50 +115,53 @@
     <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组">
       <UniqueIdentifier>{35db1b85-6f2b-4cb8-b394-8e5bb1f1f4b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域">
-      <UniqueIdentifier>{064c9f1e-fc8d-46bd-8db9-cd27d2242bc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展">
-      <UniqueIdentifier>{1de890a9-e3e8-49e6-9506-db5272911a79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档">
-      <UniqueIdentifier>{34213b7e-af3a-4d08-88ad-f33e64b2114d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明">
-      <UniqueIdentifier>{7a79bdea-60b8-48a9-8fc0-1633d7484bdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能">
-      <UniqueIdentifier>{3b1211da-6c74-4740-ae4d-98a2bbc92bdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令">
-      <UniqueIdentifier>{432b5226-d7f7-4b65-9fc6-26c5a10bded4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中">
       <UniqueIdentifier>{bc3e7b54-831c-4e48-9765-69d242b0d3fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域\控件类">
-      <UniqueIdentifier>{db04c02a-2348-4ebe-846f-7f0785553541}</UniqueIdentifier>
+    <Filter Include="源文件\【 信息模块 InformationModule】\链接文件引导器">
+      <UniqueIdentifier>{085cd975-e5d2-4b08-bbe3-82e5ceba60a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明\控件类">
-      <UniqueIdentifier>{b191cfe3-937e-4499-b3cc-01a0c0c87917}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展（数据）">
+      <UniqueIdentifier>{1de890a9-e3e8-49e6-9506-db5272911a79}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令\控件类">
-      <UniqueIdentifier>{b78969b3-51f8-4a46-bb0a-b4b4ead88cc2}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档（数据）">
+      <UniqueIdentifier>{34213b7e-af3a-4d08-88ad-f33e64b2114d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展\控件类">
-      <UniqueIdentifier>{9db1a3dc-fbee-4ec9-8c36-43ef423b7a52}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能（数据）">
+      <UniqueIdentifier>{3b1211da-6c74-4740-ae4d-98a2bbc92bdf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能\控件类">
-      <UniqueIdentifier>{0926dd28-841a-4501-b763-60f2f069e876}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明（数据）">
+      <UniqueIdentifier>{7a79bdea-60b8-48a9-8fc0-1633d7484bdc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档\控件类">
-      <UniqueIdentifier>{1a7e9636-3a35-47e6-a1e7-624f9fb96255}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令（数据）">
+      <UniqueIdentifier>{432b5226-d7f7-4b65-9fc6-26c5a10bded4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径">
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径（数据）">
       <UniqueIdentifier>{9b2112b2-2207-4b78-b46f-781d01200cc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径\控件类">
-      <UniqueIdentifier>{0f417984-0c0a-4c49-96db-3fa3c92d4571}</UniqueIdentifier>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域（数据）">
+      <UniqueIdentifier>{064c9f1e-fc8d-46bd-8db9-cd27d2242bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\插件扩展（控件）">
+      <UniqueIdentifier>{1e9156a2-8d56-46ec-837f-29e54d8acebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）">
+      <UniqueIdentifier>{6e46b035-d50e-4ada-bf28-e67fd4f78ef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\插件性能（控件）">
+      <UniqueIdentifier>{e2bc6c7a-c740-48d8-a945-51ec354b4b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\分段说明（控件）">
+      <UniqueIdentifier>{6e272489-de8d-4f02-a9bd-3257478035b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）">
+      <UniqueIdentifier>{e9734d54-b33a-43f6-9ab9-08b3b71a0d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\资源路径（控件）">
+      <UniqueIdentifier>{33f6361d-5246-4067-a415-73fce42130aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\作用域（控件）">
+      <UniqueIdentifier>{d22583ca-0155-4c90-983b-5751eb5a891e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -376,22 +379,22 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttrComment.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
@@ -411,26 +414,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_w_LoadingTip.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_EffectScope.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域\控件类</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_EffectScope.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_EffectScope.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Subsection.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明\控件类</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Subsection.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Subsection.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Command.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令\控件类</Filter>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径（数据）</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Command.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -438,26 +423,17 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Command.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_PluginRelation.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展\控件类</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_PluginRelation.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_PluginRelation.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Docs.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档\控件类</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Docs.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Docs.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Performance.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能\控件类</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_EffectScope.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_EffectScope.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Performance.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -465,16 +441,52 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Performance.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径</Filter>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_PluginRelation.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Src.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径\控件类</Filter>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_PluginRelation.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Src.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Src.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Subsection.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Subsection.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Docs.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_EffectScope.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\作用域（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Performance.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件性能（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_PluginRelation.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件扩展（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Src.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\资源路径（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Subsection.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\分段说明（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\linkDirector\s_LinkDirector.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\链接文件引导器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_s_LinkDirector.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_s_LinkDirector.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -578,47 +590,50 @@
     <CustomBuild Include="Source\Utils\widgetForm\loadingTip\w_LoadingTip.h">
       <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_EffectScope.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_EffectScope.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Subsection.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Docs.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Subsection.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Docs.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Command.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_EffectScope.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\作用域（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Command.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_EffectScope.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\作用域（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_PluginRelation.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Performance.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件性能（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_PluginRelation.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Performance.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件性能（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Docs.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_PluginRelation.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件扩展（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Docs.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_PluginRelation.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件扩展（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Performance.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Src.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\资源路径（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Performance.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Src.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\资源路径（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Src.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Subsection.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\分段说明（控件）</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\helpDetail\widgetPart\p_ScriptHelp_Src.ui">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径\控件类</Filter>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Subsection.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\分段说明（控件）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\linkDirector\s_LinkDirector.h">
+      <Filter>源文件\【 信息模块 InformationModule】\链接文件引导器</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -692,48 +707,48 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\作用域（数据）</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件扩展（数据）</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\指令（数据）</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件文档（数据）</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\插件性能（数据）</Filter>
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明</Filter>
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明（数据）</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_PluginAttrComment.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_EffectScope.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Subsection.h">
-      <Filter>Generated Files</Filter>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径（数据）</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Command.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_PluginRelation.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Docs.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_EffectScope.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Performance.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径</Filter>
+    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_PluginRelation.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Src.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Subsection.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

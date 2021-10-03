@@ -38,6 +38,9 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	ui.verticalLayout_Command->addWidget(this->m_p_ScriptHelp_Command);
 	ui.verticalLayout_Performance->addWidget(this->m_p_ScriptHelp_Performance);
 	ui.verticalLayout_PluginRelation->addWidget(this->m_p_ScriptHelp_PluginRelation);
+	
+	//ui.splitter->handle(1)->setAttribute(Qt::WA_Hover, true);
+	//（水平分割布局会破坏 子类中 大量QLabel+换行 形成的稳定布局结构。 ）
 
 	//-----------------------------------
 	//----事件绑定
@@ -70,8 +73,8 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 	if (detail != nullptr){
 		// > 作用域
 		this->m_p_ScriptHelp_EffectScope->setData(detail->getEffectScope());
-	}else{
-
+		// > 分页说明
+		this->m_p_ScriptHelp_Subsection->setData(detail->getSubsection());
 	}
 }
 

@@ -3,7 +3,9 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_drillplugininformationreader.h"
+
 #include "Source/InformationModule/p_InformationPart.h"
+#include "Source/InformationModule/linkDirector/s_LinkDirector.h"
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
 #include "Source/Utils/widgetForm/loadingTip/w_LoadingTip.h"
 
@@ -57,6 +59,7 @@ class DrillPluginInformationReader : public QMainWindow
 	//-----------------------------------
 	//----事件
 	private:
+		bool m_inited;
 		QSize m_last_uiSize;
 	public:
 								//事件 - 窗口切换大小事件
