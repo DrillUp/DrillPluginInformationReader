@@ -17,3 +17,16 @@ C_ScriptHelp_Performance::~C_ScriptHelp_Performance(){
 }
 
 
+
+//数据 - 是否高消耗
+bool C_ScriptHelp_Performance::isHighCost(){
+	return false;
+}
+//数据 - 是否中消耗
+bool C_ScriptHelp_Performance::isMiddleCost(){
+	return false;
+}
+//数据 - 是否低消耗
+bool C_ScriptHelp_Performance::isLowCost(){
+	return false;
+}

@@ -32,7 +32,7 @@ class P_ScriptHelp_Subsection : public QWidget
 										//控件 - 清空全部子控件
 		void clearAllChild();
 										//控件 - 链接被点击
-		void linkClicked(QString data);
+		void linkClicked_docs(QString data);
 
 	//-----------------------------------
 	//----块

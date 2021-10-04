@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "p_PluginAttr_ButtonPart.h"
 
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
 #include "Source/Utils/common/TTool.h"
 
 /*
@@ -42,6 +44,18 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(W_PluginAttrComment* w, QWidget
 P_PluginAttr_ButtonPart::~P_PluginAttr_ButtonPart(){
 }
 
+
+/*-------------------------------------------------
+		控件 - 隐藏全部
+*/
+void P_PluginAttr_ButtonPart::hideAll(){
+	ui.toolButton_src->hide();
+	ui.toolButton_word->hide();
+	ui.toolButton_highConsumption->hide();
+	ui.toolButton_hasTool->hide();
+	ui.toolButton_foreignKey->hide();
+}
+
 /*-------------------------------------------------
 		控件 - 设置当前插件名
 */
@@ -59,7 +73,29 @@ QString P_PluginAttr_ButtonPart::getPluginName(){
 		控件 - 根据属性显示按钮
 */
 void P_PluginAttr_ButtonPart::refreshBtnVisible(){
+	this->hideAll();
+	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(this->m_pluginName);
+	if (detail == nullptr){ return; }
+
+	// > 资源路径
+	ui.toolButton_src->setVisible(detail->getSrc() != nullptr);
+
+	// > 插件文档（此数据类一开始就创建了）
+	ui.toolButton_word->setVisible(detail->getDocs()->hasAnyDocx());
+
+	// > 高消耗
+	C_ScriptHelp_Performance* performance = detail->getPerformance();
+	if (performance != nullptr &&
+		performance->isHighCost()){
+		ui.toolButton_highConsumption->setVisible(true);
+	}
+	
+	// > 小工具支持
 	//...
+
+	// > 外键
+	//...
+
 }
 
 /*-------------------------------------------------

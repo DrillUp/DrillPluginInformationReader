@@ -32,8 +32,11 @@ class S_InformationDataContainer : public QObject
 		QList<C_ScriptAnnotation> getAnnotationTank();
 										//数据 - 获取对应的插件数据
 										//		【说明】：获取数据前，要确保你之前 手动 执行了read读取，不然获取不到数据。
-										//		【说明】：没有则返回空指针。
 		C_ScriptAnnotation getAnnotation(QString pluginName);
+										//数据 - 获取对应的帮助明细数据
+										//		【说明】：获取数据前，要确保你之前 手动 执行了read读取，不然获取不到数据。
+										//		【说明】：没有则返回空指针。
+		C_ScriptHelpDetail* getHelpDetail(QString pluginName);
 
 
 	//-----------------------------------

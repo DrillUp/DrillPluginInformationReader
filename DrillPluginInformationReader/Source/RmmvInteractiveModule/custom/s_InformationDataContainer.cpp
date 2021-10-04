@@ -58,6 +58,12 @@ C_ScriptAnnotation S_InformationDataContainer::getAnnotation(QString pluginName)
 	}
 	return C_ScriptAnnotation();
 }
+/*-------------------------------------------------
+		数据 - 获取对应的插件数据
+*/
+C_ScriptHelpDetail* S_InformationDataContainer::getHelpDetail(QString pluginName){
+	return this->getAnnotation(pluginName).getScriptHelpDetail();
+}
 
 
 /*-------------------------------------------------

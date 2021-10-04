@@ -26,7 +26,13 @@ class P_ScriptHelp_Docs : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		QList<QLabel*> m_labelTank;
 	public slots: 
+										//控件 - 清除标签
+		void clearAllLabel();
+										//控件 - 链接被点击
+		void linkClicked_docs(QString data);
 
 	//-----------------------------------
 	//----块

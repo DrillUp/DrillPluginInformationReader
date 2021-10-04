@@ -42,6 +42,8 @@ class P_PluginAttr_ButtonPart : public QWidget
 		void btn_highConsumption();
 		void btn_hasTool();
 		void btn_foreignKey();
+										//¿Ø¼þ - È«²¿Òþ²Ø
+		void hideAll();
 		
 	//-----------------------------------
 	//----¿é

@@ -68,6 +68,9 @@ class C_ScriptHelpDetail{
 									//数据 - 获取插件性能
 		C_ScriptHelp_Performance* getPerformance();
 
+	protected:
+									//私有 - 从指定文本中获取到"xxx.docx"文档字符串
+		QStringList getStringContentsDocx(QString context);
 
 	//-----------------------------------
 	//----类属性

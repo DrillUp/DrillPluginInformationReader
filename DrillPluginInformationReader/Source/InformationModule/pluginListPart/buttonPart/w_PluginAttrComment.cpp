@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "W_PluginAttrComment.h"
 
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
 #include "Source/Utils/common/TTool.h"
 
 
@@ -27,6 +29,9 @@ W_PluginAttrComment::W_PluginAttrComment(QWidget *parent)
 
 	//-----------------------------------
 	//----ui初始化
+	this->m_p_docs = new P_ScriptHelp_Docs(this);
+	ui.verticalLayout_docs->addWidget(this->m_p_docs);
+
 	TTool::_chinese_(ui.buttonBox);
 
 }
@@ -41,6 +46,13 @@ W_PluginAttrComment::~W_PluginAttrComment(){
 void W_PluginAttrComment::showInformation_word(QString pluginName){
 	ui.stackedWidget->setCurrentIndex(0);
 	this->setWindowTitle(pluginName + "属性");
+
+	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(pluginName);
+	if (detail == nullptr){
+		this->m_p_docs->setData(nullptr);
+		return; 
+	}
+	this->m_p_docs->setData(detail->getDocs());
 }
 /*-------------------------------------------------
 		控件 - 显示信息 - 资源路径

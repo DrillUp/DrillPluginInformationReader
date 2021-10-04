@@ -16,4 +16,38 @@ C_ScriptHelp_Docs::C_ScriptHelp_Docs(){
 C_ScriptHelp_Docs::~C_ScriptHelp_Docs(){
 }
 
+/*-------------------------------------------------
+		数据 - 添加主要文档
+*/
+void C_ScriptHelp_Docs::addMainDocx(QString docx){
+	if (this->main_docx.contains(docx)){ return; }	//（去重）
+	if (this->relative_docx.contains(docx)){ return; }
+	this->main_docx.append(docx);
+}
+void C_ScriptHelp_Docs::addMainDocx(QStringList docx_list){
+	for (int i = 0; i < docx_list.count(); i++){
+		this->addMainDocx(docx_list.at(i));
+	}
+}
+/*-------------------------------------------------
+		数据 - 添加相关文档
+*/
+void C_ScriptHelp_Docs::addRelativeDocx(QString docx){
+	if (this->main_docx.contains(docx)){ return; }	//（去重）
+	if (this->relative_docx.contains(docx)){ return; }
+	this->relative_docx.append(docx);
+}
+void C_ScriptHelp_Docs::addRelativeDocx(QStringList docx_list){
+	for (int i = 0; i < docx_list.count(); i++){
+		this->addRelativeDocx(docx_list.at(i));
+	}
+}
+/*-------------------------------------------------
+		数据 - 是否含有文档
+*/
+bool C_ScriptHelp_Docs::hasAnyDocx(){
+	if (this->main_docx.count() > 0){ return true; }
+	if (this->relative_docx.count() > 0){ return true; }
+	return false;
+}
 

@@ -21,5 +21,12 @@ class C_ScriptHelp_Performance{
 	public:
 		QStringList performance;		//插件性能
 		QStringList note;				//插件性能说明
+	public:
+								//数据 - 是否高消耗
+		bool isHighCost();
+								//数据 - 是否中消耗
+		bool isMiddleCost();
+								//数据 - 是否低消耗
+		bool isLowCost();
 
 };

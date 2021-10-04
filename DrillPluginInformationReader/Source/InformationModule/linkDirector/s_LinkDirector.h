@@ -18,7 +18,7 @@ class S_LinkDirector : public QObject
 		S_LinkDirector();
 		~S_LinkDirector();
 		static S_LinkDirector* cur_manager;			//单例
-		static S_LinkDirector* getInstance();			//单例，获取自己（必须要拿到全局配置才能进行计算）
+		static S_LinkDirector* getInstance();		//单例，获取自己（必须要拿到全局配置才能进行计算）
 		
 		
 	//-----------------------------------
@@ -34,13 +34,19 @@ class S_LinkDirector : public QObject
 	//-----------------------------------
 	//----数据
 	public:
-										//数据 - 获取全部文件夹名称
-		QStringList getDataAllDocDirName();
+										//数据 - 获取可点击的文件夹名称
+		QStringList getAllClickableDirName();
 
 	//-----------------------------------
 	//----链接
 	public:
-										//链接 - 将字符串中的 文档、路径 转为链接
-		QString signLink_Docs(QString data);
+										//链接 - 将字符串中的 "\n" 替换为"<br>"
+										//		【说明】：注意，qt中并不支持"&nbsp"这种字符，直接空格即可。
+		QString signBrTag(QString data);
+										//链接 - 使用"<p>"包裹字符串
+		QString signPTag(QString data);
+										//链接 - 将字符串中的 文档、路径 转为"<a>"链接
+										//		【说明】：注意，只把"xxx.docx"用"<a>"标签包裹。
+		QString signATag_Docs(QString data);
 
 };

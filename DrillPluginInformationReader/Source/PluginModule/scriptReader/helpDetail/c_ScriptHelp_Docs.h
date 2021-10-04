@@ -21,5 +21,14 @@ class C_ScriptHelp_Docs{
 	public:
 		QStringList main_docx;		//主要帮助文档
 		QStringList relative_docx;	//相关帮助文档
+	public:
+									//数据 - 添加主要文档
+		void addMainDocx(QString docx);
+		void addMainDocx(QStringList docx_list);
+									//数据 - 添加相关文档
+		void addRelativeDocx(QString docx);
+		void addRelativeDocx(QStringList docx_list);
+									//数据 - 是否含有文档
+		bool hasAnyDocx();
 
 };

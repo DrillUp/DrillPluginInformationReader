@@ -58,19 +58,19 @@ QString S_LinkDirector::getDocDir(){
 
 
 /*-------------------------------------------------
-		数据 - 获取全部文件夹名称
+		数据 - 获取可点击的文件夹名称
 */
-QStringList S_LinkDirector::getDataAllDocDirName(){
+QStringList S_LinkDirector::getAllClickableDirName(){
 	QDir dir(this->getDocDir());
 	if (!dir.exists()) { return QStringList(); }
 
 	QStringList result_list = QStringList();
-	QFileInfoList fileList;
-	fileList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
+	QFileInfoList c_dir_list;
+	c_dir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
 
-	for (int i = 0; i < fileList.count(); i++){
-		QFileInfo cur_file = fileList.at(i);
-		QString name = cur_file.fileName();
+	for (int i = 0; i < c_dir_list.count(); i++){
+		QFileInfo cur_dir = c_dir_list.at(i);
+		QString name = cur_dir.fileName();
 		if (name == "其它" || name == "其他"){ continue; }
 		result_list.append(name);
 	}
@@ -91,15 +91,43 @@ void S_LinkDirector::openLink_Doc(QString text){
 	}
 
 	// > 打开文件
+	QFileInfoList c_dir_list;
+	c_dir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
+	for (int i = 0; i < c_dir_list.count(); i++){
+		QFileInfo cur_dir = c_dir_list.at(i);
+		QFileInfo cur_file(cur_dir.absoluteFilePath() + "/" + text);
+		if (cur_file.exists()){
+			QDesktopServices::openUrl(QUrl("file:/" + cur_file.absoluteFilePath()));
+			return;
+		}
+	}
 
+	// > 找不到文件
+	QMessageBox::warning(nullptr, "提示", "插件文档中没有文件：" + text + "");
 }
 
 
 
 /*-------------------------------------------------
-		链接 - 将字符串中的 文档、路径 转为链接
+		链接 - 将字符串中的 "\n" 替换为"<br>"
 */
-QString S_LinkDirector::signLink_Docs(QString data){
+QString S_LinkDirector::signBrTag(QString data){
+	return data.replace("\n","<br>");
+}
+/*-------------------------------------------------
+		链接 - 使用"<p>"包裹字符串
+*/
+QString S_LinkDirector::signPTag(QString data){
+	QString result;
+	result.append("<p>");
+	result.append(data);
+	result.append("</p>");
+	return result;
+}
+/*-------------------------------------------------
+		链接 - 将字符串中的 文档、路径 转为"<a>"链接
+*/
+QString S_LinkDirector::signATag_Docs(QString data){
 
 	// > 获取到匹配（匹配所有docx）
 	QRegExp rx("[ \"]([^ ]+\\.docx)");
@@ -111,7 +139,7 @@ QString S_LinkDirector::signLink_Docs(QString data){
 	}
 
 	// > 文档路径（固定的）
-	match_list << this->getDataAllDocDirName();
+	match_list << this->getAllClickableDirName();
 
 	// > 使用链接包裹
 	for (int j = 0; j < match_list.count(); j++){
@@ -124,13 +152,7 @@ QString S_LinkDirector::signLink_Docs(QString data){
 		tar_str.append("</span></a>");
 		data = data.replace(str, tar_str);
 	}
-	//<html><head/><body><p>测试的文本，<a href="测试的文本"><span style=" text-decoration: underline; color:#0000ff;">测试的文本</span></a>。</p></body></html>
+	//<p>测试的文本，<a href="测试的文本"><span style=" text-decoration: underline; color:#0000ff;">测试的文本</span></a>。</p>
 
-	// > 包裹章节
-	QString result;
-	result.append("<p>");
-	result.append(data);
-	result.append("</p>");
-
-	return result;
+	return data;
 }

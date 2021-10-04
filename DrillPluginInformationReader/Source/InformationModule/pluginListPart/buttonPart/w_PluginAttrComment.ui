@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
-    <height>236</height>
+    <width>500</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,6 +47,9 @@
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -117,7 +120,7 @@ padding:4px;</string>
        </item>
        <item>
         <widget class="QWidget" name="widget_context" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_2">
+         <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0">
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
@@ -126,18 +129,7 @@ padding:4px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>主要文档：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>相关文档：</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_docs"/>
           </item>
           <item>
            <spacer name="verticalSpacer">
@@ -158,7 +150,10 @@ padding:4px;</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_2">
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -238,11 +233,7 @@ padding:4px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>\img\xxxx</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_src"/>
           </item>
           <item>
            <spacer name="verticalSpacer_2">
@@ -263,7 +254,10 @@ padding:4px;</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_3">
-      <layout class="QVBoxLayout" name="verticalLayout_7">
+      <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,1">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -343,17 +337,7 @@ padding:4px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(240, 240, 240);</string>
-            </property>
-            <property name="text">
-             <string>https://github.com/DrillUp/DrillPluginInformationReader</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_12"/>
           </item>
           <item>
            <spacer name="verticalSpacer_3">
@@ -374,7 +358,10 @@ padding:4px;</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_4">
-      <layout class="QVBoxLayout" name="verticalLayout_9">
+      <layout class="QVBoxLayout" name="verticalLayout_9" stretch="0,1">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -472,7 +459,10 @@ padding:4px;</string>
       </layout>
      </widget>
      <widget class="QWidget" name="page_5">
-      <layout class="QVBoxLayout" name="verticalLayout_11">
+      <layout class="QVBoxLayout" name="verticalLayout_11" stretch="0,1">
+       <property name="spacing">
+        <number>0</number>
+       </property>
        <property name="leftMargin">
         <number>0</number>
        </property>
@@ -578,7 +568,7 @@ padding:4px;</string>
       <number>9</number>
      </property>
      <property name="topMargin">
-      <number>9</number>
+      <number>3</number>
      </property>
      <property name="rightMargin">
       <number>9</number>

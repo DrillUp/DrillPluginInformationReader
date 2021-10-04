@@ -20,11 +20,7 @@ P_ScriptHelp_Subsection::P_ScriptHelp_Subsection(QWidget *parent)
 
 	//-----------------------------------
 	//----初始化参数
-
-
-	//-----------------------------------
-	//----控件初始化
-
+	this->m_labelTank = QList<QLabel*>();
 
 	//-----------------------------------
 	//----事件绑定
@@ -40,9 +36,12 @@ P_ScriptHelp_Subsection::~P_ScriptHelp_Subsection(){
 void P_ScriptHelp_Subsection::clearAllChild(){
 
 	// > 断开连接
-	for (int i = 0; i < this->m_labelTank.count(); i++){
-		disconnect(this->m_labelTank.at(i));
+	for (int i = this->m_labelTank.count()-1; i >=0; i--){
+		QLabel* label = this->m_labelTank.at(i);
+		if (label == nullptr){continue;}
+		disconnect(label);
 	}
+	this->m_labelTank.clear();
 
 	// > 删除下面的全部控件
 	QLayout* layout = this->layout();
@@ -54,7 +53,7 @@ void P_ScriptHelp_Subsection::clearAllChild(){
 /*-------------------------------------------------
 		控件 - 链接被点击
 */
-void P_ScriptHelp_Subsection::linkClicked(QString data){
+void P_ScriptHelp_Subsection::linkClicked_docs(QString data){
 	S_LinkDirector::getInstance()->openLink_Doc(data);
 }
 
@@ -65,7 +64,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 	this->clearAllChild();
 	if (data == nullptr){ return; }
 
-	// > 主内容
+	// > 主内容 底板控件
 	QStringList main_list = data->getMainContext();
 	if (main_list.count() > 0){
 		QWidget* group = new QWidget(this);
@@ -75,21 +74,24 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		layout->setSpacing(6);
 		group->setLayout(layout);
 
+		// > 主内容列表
 		for (int i = 0; i < main_list.count(); i++){
 			QString temp_data = main_list.at(i);
-			temp_data = S_LinkDirector::getInstance()->signLink_Docs(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
 
 			// > 添加标签
 			QLabel* label = new QLabel(temp_data, group);
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
 			layout->addWidget(label);
-			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked);
+			this->m_labelTank.append(label);
+			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked_docs);
 		}
 		this->layout()->addWidget(group);
 	}
 
-	// > 小章节
+	// > 小章节 底板控件
 	QStringList title_list = data->getAllTitle();
 	for (int i = 0; i < title_list.count(); i++){
 		QString title = title_list.at(i);
@@ -103,18 +105,29 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		QStringList data_list = data->getPageContextByTitle(title);
 		for (int j = 0; j < data_list.count(); j++){
 			QString temp_data = data_list.at(j);
-			temp_data = "> " + temp_data;
+			temp_data = "◆ " + temp_data;
 
-			QStringList temp_list = temp_data.split("\n");	//（直接把所有换行单独提取出来）
-			for (int k = 0; k < temp_list.count(); k++){
-				QString str = temp_list.at(k);
-				str = S_LinkDirector::getInstance()->signLink_Docs(str);
-				QLabel* label = new QLabel(str, group);
-				label->setWordWrap(true);
-				label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
-				layout->addWidget(label);
-				connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked);
-			}
+			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
+			QLabel* label = new QLabel(temp_data, group);
+			label->setWordWrap(true);
+			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			layout->addWidget(label);
+			this->m_labelTank.append(label);
+			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked_docs);
+
+			//QStringList temp_list = temp_data.split("\n");	//（直接把所有行单独拆成Label）
+			//for (int k = 0; k < temp_list.count(); k++){
+			//	QString str = temp_list.at(k);
+			//	str = S_LinkDirector::getInstance()->signATag_Docs(str);
+			//	QLabel* label = new QLabel(str, group);
+			//	label->setWordWrap(true);
+			//	label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			//	layout->addWidget(label);
+			//	this->m_labelTank.append(label);
+			//	connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked);
+			//}
 		}
 		this->layout()->addWidget(group);
 	}
