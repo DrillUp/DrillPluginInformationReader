@@ -69,8 +69,9 @@ class C_ScriptHelpDetail{
 		C_ScriptHelp_Performance* getPerformance();
 
 	protected:
-									//私有 - 从指定文本中获取到"xxx.docx"文档字符串
-		QStringList getStringContentsDocx(QString context);
+									//私有 - 寻找文档名称
+									//		【说明】：文档包括 docx 和 xlsx。名称前面需要空格或引号，如格式"xxx.docx"或 xxxx xxx.docx。
+		QStringList findDocsNameList(QString context);
 
 	//-----------------------------------
 	//----类属性

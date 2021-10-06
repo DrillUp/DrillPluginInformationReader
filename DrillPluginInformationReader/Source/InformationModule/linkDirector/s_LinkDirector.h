@@ -26,16 +26,25 @@ class S_LinkDirector : public QObject
 	protected:
 		QString m_docDir;				//文档路径
 	public:
+										//数据 - 获取工程路径
+		QString getProjectDir();
 										//数据 - 获取文档路径
 		QString getDocDir();
-										//路径 - 打开指定路径
+										//路径 - 打开指定文档路径
 		void openLink_Doc(QString text);
+										//路径 - 打开指定图片路径
+		void openLink_Src(QString text);
+										//路径 - 打开插件清单
+		void openLink_specific_pluginListing();
 
 	//-----------------------------------
 	//----数据
 	public:
 										//数据 - 获取可点击的文件夹名称
 		QStringList getAllClickableDirName();
+										//数据 - 寻找文档名称
+										//		【说明】：文档包括 docx 和 xlsx。名称前面需要空格或引号，如格式"xxx.docx"或 xxxx xxx.docx。
+		QStringList findDocsNameList(QString data);
 
 	//-----------------------------------
 	//----链接
@@ -45,8 +54,14 @@ class S_LinkDirector : public QObject
 		QString signBrTag(QString data);
 										//链接 - 使用"<p>"包裹字符串
 		QString signPTag(QString data);
-										//链接 - 将字符串中的 文档、路径 转为"<a>"链接
-										//		【说明】：注意，只把"xxx.docx"用"<a>"标签包裹。
+										//链接 - 将字符串中的 文档、文档路径 转为"<a>"链接
+										//		【说明】：注意，把"xxx.docx"或"xxx.xlsx"用"<a>"标签包裹。
 		QString signATag_Docs(QString data);
+										//链接 - 将 资源路径 包裹"<a>"链接
+										//		【说明】：把"img/xxx"用"<a>"标签包裹。
+		QString signATag_Src(QString src_path);
+										//链接 - 将字符串中的 "插件清单.xlsx" 转为"<a>"链接
+										//		【说明】：只针对 插件清单 字符串。
+		QString signATag_specific_pluginListing(QString data);
 
 };

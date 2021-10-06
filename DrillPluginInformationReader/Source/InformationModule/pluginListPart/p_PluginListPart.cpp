@@ -54,7 +54,7 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 
 	// > 分页变化时
 	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_PluginListPart::refreshTableAuto);
-
+	
 }
 P_PluginListPart::~P_PluginListPart(){
 }
@@ -215,6 +215,9 @@ void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_inde
 		if (btn_part != nullptr){ btn_part->setPluginName(c_p->name); };
 		this->setOneRow(index, c_p->name, btn_part);
 	}
+
+	// > 滚动条置顶
+	ui.tableWidget_plugin->scrollToTop();
 }
 
 /*-------------------------------------------------
@@ -238,6 +241,8 @@ void P_PluginListPart::refreshTable_allPlugin(int start_index, int end_index){
 		this->setOneRow(index, data.getName(), btn_part);
 	}
 
+	// > 滚动条置顶
+	ui.tableWidget_plugin->scrollToTop();
 }
 /*-------------------------------------------------
 		私有 - 添加一行

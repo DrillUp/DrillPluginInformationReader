@@ -75,13 +75,20 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,0,0,1">
           <item>
            <widget class="QGroupBox" name="groupBox_5">
             <property name="title">
              <string>基本信息</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_2">
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_4">
+               <property name="text">
+                <string>作者</string>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_2">
                <property name="text">
@@ -106,7 +113,42 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="0" column="2">
+              <widget class="QToolButton" name="toolButton_editPlugin">
+               <property name="toolTip">
+                <string>编辑脚本</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QToolButton{
+	border: 1px solid transparent;
+	background: rgba(255,255,255,0);
+}
+QToolButton:hover{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fdecad, stop:0.3 #fde48c, stop:0.9 #fce58c, stop:1 #fdfadf )
+}
+QToolButton:pressed{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}
+QToolButton:checked{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}</string>
+               </property>
+               <property name="text">
+                <string>编辑脚本</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../../drillplugininformationreader.qrc">
+                 <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/Common_Setting.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/Common_Setting.png</iconset>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="2">
               <widget class="QLineEdit" name="lineEdit_desc">
                <property name="styleSheet">
                 <string notr="true">background-color: transparent;</string>
@@ -116,14 +158,7 @@
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>作者</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
+             <item row="2" column="1" colspan="2">
               <widget class="QLineEdit" name="lineEdit_author">
                <property name="styleSheet">
                 <string notr="true">background-color: transparent;</string>
@@ -256,7 +291,7 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,1">
           <item>
            <widget class="QGroupBox" name="groupBox_Subsection">
             <property name="title">
@@ -349,6 +384,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../drillplugininformationreader.qrc"/>
+ </resources>
  <connections/>
 </ui>

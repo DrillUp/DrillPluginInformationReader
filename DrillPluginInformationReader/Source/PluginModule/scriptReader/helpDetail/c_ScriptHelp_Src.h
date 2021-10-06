@@ -20,6 +20,8 @@ class C_ScriptHelp_Src{
 	//----数据
 	public:
 		QStringList src_list;		//资源路径
-		QString context;			//资源路径说明
+		QString context;			//路径说明
+		QString example;			//举例说明
+
 
 };

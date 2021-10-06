@@ -25,13 +25,13 @@ QToolButton:hover{
 	color:#ffffff;
 	border-radius:6px;
 	border:1px solid #ffffff;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5C87D9, stop:0.505 #557CC7, stop:1 #5075BC);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #8ad8ff, stop:0.505 #5fc2ff, stop:1 #5fc2ff);
 }
 QToolButton:checked{
 	color:#ffffff;
 	border-radius:6px;
 	border:1px solid #ffffff;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #5C87D9, stop:0.505 #557CC7, stop:1 #5075BC);
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0.2 #5075BC, stop:0.305 #557CC7, stop:1 #5C87D9);
 }
 
 QLabel{

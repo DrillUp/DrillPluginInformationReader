@@ -30,7 +30,9 @@ W_PluginAttrComment::W_PluginAttrComment(QWidget *parent)
 	//-----------------------------------
 	//----ui初始化
 	this->m_p_docs = new P_ScriptHelp_Docs(this);
+	this->m_p_src = new P_ScriptHelp_Src(this);
 	ui.verticalLayout_docs->addWidget(this->m_p_docs);
+	ui.verticalLayout_src->addWidget(this->m_p_src);
 
 	TTool::_chinese_(ui.buttonBox);
 
@@ -61,6 +63,12 @@ void W_PluginAttrComment::showInformation_src(QString pluginName){
 	ui.stackedWidget->setCurrentIndex(1);
 	this->setWindowTitle(pluginName + "属性");
 
+	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(pluginName);
+	if (detail == nullptr){
+		this->m_p_src->setData(nullptr);
+		return;
+	}
+	this->m_p_src->setData(detail->getSrc());
 }
 /*-------------------------------------------------
 		控件 - 显示信息 - 高消耗

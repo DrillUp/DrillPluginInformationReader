@@ -66,7 +66,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 	// > 插件扩展
 	int i_relation = reader.d_indexOf("----插件扩展");
 	if (i_relation != -1){
-
+		//...
 	}
 
 	// > 作用域
@@ -123,7 +123,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 				if (data.isEmpty() == false &&
 					data.contains("插件的作用域：") == false){	//（不含作用域的说明）
 					data = data.replace(QRegExp("^[\\d]+[\\.。]"), "");
-					this->m_docs->addMainDocx(this->getStringContentsDocx(data));	//【插件文档 - 主要文档】
+					this->m_docs->addMainDocx(this->findDocsNameList(data));	//【插件文档 - 主要文档】
 					main_context.append(data.trimmed());
 				}
 
@@ -152,7 +152,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 				// > 添加到列表
 				if (data_list.count() > 0){
 					QString data = data_list.join("\n");
-					this->m_docs->addRelativeDocx(this->getStringContentsDocx(data));	//【插件文档 - 相关文档】
+					this->m_docs->addRelativeDocx(this->findDocsNameList(data));	//【插件文档 - 相关文档】
 					this->m_subsection->addPage(data);
 				}
 
@@ -164,6 +164,56 @@ void C_ScriptHelpDetail::initHelpContext(){
 	}
 
 	// > 资源路径
+	int i_src = reader.d_indexOf("----关联文件");
+	int i_src_end = reader.d_indexOf("----------------------", i_src + 1);
+	if (i_src != -1){
+		int row_count = i_src_end - i_src - 1;
+		QStringList srcComment = reader.d_getRows(i_src + 1, row_count);
+		this->m_src = new C_ScriptHelp_Src();
+
+		int i_context = 0;
+		for (int i = 0; i < 4; i++){
+			QString row = srcComment.at(i);
+			if (row.contains("资源路径：")){
+				QString data = row.replace("资源路径：", "");
+				data = data.mid(0, data.indexOf(QRegExp("[ \\(（\n]"))).trimmed();
+				if (data.isEmpty() == false){
+					this->m_src->src_list.append(data);
+				}
+				i_context += 1;
+			}else{
+				break;
+			}
+		}
+		
+		QString context = "";
+		QString example = "";
+		bool is_context = true;
+		for (int i = i_context; i < srcComment.count(); i++){
+			QString row = srcComment.at(i);
+			if (is_context == true && row.contains(QRegExp("[:：]"))){		//（根据下一行的冒号来分割 路径说明 和 举例说明 ）
+				is_context = false;
+				context.append(row);
+				continue;
+			}
+			
+			// > 路径说明
+			if (is_context){
+				context.append(row);
+				context.append("\n");
+				continue;
+			}
+
+			// > 举例说明
+			example.append(row);
+			if (i < srcComment.count()-1){
+				example.append("\n");
+			}
+		}
+		this->m_src->context = context;
+		this->m_src->example = example;
+
+	}
 
 	// > 指令
 
@@ -214,19 +264,18 @@ C_ScriptHelp_Performance* C_ScriptHelpDetail::getPerformance(){
 }
 
 /*-------------------------------------------------
-		私有 - 从指定文本中获取到"xxx.docx"文档字符串
+		私有 - 寻找文档名称
 */
-QStringList C_ScriptHelpDetail::getStringContentsDocx(QString context){
+QStringList C_ScriptHelpDetail::findDocsNameList(QString context){
 
-	// > 获取到匹配（匹配所有docx）
-	QRegExp rx("[ \"]([^ ]+\\.docx)");
+	// > 获取到匹配（名称前面有 空格、引号 都可以）
+	QRegExp rx("[ \"“]([^ \"“]+\\.(docx|xlsx))");
 	QStringList match_list = QStringList();
 	int pos = 0;
 	while ((pos = rx.indexIn(context, pos)) != -1) {
 		match_list << rx.cap(1);
 		pos += rx.matchedLength();
 	}
-
 	return match_list;
 }
 

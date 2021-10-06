@@ -5,6 +5,7 @@
 #include "ui_W_PluginAttrComment.h"
 
 #include "Source/InformationModule/pluginDetailPart/helpDetailPart/p_ScriptHelp_Docs.h"
+#include "Source/InformationModule/pluginDetailPart/helpDetailPart/p_ScriptHelp_Src.h"
 
 /*
 -----==========================================================-----
@@ -27,6 +28,7 @@ class W_PluginAttrComment : public QDialog
 	//----控件
 	public:
 		P_ScriptHelp_Docs* m_p_docs;
+		P_ScriptHelp_Src* m_p_src;
 	public:
 									//控件 - 显示信息 - 帮助文档
 		void showInformation_word(QString pluginName);

@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>65</height>
+    <width>520</width>
+    <height>240</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>240</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -64,7 +70,7 @@ QToolButton:disabled{
 }</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -81,7 +87,7 @@ QToolButton:disabled{
       </layout>
      </widget>
      <widget class="QWidget" name="page_2">
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,1">
        <property name="spacing">
         <number>9</number>
        </property>
@@ -98,16 +104,69 @@ QToolButton:disabled{
         <number>4</number>
        </property>
        <item>
+        <widget class="QGroupBox" name="groupBox_src">
+         <property name="styleSheet">
+          <string notr="true">
+/* == 群组控件 == */
+QGroupBox{
+	margin-top: 0.5em;
+	padding-top: 20px;
+	color:#d4449e;
+	font-weight:bold;
+    border: 1px solid #d4449e;
+    border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFFAFB, stop:1 #FEF0F3 );
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	top: 12px;
+	left: 2px;
+	margin-left: 0px;
+	padding: 0 1px;
+}
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+         </property>
+         <property name="title">
+          <string>资源路径</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout"/>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="label_context">
          <property name="text">
-          <string>没有作用域描述。</string>
+          <string>没有描述。</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_context_2">
-         <property name="text">
-          <string>没有作用域描述。</string>
+        <widget class="QPlainTextEdit" name="plainTextEdit_sample">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#plainTextEdit_sample{
+	background-color: transparent;
+}</string>
+         </property>
+         <property name="verticalScrollBarPolicy">
+          <enum>Qt::ScrollBarAlwaysOn</enum>
          </property>
         </widget>
        </item>
@@ -118,7 +177,7 @@ QToolButton:disabled{
   </layout>
  </widget>
  <resources>
-  <include location="../../../../../drillplugininformationreader.qrc"/>
+  <include location="../../../../drillplugininformationreader.qrc"/>
  </resources>
  <connections/>
 </ui>

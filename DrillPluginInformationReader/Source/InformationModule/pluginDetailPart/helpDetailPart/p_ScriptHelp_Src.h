@@ -26,7 +26,15 @@ class P_ScriptHelp_Src : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		QList<QLabel*> m_labelTank;
 	public slots: 
+										//控件 - 清空全部子控件
+		void clearAllChild();
+										//控件 - 链接被点击
+		void linkClicked_src(QString data);
+										//控件 - 链接"插件清单.xlsx"被点击
+		void linkClicked_specific_pluginListing(QString data);
 
 	//-----------------------------------
 	//----块

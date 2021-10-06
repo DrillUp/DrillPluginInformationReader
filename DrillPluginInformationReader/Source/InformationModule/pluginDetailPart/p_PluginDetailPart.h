@@ -43,6 +43,8 @@ class P_PluginDetailPart : public QWidget
 	public slots: 
 										//控件 - 显示指定插件详细信息
 		void showPluginDetail(QString plugin_name );
+										//控件 - 编辑插件
+		void btn_editPlugin();
 
 	//-----------------------------------
 	//----块

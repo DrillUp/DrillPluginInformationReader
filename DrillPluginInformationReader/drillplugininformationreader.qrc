@@ -1,25 +1,26 @@
 <RCC>
-    <qresource prefix="/DrillPluginInformationReader">
-        <file>Resources/icons/menu/attr_foreignKey.png</file>
-        <file>Resources/icons/menu/attr_hasTool.png</file>
-        <file>Resources/icons/menu/attr_highConsumption.png</file>
-        <file>Resources/icons/menu/attr_src.png</file>
-        <file>Resources/icons/menu/attr_word.png</file>
-        <file>Resources/icons/nav/Import_rmmv.png</file>
-        <file>Resources/icons/global/drill_logo_64x64.png</file>
-        <file>Resources/icons/global/drill_logo_200x200.png</file>
-        <file>Resources/icons/global/HoverCursor_1.png</file>
-        <file>Resources/icons/global/HoverCursor_2.png</file>
-        <file>Resources/icons/nav/About.png</file>
-        <file>Resources/icons/nav/Help.png</file>
-        <file>Resources/icons/nav/Open_rmmv.png</file>
-        <file>Resources/icons/tabWidget/outFrame.png</file>
-        <file>Resources/icons/tabWidget/outFrame_disabled.png</file>
-        <file>Resources/icons/tabWidget/outFrame_hover.png</file>
-        <file>Resources/icons/view/Icon_Selected.svg</file>
-        <file>Resources/icons/view/Zoom_In.png</file>
-        <file>Resources/icons/view/Zoom_Out.png</file>
-        <file>Resources/icons/view/Zoom_Regular.png</file>
-        <file>Resources/icons/view/Icon_Error.svg</file>
-    </qresource>
+  <qresource prefix="/DrillPluginInformationReader">
+    <file>Resources/icons/menu/Common_Setting.png</file>
+    <file>Resources/icons/menu/attr_foreignKey.png</file>
+    <file>Resources/icons/menu/attr_hasTool.png</file>
+    <file>Resources/icons/menu/attr_highConsumption.png</file>
+    <file>Resources/icons/menu/attr_src.png</file>
+    <file>Resources/icons/menu/attr_word.png</file>
+    <file>Resources/icons/nav/Import_rmmv.png</file>
+    <file>Resources/icons/global/drill_logo_64x64.png</file>
+    <file>Resources/icons/global/drill_logo_200x200.png</file>
+    <file>Resources/icons/global/HoverCursor_1.png</file>
+    <file>Resources/icons/global/HoverCursor_2.png</file>
+    <file>Resources/icons/nav/About.png</file>
+    <file>Resources/icons/nav/Help.png</file>
+    <file>Resources/icons/nav/Open_rmmv.png</file>
+    <file>Resources/icons/tabWidget/outFrame.png</file>
+    <file>Resources/icons/tabWidget/outFrame_disabled.png</file>
+    <file>Resources/icons/tabWidget/outFrame_hover.png</file>
+    <file>Resources/icons/view/Icon_Selected.svg</file>
+    <file>Resources/icons/view/Zoom_In.png</file>
+    <file>Resources/icons/view/Zoom_Out.png</file>
+    <file>Resources/icons/view/Zoom_Regular.png</file>
+    <file>Resources/icons/view/Icon_Error.svg</file>
+  </qresource>
 </RCC>

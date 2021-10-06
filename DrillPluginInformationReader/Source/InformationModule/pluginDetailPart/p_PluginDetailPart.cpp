@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "p_PluginDetailPart.h"
 
+#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
 #include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
 #include "Source/Utils/common/TTool.h"
 
@@ -44,6 +45,7 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 
 	//-----------------------------------
 	//----事件绑定
+	connect(ui.toolButton_editPlugin, &QPushButton::clicked, this, &P_PluginDetailPart::btn_editPlugin);
 
 }
 
@@ -75,7 +77,18 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 		this->m_p_ScriptHelp_EffectScope->setData(detail->getEffectScope());
 		// > 分页说明
 		this->m_p_ScriptHelp_Subsection->setData(detail->getSubsection());
+		// > 资源路径
+		this->m_p_ScriptHelp_Src->setData(detail->getSrc());
 	}
+}
+/*-------------------------------------------------
+		控件 - 编辑插件
+*/
+void P_PluginDetailPart::btn_editPlugin(){
+	if (this->m_curPluginName == ""){ return; }
+
+	QFileInfo file_info = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(this->m_curPluginName);
+	QDesktopServices::openUrl(QUrl("file:/" + file_info.absoluteFilePath()));
 }
 
 /*-------------------------------------------------

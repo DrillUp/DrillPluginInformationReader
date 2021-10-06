@@ -10,10 +10,10 @@
 -----==========================================================-----
 */
 C_ScriptHelp_Src::C_ScriptHelp_Src(){
-	this->src_list = QStringList();
-	this->context = QString();
+	this->src_list = QStringList();				//资源路径
+	this->context = QString();					//路径说明
+	this->example = QString();					//举例说明
 }
 C_ScriptHelp_Src::~C_ScriptHelp_Src(){
 }
-
 
