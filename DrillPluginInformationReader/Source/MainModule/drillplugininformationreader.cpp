@@ -73,6 +73,10 @@ void DrillPluginInformationReader::_init() {
 
 	this->m_tip = new W_LoadingTip("插件读取中...", this);
 
+	// > 字体
+	//ui.main_widget->setStyleSheet("font: 75 9pt \"黑体\";");
+	ui.main_widget->setStyleSheet("font: 75 9pt;");		//用默认的宋体+缩小粗体
+
 	//-----------------------------------
 	//----事件绑定
 	connect(ui.toolButton_rmmv, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_selectProject);

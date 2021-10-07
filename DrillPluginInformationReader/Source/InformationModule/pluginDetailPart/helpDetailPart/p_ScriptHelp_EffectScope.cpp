@@ -20,7 +20,6 @@ P_ScriptHelp_EffectScope::P_ScriptHelp_EffectScope(QWidget *parent)
 	//-----------------------------------
 	//----初始化参数
 
-
 	//-----------------------------------
 	//----事件绑定
 

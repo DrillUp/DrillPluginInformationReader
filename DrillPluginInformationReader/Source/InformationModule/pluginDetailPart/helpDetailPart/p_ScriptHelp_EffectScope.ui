@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>415</width>
-    <height>65</height>
+    <width>503</width>
+    <height>69</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,38 +86,38 @@ QToolButton:disabled{
         <number>9</number>
        </property>
        <property name="leftMargin">
-        <number>4</number>
+        <number>0</number>
        </property>
        <property name="topMargin">
-        <number>4</number>
+        <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>4</number>
+        <number>0</number>
        </property>
        <property name="bottomMargin">
-        <number>4</number>
+        <number>0</number>
        </property>
        <item>
         <layout class="QGridLayout" name="gridLayout">
          <property name="leftMargin">
-          <number>2</number>
+          <number>4</number>
          </property>
          <property name="topMargin">
-          <number>2</number>
+          <number>4</number>
          </property>
          <property name="rightMargin">
-          <number>2</number>
+          <number>4</number>
          </property>
          <property name="bottomMargin">
-          <number>2</number>
+          <number>0</number>
          </property>
          <property name="spacing">
-          <number>2</number>
+          <number>4</number>
          </property>
-         <item row="0" column="1">
-          <widget class="QToolButton" name="toolButton_battle">
+         <item row="0" column="2">
+          <widget class="QToolButton" name="toolButton_menu">
            <property name="text">
-            <string>战斗界面</string>
+            <string>菜单界面</string>
            </property>
            <property name="icon">
             <iconset>
@@ -128,10 +128,10 @@ QToolButton:disabled{
            </property>
           </widget>
          </item>
-         <item row="0" column="2">
-          <widget class="QToolButton" name="toolButton_menu">
+         <item row="0" column="1">
+          <widget class="QToolButton" name="toolButton_battle">
            <property name="text">
-            <string>菜单界面</string>
+            <string>战斗界面</string>
            </property>
            <property name="icon">
             <iconset>
@@ -155,6 +155,19 @@ QToolButton:disabled{
             <enum>Qt::ToolButtonTextBesideIcon</enum>
            </property>
           </widget>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
