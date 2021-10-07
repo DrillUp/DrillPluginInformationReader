@@ -6,62 +6,161 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>487</height>
+    <width>863</width>
+    <height>556</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1">
-    <widget class="QComboBox" name="comboBox_pluginMode">
-     <property name="minimumSize">
-      <size>
-       <width>180</width>
-       <height>26</height>
-      </size>
-     </property>
-     <item>
-      <property name="text">
-       <string>配置的插件</string>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <widget class="QWidget" name="widget_2" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>全部插件</string>
+      <property name="topMargin">
+       <number>0</number>
       </property>
-     </item>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_pluginMode">
+        <property name="text">
+         <string>显示模式：  </string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox_pluginMode">
+        <property name="minimumSize">
+         <size>
+          <width>180</width>
+          <height>26</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>配置的插件</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>文件夹下插件</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_pluginType" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_pluginType">
+           <property name="text">
+            <string>  类型：</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_pluginType">
+           <property name="minimumSize">
+            <size>
+             <width>120</width>
+             <height>26</height>
+            </size>
+           </property>
+           <item>
+            <property name="text">
+             <string>全部类型</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>393</width>
+          <height>23</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="0" column="2">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>393</width>
-       <height>23</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_pluginMode">
-     <property name="text">
-      <string>显示模式：  </string>
-     </property>
+   <item>
+    <widget class="QWidget" name="widget_search" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="label_searchPlugin">
+        <property name="text">
+         <string>关键字搜索：</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEdit_searchPlugin">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_searchPlugin">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>搜索插件</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="3" column="0" colspan="3">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="bottomMargin">
-      <number>4</number>
-     </property>
-    </layout>
-   </item>
-   <item row="2" column="0" colspan="3">
+   <item>
     <widget class="QTableWidget" name="tableWidget_plugin">
      <property name="contextMenuPolicy">
       <enum>Qt::CustomContextMenu</enum>
@@ -122,53 +221,12 @@
      </column>
     </widget>
    </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="QWidget" name="widget_search" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QLabel" name="label_searchPlugin">
-        <property name="text">
-         <string>关键字搜索：</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="lineEdit_searchPlugin">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>26</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_searchPlugin">
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>26</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>搜索插件</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="bottomMargin">
+      <number>4</number>
+     </property>
+    </layout>
    </item>
   </layout>
  </widget>

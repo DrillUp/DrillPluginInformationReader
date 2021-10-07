@@ -28,18 +28,6 @@ class P_PluginListPart : public QWidget
 	public:
 		P_PluginListPart(QWidget *parent = 0);
 		~P_PluginListPart();
-		
-	//-----------------------------------
-	//----数据
-	protected:
-		QString m_searchText;							//搜索的文本
-		QList<C_PluginData*> m_allPluginData;			//当前数据（配置的插件）
-		QList<C_ScriptAnnotation> m_allAnnotationData;	//当前数据（搜索的插件）
-	public:
-										//数据 - 搜索插件
-		void btn_search();
-										//数据 - 下拉框变化
-		void modeChanged(QString text);
 
 
 	//-----------------------------------
@@ -54,18 +42,39 @@ class P_PluginListPart : public QWidget
 		void refreshHorizontalSize(int table_width);
 										//表格 - 清理项
 		void clearTableItem();
+										//表格 - 下拉框变化
+		void modeChanged(QString mode_text);
 										//表格 - 重刷表格
 		void rebuildTable();
 										//表格 - 刷新表格（自动）
 		void refreshTableAuto( int start_index, int end_index );
-										//表格 - 刷新表格（配置的插件）
-		void refreshTable_configedPlugin( int start_index, int end_index );
-										//表格 - 刷新表格（全部插件，含搜索）
-		void refreshTable_allPlugin( int start_index, int end_index );
+		
+
+	//-----------------------------------
+	//----配置的插件
+	protected:
+		QList<C_PluginData*> m_allConfigedData;			//当前数据（配置的插件）
 	private:
-										//私有 - 添加一行
-		void setOneRow(int row, QString pluginName, QWidget* widget = nullptr);
-										//私有 - 将指定字符串标蓝
+										//配置的插件 - 下拉框变化
+		void pluginTypeChanged(QString type_text);
+										//配置的插件 - 刷新表格（配置的插件，含搜索）
+		void refreshTable_configedPlugin( int start_index, int end_index );
+										//配置的插件 - 添加一行
+		void setOneRow_configedPlugin(int row, QString pluginName, QWidget* widget = nullptr);
+
+	//-----------------------------------
+	//----文件夹插件
+	protected:
+		QString m_searchText;							//搜索的文本
+		QList<C_ScriptAnnotation> m_allSearchedData;	//当前数据（文件夹插件）
+	private:
+										//文件夹插件 - 搜索插件
+		void btn_search();
+										//文件夹插件 - 刷新表格（文件夹插件，含搜索）
+		void refreshTable_searchedPlugin( int start_index, int end_index );
+										//文件夹插件 - 添加一行
+		void setOneRow_searchedPlugin(int row, QString pluginName, QWidget* widget = nullptr);
+										//文件夹插件 - 将指定字符串标蓝
 		QLabel* getLabelWithSign(QString text, QString searching_text);
 
 	//-----------------------------------
@@ -78,6 +87,11 @@ class P_PluginListPart : public QWidget
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);
 
 	//-----------------------------------
+	//----分页
+	public:
+		P_PageNavigator* m_p_PageNavigator;
+
+	//-----------------------------------
 	//----表格事件
 	public slots:
 										//表格事件 - 双击表格
@@ -87,11 +101,6 @@ class P_PluginListPart : public QWidget
 	signals:
 										//信号 - 插件选中
 		void pluginTriggered(QString plugin_name);
-
-	//-----------------------------------
-	//----分页
-	public:
-		P_PageNavigator* m_p_PageNavigator;
 
 	//-----------------------------------
 	//----块
