@@ -1,6 +1,24 @@
 #include "stdafx.h"
 #include "c_ScriptHelp_Command.h"
 
+#include "Source/Utils/manager/txtRead/p_TxtFastReader.h"
+#include "Source/Utils/common/TTool.h"
+
+/*
+-----==========================================================-----
+		类：		帮助数据-指令 数据类.cpp
+		所属模块：	插件模块
+		功能：		帮助信息中的数据。
+-----==========================================================-----
+*/
+C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
+	this->group_name = "";					//组名称
+	this->is_important = false;				//是否为激活条件
+	this->context = QStringList();			//内容列表
+}
+C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
+}
+
 
 /*
 -----==========================================================-----
@@ -10,10 +28,38 @@
 -----==========================================================-----
 */
 C_ScriptHelp_Command::C_ScriptHelp_Command(){
-	this->pluginCommand = QStringList();
-	this->pluginNote = QStringList();
+	this->group_list = QList<C_ScriptHelp_CommandGroup>();
 }
 C_ScriptHelp_Command::~C_ScriptHelp_Command(){
 }
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Command::isNull(){
+	return this->group_list.count() == 0;
+}
+/*-------------------------------------------------
+		数据 - 读取新的指令集字符串
+*/
+void C_ScriptHelp_Command::readNextGroup(QString group_context){
+	if (group_context == ""){ return; }
+	C_ScriptHelp_CommandGroup group;
+	P_TxtFastReader group_reader = P_TxtFastReader(group_context);
 
+	// > 标题捕获
+	QString title = group_reader.d_getRows(0, 1).at(0);
+	QStringList data_list = title.split(QRegExp("[ -]+"));
+	TTool::_QStringList_clearEmptyRows_(&data_list);
+	if (data_list.contains("激活条件")){
+		group.is_important = true;
+	}else{
+		group.is_important = false;
+	}
+	if (data_list.count() > 1){
+		group.group_name = data_list.last();
+	}
 
+	// > 指令捕获
+	//...
+
+}

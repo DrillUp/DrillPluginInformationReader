@@ -1,0 +1,45 @@
+#ifndef P_ScriptHelp_CommandSearchCell_H
+#define P_ScriptHelp_CommandSearchCell_H
+
+#include <QtWidgets>
+#include "ui_P_ScriptHelp_CommandSearchCell.h"
+
+#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Command.h"
+
+/*
+-----==========================================================-----
+		类：		指令 控件块.h
+		作者：		drill_up
+		所属模块：	插件模块
+		
+		主功能：	显示控件信息的结构。
+					（详细见cpp）
+-----==========================================================-----
+*/
+class P_ScriptHelp_CommandSearchCell : public QWidget
+{
+	Q_OBJECT
+
+	public:
+		P_ScriptHelp_CommandSearchCell(QWidget *parent = 0);
+		~P_ScriptHelp_CommandSearchCell();
+		
+	//-----------------------------------
+	//----控件
+	public slots: 
+
+	//-----------------------------------
+	//----块
+	public:
+										//块 - 设置数据
+		void setData(C_ScriptHelp_Command* data);
+										//块 - 本地数据 -> ui数据
+		void putDataToUi();
+										//块 - ui数据 -> 本地数据
+		void putUiToData();
+	private:
+		Ui::P_ScriptHelp_CommandSearchCell ui;
+
+};
+
+#endif // P_ScriptHelp_CommandSearchCell_H

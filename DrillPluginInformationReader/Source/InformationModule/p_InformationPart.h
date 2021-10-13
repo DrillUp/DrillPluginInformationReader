@@ -18,6 +18,7 @@
 class P_PluginListPart;
 class P_PluginDetailPart;
 class P_CommandSearcherPart;
+class P_OtherFunctionPart;
 class P_InformationPart : public QWidget
 {
 	Q_OBJECT
@@ -30,9 +31,11 @@ class P_InformationPart : public QWidget
 	//----大控件
 	public:
 		P_FoldableTabRelater* m_p_FoldableTabRelater;	//可折叠选项卡
+		
 		P_PluginListPart* m_p_pluginListPart;
 		P_PluginDetailPart* m_p_pluginDetailPart;
 		P_CommandSearcherPart* m_p_commandSearcherPart;
+		P_OtherFunctionPart* m_p_otherFunctionPart;
 	public slots:
 										//控件 - 显示指定插件详细信息
 		void showPluginDetail(QString plugin_name );

@@ -40,7 +40,7 @@ void C_ScriptHelp_Subsection::setMainContext(QStringList mainContext_list){
 /*-------------------------------------------------
 		数据 - 添加章节
 */
-void C_ScriptHelp_Subsection::addPage(QString page_context){
+void C_ScriptHelp_Subsection::readNextPage(QString page_context){
 	if (page_context == ""){ return; }
 	C_ScriptHelp_SubsectionPage page;
 	P_TxtFastReader page_reader = P_TxtFastReader(page_context);
@@ -94,6 +94,12 @@ void C_ScriptHelp_Subsection::addPage(QString page_context){
 }
 
 
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Subsection::isNull(){
+	return this->main_list.count() == 0 && this->page_list.count() == 0;
+}
 /*-------------------------------------------------
 		数据 - 获取主内容
 */

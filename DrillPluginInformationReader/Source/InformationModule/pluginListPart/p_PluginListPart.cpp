@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "p_PluginListPart.h"
 
+#include "Source/ProjectModule/storageGlobal/s_IniManager.h"
 #include "Source/Utils/common/TTool.h"
 
 /*
@@ -32,6 +33,11 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	this->slot_block = false;
 	this->initTable(ui.tableWidget_plugin);
 
+	// > 历史查询控件
+	this->m_p_historicalSearchRecord = new P_HistoricalSearchRecord(this);
+	this->m_p_historicalSearchRecord->setVisible(false);
+	ui.widget_nav->layout()->addWidget(this->m_p_historicalSearchRecord);
+
 	// > 表格按钮控件
 	this->m_w_PluginAttrComment = new W_PluginAttrComment(this);
 	this->m_btnPartList = QList<P_PluginAttr_ButtonPart*>();
@@ -44,7 +50,7 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	// > 分页控件
 	this->m_p_PageNavigator = new P_PageNavigator();
 	this->m_p_PageNavigator->initNavigator(100, 100, 5);
-	ui.verticalLayout->addWidget(this->m_p_PageNavigator);
+	ui.verticalLayout_PageNavigator->addWidget(this->m_p_PageNavigator);
 
 	//-----------------------------------
 	//----事件绑定
@@ -52,6 +58,9 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	// > 下拉框变化时，刷新
 	connect(ui.comboBox_pluginMode, &QComboBox::currentTextChanged, this, &P_PluginListPart::modeChanged);
 	connect(ui.pushButton_searchPlugin, &QPushButton::clicked, this, &P_PluginListPart::btn_search);
+
+	// > 执行搜索时
+	connect(this->m_p_historicalSearchRecord, &P_HistoricalSearchRecord::textClicked, this, &P_PluginListPart::searchTextClicked);
 
 	// > 分页变化时
 	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_PluginListPart::refreshTableAuto);
@@ -131,12 +140,14 @@ void P_PluginListPart::modeChanged(QString mode_text){
 
 	// > 搜索显示
 	if (ui.comboBox_pluginMode->currentIndex() == 0){
-		ui.widget_search->setVisible(false);
 		ui.widget_pluginType->setVisible(true);
+		ui.widget_search->setVisible(false);
+		this->m_p_historicalSearchRecord->setVisible(false);
 	}
 	if (ui.comboBox_pluginMode->currentIndex() == 1){
-		ui.widget_search->setVisible(true);
 		ui.widget_pluginType->setVisible(false);
+		ui.widget_search->setVisible(true);
+		this->m_p_historicalSearchRecord->setVisible(true);
 	}
 	
 	// > 刷新表格
@@ -264,6 +275,7 @@ void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWi
 			qDebug() << row;
 			Q_ASSERT(false);
 		}
+		this->m_table->setItem(row, 1, new QTableWidgetItem());
 
 		// > 文本
 		QString version = data.getPlugindesc_version();
@@ -290,6 +302,7 @@ void P_PluginListPart::btn_search(){
 
 	this->m_searchText = ui.lineEdit_searchPlugin->text();
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
+	this->m_p_historicalSearchRecord->addText(m_searchText);
 
 	// > 全部插件
 	QList<C_ScriptAnnotation> data_list = QList<C_ScriptAnnotation>();
@@ -371,6 +384,7 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 				qDebug() << row;
 				Q_ASSERT(false);
 			}
+			this->m_table->setItem(row, 1, new QTableWidgetItem());
 
 			// > 文本
 			QString version = data.getPlugindesc_version();
@@ -425,6 +439,12 @@ P_PluginAttr_ButtonPart* P_PluginListPart::getButtonPartByIndex(int index){
 	return this->m_btnPartList.at(index);
 }
 
+/*-------------------------------------------------
+		控件 - 搜索的字符串被点击
+*/
+void P_PluginListPart::searchTextClicked(QString text){
+	ui.lineEdit_searchPlugin->setText(text);
+}
 
 /*-------------------------------------------------
 		表格事件 - 双击表格节点
@@ -458,14 +478,18 @@ void P_PluginListPart::tableRightClicked(QPoint p){
 
 
 /*-------------------------------------------------
-		块 - 本地数据 -> ui数据
+		块 - 用户自定义UI读取
 */
-void P_PluginListPart::putDataToUi(){
-	//（暂无）
+void P_PluginListPart::ui_loadConfig(){
+
+	QString search_str = S_IniManager::getInstance()->getConfig("PIR_PluginList_search");
+	this->m_p_historicalSearchRecord->setData(search_str.split("|||"));
 }
 /*-------------------------------------------------
-		块 - ui数据 -> 本地数据
+		块 - 用户自定义UI存储
 */
-void P_PluginListPart::putUiToData(){
-	//（暂无）
+void P_PluginListPart::ui_saveConfig(){
+
+	QStringList search_list = this->m_p_historicalSearchRecord->getData();
+	S_IniManager::getInstance()->setConfig("PIR_PluginList_search", search_list.join("|||"));
 }

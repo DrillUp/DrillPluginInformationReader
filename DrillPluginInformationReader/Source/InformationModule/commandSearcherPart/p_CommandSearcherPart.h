@@ -4,6 +4,10 @@
 #include <QtWidgets>
 #include "ui_P_CommandSearcherPart.h"
 
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/Utils/widgetForm/historicalSearchRecord/p_historicalSearchRecord.h"
+#include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
+
 /*
 -----==========================================================-----
 		类：		指令搜索器 编辑块.h
@@ -24,16 +28,21 @@ class P_CommandSearcherPart : public QWidget
 		
 	//-----------------------------------
 	//----控件
-	public slots: 
+	public:
+		P_PageNavigator* m_p_PageNavigator;						//分页控件
+		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//历史查询控件
+	public slots:
+										//控件 - 搜索的字符串被点击
+		void searchTextClicked(QString text);
 
 
 	//-----------------------------------
 	//----块
 	public:
-										//块 - 本地数据 -> ui数据
-		void putDataToUi();
-										//块 - ui数据 -> 本地数据
-		void putUiToData();
+										//块 - 用户自定义UI读取
+		void ui_loadConfig();
+										//块 - 用户自定义UI存储
+		void ui_saveConfig();
 	private:
 		Ui::P_CommandSearcherPart ui;
 

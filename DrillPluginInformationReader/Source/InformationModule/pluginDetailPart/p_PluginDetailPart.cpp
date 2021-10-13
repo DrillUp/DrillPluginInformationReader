@@ -92,14 +92,14 @@ void P_PluginDetailPart::btn_editPlugin(){
 }
 
 /*-------------------------------------------------
-		块 - 本地数据 -> ui数据
+		块 - 用户自定义UI读取
 */
-void P_PluginDetailPart::putDataToUi(){
+void P_PluginDetailPart::ui_loadConfig(){
 	//（暂无）
 }
 /*-------------------------------------------------
-		块 - ui数据 -> 本地数据
+		块 - 用户自定义UI存储
 */
-void P_PluginDetailPart::putUiToData(){
+void P_PluginDetailPart::ui_saveConfig(){
 	//（暂无）
 }

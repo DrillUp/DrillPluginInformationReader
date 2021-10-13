@@ -61,7 +61,8 @@ QString C_ScriptHelpDetail::getHelpContext(){
 */
 void C_ScriptHelpDetail::initHelpContext(){
 	P_TxtFastReader reader = P_TxtFastReader(this->help);
-	this->m_docs = new C_ScriptHelp_Docs();		//插件文档
+	this->m_docs = new C_ScriptHelp_Docs();			//插件文档（初始就要创建）
+	this->m_command = new C_ScriptHelp_Command();	//指令（初始就要创建）
 
 	// > 插件扩展
 	int i_relation = reader.d_indexOf("----插件扩展");
@@ -153,7 +154,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 				if (data_list.count() > 0){
 					QString data = data_list.join("\n");
 					this->m_docs->addRelativeDocx(this->findDocsNameList(data));	//【插件文档 - 相关文档】
-					this->m_subsection->addPage(data);
+					this->m_subsection->readNextPage(data);
 				}
 
 				i_page = i_nextPage;
@@ -216,6 +217,19 @@ void C_ScriptHelpDetail::initHelpContext(){
 	}
 
 	// > 指令
+	int i_command = reader.d_indexOf(QRegExp("----(激活条件|可选设定)"));
+	int i_command_end = reader.d_indexOf("----------------------", i_command + 1);
+	for (int k = 0; k < 20; k++){
+		if (i_command == -1){ break; }
+
+		int row_count = i_command_end - i_command - 1;
+		if (row_count < 0){ row_count = -1; }
+		QStringList commandComment = reader.d_getRows(i_command + 1, row_count);
+		this->m_command->readNextGroup(commandComment.join("\n"));
+
+		i_command = reader.d_indexOf(QRegExp("----(激活条件|可选设定)"), i_command + 1);
+		i_command_end = reader.d_indexOf("----------------------", i_command + 1);
+	}
 
 	// > 插件性能
 

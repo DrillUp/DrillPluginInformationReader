@@ -60,10 +60,6 @@ void DrillPluginInformationReader::_init() {
 	S_InformationDataContainer::getInstance();
 	S_LinkDirector::getInstance();
 
-	// > UI读取
-	this->ui_loadConfig();
-	this->refreshNav();
-
 	//-----------------------------------
 	//----ui初始化
 	this->m_P_InformationPart = new P_InformationPart(ui.widget_information);
@@ -86,6 +82,11 @@ void DrillPluginInformationReader::_init() {
 
 	//qDebug() << S_LinkDirector::getInstance()->getDocDir();
 	//qDebug() << S_LinkDirector::getInstance()->getDataAllDocDirName();
+
+	// > UI读取
+	this->ui_loadConfig();
+	this->refreshNav();
+	
 	this->m_inited = true;
 }
 
@@ -256,6 +257,11 @@ void DrillPluginInformationReader::ui_loadConfig(){
 		this->showMaximized();
 	}
 
+	// > 子控件的UI读取
+	if (this->m_P_InformationPart != nullptr){
+		this->m_P_InformationPart->m_p_pluginListPart->ui_loadConfig();
+	}
+
 	// > 【工程数据读取 - 全局】
 	QString project_str = S_IniManager::getInstance()->getConfig("PIR_Project");
 	if (project_str != ""){
@@ -284,6 +290,11 @@ void DrillPluginInformationReader::ui_saveConfig(){
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "true");
 	}else{
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "false");
+	}
+
+	// > 子控件的UI存储
+	if (this->m_P_InformationPart != nullptr){
+		this->m_P_InformationPart->m_p_pluginListPart->ui_saveConfig();
 	}
 
 	// > 【工程数据存储 - 全局】

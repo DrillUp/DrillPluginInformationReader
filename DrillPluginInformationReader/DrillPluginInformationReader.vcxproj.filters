@@ -154,14 +154,23 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\分段说明（控件）">
       <UniqueIdentifier>{6e272489-de8d-4f02-a9bd-3257478035b6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）">
-      <UniqueIdentifier>{e9734d54-b33a-43f6-9ab9-08b3b71a0d56}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\资源路径（控件）">
       <UniqueIdentifier>{33f6361d-5246-4067-a415-73fce42130aa}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\作用域（控件）">
       <UniqueIdentifier>{d22583ca-0155-4c90-983b-5751eb5a891e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录">
+      <UniqueIdentifier>{8082fc0b-7916-462e-8d29-9dc8f01d239a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块">
+      <UniqueIdentifier>{567cd6ce-963b-4858-9673-27253bbd562a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件 - 详细信息）">
+      <UniqueIdentifier>{e9734d54-b33a-43f6-9ab9-08b3b71a0d56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）">
+      <UniqueIdentifier>{e0026552-92f7-42d0-a3a2-68dab1d936a6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -460,7 +469,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.cpp">
-      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件 - 详细信息）</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Docs.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）</Filter>
@@ -487,6 +496,33 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_s_LinkDirector.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_historicalSearchRecord.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_historicalSearchRecord.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\otherFunctionPart\p_OtherFunctionPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_OtherFunctionPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_OtherFunctionPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\commandSearcherPart\helpDetailPart\p_ScriptHelp_CommandSearchCell.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_CommandSearchCell.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_CommandSearchCell.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
@@ -591,10 +627,10 @@
       <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.h">
-      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件 - 详细信息）</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.ui">
-      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件）</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件 - 详细信息）</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Docs.h">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\插件文档（控件）</Filter>
@@ -634,6 +670,24 @@
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\linkDirector\s_LinkDirector.h">
       <Filter>源文件\【 信息模块 InformationModule】\链接文件引导器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.ui">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\p_OtherFunctionPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\p_OtherFunctionPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\commandSearcherPart\helpDetailPart\p_ScriptHelp_CommandSearchCell.h">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\commandSearcherPart\helpDetailPart\p_ScriptHelp_CommandSearchCell.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -749,6 +803,15 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Subsection.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_historicalSearchRecord.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_OtherFunctionPart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_CommandSearchCell.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

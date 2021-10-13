@@ -43,6 +43,8 @@ class C_ScriptHelp_Subsection{
 		QStringList main_list;							//主内容说明
 		QList<C_ScriptHelp_SubsectionPage> page_list;	//章节列表
 	public:
+								//数据 - 空判断
+		bool isNull();
 								//数据 - 获取主内容
 		QStringList getMainContext();
 								//数据 - 获取章节标题
@@ -55,5 +57,5 @@ class C_ScriptHelp_Subsection{
 								//数据 - 设置主内容
 		void setMainContext(QStringList mainContext_list);
 								//数据 - 添加章节
-		void addPage(QString page_context); 
+		void readNextPage(QString page_context); 
 };

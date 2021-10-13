@@ -9,6 +9,7 @@
 
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/Utils/widgetForm/historicalSearchRecord/p_historicalSearchRecord.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
 /*
@@ -87,10 +88,14 @@ class P_PluginListPart : public QWidget
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);
 
 	//-----------------------------------
-	//----分页
+	//----控件
 	public:
-		P_PageNavigator* m_p_PageNavigator;
-
+		P_PageNavigator* m_p_PageNavigator;						//分页控件
+		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//历史查询控件
+	public slots:
+										//控件 - 搜索的字符串被点击
+		void searchTextClicked(QString text);
+		
 	//-----------------------------------
 	//----表格事件
 	public slots:
@@ -105,10 +110,10 @@ class P_PluginListPart : public QWidget
 	//-----------------------------------
 	//----块
 	public:
-										//块 - 本地数据 -> ui数据
-		void putDataToUi();
-										//块 - ui数据 -> 本地数据
-		void putUiToData();
+										//块 - 用户自定义UI读取
+		void ui_loadConfig();
+										//块 - 用户自定义UI存储
+		void ui_saveConfig();
 	private:
 		Ui::P_PluginListPart ui;
 

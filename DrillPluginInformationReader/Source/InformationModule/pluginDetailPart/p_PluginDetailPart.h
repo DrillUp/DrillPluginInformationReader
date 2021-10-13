@@ -49,10 +49,10 @@ class P_PluginDetailPart : public QWidget
 	//-----------------------------------
 	//----块
 	public:
-										//块 - 本地数据 -> ui数据
-		void putDataToUi();
-										//块 - ui数据 -> 本地数据
-		void putUiToData();
+										//块 - 用户自定义UI读取
+		void ui_loadConfig();
+										//块 - 用户自定义UI存储
+		void ui_saveConfig();
 	private:
 		Ui::P_PluginDetailPart ui;
 
