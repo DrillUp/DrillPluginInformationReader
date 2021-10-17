@@ -4,9 +4,33 @@
 
 /*
 -----==========================================================-----
+		类：		帮助数据-介绍 数据类.h
+		所属模块：	插件模块
+		功能：		帮助信息中的介绍内容。
+					【开头"========"后面的几行内容】
+					（详细见.cpp）
+-----==========================================================-----
+*/
+class C_ScriptHelp_SubsectionHeader{
+
+	public:
+		C_ScriptHelp_SubsectionHeader();
+		~C_ScriptHelp_SubsectionHeader();
+
+	//-----------------------------------
+	//----数据
+	public:
+		QString introduction;		//简介
+		QString package;			//打包支持提示
+		QStringList condition;		//必要条件列表
+};
+
+/*
+-----==========================================================-----
 		类：		帮助数据-章节 数据类.h
 		所属模块：	插件模块
 		功能：		帮助信息中的章节。
+					【"----设定注意事项"后面的小分段内容】
 					（详细见.cpp）
 -----==========================================================-----
 */
@@ -21,13 +45,14 @@ class C_ScriptHelp_SubsectionPage{
 	public:
 		QString title;				//章节标题
 		QStringList context;		//内容列表
-
 };
+
 /*
 -----==========================================================-----
 		类：		帮助数据-分段说明 数据类.h
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
+					【综合 上面的数据 和 "作用域"后面的内容点】
 					（详细见.cpp）
 -----==========================================================-----
 */
@@ -40,13 +65,16 @@ class C_ScriptHelp_Subsection{
 	//-----------------------------------
 	//----数据
 	protected:
+		C_ScriptHelp_SubsectionHeader header;			//介绍数据
 		QStringList main_list;							//主内容说明
 		QList<C_ScriptHelp_SubsectionPage> page_list;	//章节列表
 	public:
-								//数据 - 空判断
-		bool isNull();
 								//数据 - 获取主内容
 		QStringList getMainContext();
+								//数据 - 获取介绍数据
+		C_ScriptHelp_SubsectionHeader getHeader();
+								//数据 - 空判断
+		bool isNull();
 								//数据 - 获取章节标题
 		QStringList getAllTitle();
 								//数据 - 获取章节（根据标题）
@@ -56,6 +84,8 @@ class C_ScriptHelp_Subsection{
 	public:
 								//数据 - 设置主内容
 		void setMainContext(QStringList mainContext_list);
-								//数据 - 添加章节
+								//数据 - 设置介绍数据
+		void setHeader(QString context);
+								//数据 - 添加一个章节
 		void readNextPage(QString page_context); 
 };

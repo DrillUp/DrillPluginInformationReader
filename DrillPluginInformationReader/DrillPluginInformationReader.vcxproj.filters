@@ -906,6 +906,9 @@
     <None Include="Source\PluginModule\scriptReader\注释参数集合.docx">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器</Filter>
     </None>
+    <None Include="Source\PluginModule\scriptReader\helpDetail\帮助数据规则.docx">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Source\Utils\widgetForm\foldableTabWindow\程序入口.txt">

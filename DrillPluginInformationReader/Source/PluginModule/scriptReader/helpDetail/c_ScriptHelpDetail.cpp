@@ -61,8 +61,9 @@ QString C_ScriptHelpDetail::getHelpContext(){
 */
 void C_ScriptHelpDetail::initHelpContext(){
 	P_TxtFastReader reader = P_TxtFastReader(this->help);
-	this->m_docs = new C_ScriptHelp_Docs();			//插件文档（初始就要创建）
-	this->m_command = new C_ScriptHelp_Command();	//指令（初始就要创建）
+	this->m_docs = new C_ScriptHelp_Docs();					//插件文档（初始就要创建）
+	this->m_command = new C_ScriptHelp_Command();			//指令（初始就要创建）
+	this->m_subsection = new C_ScriptHelp_Subsection();		//分段说明（初始就要创建）
 
 	// > 插件扩展
 	int i_relation = reader.d_indexOf("----插件扩展");
@@ -92,17 +93,24 @@ void C_ScriptHelpDetail::initHelpContext(){
 		}
 	}
 
+	// > 分段说明 - 介绍
+	int i_introductionComment = reader.d_indexOf("===========");
+	int i_introductionComment2 = reader.d_indexOf("===========", i_introductionComment+1);	//（第二条等号线）
+	int i_introductionComment2_end = reader.d_indexOf("----------------------", i_introductionComment2+1);
+	if (i_introductionComment2 != -1){
+		int row_count = i_introductionComment2_end - i_introductionComment2 - 1;
+		QStringList introductionComment = reader.d_getRows(i_introductionComment2 + 1, row_count);
+		this->m_subsection->setHeader(introductionComment.join("\n"));
+	}
 
-	// > 分段说明
+	// > 分段说明 - 章节
 	int i_mainComment = reader.d_indexOf("----设定注意事项");
 	int i_mainComment_end = reader.d_indexOf("----------------------", i_mainComment + 1);
 	if (i_mainComment != -1){
 		int row_count = i_mainComment_end - i_mainComment - 1;
 		QStringList mainComment = reader.d_getRows(i_mainComment + 1, row_count);
 		P_TxtFastReader main_reader = P_TxtFastReader(mainComment.join("\n"));
-
-		this->m_subsection = new C_ScriptHelp_Subsection();
-
+		
 		// > 分段说明 - 主内容
 		QStringList main_context = QStringList();
 		int i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));

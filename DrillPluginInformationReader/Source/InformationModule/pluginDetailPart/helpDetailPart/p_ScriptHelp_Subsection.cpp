@@ -71,7 +71,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		return;
 	}
 
-	// > 主内容 底板控件
+	// > 内容 底板控件
 	QStringList main_list = data->getMainContext();
 	if (main_list.count() > 0){
 		QWidget* group = new QWidget(this);
@@ -81,10 +81,23 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		layout->setSpacing(6);
 		group->setLayout(layout);
 
+		// > 介绍 - 条件列表
+		QStringList condition_list = data->getHeader().condition;
+		for (int i = 0; i < condition_list.count(); i++){
+			QString temp_data = condition_list.at(i);
+
+			// > 添加标签
+			QLabel* label = new QLabel(temp_data, group);
+			label->setWordWrap(true);
+			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			layout->addWidget(label);
+			this->m_labelTank.append(label);
+		}
+
 		// > 主内容列表
 		for (int i = 0; i < main_list.count(); i++){
 			QString temp_data = main_list.at(i);
-			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);	//（文档链接）
 			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
 
 			// > 添加标签

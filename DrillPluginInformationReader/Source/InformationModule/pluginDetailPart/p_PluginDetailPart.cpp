@@ -62,16 +62,29 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 	this->m_curPluginName = plugin_name;
 
 	C_ScriptAnnotation annotation = S_InformationDataContainer::getInstance()->getAnnotation(plugin_name);
+	C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
 
 	// > 基本信息
 	ui.lineEdit_pluginName->setText(plugin_name);
 	ui.lineEdit_desc->setText(annotation.getPlugindesc());
 	ui.lineEdit_author->setText(annotation.getAuthor());
+	// > 基本信息 - 介绍（分页说明 - 介绍）
+	if (detail != nullptr){
+		QString introduction = detail->getSubsection()->getHeader().introduction;
+		if (introduction == ""){
+			ui.label_introduction_title->setVisible(false);
+			ui.label_introduction_context->setVisible(false);
+		}else{
+			ui.label_introduction_context->setText(introduction);
+			ui.label_introduction_title->setVisible(true);
+			ui.label_introduction_context->setVisible(true);
+		}
+	}
 
 	// > 原文
 	ui.plainTextEdit_orgHelp->setPlainText(annotation.getHelp());
 
-	C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
+	// > 控件组
 	if (detail != nullptr){
 		// > 作用域
 		this->m_p_ScriptHelp_EffectScope->setData(detail->getEffectScope());
