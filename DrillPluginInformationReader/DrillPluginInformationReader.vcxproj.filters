@@ -172,6 +172,21 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）">
       <UniqueIdentifier>{e0026552-92f7-42d0-a3a2-68dab1d936a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 插件文档">
+      <UniqueIdentifier>{c6682e46-fc47-4324-94e3-a29a3ff063d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 资源路径">
+      <UniqueIdentifier>{83af90bb-9243-4ec5-a7a0-342ec162b07e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗">
+      <UniqueIdentifier>{cee41edd-a897-497d-b724-dc194a5d9c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 外键">
+      <UniqueIdentifier>{3a43c557-3cd3-4d35-a24f-a1a2bcbaef47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 小工具支持">
+      <UniqueIdentifier>{f04b6a28-e906-4c8d-a29d-55c3b054a4b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -405,15 +420,6 @@
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明（数据）</Filter>
     </ClCompile>
-    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttrComment.cpp">
-      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttrComment.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttrComment.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utils\widgetForm\loadingTip\w_LoadingTip.cpp">
       <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
     </ClCompile>
@@ -525,6 +531,51 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_CommandSearchCell.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttr_Docs.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttr_Docs.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttr_Src.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttr_Src.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Docs.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 插件文档</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Src.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 资源路径</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttr_ForeignKey.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttr_ForeignKey.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttr_HasTool.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttr_HasTool.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginAttr_HighConsumption.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginAttr_HighConsumption.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HasTool.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 小工具支持</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_ForeignKey.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 外键</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -617,12 +668,6 @@
     <CustomBuild Include="Source\Utils\widgetForm\pageNavigator\p_PageNavigator.ui">
       <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttrComment.h">
-      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttrComment.ui">
-      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
-    </CustomBuild>
     <CustomBuild Include="Source\Utils\widgetForm\loadingTip\w_LoadingTip.h">
       <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
     </CustomBuild>
@@ -688,6 +733,36 @@
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\commandSearcherPart\helpDetailPart\p_ScriptHelp_CommandSearchCell.ui">
       <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块\指令（控件 - 搜索信息）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Docs.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 插件文档</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Docs.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 插件文档</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Src.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 资源路径</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_Src.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 资源路径</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HasTool.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 小工具支持</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HasTool.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 小工具支持</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_ForeignKey.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 外键</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_ForeignKey.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 外键</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -778,9 +853,6 @@
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\分段说明（数据）</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_w_PluginAttrComment.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.h">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\资源路径（数据）</Filter>
     </ClInclude>
@@ -812,6 +884,21 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_CommandSearchCell.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_Docs.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_Src.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_ForeignKey.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_HasTool.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_HighConsumption.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

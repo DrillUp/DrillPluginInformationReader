@@ -14,14 +14,18 @@
 		说明：		插件属性显示用的按钮块。
 -----==========================================================-----
 */
-P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(W_PluginAttrComment* w, QWidget *parent)
+P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
 
 	//-----------------------------------
 	//----初始化参数
-	this->m_w_PluginAttrComment = w;
+	this->m_w_PluginAttr_Docs = nullptr;
+	this->m_w_PluginAttr_Src = nullptr;
+	this->m_w_PluginAttr_HighConsumption = nullptr;
+	this->m_w_PluginAttr_HasTool = nullptr;
+	this->m_w_PluginAttr_ForeignKey = nullptr;
 
 	//-----------------------------------
 	//----初始化ui
@@ -33,7 +37,7 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(W_PluginAttrComment* w, QWidget
 
 	//-----------------------------------
 	//----事件绑定
-	connect(ui.toolButton_word, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_word);
+	connect(ui.toolButton_word, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_docs);
 	connect(ui.toolButton_src, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_src);
 	connect(ui.toolButton_highConsumption, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_highConsumption);
 	connect(ui.toolButton_hasTool, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_hasTool);
@@ -97,29 +101,88 @@ void P_PluginAttr_ButtonPart::refreshBtnVisible(){
 	//...
 
 }
+/*-------------------------------------------------
+		控件 - 资源按钮
+*/
+void P_PluginAttr_ButtonPart::setWindowDocs(W_PluginAttr_Docs* w){
+	this->m_w_PluginAttr_Docs = w;
+}
+void P_PluginAttr_ButtonPart::setWindowSrc(W_PluginAttr_Src* w){
+	this->m_w_PluginAttr_Src = w;
+}
+void P_PluginAttr_ButtonPart::setWindowHighConsumption(W_PluginAttr_HighConsumption* w){
+	this->m_w_PluginAttr_HighConsumption = w;
+}
+void P_PluginAttr_ButtonPart::setWindowHasTool(W_PluginAttr_HasTool* w){
+	this->m_w_PluginAttr_HasTool = w;
+}
+void P_PluginAttr_ButtonPart::setWindowForeignKey(W_PluginAttr_ForeignKey* w){
+	this->m_w_PluginAttr_ForeignKey = w;
+}
 
 /*-------------------------------------------------
 		控件 - 资源按钮
 */
-void P_PluginAttr_ButtonPart::btn_word(){
-	this->m_w_PluginAttrComment->showInformation_word(this->m_pluginName);
-	this->m_w_PluginAttrComment->show();
+void P_PluginAttr_ButtonPart::btn_docs(){
+	if (this->m_w_PluginAttr_Docs == nullptr){ return; }
+	this->m_w_PluginAttr_Docs->showInformation_word(this->m_pluginName);
+	this->showWindowAlone(this->m_w_PluginAttr_Docs);
 }
 void P_PluginAttr_ButtonPart::btn_src(){
-	this->m_w_PluginAttrComment->showInformation_src(this->m_pluginName);
-	this->m_w_PluginAttrComment->show();
+	if (this->m_w_PluginAttr_Src == nullptr){ return; }
+	this->m_w_PluginAttr_Src->showInformation_src(this->m_pluginName);
+	this->showWindowAlone(this->m_w_PluginAttr_Src);
 }
 void P_PluginAttr_ButtonPart::btn_highConsumption(){
-	this->m_w_PluginAttrComment->showInformation_highConsumption(this->m_pluginName);
-	this->m_w_PluginAttrComment->show();
+	if (this->m_w_PluginAttr_HighConsumption == nullptr){ return; }
+	//this->m_w_PluginAttr_HighConsumption->showInformation_highConsumption(this->m_pluginName);
+	this->showWindowAlone(this->m_w_PluginAttr_HighConsumption);
 }
 void P_PluginAttr_ButtonPart::btn_hasTool(){
-	this->m_w_PluginAttrComment->showInformation_hasTool(this->m_pluginName);
-	this->m_w_PluginAttrComment->show();
+	if (this->m_w_PluginAttr_HasTool == nullptr){ return; }
+	//this->m_w_PluginAttr_HasTool->showInformation_hasTool(this->m_pluginName);
+	this->showWindowAlone(this->m_w_PluginAttr_HasTool);
 }
 void P_PluginAttr_ButtonPart::btn_foreignKey(){
-	this->m_w_PluginAttrComment->showInformation_foreignKey(this->m_pluginName);
-	this->m_w_PluginAttrComment->show();
+	if (this->m_w_PluginAttr_ForeignKey == nullptr){ return; }
+	//this->m_w_PluginAttr_ForeignKey->showInformation_foreignKey(this->m_pluginName);
+	this->showWindowAlone(this->m_w_PluginAttr_ForeignKey);
+}
+/*-------------------------------------------------
+		控件 - 显示单一窗口
+*/
+void P_PluginAttr_ButtonPart::showWindowAlone(QDialog* w){
+	if (this->m_w_PluginAttr_Docs == nullptr){ return; }
+	if (this->m_w_PluginAttr_Src == nullptr){ return; }
+	if (this->m_w_PluginAttr_HighConsumption == nullptr){ return; }
+	if (this->m_w_PluginAttr_HasTool == nullptr){ return; }
+	if (this->m_w_PluginAttr_ForeignKey == nullptr){ return; }
+	
+	if (this->m_w_PluginAttr_Docs == w){
+		this->m_w_PluginAttr_Docs->show();
+	}else{
+		this->m_w_PluginAttr_Docs->close();
+	}
+	if (this->m_w_PluginAttr_Src == w){
+		this->m_w_PluginAttr_Src->show();
+	}else{
+		this->m_w_PluginAttr_Src->close();
+	}
+	if (this->m_w_PluginAttr_HighConsumption == w){
+		this->m_w_PluginAttr_HighConsumption->show();
+	}else{
+		this->m_w_PluginAttr_HighConsumption->close();
+	}
+	if (this->m_w_PluginAttr_HasTool == w){
+		this->m_w_PluginAttr_HasTool->show();
+	}else{
+		this->m_w_PluginAttr_HasTool->close();
+	}
+	if (this->m_w_PluginAttr_ForeignKey == w ){
+		this->m_w_PluginAttr_ForeignKey->show();
+	}else{
+		this->m_w_PluginAttr_ForeignKey->close();
+	}
 }
 
 

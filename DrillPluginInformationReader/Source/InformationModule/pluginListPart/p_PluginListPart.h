@@ -4,8 +4,12 @@
 #include <QtWidgets>
 #include "ui_P_PluginListPart.h"
 
-#include "buttonPart/w_PluginAttrComment.h"
 #include "buttonPart/p_PluginAttr_ButtonPart.h"
+#include "buttonPart/w_PluginAttr_Docs.h"
+#include "buttonPart/w_PluginAttr_Src.h"
+#include "buttonPart/w_PluginAttr_HighConsumption.h"
+#include "buttonPart/w_PluginAttr_HasTool.h"
+#include "buttonPart/w_PluginAttr_ForeignKey.h"
 
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
@@ -81,8 +85,12 @@ class P_PluginListPart : public QWidget
 	//-----------------------------------
 	//----属性
 	protected:
-		W_PluginAttrComment* m_w_PluginAttrComment;			//属性说明窗口
-		QList<P_PluginAttr_ButtonPart*> m_btnPartList;		//属性按钮组
+		QList<P_PluginAttr_ButtonPart*> m_btnPartList;					//属性按钮组
+		W_PluginAttr_Docs* m_w_PluginAttr_Docs;							//属性说明窗口
+		W_PluginAttr_Src* m_w_PluginAttr_Src;							//属性说明窗口
+		W_PluginAttr_HighConsumption* m_w_PluginAttr_HighConsumption;	//属性说明窗口
+		W_PluginAttr_HasTool* m_w_PluginAttr_HasTool;					//属性说明窗口
+		W_PluginAttr_ForeignKey* m_w_PluginAttr_ForeignKey;				//属性说明窗口
 	protected:
 										//属性 - 获取按钮组
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);

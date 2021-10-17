@@ -39,11 +39,20 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	ui.widget_nav->layout()->addWidget(this->m_p_historicalSearchRecord);
 
 	// > 表格按钮控件
-	this->m_w_PluginAttrComment = new W_PluginAttrComment(this);
+	this->m_w_PluginAttr_Docs = new W_PluginAttr_Docs(this);
+	this->m_w_PluginAttr_Src = new W_PluginAttr_Src(this);
+	this->m_w_PluginAttr_HighConsumption = new W_PluginAttr_HighConsumption(this);
+	this->m_w_PluginAttr_HasTool = new W_PluginAttr_HasTool(this);
+	this->m_w_PluginAttr_ForeignKey = new W_PluginAttr_ForeignKey(this);
 	this->m_btnPartList = QList<P_PluginAttr_ButtonPart*>();
 	for (int i = 0; i < 100; i++){
-		P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this->m_w_PluginAttrComment, this);
+		P_PluginAttr_ButtonPart* btn_part = new P_PluginAttr_ButtonPart(this);
 		btn_part->setVisible(false);
+		btn_part->setWindowDocs(this->m_w_PluginAttr_Docs);
+		btn_part->setWindowSrc(this->m_w_PluginAttr_Src);
+		btn_part->setWindowHighConsumption(this->m_w_PluginAttr_HighConsumption);
+		btn_part->setWindowHasTool(this->m_w_PluginAttr_HasTool);
+		btn_part->setWindowForeignKey(this->m_w_PluginAttr_ForeignKey);
 		this->m_btnPartList.append(btn_part);
 	}
 
