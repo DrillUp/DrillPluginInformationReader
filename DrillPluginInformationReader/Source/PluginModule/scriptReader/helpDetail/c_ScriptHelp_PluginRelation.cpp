@@ -18,3 +18,11 @@ C_ScriptHelp_PluginRelation::~C_ScriptHelp_PluginRelation(){
 }
 
 
+/*-------------------------------------------------
+		数据 - 读取 插件扩展 字符串
+*/
+void C_ScriptHelp_PluginRelation::readPluginRelation(QString relation_context){
+
+
+	//...
+}

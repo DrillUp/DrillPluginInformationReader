@@ -59,6 +59,8 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context){
 		group.group_name = data_list.last();
 	}
 
+	//（指令特殊规则： 3x4 或 2x2x2 这种单个组中出现了间隔性的 插件指令，【要显示指令之间间隔的行，将其换成横线】。 ）
+
 	// > 指令捕获
 	//...
 

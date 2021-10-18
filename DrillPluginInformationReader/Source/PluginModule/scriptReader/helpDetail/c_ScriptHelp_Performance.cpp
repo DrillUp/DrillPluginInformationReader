@@ -16,6 +16,13 @@ C_ScriptHelp_Performance::C_ScriptHelp_Performance(){
 C_ScriptHelp_Performance::~C_ScriptHelp_Performance(){
 }
 
+/*-------------------------------------------------
+		数据 - 读取 插件性能 字符串
+*/
+void C_ScriptHelp_Performance::readPerformance(QString performance_context){
+
+	//...
+}
 
 
 //数据 - 是否高消耗

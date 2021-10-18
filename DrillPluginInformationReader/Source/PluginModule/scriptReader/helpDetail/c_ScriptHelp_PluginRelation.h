@@ -23,5 +23,7 @@ class C_ScriptHelp_PluginRelation{
 		QStringList beingExtend;	//插件扩展 - 可被扩展/可扩展
 		QStringList effectTo;		//插件扩展 - 可作用于/作用于
 	public:
+								//数据 - 读取 插件扩展 字符串
+		void readPluginRelation(QString relation_context);
 
 };

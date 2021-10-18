@@ -61,20 +61,24 @@ QString C_ScriptHelpDetail::getHelpContext(){
 */
 void C_ScriptHelpDetail::initHelpContext(){
 	P_TxtFastReader reader = P_TxtFastReader(this->help);
-	this->m_docs = new C_ScriptHelp_Docs();					//插件文档（初始就要创建）
-	this->m_command = new C_ScriptHelp_Command();			//指令（初始就要创建）
-	this->m_subsection = new C_ScriptHelp_Subsection();		//分段说明（初始就要创建）
+	this->m_docs = new C_ScriptHelp_Docs();					//数据 - 插件文档（初始就要创建）
+	this->m_command = new C_ScriptHelp_Command();			//数据 - 指令（初始就要创建）
+	this->m_subsection = new C_ScriptHelp_Subsection();		//数据 - 分段说明（初始就要创建）
 
 	// > 插件扩展
 	int i_relation = reader.d_indexOf("----插件扩展");
+	int i_relation_end = reader.d_indexOf("----------------------", i_relation + 1);
 	if (i_relation != -1){
-		//...
+		int row_count = i_relation_end - i_relation - 1;
+		QStringList relationComment = reader.d_getRows(i_relation + 1, row_count);
+		this->m_pluginRelation = new C_ScriptHelp_PluginRelation();		//数据 - 插件扩展
+		this->m_pluginRelation->readPluginRelation(relationComment.join("\n"));
 	}
 
 	// > 作用域
 	int i_effectScope = reader.d_indexOf("插件的作用域：");
 	if (i_effectScope != -1){
-		this->m_effectScope = new C_ScriptHelp_EffectScope();
+		this->m_effectScope = new C_ScriptHelp_EffectScope();	//数据 - 作用域
 		QStringList row_list = reader.d_getRows(i_effectScope, 4);
 		for (int k = 0; k < row_list.count(); k++){
 			QString row = row_list.at(k);
@@ -178,56 +182,14 @@ void C_ScriptHelpDetail::initHelpContext(){
 	if (i_src != -1){
 		int row_count = i_src_end - i_src - 1;
 		QStringList srcComment = reader.d_getRows(i_src + 1, row_count);
-		this->m_src = new C_ScriptHelp_Src();
-
-		int i_context = 0;
-		for (int i = 0; i < 4; i++){
-			QString row = srcComment.at(i);
-			if (row.contains("资源路径：")){
-				QString data = row.replace("资源路径：", "");
-				data = data.mid(0, data.indexOf(QRegExp("[ \\(（\n]"))).trimmed();
-				if (data.isEmpty() == false){
-					this->m_src->src_list.append(data);
-				}
-				i_context += 1;
-			}else{
-				break;
-			}
-		}
-		
-		QString context = "";
-		QString example = "";
-		bool is_context = true;
-		for (int i = i_context; i < srcComment.count(); i++){
-			QString row = srcComment.at(i);
-			if (is_context == true && row.contains(QRegExp("[:：]"))){		//（根据下一行的冒号来分割 路径说明 和 举例说明 ）
-				is_context = false;
-				context.append(row);
-				continue;
-			}
-			
-			// > 路径说明
-			if (is_context){
-				context.append(row);
-				context.append("\n");
-				continue;
-			}
-
-			// > 举例说明
-			example.append(row);
-			if (i < srcComment.count()-1){
-				example.append("\n");
-			}
-		}
-		this->m_src->context = context;
-		this->m_src->example = example;
-
+		this->m_src = new C_ScriptHelp_Src();	//数据 - 资源路径
+		this->m_src->readSrc(srcComment);
 	}
 
 	// > 指令
 	int i_command = reader.d_indexOf(QRegExp("----(激活条件|可选设定)"));
 	int i_command_end = reader.d_indexOf("----------------------", i_command + 1);
-	for (int k = 0; k < 20; k++){
+	for (int k = 0; k < 20; k++){		//（多组指令集）
 		if (i_command == -1){ break; }
 
 		int row_count = i_command_end - i_command - 1;
@@ -240,6 +202,15 @@ void C_ScriptHelpDetail::initHelpContext(){
 	}
 
 	// > 插件性能
+	int i_performance = reader.d_indexOf(QRegExp("----插件性能"));
+	int i_performance_end = reader.d_indexOf("----------------------", i_performance + 1);
+	if (i_performance != -1){
+		int row_count = i_performance_end - i_performance - 1;
+		if (row_count < 0){ row_count = -1; }
+		QStringList performanceComment = reader.d_getRows(i_performance + 1, row_count);
+		this->m_performance = new C_ScriptHelp_Performance();		//数据 - 插件性能
+		this->m_performance->readPerformance(performanceComment.join("\n"));
+	}
 
 }
 /*-------------------------------------------------
