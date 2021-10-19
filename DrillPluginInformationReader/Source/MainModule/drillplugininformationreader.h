@@ -36,6 +36,8 @@ class DrillPluginInformationReader : public QMainWindow
 		W_LoadingTip* m_tip;
 		P_InformationPart* m_P_InformationPart;
 	public slots:
+								//控件 - 显示指定插件详细信息
+		void showPluginDetail(QString plugin_name);
 								//控件 - 刷新导航栏内容
 		void refreshNav();
 								//控件 - 帮助文档

@@ -67,6 +67,7 @@ void P_ScriptHelp_Src::setData(C_ScriptHelp_Src* data){
 	this->clearAllChild();
 	if (data == nullptr){
 		ui.stackedWidget->setCurrentIndex(0); 
+		ui.groupBox_src->setVisible(false);
 		ui.label_context->setVisible(false);		//（防止撑开）
 		ui.plainTextEdit_sample->setVisible(false);
 		return;
@@ -75,6 +76,7 @@ void P_ScriptHelp_Src::setData(C_ScriptHelp_Src* data){
 	// > 主要文档
 	if (data->src_list.count() > 0){
 		ui.stackedWidget->setCurrentIndex(1);
+		ui.groupBox_src->setVisible(true);
 		ui.label_context->setVisible(true);
 		ui.plainTextEdit_sample->setVisible(true);
 		
@@ -101,6 +103,7 @@ void P_ScriptHelp_Src::setData(C_ScriptHelp_Src* data){
 
 	}else{
 		ui.stackedWidget->setCurrentIndex(0);
+		ui.groupBox_src->setVisible(false);
 		ui.label_context->setVisible(false);		//（防止撑开）
 		ui.plainTextEdit_sample->setVisible(false);
 	}

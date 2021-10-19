@@ -1,6 +1,7 @@
 #pragma once
 #include <QList>
 
+#include "c_ScriptHelp_Docs.h"
 
 /*
 -----==========================================================-----
@@ -81,11 +82,15 @@ class C_ScriptHelp_Subsection{
 		C_ScriptHelp_SubsectionPage getPageByTitle(QString title);
 								//数据 - 获取章节内容（根据标题）
 		QStringList getPageContextByTitle(QString title);
+
+	//-----------------------------------
+	//----读取器
 	public:
-								//数据 - 设置主内容
-		void setMainContext(QStringList mainContext_list);
-								//数据 - 设置介绍数据
-		void setHeader(QString context);
-								//数据 - 添加一个章节
+								//读取器 - 读取 介绍 数据
+		void readHeader(QString header_context);
+								//读取器 - 读取 分段说明 数据
+		void readSubsection(QString subsection_context, C_ScriptHelp_Docs* c_docs);
+	protected:
+								//读取器 - 添加一个章节
 		void readNextPage(QString page_context); 
 };

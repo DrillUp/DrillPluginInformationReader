@@ -52,15 +52,9 @@ C_ScriptHelp_Subsection::~C_ScriptHelp_Subsection(){
 }
 
 /*-------------------------------------------------
-		数据 - 设置主内容
+		读取器 - 读取 介绍 数据
 */
-void C_ScriptHelp_Subsection::setMainContext(QStringList mainContext_list){
-	this->main_list = mainContext_list;
-}
-/*-------------------------------------------------
-		数据 - 设置介绍数据
-*/
-void C_ScriptHelp_Subsection::setHeader(QString context){
+void C_ScriptHelp_Subsection::readHeader(QString context){
 	if (context == ""){ return; }
 	P_TxtFastReader header_reader = P_TxtFastReader(context);
 	C_ScriptHelp_SubsectionHeader header;
@@ -98,7 +92,77 @@ void C_ScriptHelp_Subsection::setHeader(QString context){
 	this->header = header;
 }
 /*-------------------------------------------------
-		数据 - 添加章节
+		读取器 - 读取 分段说明 数据
+*/
+void C_ScriptHelp_Subsection::readSubsection(QString subsection_context, C_ScriptHelp_Docs* c_docs){
+	P_TxtFastReader main_reader = P_TxtFastReader(subsection_context);
+
+	// > 分段说明 - 主内容
+	QStringList main_context = QStringList();
+	int i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));
+	int i_page = i_main;
+	for (int k = 0; k < 15; k++){
+		if (i_main != -1){
+
+			// > 向下搜索
+			QString data = QString();
+			int i_nextMain = main_reader.d_indexOf(QRegExp("^[^ ]+"), i_main + 1);	//（后续行有空格表示内容没完）
+			if (i_nextMain != -1){
+				int main_count = i_nextMain - i_main;
+				data = main_reader.d_getRows(i_main, main_count).join("\n");
+			}
+			else{
+				data = main_reader.d_getRows(i_main).join("\n");
+			}
+
+			// > 添加到列表
+			if (data.isEmpty() == false &&
+				data.contains("插件的作用域：") == false){	//（不含作用域的说明）
+				data = data.replace(QRegExp("^[\\d]+[\\.。]"), "");
+				c_docs->addMainDocx(c_docs->findDocsNameList(data));	//【插件文档 - 主要文档】
+				main_context.append(data.trimmed());
+			}
+
+			i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_main + 1);
+		}
+		else{
+			break;
+		}
+	}
+	this->main_list = main_context;
+
+	// > 分段说明 - 章节
+	i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
+	for (int k = 0; k < 15; k++){
+		if (i_page != -1){
+
+			// > 向下搜索
+			QStringList data_list = QStringList();
+			int i_nextPage = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
+			if (i_nextPage != -1){
+				int page_count = i_nextPage - i_page;
+				data_list = main_reader.d_getRows(i_page, page_count);
+			}
+			else{
+				data_list = main_reader.d_getRows(i_page);
+			}
+
+			// > 添加到列表
+			if (data_list.count() > 0){
+				QString data = data_list.join("\n");
+				c_docs->addRelativeDocx(c_docs->findDocsNameList(data));	//【插件文档 - 相关文档】
+				this->readNextPage(data);
+			}
+
+			i_page = i_nextPage;
+		}
+		else{
+			break;
+		}
+	}
+}
+/*-------------------------------------------------
+		读取器 - 添加章节
 */
 void C_ScriptHelp_Subsection::readNextPage(QString page_context){
 	if (page_context == ""){ return; }

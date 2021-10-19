@@ -30,5 +30,12 @@ class C_ScriptHelp_Docs{
 		void addRelativeDocx(QStringList docx_list);
 									//数据 - 是否含有文档
 		bool hasAnyDocx();
-
+		
+	//-----------------------------------
+	//----读取器
+	public:
+									//读取器 - 寻找文档名称
+									//		【说明1】：文档包括 docx 和 xlsx。名称前面需要空格或引号，如格式"xxx.docx"或 xxxx xxx.docx。
+									//		【说明2】：该函数只是个工具函数，返回的结果可以选择手动添加到该数据类中。
+		QStringList findDocsNameList(QString context);
 };

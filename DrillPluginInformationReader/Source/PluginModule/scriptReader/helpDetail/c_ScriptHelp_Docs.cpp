@@ -51,3 +51,20 @@ bool C_ScriptHelp_Docs::hasAnyDocx(){
 	return false;
 }
 
+
+/*-------------------------------------------------
+		读取器 - 寻找文档名称
+*/
+QStringList C_ScriptHelp_Docs::findDocsNameList(QString context){
+
+	// > 获取到匹配（名称前面有 空格、引号 都可以）
+	QRegExp rx("[ \"“]([^ \"“]+\\.(docx|xlsx))");
+	QStringList match_list = QStringList();
+	int pos = 0;
+	while ((pos = rx.indexIn(context, pos)) != -1) {
+		match_list << rx.cap(1);
+		pos += rx.matchedLength();
+	}
+	return match_list;
+}
+

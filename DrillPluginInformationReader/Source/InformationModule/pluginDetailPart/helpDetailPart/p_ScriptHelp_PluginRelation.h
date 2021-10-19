@@ -26,7 +26,16 @@ class P_ScriptHelp_PluginRelation : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		QList<QLabel*> m_labelTank;
 	public slots: 
+										//控件 - 清空全部子控件
+		void clearAllChild();
+										//控件 - 链接被点击
+		void linkClicked_plugin(QString data);
+	protected:
+										//控件 - 创建群组控件
+		void addGroupWidget(QString title,QStringList context);
 
 	//-----------------------------------
 	//----块

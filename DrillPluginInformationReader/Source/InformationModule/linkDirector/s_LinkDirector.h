@@ -45,6 +45,9 @@ class S_LinkDirector : public QObject
 										//数据 - 寻找文档名称
 										//		【说明】：文档包括 docx 和 xlsx。名称前面需要空格或引号，如格式"xxx.docx"或 xxxx xxx.docx。
 		QStringList findDocsNameList(QString data);
+										//数据 - 寻找插件名称
+										//		【说明】：必须完全匹配现有的插件名称。
+		QStringList findPluginNameList(QString data);
 
 	//-----------------------------------
 	//----链接
@@ -60,6 +63,9 @@ class S_LinkDirector : public QObject
 										//链接 - 将 资源路径 包裹"<a>"链接
 										//		【说明】：把"img/xxx"用"<a>"标签包裹。
 		QString signATag_Src(QString src_path);
+										//链接 - 将字符串中的 插件名称 转为"<a>"链接
+										//		【说明】：必须完全匹配现有的插件名称，才能转换。
+		QString signATag_Plugin(QString data);
 										//链接 - 将字符串中的 "插件清单.xlsx" 转为"<a>"链接
 										//		【说明】：只针对 插件清单 字符串。
 		QString signATag_specific_pluginListing(QString data);

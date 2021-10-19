@@ -18,7 +18,7 @@ C_ScriptHelp_Src::~C_ScriptHelp_Src(){
 }
 
 /*-------------------------------------------------
-		数据 - 读取 资源路径 字符串
+		读取器 - 读取 资源路径 字符串
 */
 void C_ScriptHelp_Src::readSrc(QStringList src_contextRows){
 

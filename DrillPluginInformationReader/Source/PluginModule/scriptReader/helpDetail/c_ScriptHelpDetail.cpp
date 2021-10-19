@@ -104,7 +104,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 	if (i_introductionComment2 != -1){
 		int row_count = i_introductionComment2_end - i_introductionComment2 - 1;
 		QStringList introductionComment = reader.d_getRows(i_introductionComment2 + 1, row_count);
-		this->m_subsection->setHeader(introductionComment.join("\n"));
+		this->m_subsection->readHeader(introductionComment.join("\n"));
 	}
 
 	// > 分段说明 - 章节
@@ -113,67 +113,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 	if (i_mainComment != -1){
 		int row_count = i_mainComment_end - i_mainComment - 1;
 		QStringList mainComment = reader.d_getRows(i_mainComment + 1, row_count);
-		P_TxtFastReader main_reader = P_TxtFastReader(mainComment.join("\n"));
-		
-		// > 分段说明 - 主内容
-		QStringList main_context = QStringList();
-		int i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));
-		int i_page = i_main;
-		for (int k = 0; k < 15; k++){
-			if (i_main != -1){
-				
-				// > 向下搜索
-				QString data = QString();
-				int i_nextMain = main_reader.d_indexOf(QRegExp("^[^ ]+"), i_main + 1);	//（后续行有空格表示内容没完）
-				if (i_nextMain != -1){
-					int main_count = i_nextMain - i_main;
-					data = main_reader.d_getRows(i_main, main_count).join("\n");
-				}else{
-					data = main_reader.d_getRows(i_main).join("\n");
-				}
-
-				// > 添加到列表
-				if (data.isEmpty() == false &&
-					data.contains("插件的作用域：") == false){	//（不含作用域的说明）
-					data = data.replace(QRegExp("^[\\d]+[\\.。]"), "");
-					this->m_docs->addMainDocx(this->findDocsNameList(data));	//【插件文档 - 主要文档】
-					main_context.append(data.trimmed());
-				}
-
-				i_main = main_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_main + 1);
-			}else{
-				break;
-			}
-		}
-		this->m_subsection->setMainContext(main_context);
-
-		// > 分段说明 - 章节
-		i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
-		for (int k = 0; k < 15; k++){
-			if (i_page != -1){
-
-				// > 向下搜索
-				QStringList data_list = QStringList();
-				int i_nextPage = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
-				if (i_nextPage != -1){
-					int page_count = i_nextPage - i_page;
-					data_list = main_reader.d_getRows(i_page, page_count);
-				}else{
-					data_list = main_reader.d_getRows(i_page);
-				}
-
-				// > 添加到列表
-				if (data_list.count() > 0){
-					QString data = data_list.join("\n");
-					this->m_docs->addRelativeDocx(this->findDocsNameList(data));	//【插件文档 - 相关文档】
-					this->m_subsection->readNextPage(data);
-				}
-
-				i_page = i_nextPage;
-			}else{
-				break;
-			}
-		}
+		this->m_subsection->readSubsection(mainComment.join("\n"),this->m_docs);
 	}
 
 	// > 资源路径
@@ -195,7 +135,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 		int row_count = i_command_end - i_command - 1;
 		if (row_count < 0){ row_count = -1; }
 		QStringList commandComment = reader.d_getRows(i_command + 1, row_count);
-		this->m_command->readNextGroup(commandComment.join("\n"));
+		this->m_command->readNextGroup(commandComment.join("\n"), this->m_docs);
 
 		i_command = reader.d_indexOf(QRegExp("----(激活条件|可选设定)"), i_command + 1);
 		i_command_end = reader.d_indexOf("----------------------", i_command + 1);
@@ -254,22 +194,6 @@ C_ScriptHelp_Command* C_ScriptHelpDetail::getCommand(){
 */
 C_ScriptHelp_Performance* C_ScriptHelpDetail::getPerformance(){
 	return this->m_performance;
-}
-
-/*-------------------------------------------------
-		私有 - 寻找文档名称
-*/
-QStringList C_ScriptHelpDetail::findDocsNameList(QString context){
-
-	// > 获取到匹配（名称前面有 空格、引号 都可以）
-	QRegExp rx("[ \"“]([^ \"“]+\\.(docx|xlsx))");
-	QStringList match_list = QStringList();
-	int pos = 0;
-	while ((pos = rx.indexIn(context, pos)) != -1) {
-		match_list << rx.cap(1);
-		pos += rx.matchedLength();
-	}
-	return match_list;
 }
 
 

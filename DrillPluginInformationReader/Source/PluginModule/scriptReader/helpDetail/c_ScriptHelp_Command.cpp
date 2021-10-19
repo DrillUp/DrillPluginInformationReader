@@ -39,9 +39,9 @@ bool C_ScriptHelp_Command::isNull(){
 	return this->group_list.count() == 0;
 }
 /*-------------------------------------------------
-		数据 - 读取新的指令集字符串
+		读取器 - 读取新的指令集字符串
 */
-void C_ScriptHelp_Command::readNextGroup(QString group_context){
+void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Docs* c_docs){
 	if (group_context == ""){ return; }
 	C_ScriptHelp_CommandGroup group;
 	P_TxtFastReader group_reader = P_TxtFastReader(group_context);

@@ -91,6 +91,12 @@ void DrillPluginInformationReader::_init() {
 }
 
 /* --------------------------------------------------------------
+		控件 - 显示指定插件详细信息
+*/
+void DrillPluginInformationReader::showPluginDetail(QString plugin_name){
+	this->m_P_InformationPart->showPluginDetail(plugin_name);
+}
+/* --------------------------------------------------------------
 		控件 - 刷新导航栏内容
 */
 void DrillPluginInformationReader::refreshNav(){

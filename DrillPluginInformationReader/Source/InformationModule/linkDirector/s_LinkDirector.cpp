@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "s_LinkDirector.h"
 
+#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
 
 /*
@@ -97,6 +98,21 @@ QStringList S_LinkDirector::findDocsNameList(QString data){
 		pos += rx.matchedLength();
 	}
 	return match_list;
+}
+/*-------------------------------------------------
+		数据 - 寻找插件名称
+*/
+QStringList S_LinkDirector::findPluginNameList(QString data){
+	QStringList result_list = QStringList();
+
+	QList<C_ScriptAnnotation> annotation_list = S_InformationDataContainer::getInstance()->getAnnotationTank();
+	for (int i = 0; i < annotation_list.count(); i++){
+		C_ScriptAnnotation annotation = annotation_list.at(i);
+		if (data.contains( annotation.getName()+" " )){	//（插件指令后面必须要有空格）
+			result_list.append(annotation.getName());
+		}
+	}
+	return result_list;
 }
 
 /*-------------------------------------------------
@@ -222,6 +238,26 @@ QString S_LinkDirector::signATag_Src(QString src_path){
 	result.append("</span></a>");
 
 	return result;
+}
+/*-------------------------------------------------
+		链接 - 将字符串中的 插件名称 转为"<a>"链接
+*/
+QString S_LinkDirector::signATag_Plugin(QString data){
+	QStringList match_list = this->findPluginNameList(data);
+
+	// > 使用链接包裹
+	for (int j = 0; j < match_list.count(); j++){
+		QString str = match_list.at(j);
+		QString tar_str;
+		tar_str.append("<a href=\"");
+		tar_str.append(str);
+		tar_str.append("\"><span style = \"text-decoration: underline; color:#0000ff;\">");
+		tar_str.append(str);
+		tar_str.append("</span></a>");
+		data = data.replace(str, tar_str);
+	}
+
+	return data;
 }
 /*-------------------------------------------------
 		链接 - 将字符串中的 "插件清单.xlsx" 转为"<a>"链接

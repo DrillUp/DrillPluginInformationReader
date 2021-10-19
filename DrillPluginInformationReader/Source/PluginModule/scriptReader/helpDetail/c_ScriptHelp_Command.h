@@ -1,6 +1,7 @@
 #pragma once
 #include <QList>
 
+#include "c_ScriptHelp_Docs.h"
 
 /*
 -----==========================================================-----
@@ -54,7 +55,10 @@ class C_ScriptHelp_Command{
 	public:
 								//数据 - 空判断
 		bool isNull();
+
+	//-----------------------------------
+	//----读取器
 	public:
-								//数据 - 读取新的指令集字符串
-		void readNextGroup(QString group_context); 
+								//读取器 - 读取新的指令集字符串
+		void readNextGroup(QString group_context, C_ScriptHelp_Docs* c_docs);
 };

@@ -22,13 +22,17 @@ class C_ScriptHelp_Performance{
 		QStringList performance;		//插件性能
 		QStringList note;				//插件性能说明
 	public:
-								//数据 - 读取 插件性能 字符串
-		void readPerformance(QString performance_context);
 								//数据 - 是否高消耗
 		bool isHighCost();
 								//数据 - 是否中消耗
 		bool isMiddleCost();
 								//数据 - 是否低消耗
 		bool isLowCost();
+
+	//-----------------------------------
+	//----读取器
+	public:
+								//读取器 - 读取 插件性能 字符串
+		void readPerformance(QString performance_context);
 
 };
