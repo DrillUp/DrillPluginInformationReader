@@ -49,7 +49,6 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	// > 标题捕获
 	QString title = group_reader.d_getRows(0, 1).at(0);
 	QStringList data_list = title.split(QRegExp("[ -]+"));
-	TTool::_QStringList_clearEmptyRows_(&data_list);
 	if (data_list.contains("激活条件")){
 		group.is_important = true;
 	}else{
@@ -62,6 +61,12 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	//（指令特殊规则： 3x4 或 2x2x2 这种单个组中出现了间隔性的 插件指令，【要显示指令之间间隔的行，将其换成横线】。 ）
 
 	// > 指令捕获
-	//...
+	int i_command = group_reader.d_indexOf(QRegExp("^[^ ]{4,7}[:：]"));
+	int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
+	int row_count = i_command_end - i_command;
+	if (row_count < 0){ row_count = -1; }
+	QStringList commandComment = group_reader.d_getRows(i_command + 1, row_count);
+
+	qDebug() << commandComment;
 
 }
