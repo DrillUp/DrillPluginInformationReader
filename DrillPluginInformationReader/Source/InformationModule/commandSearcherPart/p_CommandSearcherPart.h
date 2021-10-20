@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "ui_P_CommandSearcherPart.h"
 
+#include "helpDetailPart/p_ScriptHelp_CommandSearchCell.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/Utils/widgetForm/historicalSearchRecord/p_historicalSearchRecord.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
@@ -27,6 +28,27 @@ class P_CommandSearcherPart : public QWidget
 		~P_CommandSearcherPart();
 		
 	//-----------------------------------
+	//----搜索指令
+	protected:
+		QString m_searchText;							//搜索的文本
+		QList<C_ScriptAnnotation> m_allSearchedData;	//当前数据（文件夹插件）
+	private:
+										//搜索指令 - 搜索
+		void btn_search();
+										//搜索指令 - 刷新控件
+		void refreshCellAuto( int start_index, int end_index );
+										//搜索指令 - 将指定字符串标蓝
+		QLabel* getLabelWithSign(QString text, QString searching_text);
+
+	//-----------------------------------
+	//----属性
+	protected:
+		QList<P_ScriptHelp_CommandSearchCell*> m_cellPartList;					//属性按钮组
+	protected:
+										//属性 - 获取按钮组
+		P_ScriptHelp_CommandSearchCell* getButtonPartByIndex(int index);
+
+	//-----------------------------------
 	//----控件
 	public:
 		P_PageNavigator* m_p_PageNavigator;						//分页控件
@@ -34,7 +56,6 @@ class P_CommandSearcherPart : public QWidget
 	public slots:
 										//控件 - 搜索的字符串被点击
 		void searchTextClicked(QString text);
-
 
 	//-----------------------------------
 	//----块

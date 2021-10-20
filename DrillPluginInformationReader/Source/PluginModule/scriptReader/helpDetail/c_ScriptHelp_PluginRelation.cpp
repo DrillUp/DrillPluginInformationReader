@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "c_ScriptHelp_PluginRelation.h"
 
+#include "Source/Utils/common/TTool.h"
 
 /*
 -----==========================================================-----
@@ -134,6 +135,7 @@ bool C_ScriptHelp_PluginRelation::isNull(){
 */
 void C_ScriptHelp_PluginRelation::readPluginRelation(QString relation_context){
 	QStringList context_list = relation_context.split(QRegExp("[\n\r]+"));
+	TTool::_QStringList_clearEmptyRows_(&context_list);
 
 	// > Ö÷ÄÚÈİ
 	int i_context = 0;

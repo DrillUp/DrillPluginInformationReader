@@ -68,6 +68,12 @@ class C_ScriptHelpDetail{
 									//数据 - 获取插件性能
 		C_ScriptHelp_Performance* getPerformance();
 
+	//-----------------------------------
+	//----操作
+	public:
+									//操作 - 判断包含指定指令关键字
+		bool hasCommandKeyWord(QString keyWord);
+
 
 	//-----------------------------------
 	//----类属性

@@ -57,6 +57,7 @@ C_ScriptHelp_Subsection::~C_ScriptHelp_Subsection(){
 void C_ScriptHelp_Subsection::readHeader(QString context){
 	if (context == ""){ return; }
 	P_TxtFastReader header_reader = P_TxtFastReader(context);
+	header_reader.clearEmptyRows();				//（清理空行）
 	C_ScriptHelp_SubsectionHeader header;
 
 	int i_introductionEnd = header_reader.d_indexOf(QRegExp("[【★]"));
@@ -96,6 +97,7 @@ void C_ScriptHelp_Subsection::readHeader(QString context){
 */
 void C_ScriptHelp_Subsection::readSubsection(QString subsection_context, C_ScriptHelp_Docs* c_docs){
 	P_TxtFastReader main_reader = P_TxtFastReader(subsection_context);
+	main_reader.clearEmptyRows();				//（清理空行）
 
 	// > 分段说明 - 主内容
 	QStringList main_context = QStringList();

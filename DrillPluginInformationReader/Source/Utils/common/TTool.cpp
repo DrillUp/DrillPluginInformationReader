@@ -4,7 +4,7 @@
 /*
 -----==========================================================-----
 		类：		Drill_up工具包.cpp
-		版本：		v1.20
+		版本：		v1.21
 		作者：		drill_up
 		编码：		UTF-8
 		所属模块：	工具模块
@@ -1073,6 +1073,26 @@ void  TTool::_QStringList_clearEmptyRows_(QStringList* data_list){
 		QString str = data_list->at(i).trimmed();
 		if (str.isEmpty()) {
 			data_list->removeAt(i);
+		}
+	}
+}
+void  TTool::_QStringList_clearEmptyRows_OnlyFront_(QStringList* data_list){
+	for( int i = data_list->count() - 1; i >= 0; i-- ){
+		QString str = data_list->first().trimmed();
+		if (str.isEmpty()) {
+			data_list->removeFirst();
+		}else{
+			break;
+		}
+	}
+}
+void  TTool::_QStringList_clearEmptyRows_OnlyBack_(QStringList* data_list){
+	for( int i = data_list->count() - 1; i >= 0; i-- ){
+		QString str = data_list->last().trimmed();
+		if (str.isEmpty()) {
+			data_list->removeLast();
+		}else{
+			break;
 		}
 	}
 }

@@ -11,7 +11,7 @@
 /*
 -----==========================================================-----
 		类：		Drill_up工具包.h
-		版本：		v1.20
+		版本：		v1.21
 		作者：		drill_up
 		编码：		UTF-8
 		所属模块：	工具模块
@@ -543,6 +543,12 @@ class TTool
 		/*字符串列表 - 去除空行
 			【说明】：简易操作，如果有更复杂操作，去用p_TxtFastReader。 */
 		static void _QStringList_clearEmptyRows_(QStringList* data_list);
+		/*字符串列表 - 去除首部空行
+			【说明】：简易操作，如果有更复杂操作，去用p_TxtFastReader。 */
+		static void _QStringList_clearEmptyRows_OnlyFront_(QStringList* data_list);
+		/*字符串列表 - 去除尾部空行
+			【说明】：简易操作，如果有更复杂操作，去用p_TxtFastReader。 */
+		static void _QStringList_clearEmptyRows_OnlyBack_(QStringList* data_list);
 		/*字符串列表 - 去除注释行（根据前缀）
 			【说明】：简易操作，如果有更复杂操作，去用p_TxtFastReader。 */
 		static void _QStringList_clearComment_(QStringList* data_list, QString prefix);

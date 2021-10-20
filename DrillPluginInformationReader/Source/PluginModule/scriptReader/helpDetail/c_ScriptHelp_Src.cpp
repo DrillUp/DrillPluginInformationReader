@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "C_ScriptHelp_Src.h"
 
+#include "Source/Utils/common/TTool.h"
 
 /*
 -----==========================================================-----
@@ -21,6 +22,7 @@ C_ScriptHelp_Src::~C_ScriptHelp_Src(){
 		读取器 - 读取 资源路径 字符串
 */
 void C_ScriptHelp_Src::readSrc(QStringList src_contextRows){
+	TTool::_QStringList_clearEmptyRows_(&src_contextRows);
 
 	// > 资源路径 捕获
 	int i_context = 0;

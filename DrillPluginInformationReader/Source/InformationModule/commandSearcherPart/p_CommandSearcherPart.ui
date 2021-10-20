@@ -169,27 +169,56 @@
         <x>0</x>
         <y>0</y>
         <width>725</width>
-        <height>351</height>
+        <height>343</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1,0">
+      <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1">
        <item>
-        <widget class="QWidget" name="widget_commandGroup" native="true"/>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_PageNavigator">
-         <property name="bottomMargin">
-          <number>4</number>
-         </property>
-        </layout>
+        <widget class="QWidget" name="widget_commandGroup" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <property name="spacing">
+           <number>4</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_left"/>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_right"/>
+          </item>
+         </layout>
+        </widget>
        </item>
       </layout>
-      <zorder>widget</zorder>
-      <zorder>groupBox</zorder>
-      <zorder>widget_commandGroup</zorder>
-      <zorder>layoutWidget</zorder>
      </widget>
     </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_PageNavigator">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>9</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+    </layout>
    </item>
   </layout>
  </widget>

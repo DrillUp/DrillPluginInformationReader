@@ -196,6 +196,13 @@ C_ScriptHelp_Performance* C_ScriptHelpDetail::getPerformance(){
 	return this->m_performance;
 }
 
+/*-------------------------------------------------
+		操作 - 判断包含指定指令关键字
+*/
+bool C_ScriptHelpDetail::hasCommandKeyWord(QString keyWord){
+	if (this->m_command == nullptr){ return false; }
+	return this->m_command->hasCommandKeyWord(keyWord);
+}
 
 /*-------------------------------------------------
 		空判断

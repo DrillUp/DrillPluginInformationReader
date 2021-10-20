@@ -66,9 +66,9 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 
 	// > 下拉框变化时，刷新
 	connect(ui.comboBox_pluginMode, &QComboBox::currentTextChanged, this, &P_PluginListPart::modeChanged);
-	connect(ui.pushButton_searchPlugin, &QPushButton::clicked, this, &P_PluginListPart::btn_search);
 
 	// > 执行搜索时
+	connect(ui.pushButton_searchPlugin, &QPushButton::clicked, this, &P_PluginListPart::btn_search);
 	connect(this->m_p_historicalSearchRecord, &P_HistoricalSearchRecord::textClicked, this, &P_PluginListPart::searchTextClicked);
 
 	// > 分页变化时
