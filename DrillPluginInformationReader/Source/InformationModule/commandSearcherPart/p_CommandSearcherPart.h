@@ -37,8 +37,6 @@ class P_CommandSearcherPart : public QWidget
 		void btn_search();
 										//搜索指令 - 刷新控件
 		void refreshCellAuto( int start_index, int end_index );
-										//搜索指令 - 将指定字符串标蓝
-		QLabel* getLabelWithSign(QString text, QString searching_text);
 
 	//-----------------------------------
 	//----属性

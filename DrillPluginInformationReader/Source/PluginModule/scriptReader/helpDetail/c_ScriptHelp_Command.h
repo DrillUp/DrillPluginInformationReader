@@ -25,23 +25,31 @@ class C_ScriptHelp_CommandGroup{
 		QStringList note_context;				//说明列表
 
 		QString command_context;				//指令全文
+												//		【注意，不含 事件备注、脚本 】
 		QStringList command_PluginCommand;		//指令 - 插件指令
 		QStringList command_PluginCommand_old;	//指令 - 插件指令(旧)
 		QStringList command_EventComment;		//指令 - 事件注释
 		QStringList command_EventComment_old;	//指令 - 事件注释(旧)
-		QStringList command_EventNote;			//指令 - 事件备注
 		QStringList command_MapNote;			//指令 - 地图备注
 		QStringList command_ActorNote;			//指令 - 角色注释
 		QStringList command_EnemyNote;			//指令 - 敌人注释
+		QStringList command_StateNote;			//指令 - 状态注释
+		QStringList command_MoveRoute;			//指令 - 移动路线指令
 		QStringList command_Other;				//指令 - 其它
 	public:
 									//数据 - 添加指令
 		void addOneRowCommand(QString command_row);
+									//数据 - 获取全部指令（不含其它指令）
+		QStringList getAllAvailableCommand();
 									//数据 - 获取全部指令
 		QStringList getAllCommand();
-									//数据 - 包含指定指令关键字
+
+	//-----------------------------------
+	//----搜索
+	public:
+									//搜索 - 包含指定指令关键字
 		bool hasCommandKeyWord(QString keyWord);
-									//数据 - 指令的正则规则
+									//搜索 - 指令的正则规则
 		QRegExp commandRe();
 };
 /*
@@ -67,8 +75,55 @@ class C_ScriptHelp_Command{
 		bool isNull();
 								//数据 - 指令集列表
 		QList<C_ScriptHelp_CommandGroup> getGroupList();
-								//数据 - 包含指定指令关键字
-		bool hasCommandKeyWord(QString keyWord);
+								//数据 - 获取全部指令 - 插件指令
+		QStringList getAllCommand_PluginCommand();
+								//数据 - 获取全部指令 - 插件指令(旧)
+		QStringList getAllCommand_PluginCommandOld();
+								//数据 - 获取全部指令 - 事件注释
+		QStringList getAllCommand_EventComment();
+								//数据 - 获取全部指令 - 事件注释(旧)
+		QStringList getAllCommand_EventCommentOld();
+								//数据 - 获取全部指令 - 地图备注
+		QStringList getAllCommand_MapNote();
+								//数据 - 获取全部指令 - 角色注释
+		QStringList getAllCommand_ActorNote();
+								//数据 - 获取全部指令 - 敌人注释
+		QStringList getAllCommand_EnemyNote();
+								//数据 - 获取全部指令 - 状态注释
+		QStringList getAllCommand_StateNote();
+								//数据 - 获取全部指令 - 移动路线指令
+		QStringList getAllCommand_MoveRoute();
+								//数据 - 获取全部指令 - 其它
+		QStringList getAllCommand_Other();
+		
+	//-----------------------------------
+	//----搜索
+	public:
+								//搜索 - 包含指定指令关键字
+		bool hasCommandKeyWord_All(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 插件指令
+		bool hasCommandKeyWord_PluginCommand(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 插件指令(旧)
+		bool hasCommandKeyWord_PluginCommandOld(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 事件注释
+		bool hasCommandKeyWord_EventComment(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 事件注释(旧)
+		bool hasCommandKeyWord_EventCommentOld(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 地图备注
+		bool hasCommandKeyWord_MapNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 角色注释
+		bool hasCommandKeyWord_ActorNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 敌人注释
+		bool hasCommandKeyWord_EnemyNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 状态注释
+		bool hasCommandKeyWord_StateNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 移动路线指令
+		bool hasCommandKeyWord_MoveRoute(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 其它
+		bool hasCommandKeyWord_Other(QString keyWord);
+	protected:
+								//私有 - 判断关键字
+		bool searchCommandKeyWord(QStringList* command_list, QString keyWord);
 
 	//-----------------------------------
 	//----读取器

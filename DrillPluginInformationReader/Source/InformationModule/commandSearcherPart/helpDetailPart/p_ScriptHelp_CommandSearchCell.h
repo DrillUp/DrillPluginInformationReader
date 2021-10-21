@@ -30,6 +30,12 @@ class P_ScriptHelp_CommandSearchCell : public QWidget
 	public slots: 
 										//控件 - 清空全部内容（不删除控件）
 		void clearAllChild();
+										//控件 - 添加显示数据
+		void addOneChildData(QString type_name, QString plugin_name, QString context);
+										//控件 - 根据名称刷新样式
+		void refreshStyle(QGroupBox* groupBox, QString type_name);
+										//控件 - 将指定字符串标蓝
+		QString getStringWithSign(QString text, QString searching_text);
 										//控件 - 链接被点击
 		void linkClicked_plugin(QString data);
 
@@ -37,7 +43,7 @@ class P_ScriptHelp_CommandSearchCell : public QWidget
 	//----块
 	public:
 										//块 - 设置数据
-		void setData(C_ScriptHelp_Command* data, QString plugin_name);
+		void setData(C_ScriptHelp_Command* data, QString plugin_name, QString plugin_desc, QString search_text, QString search_type);
 										//块 - 本地数据 -> ui数据
 		void putDataToUi();
 										//块 - ui数据 -> 本地数据

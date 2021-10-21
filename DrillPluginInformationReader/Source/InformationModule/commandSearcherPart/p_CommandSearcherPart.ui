@@ -111,17 +111,27 @@
              </item>
              <item>
               <property name="text">
-               <string>脚本</string>
+               <string>地图备注</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>角色注释</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>敌人注释</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>状态注释</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>移动路线指令</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>地图备注</string>
               </property>
              </item>
             </widget>
@@ -169,7 +179,7 @@
         <x>0</x>
         <y>0</y>
         <width>725</width>
-        <height>343</height>
+        <height>357</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="1">

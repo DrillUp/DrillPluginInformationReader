@@ -21,10 +21,11 @@ C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
 	this->command_PluginCommand_old = QStringList();	//指令 - 插件指令(旧)
 	this->command_EventComment = QStringList();			//指令 - 事件注释
 	this->command_EventComment_old = QStringList();		//指令 - 事件注释(旧)
-	this->command_EventNote = QStringList();			//指令 - 事件备注
+	this->command_StateNote = QStringList();			//指令 - 事件备注
 	this->command_MapNote = QStringList();				//指令 - 地图备注
 	this->command_ActorNote = QStringList();			//指令 - 角色注释
 	this->command_EnemyNote = QStringList();			//指令 - 敌人注释
+	this->command_MoveRoute = QStringList();			//指令 - 移动路线指令
 	this->command_Other = QStringList();				//指令 - 其它
 }
 C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
@@ -44,14 +45,16 @@ void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 		this->command_PluginCommand.append(commend_str);
 	}else if (type_str == "事件注释"){
 		this->command_EventComment.append(commend_str);
-	}else if (type_str == "事件备注"){
-		this->command_EventNote.append(commend_str);
 	}else if (type_str == "地图备注"){
 		this->command_MapNote.append(commend_str);
 	}else if (type_str == "角色注释" || type_str == "角色备注"){
 		this->command_ActorNote.append(commend_str);
 	}else if (type_str == "敌人注释" || type_str == "敌人备注"){
 		this->command_EnemyNote.append(commend_str);
+	}else if (type_str == "状态注释"){
+		this->command_StateNote.append(commend_str);
+	}else if (type_str == "移动路线指令" || type_str == "移动路线脚本"){
+		this->command_MoveRoute.append(commend_str);
 	}else if (type_str == "插件指令(旧)" || type_str == "插件指令（旧）"){
 		this->command_PluginCommand_old.append(commend_str);
 	}else if (type_str == "事件注释(旧)" || type_str == "事件注释（旧）"){
@@ -63,23 +66,32 @@ void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 /*-------------------------------------------------
 		数据 - 获取全部指令
 */
-QStringList C_ScriptHelp_CommandGroup::getAllCommand(){
+QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
 	return QStringList()
 		<< this->command_PluginCommand
 		<< this->command_PluginCommand_old
 		<< this->command_EventComment
 		<< this->command_EventComment_old
-		<< this->command_EventNote
+		<< this->command_StateNote
 		<< this->command_MapNote
 		<< this->command_ActorNote
 		<< this->command_EnemyNote
-		<< this->command_Other;
+		<< this->command_MoveRoute;
 }
 /*-------------------------------------------------
-		数据 - 包含指定指令关键字
+		数据 - 获取全部指令
+*/
+QStringList C_ScriptHelp_CommandGroup::getAllCommand(){
+	return this->getAllAvailableCommand() << this->command_Other;
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字
 */
 bool C_ScriptHelp_CommandGroup::hasCommandKeyWord(QString keyWord){
 	QStringList data_list = this->getAllCommand();
+	if (keyWord == ""){
+		return data_list.count() > 0;
+	}
 	for (int j = 0; j < data_list.count(); j++){
 		QString data = data_list.at(j);
 		if (data.contains(keyWord)){
@@ -89,7 +101,7 @@ bool C_ScriptHelp_CommandGroup::hasCommandKeyWord(QString keyWord){
 	return false;
 }
 /*-------------------------------------------------
-		数据 - 指令的正则规则
+		搜索 - 指令的正则规则
 */
 QRegExp C_ScriptHelp_CommandGroup::commandRe(){
 	return QRegExp("^[^ ]{4,7}[:：]");		//（正则：4到7个字以内且含冒号的，算作一条指令行，比如 "插件指令(旧)：" ）
@@ -121,11 +133,110 @@ QList<C_ScriptHelp_CommandGroup> C_ScriptHelp_Command::getGroupList(){
 	return this->group_list;
 }
 /*-------------------------------------------------
-		数据 - 包含指定指令关键字
+		数据 - 获取全部指令 - 插件指令
 */
-bool C_ScriptHelp_Command::hasCommandKeyWord(QString keyWord){
-	if (keyWord.isEmpty()){ return false; }
+QStringList C_ScriptHelp_Command::getAllCommand_PluginCommand(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_PluginCommand);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 插件指令(旧)
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_PluginCommandOld(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_PluginCommand_old);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 事件注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_EventComment(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_EventComment);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 事件注释(旧)
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_EventCommentOld(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_EventComment_old);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 地图备注
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_MapNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_MapNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 角色注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_ActorNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_ActorNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 敌人注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_EnemyNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_EnemyNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 状态注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_StateNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_StateNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 移动路线指令
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_MoveRoute(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_MoveRoute);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 其它
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_Other(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_Other);
+	}
+	return result_list;
+}
 
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_All(QString keyWord){
 	for (int i = 0; i < this->group_list.count(); i++){
 		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
 		if (group.hasCommandKeyWord(keyWord) == true){
@@ -134,7 +245,99 @@ bool C_ScriptHelp_Command::hasCommandKeyWord(QString keyWord){
 	}
 	return false;
 }
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 插件指令
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_PluginCommand(QString keyWord){
+	QStringList data_list = this->getAllCommand_PluginCommand();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 插件指令(旧)
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_PluginCommandOld(QString keyWord){
+	QStringList data_list = this->getAllCommand_PluginCommandOld();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 事件注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_EventComment(QString keyWord){
+	QStringList data_list = this->getAllCommand_EventComment();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 事件注释(旧)
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_EventCommentOld(QString keyWord){
+	QStringList data_list = this->getAllCommand_EventCommentOld();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 地图备注
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_MapNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_MapNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 角色注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_ActorNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_ActorNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 敌人注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_EnemyNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_EnemyNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 状态注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_StateNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_StateNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 移动路线指令
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_MoveRoute(QString keyWord){
+	QStringList data_list = this->getAllCommand_MoveRoute();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 其它
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_Other(QString keyWord){
+	QStringList data_list = this->getAllCommand_Other();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		私有 - 判断关键字
+*/
+bool C_ScriptHelp_Command::searchCommandKeyWord(QStringList* command_list, QString keyWord){
 
+	// > 空搜索情况
+	if (keyWord == ""){
+		if (command_list->count() == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+
+	// > 搜索情况
+	for (int i = 0; i < command_list->count(); i++){
+		QString data = command_list->at(i);
+		if (data.contains(keyWord)){
+			return true;
+		}
+	}
+	return false;
+}
 
 /*-------------------------------------------------
 		读取器 - 读取新的指令集字符串
@@ -179,4 +382,5 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 		TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
 		group.note_context = commandComment;
 	}
+	this->group_list.append(group);
 }

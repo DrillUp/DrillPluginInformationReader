@@ -201,7 +201,7 @@ C_ScriptHelp_Performance* C_ScriptHelpDetail::getPerformance(){
 */
 bool C_ScriptHelpDetail::hasCommandKeyWord(QString keyWord){
 	if (this->m_command == nullptr){ return false; }
-	return this->m_command->hasCommandKeyWord(keyWord);
+	return this->m_command->hasCommandKeyWord_All(keyWord);
 }
 
 /*-------------------------------------------------

@@ -7,18 +7,34 @@
     <x>0</x>
     <y>0</y>
     <width>523</width>
-    <height>297</height>
+    <height>476</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">
+/* == 群组控件 == */
+QGroupBox{
+	margin-top: 0.5em;
+	padding-top: 20px;
+	font-weight:bold;
+    border-radius: 4px;
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	top: 12px;
+	left: 2px;
+	margin-left: 0px;
+	padding: 0 1px;
+}
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="leftMargin">
     <number>2</number>
@@ -33,35 +49,21 @@
     <number>2</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="groupBox_A">
      <property name="styleSheet">
       <string notr="true">
-/* == 群组控件 == */
 QGroupBox{
-	margin-top: 0.5em;
-	padding-top: 20px;
 	color:#449ed4;
-	font-weight:bold;
     border: 1px solid #449ed4;
-    border-radius: 4px;
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
-}
-QGroupBox::title {
-	subcontrol-origin: margin;
-	subcontrol-position: top left;
-	top: 12px;
-	left: 2px;
-	margin-left: 0px;
-	padding: 0 1px;
-}
-QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+}</string>
      </property>
      <property name="title">
-      <string>插件指令（可选设定 - xxxx）</string>
+      <string>插件指令</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,1">
       <item>
-       <widget class="QLabel" name="label_pluginName_3">
+       <widget class="QLabel" name="label_pluginName_A">
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -71,12 +73,15 @@ QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_context_3">
+       <widget class="QLabel" name="label_context_A">
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;span style=&quot; color:#10fa24;&quot;&gt;Lab&lt;/span&gt;el&lt;/p&gt;&lt;p&gt;Text&lt;span style=&quot; color:#10fa24;&quot;&gt;Lab&lt;/span&gt;el&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
@@ -87,35 +92,21 @@ QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="groupBox_B">
      <property name="styleSheet">
       <string notr="true">
-/* == 群组控件 == */
 QGroupBox{
-	margin-top: 0.5em;
-	padding-top: 20px;
-	color:#449ed4;
-	font-weight:bold;
-    border: 1px solid #449ed4;
-    border-radius: 4px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
-}
-QGroupBox::title {
-	subcontrol-origin: margin;
-	subcontrol-position: top left;
-	top: 12px;
-	left: 2px;
-	margin-left: 0px;
-	padding: 0 1px;
-}
-QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+	color:#44c49e;
+    border: 1px solid #44c49e;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #F0FEF3 );
+}</string>
      </property>
      <property name="title">
-      <string>插件指令（可选设定 - xxxx）</string>
+      <string>事件注释</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,1">
       <item>
-       <widget class="QLabel" name="label_pluginName">
+       <widget class="QLabel" name="label_pluginName_B">
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -125,12 +116,144 @@ QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_context">
+       <widget class="QLabel" name="label_context_B">
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text&lt;span style=&quot; color:#10fa24;&quot;&gt;Lab&lt;/span&gt;el&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_C">
+     <property name="styleSheet">
+      <string notr="true">
+QGroupBox{
+	color:#008000;
+    border: 1px solid #008000;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #F0FEF3 );
+}</string>
+     </property>
+     <property name="title">
+      <string>地图备注</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,1">
+      <item>
+       <widget class="QLabel" name="label_pluginName_C">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_context_C">
+        <property name="styleSheet">
+         <string notr="true">border:1px solid #000;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_D">
+     <property name="styleSheet">
+      <string notr="true">
+QGroupBox{
+	color:#FF7F27;
+    border: 1px solid #FF7F27;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFAF1, stop:1 #FEFEF0 );
+}</string>
+     </property>
+     <property name="title">
+      <string>角色注释</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,1">
+      <item>
+       <widget class="QLabel" name="label_pluginName_D">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_context_D">
+        <property name="styleSheet">
+         <string notr="true">border:1px solid #000;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+        <property name="textInteractionFlags">
+         <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_E">
+     <property name="styleSheet">
+      <string notr="true">
+QGroupBox{
+	color:#989898;
+    border: 1px solid #989898;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFA, stop:1 #E5E5E5 );
+}</string>
+     </property>
+     <property name="title">
+      <string>插件指令(旧)</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1">
+      <item>
+       <widget class="QLabel" name="label_pluginName_E">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt;。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_context_E">
+        <property name="styleSheet">
+         <string notr="true">border:1px solid #000;</string>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>

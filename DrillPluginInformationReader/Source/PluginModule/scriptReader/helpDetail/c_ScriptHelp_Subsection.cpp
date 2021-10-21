@@ -112,8 +112,7 @@ void C_ScriptHelp_Subsection::readSubsection(QString subsection_context, C_Scrip
 			if (i_nextMain != -1){
 				int main_count = i_nextMain - i_main;
 				data = main_reader.d_getRows(i_main, main_count).join("\n");
-			}
-			else{
+			}else{
 				data = main_reader.d_getRows(i_main).join("\n");
 			}
 

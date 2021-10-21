@@ -38,6 +38,8 @@ P_CommandSearcherPart::P_CommandSearcherPart(QWidget *parent)
 		}
 		this->m_cellPartList.append(cell);
 	}
+	ui.verticalLayout_left->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
+	ui.verticalLayout_right->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
 	// > 历史查询控件
 	this->m_p_historicalSearchRecord = new P_HistoricalSearchRecord(this);
@@ -76,21 +78,33 @@ void P_CommandSearcherPart::btn_search(){
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
 	this->m_p_historicalSearchRecord->addText(m_searchText);
 
+	// > 搜索类型
+	QString commandType = ui.comboBox_commandType->currentText();
+
 	// > 全部插件
 	QList<C_ScriptAnnotation> data_list = QList<C_ScriptAnnotation>();
-	if (this->m_searchText == ""){
-		data_list = this->m_allSearchedData;
-	}else{
-		for (int i = 0; i < this->m_allSearchedData.count(); i++){
-			C_ScriptAnnotation data = this->m_allSearchedData.at(i);
+	for (int i = 0; i < this->m_allSearchedData.count(); i++){
+		C_ScriptAnnotation data = this->m_allSearchedData.at(i);
+		C_ScriptHelpDetail* detail = data.getScriptHelpDetail();
+		if (detail == nullptr){ continue; }
+		C_ScriptHelp_Command* command = detail->getCommand();
+		if (command == nullptr){ continue; }
 
-			// > 筛选条件
-			if (data.getScriptHelpDetail()->hasCommandKeyWord(m_searchText)){
-				data_list.append(data);
-			}
-		}
+		// > 筛选条件
+		if (commandType == "全部类型" && command->hasCommandKeyWord_All(m_searchText)){ data_list.append(data); }
+		if (commandType == "插件指令" && command->hasCommandKeyWord_PluginCommand(m_searchText)){ data_list.append(data); }
+		if (commandType == "事件注释" && command->hasCommandKeyWord_EventComment(m_searchText)){ data_list.append(data); }
+		if (commandType == "地图备注" && command->hasCommandKeyWord_MapNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "角色注释" && command->hasCommandKeyWord_ActorNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "敌人注释" && command->hasCommandKeyWord_EnemyNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "状态注释" && command->hasCommandKeyWord_StateNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "移动路线指令" && command->hasCommandKeyWord_MoveRoute(m_searchText)){ data_list.append(data); }
 	}
 	this->m_allSearchedData = data_list;	//（修改数据范围）
+
+	// > 刷新分页器
+	this->m_p_PageNavigator->setAllCount(this->m_allSearchedData.count());	
+	
 	this->refreshCellAuto(0, 29);
 }
 
@@ -101,45 +115,29 @@ void P_CommandSearcherPart::refreshCellAuto(int start_index, int end_index){
 	if (start_index < 0){ start_index = 0; }
 	if (end_index <= 0){ return; }
 
+	// > 搜索类型
+	QString commandType = ui.comboBox_commandType->currentText();
+
 	// > 显示的插件
 	if (end_index >= this->m_allSearchedData.count()){ end_index = this->m_allSearchedData.count() - 1; }
 	for (int i = start_index; i <= end_index; i++){
 		C_ScriptAnnotation data = this->m_allSearchedData.at(i);
-		
+		C_ScriptHelpDetail* c_detail = data.getScriptHelpDetail();
+		if (c_detail == nullptr){ continue; }
+
 		int index = i - start_index;
 		P_ScriptHelp_CommandSearchCell* cell_part = this->getButtonPartByIndex(index);
-		if (cell_part != nullptr){
-			cell_part->setData(data.getScriptHelpDetail()->getCommand(),data.getName()); 
-		};
+		if (cell_part == nullptr){ continue; }
+		cell_part->setData(c_detail->getCommand(), data.getName(), data.getPlugindesc(), this->m_searchText, commandType);
 	}
 
 	// > 剩余的清空
 	for (int i = end_index; i < this->m_cellPartList.count(); i++){
 		P_ScriptHelp_CommandSearchCell* cell_part = this->getButtonPartByIndex(i);
 		if (cell_part != nullptr){
-			cell_part->setData(nullptr, "");
+			cell_part->clearAllChild();
 		};
 	}
-}
-/*-------------------------------------------------
-		搜索指令 - 将指定字符串标蓝
-*/
-QLabel* P_CommandSearcherPart::getLabelWithSign(QString text, QString searching_text){
-	if (text.contains(searching_text) == false){
-		return new QLabel(text);
-	}
-	QStringList data_list = text.split(searching_text);
-	QString result_text = "<p>";
-	for (int i = 0; i < data_list.count(); i++){
-		result_text.append(data_list.at(i));
-		if (i < data_list.count()-1){
-			result_text.append("<span style=\"background-color:#5fc2ff;\">");
-			result_text.append(searching_text);
-			result_text.append("</span>");
-		}
-	}
-	result_text.append("<\\p>");
-	return new QLabel(result_text);
 }
 
 /*-------------------------------------------------

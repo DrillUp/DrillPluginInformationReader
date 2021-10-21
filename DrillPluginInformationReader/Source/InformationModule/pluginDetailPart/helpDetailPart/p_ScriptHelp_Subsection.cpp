@@ -98,6 +98,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		for (int i = 0; i < main_list.count(); i++){
 			QString temp_data = main_list.at(i);
 			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);	//（文档链接）
+			temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
 
 			// > 添加标签
