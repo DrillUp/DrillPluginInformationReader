@@ -186,6 +186,17 @@ void S_LinkDirector::openLink_specific_pluginListing(){
 
 
 /*-------------------------------------------------
+		链接 - 将字符串中的 "<" 替换为"\\<"
+*/
+QString S_LinkDirector::signLtGtTag(QString data){
+	return data.replace("<", "&lt;").replace(">", "&gt;");
+}
+void S_LinkDirector::signLtGtTag(QStringList* data){
+	for (int i = 0; i < data->count(); i++){
+		data->replace(i, this->signLtGtTag(data->at(i)));
+	}
+}
+/*-------------------------------------------------
 		链接 - 将字符串中的 "\n" 替换为"<br>"
 */
 QString S_LinkDirector::signBrTag(QString data){

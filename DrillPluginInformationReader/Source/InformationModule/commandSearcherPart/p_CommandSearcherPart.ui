@@ -84,13 +84,13 @@
             <widget class="QComboBox" name="comboBox_commandType">
              <property name="minimumSize">
               <size>
-               <width>160</width>
+               <width>200</width>
                <height>26</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
-               <width>160</width>
+               <width>200</width>
                <height>16777215</height>
               </size>
              </property>
@@ -142,6 +142,11 @@
              <item>
               <property name="text">
                <string>移动路线指令</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>窗口字符</string>
               </property>
              </item>
             </widget>

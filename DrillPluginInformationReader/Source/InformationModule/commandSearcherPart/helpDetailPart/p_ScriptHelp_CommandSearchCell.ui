@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>523</width>
-    <height>476</height>
+    <height>503</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@ QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
 QGroupBox{
 	color:#449ed4;
     border: 1px solid #449ed4;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #E0E3FE );
 }</string>
      </property>
      <property name="title">
@@ -98,7 +98,7 @@ QGroupBox{
 QGroupBox{
 	color:#44c49e;
     border: 1px solid #44c49e;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #F0FEF3 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #E0FEE3 );
 }</string>
      </property>
      <property name="title">
@@ -121,7 +121,7 @@ QGroupBox{
          <string notr="true">border:1px solid #000;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&amp;lt; &amp;gt; &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -141,7 +141,7 @@ QGroupBox{
 QGroupBox{
 	color:#008000;
     border: 1px solid #008000;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #F0FEF3 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFFFB, stop:1 #DDE7D9 );
 }</string>
      </property>
      <property name="title">
@@ -184,7 +184,7 @@ QGroupBox{
 QGroupBox{
 	color:#FF7F27;
     border: 1px solid #FF7F27;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFAF1, stop:1 #FEFEF0 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FEF6F1, stop:1 #FEF3E1 );
 }</string>
      </property>
      <property name="title">
@@ -227,7 +227,7 @@ QGroupBox{
 QGroupBox{
 	color:#989898;
     border: 1px solid #989898;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFA, stop:1 #E5E5E5 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFA, stop:1 #D5D5D5 );
 }</string>
      </property>
      <property name="title">

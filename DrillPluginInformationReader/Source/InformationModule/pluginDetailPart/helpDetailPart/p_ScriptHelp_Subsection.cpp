@@ -85,6 +85,8 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		QStringList condition_list = data->getHeader().condition;
 		for (int i = 0; i < condition_list.count(); i++){
 			QString temp_data = condition_list.at(i);
+			temp_data = S_LinkDirector::getInstance()->signLtGtTag(temp_data);
+			temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 
 			// > 添加标签
 			QLabel* label = new QLabel(temp_data, group);
@@ -97,6 +99,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 		// > 主内容列表
 		for (int i = 0; i < main_list.count(); i++){
 			QString temp_data = main_list.at(i);
+			temp_data = S_LinkDirector::getInstance()->signLtGtTag(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);	//（文档链接）
 			temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
@@ -128,6 +131,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			QString temp_data = data_list.at(j);
 			temp_data = "◆ " + temp_data;
 
+			temp_data = S_LinkDirector::getInstance()->signLtGtTag(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signATag_Docs(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 			temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
@@ -141,6 +145,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			//QStringList temp_list = temp_data.split("\n");	//（直接把所有行单独拆成Label）
 			//for (int k = 0; k < temp_list.count(); k++){
 			//	QString str = temp_list.at(k);
+			//	str = S_LinkDirector::getInstance()->signLtGtTag(str);
 			//	str = S_LinkDirector::getInstance()->signATag_Docs(str);
 			//	QLabel* label = new QLabel(str, group);
 			//	label->setWordWrap(true);

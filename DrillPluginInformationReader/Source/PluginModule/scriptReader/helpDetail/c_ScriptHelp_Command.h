@@ -37,6 +37,7 @@ class C_ScriptHelp_CommandGroup{
 		QStringList command_ItemNote;			//指令 - 物品/武器/护甲注释
 		QStringList command_SkillNote;			//指令 - 技能注释
 		QStringList command_MoveRoute;			//指令 - 移动路线指令
+		QStringList command_WindowChar;			//指令 - 窗口字符
 		QStringList command_Other;				//指令 - 其它
 	public:
 									//数据 - 添加指令
@@ -99,6 +100,8 @@ class C_ScriptHelp_Command{
 		QStringList getAllCommand_SkillNote();
 								//数据 - 获取全部指令 - 移动路线指令
 		QStringList getAllCommand_MoveRoute();
+								//数据 - 获取全部指令 - 窗口字符
+		QStringList getAllCommand_WindowChar();
 								//数据 - 获取全部指令 - 其它
 		QStringList getAllCommand_Other();
 		
@@ -129,6 +132,8 @@ class C_ScriptHelp_Command{
 		bool hasCommandKeyWord_SkillNote(QString keyWord);
 								//搜索 - 包含指定指令关键字 - 移动路线指令
 		bool hasCommandKeyWord_MoveRoute(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 窗口字符
+		bool hasCommandKeyWord_WindowChar(QString keyWord);
 								//搜索 - 包含指定指令关键字 - 其它
 		bool hasCommandKeyWord_Other(QString keyWord);
 	protected:

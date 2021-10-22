@@ -73,6 +73,7 @@ void P_ScriptHelp_PluginRelation::addGroupWidget(QString title, QStringList cont
 	group->setLayout(layout);
 
 	QString temp_data = context.join("\n");
+	temp_data = S_LinkDirector::getInstance()->signLtGtTag(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signATag_Plugin(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);

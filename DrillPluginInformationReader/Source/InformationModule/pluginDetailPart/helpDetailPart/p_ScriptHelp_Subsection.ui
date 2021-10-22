@@ -25,7 +25,7 @@ QWidget{
 	padding: 5px;
     border: 1px solid #D70078;
     border-radius: 4px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFFAFB, stop:1 #FEF0F3 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FFFAFB, stop:1 #FEE0E3 );
 }
 
 /* == 群组控件 == */
@@ -36,7 +36,7 @@ QGroupBox{
 	font-weight:bold;
     border: 1px solid #449ed4;
     border-radius: 4px;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #E0E3FE );
 }
 QGroupBox::title {
 	subcontrol-origin: margin;

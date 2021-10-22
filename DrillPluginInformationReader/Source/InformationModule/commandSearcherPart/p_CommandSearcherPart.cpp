@@ -98,7 +98,10 @@ void P_CommandSearcherPart::btn_search(){
 		if (commandType == "角色注释" && command->hasCommandKeyWord_ActorNote(m_searchText)){ data_list.append(data); }
 		if (commandType == "敌人注释" && command->hasCommandKeyWord_EnemyNote(m_searchText)){ data_list.append(data); }
 		if (commandType == "状态注释" && command->hasCommandKeyWord_StateNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "物品/武器/护甲注释" && command->hasCommandKeyWord_ItemNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "技能注释" && command->hasCommandKeyWord_SkillNote(m_searchText)){ data_list.append(data); }
 		if (commandType == "移动路线指令" && command->hasCommandKeyWord_MoveRoute(m_searchText)){ data_list.append(data); }
+		if (commandType == "窗口字符" && command->hasCommandKeyWord_WindowChar(m_searchText)){ data_list.append(data); }
 	}
 	this->m_allSearchedData = data_list;	//（修改数据范围）
 

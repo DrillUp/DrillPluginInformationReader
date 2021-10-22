@@ -28,6 +28,7 @@ C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
 	this->command_ItemNote = QStringList();				//指令 - 物品/武器/护甲注释
 	this->command_SkillNote = QStringList();			//指令 - 技能注释
 	this->command_MoveRoute = QStringList();			//指令 - 移动路线指令
+	this->command_WindowChar = QStringList();			//指令 - 窗口字符
 	this->command_Other = QStringList();				//指令 - 其它
 }
 C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
@@ -65,6 +66,8 @@ void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 		this->command_SkillNote.append(commend_str);
 	}else if (type_str == "移动路线指令" || type_str == "移动路线脚本"){
 		this->command_MoveRoute.append(commend_str);
+	}else if (type_str == "窗口字符"){
+		this->command_WindowChar.append(commend_str);
 	}else if (type_str == "插件指令(旧)" || type_str == "插件指令（旧）"){
 		this->command_PluginCommand_old.append(commend_str);
 	}else if (type_str == "事件注释(旧)" || type_str == "事件注释（旧）"){
@@ -88,7 +91,8 @@ QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
 		<< this->command_StateNote
 		<< this->command_ItemNote
 		<< this->command_SkillNote
-		<< this->command_MoveRoute;
+		<< this->command_MoveRoute
+		<< this->command_WindowChar;
 }
 /*-------------------------------------------------
 		数据 - 获取全部指令
@@ -100,7 +104,7 @@ QStringList C_ScriptHelp_CommandGroup::getAllCommand(){
 		搜索 - 包含指定指令关键字
 */
 bool C_ScriptHelp_CommandGroup::hasCommandKeyWord(QString keyWord){
-	QStringList data_list = this->getAllCommand();
+	QStringList data_list = this->getAllAvailableCommand();
 	if (keyWord == ""){
 		return data_list.count() > 0;
 	}
@@ -255,6 +259,16 @@ QStringList C_ScriptHelp_Command::getAllCommand_MoveRoute(){
 	return result_list;
 }
 /*-------------------------------------------------
+		数据 - 获取全部指令 - 窗口字符
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_WindowChar(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_WindowChar);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
 		数据 - 获取全部指令 - 其它
 */
 QStringList C_ScriptHelp_Command::getAllCommand_Other(){
@@ -352,6 +366,13 @@ bool C_ScriptHelp_Command::hasCommandKeyWord_SkillNote(QString keyWord){
 */
 bool C_ScriptHelp_Command::hasCommandKeyWord_MoveRoute(QString keyWord){
 	QStringList data_list = this->getAllCommand_MoveRoute();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 窗口字符
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_WindowChar(QString keyWord){
+	QStringList data_list = this->getAllCommand_WindowChar();
 	return this->searchCommandKeyWord(&data_list, keyWord);
 }
 /*-------------------------------------------------
