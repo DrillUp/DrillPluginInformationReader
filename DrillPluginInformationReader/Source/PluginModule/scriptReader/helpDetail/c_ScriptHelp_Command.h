@@ -34,6 +34,8 @@ class C_ScriptHelp_CommandGroup{
 		QStringList command_ActorNote;			//指令 - 角色注释
 		QStringList command_EnemyNote;			//指令 - 敌人注释
 		QStringList command_StateNote;			//指令 - 状态注释
+		QStringList command_ItemNote;			//指令 - 物品/武器/护甲注释
+		QStringList command_SkillNote;			//指令 - 技能注释
 		QStringList command_MoveRoute;			//指令 - 移动路线指令
 		QStringList command_Other;				//指令 - 其它
 	public:
@@ -91,6 +93,10 @@ class C_ScriptHelp_Command{
 		QStringList getAllCommand_EnemyNote();
 								//数据 - 获取全部指令 - 状态注释
 		QStringList getAllCommand_StateNote();
+								//数据 - 获取全部指令 - 物品/武器/护甲注释
+		QStringList getAllCommand_ItemNote();
+								//数据 - 获取全部指令 - 技能注释
+		QStringList getAllCommand_SkillNote();
 								//数据 - 获取全部指令 - 移动路线指令
 		QStringList getAllCommand_MoveRoute();
 								//数据 - 获取全部指令 - 其它
@@ -117,6 +123,10 @@ class C_ScriptHelp_Command{
 		bool hasCommandKeyWord_EnemyNote(QString keyWord);
 								//搜索 - 包含指定指令关键字 - 状态注释
 		bool hasCommandKeyWord_StateNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 物品/武器/护甲注释
+		bool hasCommandKeyWord_ItemNote(QString keyWord);
+								//搜索 - 包含指定指令关键字 - 技能注释
+		bool hasCommandKeyWord_SkillNote(QString keyWord);
 								//搜索 - 包含指定指令关键字 - 移动路线指令
 		bool hasCommandKeyWord_MoveRoute(QString keyWord);
 								//搜索 - 包含指定指令关键字 - 其它

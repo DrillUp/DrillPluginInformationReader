@@ -21,10 +21,12 @@ C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
 	this->command_PluginCommand_old = QStringList();	//指令 - 插件指令(旧)
 	this->command_EventComment = QStringList();			//指令 - 事件注释
 	this->command_EventComment_old = QStringList();		//指令 - 事件注释(旧)
-	this->command_StateNote = QStringList();			//指令 - 事件备注
 	this->command_MapNote = QStringList();				//指令 - 地图备注
 	this->command_ActorNote = QStringList();			//指令 - 角色注释
 	this->command_EnemyNote = QStringList();			//指令 - 敌人注释
+	this->command_StateNote = QStringList();			//指令 - 状态注释
+	this->command_ItemNote = QStringList();				//指令 - 物品/武器/护甲注释
+	this->command_SkillNote = QStringList();			//指令 - 技能注释
 	this->command_MoveRoute = QStringList();			//指令 - 移动路线指令
 	this->command_Other = QStringList();				//指令 - 其它
 }
@@ -53,6 +55,14 @@ void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 		this->command_EnemyNote.append(commend_str);
 	}else if (type_str == "状态注释"){
 		this->command_StateNote.append(commend_str);
+	}else if (type_str == "物品注释" || type_str == "物品备注" || 
+			  type_str == "道具注释" || type_str == "道具备注" || 
+			  type_str == "武器注释" || type_str == "武器备注" || 
+			  type_str == "护甲注释" || type_str == "护甲备注" || 
+			  type_str == "防具注释" || type_str == "防具备注" ){
+		this->command_ItemNote.append(commend_str);
+	}else if (type_str == "技能注释" || type_str == "技能备注"){
+		this->command_SkillNote.append(commend_str);
 	}else if (type_str == "移动路线指令" || type_str == "移动路线脚本"){
 		this->command_MoveRoute.append(commend_str);
 	}else if (type_str == "插件指令(旧)" || type_str == "插件指令（旧）"){
@@ -72,10 +82,12 @@ QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
 		<< this->command_PluginCommand_old
 		<< this->command_EventComment
 		<< this->command_EventComment_old
-		<< this->command_StateNote
 		<< this->command_MapNote
 		<< this->command_ActorNote
 		<< this->command_EnemyNote
+		<< this->command_StateNote
+		<< this->command_ItemNote
+		<< this->command_SkillNote
 		<< this->command_MoveRoute;
 }
 /*-------------------------------------------------
@@ -213,6 +225,26 @@ QStringList C_ScriptHelp_Command::getAllCommand_StateNote(){
 	return result_list;
 }
 /*-------------------------------------------------
+		数据 - 获取全部指令 - 物品/武器/护甲注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_ItemNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_ItemNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取全部指令 - 技能注释
+*/
+QStringList C_ScriptHelp_Command::getAllCommand_SkillNote(){
+	QStringList result_list = QStringList();
+	for (int i = 0; i < this->group_list.count(); i++){
+		result_list.append(this->group_list.at(i).command_SkillNote);
+	}
+	return result_list;
+}
+/*-------------------------------------------------
 		数据 - 获取全部指令 - 移动路线指令
 */
 QStringList C_ScriptHelp_Command::getAllCommand_MoveRoute(){
@@ -299,6 +331,20 @@ bool C_ScriptHelp_Command::hasCommandKeyWord_EnemyNote(QString keyWord){
 */
 bool C_ScriptHelp_Command::hasCommandKeyWord_StateNote(QString keyWord){
 	QStringList data_list = this->getAllCommand_StateNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 物品/武器/护甲注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_ItemNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_ItemNote();
+	return this->searchCommandKeyWord(&data_list, keyWord);
+}
+/*-------------------------------------------------
+		搜索 - 包含指定指令关键字 - 技能注释
+*/
+bool C_ScriptHelp_Command::hasCommandKeyWord_SkillNote(QString keyWord){
+	QStringList data_list = this->getAllCommand_SkillNote();
 	return this->searchCommandKeyWord(&data_list, keyWord);
 }
 /*-------------------------------------------------

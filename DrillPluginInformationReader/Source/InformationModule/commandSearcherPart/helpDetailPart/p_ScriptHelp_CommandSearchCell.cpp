@@ -90,19 +90,22 @@ void P_ScriptHelp_CommandSearchCell::addOneChildData(QString type_name, QString 
 */
 void P_ScriptHelp_CommandSearchCell::refreshStyle(QGroupBox* groupBox, QString type_name){
 	if (type_name == "插件指令"){
-		groupBox->setStyleSheet("QGroupBox{ color:#449ed4; border: 1px solid #449ed4; background - color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFF, stop:1 #F0F3FE); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#449ed4; border: 1px solid #449ed4; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFF, stop:1 #F0F3FE); }");
 	}
 	if (type_name == "事件注释"){
-		groupBox->setStyleSheet("QGroupBox{ color:#44c49e; border: 1px solid #44c49e; background - color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#44c49e; border: 1px solid #44c49e; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
 	}
 	if (type_name == "地图备注"){
-		groupBox->setStyleSheet("QGroupBox{ color:#008000; border: 1px solid #008000; background - color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#008000; border: 1px solid #008000; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
 	}
-	if (type_name == "角色注释" || type_name == "敌人注释" || type_name == "状态注释" || type_name == "移动路线指令"){
-		groupBox->setStyleSheet("QGroupBox{ color:#FF7F27; border: 1px solid #FF7F27; background - color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFAF1, stop:1 #FEFEF0); }");
+	if (type_name == "角色注释" || type_name == "敌人注释" || type_name == "状态注释" || type_name == "技能注释"){
+		groupBox->setStyleSheet("QGroupBox{ color:#FF7F27; border: 1px solid #FF7F27; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFAF1, stop:1 #FEFEF0); }");
+	}
+	if (type_name == "物品/武器/护甲注释" || type_name == "移动路线指令"){
+		groupBox->setStyleSheet("QGroupBox{ color:#d4449e; border: 1px solid #d4449e; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FFFAFB, stop:1 #FEF0F3); }");
 	}
 	if (type_name == "插件指令(旧)"  || type_name == "事件注释(旧)" ){
-		groupBox->setStyleSheet("QGroupBox{ color:#989898; border: 1px solid #989898; background - color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFA, stop:1 #E5E5E5); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#989898; border: 1px solid #989898; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFA, stop:1 #E5E5E5); }");
 	}
 }
 /*-------------------------------------------------
@@ -172,6 +175,20 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 		QStringList command_list = data->getAllCommand_StateNote();
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("状态注释", plugin_text, this->getStringWithSign(context_text, search_text));
+	}
+	// > 指令 - 物品/武器/护甲注释
+	if ((search_type == "全部类型" || search_type == "物品/武器/护甲注释") &&
+		data->hasCommandKeyWord_StateNote(search_text)){
+		QStringList command_list = data->getAllCommand_ItemNote();
+		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
+		this->addOneChildData("物品/武器/护甲注释", plugin_text, this->getStringWithSign(context_text, search_text));
+	}
+	// > 指令 - 技能注释
+	if ((search_type == "全部类型" || search_type == "技能注释") &&
+		data->hasCommandKeyWord_StateNote(search_text)){
+		QStringList command_list = data->getAllCommand_SkillNote();
+		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
+		this->addOneChildData("技能注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
 	// > 指令 - 移动路线指令
 	if ((search_type == "全部类型" || search_type == "移动路线指令") && 
