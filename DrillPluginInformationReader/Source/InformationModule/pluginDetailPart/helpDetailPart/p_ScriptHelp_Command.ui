@@ -7,14 +7,38 @@
     <x>0</x>
     <y>0</y>
     <width>511</width>
-    <height>150</height>
+    <height>88</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">
+/* == 整体字体 == */
+QWidget{
+	/*font: 75 10pt &quot;黑体&quot;;*/
+}
+
+/* == 群组控件 == */
+QGroupBox{
+	margin-top: 0.5em;
+	padding-top: 20px;
+	color:#449ed4;
+	font-weight:bold;
+    border: 1px solid #449ed4;
+    border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFF, stop:1 #F0F3FE );
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	top: 12px;
+	left: 2px;
+	margin-left: 0px;
+	padding: 0 1px;
+}
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
@@ -33,26 +57,11 @@
     <number>2</number>
    </property>
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>GroupBox</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>sdasdasd</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
     </widget>
    </item>
   </layout>

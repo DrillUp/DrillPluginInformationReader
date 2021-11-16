@@ -45,6 +45,13 @@ class C_ScriptHelp_CommandGroup{
 		QStringList getAllAvailableCommand();
 									//数据 - 获取全部指令
 		QStringList getAllCommand();
+									//数据 - 获取名称
+		QString getGroupFullName();
+									//数据 - 网格竖切 - 获取全部标签
+									//		【说明】：将 指令全文 "插件指令：>xxxx" 竖切，切成两列文本。保留 \n 换行符。
+		QStringList getGrid_TagList();
+									//数据 - 网格竖切 - 获取全部指令
+		QStringList getGrid_CommandList();
 
 	//-----------------------------------
 	//----搜索

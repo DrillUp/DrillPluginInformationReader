@@ -118,6 +118,58 @@ bool C_ScriptHelp_CommandGroup::hasCommandKeyWord(QString keyWord){
 QRegExp C_ScriptHelp_CommandGroup::commandRe(){
 	return QRegExp("^[^ ]{4,7}[:：]");		//（正则：4到7个字以内且含冒号的，算作一条指令行，比如 "插件指令(旧)：" ）
 }
+/*-------------------------------------------------
+		搜索 - 获取名称
+*/
+QString C_ScriptHelp_CommandGroup::getGroupFullName(){
+	QString rusult = "";
+	if (this->is_important){
+		rusult = "激活条件";
+	}else{
+		rusult = "可选设定";
+	}
+	if (this->group_name != ""){
+		rusult.append(" - ");
+		rusult.append(this->group_name);
+	}
+	return rusult;
+}
+/*-------------------------------------------------
+		数据 - 网格竖切 - 获取全部标签
+*/
+QStringList C_ScriptHelp_CommandGroup::getGrid_TagList(){
+	QStringList data_list = this->command_context.split("\n");
+	QRegExp re = this->commandRe();
+	QStringList result_list = QStringList();
+	for (int i = 0; i < data_list.count(); i++){
+		QString data = data_list.at(i);
+		int pos = re.indexIn(data);
+		if (pos != -1){
+			result_list << re.cap(0);
+		}else{
+			result_list << "";	//（保留空行）
+		}
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 网格竖切 - 获取全部指令
+*/
+QStringList C_ScriptHelp_CommandGroup::getGrid_CommandList(){
+	QStringList data_list = this->command_context.split("\n");
+	QRegExp re = this->commandRe();
+	QStringList result_list = QStringList();
+	for (int i = 0; i < data_list.count(); i++){
+		QString data = data_list.at(i);
+		int pos = re.indexIn(data);
+		if (pos != -1){
+			result_list << data.mid(pos + re.cap(0).length());
+		}else{
+			result_list << data;	//（若未成功读取，直接显示全部内容）
+		}
+	}
+	return result_list;
+}
 
 
 /*
@@ -409,7 +461,7 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 
 	// > 指令捕获
 	int i_command = group_reader.d_indexOf(group.commandRe());
-	int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
+	int i_command_end = group_reader.d_indexOf(QRegExp("^([\\d]+[\\.。])|(以下是旧版本的指令)"), i_command + 1);
 	if (i_command != -1){
 		int row_count = i_command_end - i_command;
 		if (row_count < 0){ row_count = -1; }
@@ -425,8 +477,59 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	// > 说明列表
 	if (i_command_end != -1){
 		QStringList commandComment = group_reader.d_getRows(i_command_end);
-		TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
-		group.note_context = commandComment;
+		if (commandComment.count() > 0 && 
+			commandComment.at(0).contains("以下是旧版本的指令") == false ){
+
+			TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
+			group.note_context = commandComment;
+
+			//i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
+			//for (int k = 0; k < 15; k++){
+			//	if (i_page != -1){
+			//
+			//		// > 向下搜索
+			//		QStringList data_list = QStringList();
+			//		int i_nextPage = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
+			//		if (i_nextPage != -1){
+			//			int page_count = i_nextPage - i_page;
+			//			data_list = main_reader.d_getRows(i_page, page_count);
+			//		}
+			//		else{
+			//			data_list = main_reader.d_getRows(i_page);
+			//		}
+			//
+			//		// > 添加到列表
+			//		if (data_list.count() > 0){
+			//			QString data = data_list.join("\n");
+			//			c_docs->addRelativeDocx(c_docs->findDocsNameList(data));	//【插件文档 - 相关文档】
+			//			this->readNextPage(data);
+			//		}
+			//
+			//		i_page = i_nextPage;
+			//	}
+			//	else{
+			//		break;
+			//	}
+			//}
+
+		}
+	}
+
+	// > 旧指令
+	if (i_command_end != -1){
+		//int i_command = group_reader.d_indexOf(group.commandRe());
+		//int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
+		//if (i_command != -1){
+		//	int row_count = i_command_end - i_command;
+		//	if (row_count < 0){ row_count = -1; }
+		//	QStringList commandComment = group_reader.d_getRows(i_command, row_count);
+		//	TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
+		//	group.command_context = commandComment.join("\n");
+		//
+		//	for (int i = 0; i < commandComment.count(); i++){
+		//		group.addOneRowCommand(commandComment.at(i));
+		//	}
+		//}
 	}
 	this->group_list.append(group);
 }
