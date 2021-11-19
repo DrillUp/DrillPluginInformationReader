@@ -14,9 +14,9 @@
 C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
 	this->group_name = "";						//组名称
 	this->is_important = false;					//是否为激活条件
-	this->note_context = QStringList();			//内容列表
+	this->context_note = QStringList();			//内容列表
 
-	this->command_context = QString();					//指令全文
+	this->context_command = QString();					//指令全文
 	this->command_PluginCommand = QStringList();		//指令 - 插件指令
 	this->command_PluginCommand_old = QStringList();	//指令 - 插件指令(旧)
 	this->command_EventComment = QStringList();			//指令 - 事件注释
@@ -34,7 +34,7 @@ C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
 }
 
 /*-------------------------------------------------
-		数据 - 添加指令
+		读取器 - 添加指令
 */
 void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 	if (command_row.isEmpty()){ return; }
@@ -73,8 +73,9 @@ void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 		this->command_Other.append(commend_str);
 	}
 }
+
 /*-------------------------------------------------
-		数据 - 获取全部指令
+		搜索 - 获取全部指令
 */
 QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
 	return QStringList()
@@ -91,7 +92,7 @@ QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
 		<< this->command_MoveRoute;
 }
 /*-------------------------------------------------
-		数据 - 获取全部指令
+		搜索 - 获取全部指令
 */
 QStringList C_ScriptHelp_CommandGroup::getAllCommand(){
 	return this->getAllAvailableCommand() << this->command_Other;
@@ -119,7 +120,7 @@ QRegExp C_ScriptHelp_CommandGroup::commandRe(){
 	return QRegExp("^[^ ]{4,7}[:：]");		//（正则：4到7个字以内且含冒号的，算作一条指令行，比如 "插件指令(旧)：" ）
 }
 /*-------------------------------------------------
-		搜索 - 获取名称
+		数据 - 获取名称
 */
 QString C_ScriptHelp_CommandGroup::getGroupFullName(){
 	QString rusult = "";
@@ -134,11 +135,12 @@ QString C_ScriptHelp_CommandGroup::getGroupFullName(){
 	}
 	return rusult;
 }
+
 /*-------------------------------------------------
 		数据 - 网格竖切 - 获取全部标签
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_TagList(){
-	QStringList data_list = this->command_context.split("\n");
+	QStringList data_list = this->context_command.split("\n");
 	QRegExp re = this->commandRe();
 	QStringList result_list = QStringList();
 	for (int i = 0; i < data_list.count(); i++){
@@ -156,10 +158,46 @@ QStringList C_ScriptHelp_CommandGroup::getGrid_TagList(){
 		数据 - 网格竖切 - 获取全部指令
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_CommandList(){
-	QStringList data_list = this->command_context.split("\n");
+	QStringList data_list = this->context_command.split("\n");
 	QRegExp re = this->commandRe();
 	QStringList result_list = QStringList();
 	for (int i = 0; i < data_list.count(); i++){
+		QString data = data_list.at(i);
+		int pos = re.indexIn(data);
+		if (pos != -1){
+			result_list << data.mid(pos + re.cap(0).length());
+		}else{
+			result_list << data;	//（若未成功读取，直接显示全部内容）
+		}
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 网格竖切 - 获取全部标签
+*/
+QStringList C_ScriptHelp_CommandGroup::getGrid_OldTagList(){
+	QStringList data_list = this->context_command_old.split("\n");
+	QRegExp re = this->commandRe();
+	QStringList result_list = QStringList();
+	for (int i = 1; i < data_list.count(); i++){	//（从第二行开始获取）
+		QString data = data_list.at(i);
+		int pos = re.indexIn(data);
+		if (pos != -1){
+			result_list << re.cap(0);
+		}else{
+			result_list << "";	//（保留空行）
+		}
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 网格竖切 - 获取全部指令
+*/
+QStringList C_ScriptHelp_CommandGroup::getGrid_OldCommandList(){
+	QStringList data_list = this->context_command_old.split("\n");
+	QRegExp re = this->commandRe();
+	QStringList result_list = QStringList();
+	for (int i = 1; i < data_list.count(); i++){	//（从第二行开始获取）
 		QString data = data_list.at(i);
 		int pos = re.indexIn(data);
 		if (pos != -1){
@@ -453,7 +491,7 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	}else{
 		group.is_important = false;
 	}
-	if (data_list.count() > 1){
+	if (data_list.count() > 2){
 		group.group_name = data_list.last();
 	}
 
@@ -461,75 +499,83 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 
 	// > 指令捕获
 	int i_command = group_reader.d_indexOf(group.commandRe());
-	int i_command_end = group_reader.d_indexOf(QRegExp("^([\\d]+[\\.。])|(以下是旧版本的指令)"), i_command + 1);
+	int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
+	int i_command_oldCommandEnd = group_reader.d_indexOf(this->getOldKeyword(), i_command_end);
 	if (i_command != -1){
 		int row_count = i_command_end - i_command;
 		if (row_count < 0){ row_count = -1; }
+
+		// > 指令全文（显示详细信息用）
 		QStringList commandComment = group_reader.d_getRows(i_command, row_count);
 		TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
-		group.command_context = commandComment.join("\n");
+		group.context_command = commandComment.join("\n");
 
+		// > 依次捕获单行指令（搜索用）
 		for (int i = 0; i < commandComment.count(); i++){
 			group.addOneRowCommand(commandComment.at(i));
 		}
 	}
 
 	// > 说明列表
-	if (i_command_end != -1){
+	if (   i_command_end != -1
+		&& i_command_end != i_command_oldCommandEnd){
+
+		QStringList command_list = QStringList();
 		QStringList commandComment = group_reader.d_getRows(i_command_end);
-		if (commandComment.count() > 0 && 
-			commandComment.at(0).contains("以下是旧版本的指令") == false ){
-
-			TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
-			group.note_context = commandComment;
-
-			//i_page = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到非空格、非数字的行）
-			//for (int k = 0; k < 15; k++){
-			//	if (i_page != -1){
-			//
-			//		// > 向下搜索
-			//		QStringList data_list = QStringList();
-			//		int i_nextPage = main_reader.d_indexOf(QRegExp("^[^ \\d]+"), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
-			//		if (i_nextPage != -1){
-			//			int page_count = i_nextPage - i_page;
-			//			data_list = main_reader.d_getRows(i_page, page_count);
-			//		}
-			//		else{
-			//			data_list = main_reader.d_getRows(i_page);
-			//		}
-			//
-			//		// > 添加到列表
-			//		if (data_list.count() > 0){
-			//			QString data = data_list.join("\n");
-			//			c_docs->addRelativeDocx(c_docs->findDocsNameList(data));	//【插件文档 - 相关文档】
-			//			this->readNextPage(data);
-			//		}
-			//
-			//		i_page = i_nextPage;
-			//	}
-			//	else{
-			//		break;
-			//	}
-			//}
-
+		if (i_command_oldCommandEnd != -1){
+			commandComment = group_reader.d_getRows(i_command_end, i_command_oldCommandEnd-i_command_end);
 		}
+		if (commandComment.count() > 0 ){
+
+			P_TxtFastReader commentReader = P_TxtFastReader(commandComment.join("\n"));
+			int i_page = commentReader.d_indexOf(QRegExp("^[ \\d]+\\."));	//（找到数字的行）
+			for (int k = 0; k < 15; k++){
+				if (i_page != -1){
+			
+					// > 向下搜索
+					QStringList data_list = QStringList();
+					int i_nextPage = commentReader.d_indexOf(QRegExp("^[ \\d]+\\."), i_page + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
+					if (i_nextPage != -1){
+						int page_count = i_nextPage - i_page;
+						data_list = commentReader.d_getRows(i_page, page_count);
+					}else{
+						data_list = commentReader.d_getRows(i_page);
+					}
+			
+					// > 添加到列表
+					if (data_list.count() > 0){
+						QString data = data_list.join("\n");
+						c_docs->addRelativeDocx(c_docs->findDocsNameList(data));	//【插件文档 - 相关文档】
+						command_list.append(data);
+					}
+			
+					i_page = i_nextPage;
+				}else{
+					break;
+				}
+			}
+		}
+		group.context_note = command_list;
 	}
 
 	// > 旧指令
-	if (i_command_end != -1){
-		//int i_command = group_reader.d_indexOf(group.commandRe());
-		//int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
-		//if (i_command != -1){
-		//	int row_count = i_command_end - i_command;
-		//	if (row_count < 0){ row_count = -1; }
-		//	QStringList commandComment = group_reader.d_getRows(i_command, row_count);
-		//	TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment);
-		//	group.command_context = commandComment.join("\n");
-		//
-		//	for (int i = 0; i < commandComment.count(); i++){
-		//		group.addOneRowCommand(commandComment.at(i));
-		//	}
-		//}
+	if (i_command_oldCommandEnd != -1){
+
+		// > 指令全文（详细信息用）
+		QStringList commandComment_old = group_reader.d_getRows(i_command_oldCommandEnd);
+		TTool::_QStringList_clearEmptyRows_OnlyBack_(&commandComment_old);
+		group.context_command_old = commandComment_old.join("\n");
+
+		// > 依次捕获单行指令（搜索用）
+		for (int i = 0; i < commandComment_old.count(); i++){
+			group.addOneRowCommand(commandComment_old.at(i));
+		}
 	}
 	this->group_list.append(group);
+}
+/*-------------------------------------------------
+		读取器 - 获取默认关键字
+*/
+QString C_ScriptHelp_Command::getOldKeyword(){
+	return "以下是旧版本的指令";
 }

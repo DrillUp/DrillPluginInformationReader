@@ -86,7 +86,7 @@ void P_ScriptHelp_CommandSearchCell::addOneChildData(QString type_name, QString 
 	}
 }
 /*-------------------------------------------------
-		控件 - 根据名称刷新样式
+		控件 - 刷新 组样式（根据指令类型）
 */
 void P_ScriptHelp_CommandSearchCell::refreshStyle(QGroupBox* groupBox, QString type_name){
 	if (type_name == "插件指令"){

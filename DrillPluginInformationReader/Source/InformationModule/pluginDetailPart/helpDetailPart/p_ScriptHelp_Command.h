@@ -33,6 +33,8 @@ class P_ScriptHelp_Command : public QWidget
 		void clearAllChild();
 										//控件 - 链接被点击
 		void linkClicked_docs(QString data);
+										//控件 - 刷新颜色（根据指令类型）
+		void refreshLabelStyle(QLabel* label);	
 
 	//-----------------------------------
 	//----块

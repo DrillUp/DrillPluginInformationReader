@@ -80,14 +80,14 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 	for (int i = 0; i < c_group_list.count(); i++){
 		C_ScriptHelp_CommandGroup c_group = c_group_list.at(i);
 		QGroupBox* group = new QGroupBox(this);
-		group->setTitle(c_group.getGroupFullName());
 		QGridLayout* layout = new QGridLayout(group);
 		layout->setSpacing(2);
 		layout->setColumnStretch(1, 1);
+		group->setTitle(c_group.getGroupFullName());
 		group->setLayout(layout);
-
-		// > 指令组
 		int cur_row = 0;
+
+		// > 指令全文
 		QStringList tag_list = c_group.getGrid_TagList();
 		QStringList command_list = c_group.getGrid_CommandList();
 		for (int j = 0; j < tag_list.count(); j++){
@@ -99,12 +99,16 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 			label_tag->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
 			layout->addWidget(label_tag, cur_row, 0, 1, 1);
 			this->m_labelTank.append(label_tag);
+			
+			// > 指令 - 标签头 - 颜色区分
+			this->refreshLabelStyle(label_tag);
 
 			// > 指令 - 单行指令
 			if (command != ""){
 				QLabel* label_command = new QLabel(command, group);
 				label_command->setWordWrap(true);
 				label_command->setTextInteractionFlags(label_command->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+				label_command->setCursor(QCursor(Qt::IBeamCursor));			//（设置文本可圈选，且文本光标变化）
 				label_command->setStyleSheet("background-color: rgb(255, 255, 255);");
 				layout->addWidget(label_command, cur_row, 1, 1, 1);
 				this->m_labelTank.append(label_command);
@@ -119,8 +123,8 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 		layout->addWidget(widget_empty, cur_row, 0, 1, 2);
 		cur_row += 1;
 
-		// > 指令组说明内容
-		QStringList data_list = c_group.note_context;
+		// > 说明内容
+		QStringList data_list = c_group.context_note;
 		for (int j = 0; j < data_list.count(); j++){
 			QString temp_data = data_list.at(j);
 			temp_data = "◆ " + temp_data;
@@ -131,12 +135,75 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 			QLabel* label = new QLabel(temp_data, group);
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			label->setCursor(QCursor(Qt::IBeamCursor));
 			layout->addWidget(label, cur_row, 0, 1, 2);
 			this->m_labelTank.append(label);
 			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Command::linkClicked_docs);
 			cur_row += 1;
 		}
+
+		// > 旧指令全文
+		QStringList tag_list_old = c_group.getGrid_OldTagList();
+		QStringList command_list_old = c_group.getGrid_OldCommandList();
+		for (int j = 0; j < tag_list_old.count(); j++){
+			QString tag = tag_list_old.at(j);
+			QString command = command_list_old.at(j);
+
+			// > 指令 - 标签头
+			QLabel* label_tag = new QLabel(tag, group);
+			label_tag->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+			layout->addWidget(label_tag, cur_row, 0, 1, 1);
+			this->m_labelTank.append(label_tag);
+
+			// > 指令 - 标签头 - 颜色区分
+			this->refreshLabelStyle(label_tag);
+
+			// > 指令 - 单行指令
+			if (command != ""){
+				QLabel* label_command = new QLabel(command, group);
+				label_command->setWordWrap(true);
+				label_command->setTextInteractionFlags(label_command->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+				label_command->setCursor(QCursor(Qt::IBeamCursor));			//（设置文本可圈选，且文本光标变化）
+				label_command->setStyleSheet("background-color: rgb(255, 255, 255);");
+				layout->addWidget(label_command, cur_row, 1, 1, 1);
+				this->m_labelTank.append(label_command);
+			}
+
+			cur_row += 1;
+		}
+
+
 		this->layout()->addWidget(group);
+	}
+}
+/*-------------------------------------------------
+		控件 - 刷新颜色（根据指令类型）
+*/
+void P_ScriptHelp_Command::refreshLabelStyle(QLabel* label){
+	QString name = label->text();
+	if (name.contains("插件指令(旧)") || name.contains("事件注释(旧)")){
+		label->setStyleSheet("color:#989898;font-weight:bold;");
+		return;
+	}
+	if (name.contains("插件指令")){
+		label->setStyleSheet("color:#449ed4;font-weight:bold;");
+		return;
+	}
+	if (name.contains("事件注释")){
+		label->setStyleSheet("color:#44c49e;font-weight:bold;");
+		return;
+	}
+	if (name.contains("地图备注")){
+		label->setStyleSheet("color:#008000;font-weight:bold;");
+		return;
+	}
+	if (name.contains("角色注释") || name.contains("敌人注释") || name.contains("状态注释") || name.contains("技能注释") ){
+		label->setStyleSheet("color:#FF7F27;font-weight:bold;");
+		return;
+	}
+	if (name.contains("物品注释") || name.contains("武器注释") || name.contains("护甲注释") || name.contains("移动路线指令")){
+		label->setStyleSheet("color:#d4449e;font-weight:bold;");
+		return;
 	}
 }
 /*-------------------------------------------------

@@ -8,7 +8,11 @@
 		类：		帮助数据-指令集 数据类.h
 		所属模块：	插件模块
 		功能：		帮助信息中的章节。
-					（详细见.cpp）
+					
+		说明：		注意，指令集分为两个部分：【数据（显示详细信息用）】，【搜索（显示搜索信息用）】
+					两种数据可以分别获取，互不相关。
+					- 数据：单独分为 指令全文 和 旧指令全文，文本包含空行，显示时需要 竖切 。
+					- 搜索：所有指令按照 类型 分在各个字符串数组中。	
 -----==========================================================-----
 */
 class C_ScriptHelp_CommandGroup{
@@ -22,14 +26,28 @@ class C_ScriptHelp_CommandGroup{
 	public:
 		QString group_name;						//组名称（可为空）
 		bool is_important;						//是否为激活条件
-		QStringList note_context;				//说明列表
 
-		QString command_context;				//指令全文
-												//		【注意，不含 事件备注、脚本 】
+		QStringList context_note;				//说明列表
+		QString context_command;				//指令全文
+		QString context_command_old;			//旧指令全文
+	public:
+									//数据 - 获取名称
+		QString getGroupFullName();
+									//数据 - 网格竖切 - 获取全部标签
+									//		【说明】：将 指令全文 "插件指令：>xxxx" 竖切，切成两列文本。保留 \n 换行符。
+		QStringList getGrid_TagList();
+									//数据 - 网格竖切 - 获取全部指令
+		QStringList getGrid_CommandList();
+									//数据 - 网格竖切 - 获取全部标签（旧全文用）
+		QStringList getGrid_OldTagList();
+									//数据 - 网格竖切 - 获取全部指令（旧全文用）
+		QStringList getGrid_OldCommandList();
+
+	//-----------------------------------
+	//----搜索	【注意，不含 事件备注、脚本 】
+	public:
 		QStringList command_PluginCommand;		//指令 - 插件指令
-		QStringList command_PluginCommand_old;	//指令 - 插件指令(旧)
 		QStringList command_EventComment;		//指令 - 事件注释
-		QStringList command_EventComment_old;	//指令 - 事件注释(旧)
 		QStringList command_MapNote;			//指令 - 地图备注
 		QStringList command_ActorNote;			//指令 - 角色注释
 		QStringList command_EnemyNote;			//指令 - 敌人注释
@@ -38,28 +56,24 @@ class C_ScriptHelp_CommandGroup{
 		QStringList command_SkillNote;			//指令 - 技能注释
 		QStringList command_MoveRoute;			//指令 - 移动路线指令
 		QStringList command_Other;				//指令 - 其它
+		QStringList command_PluginCommand_old;	//指令 - 插件指令(旧)
+		QStringList command_EventComment_old;	//指令 - 事件注释(旧)
 	public:
-									//数据 - 添加指令
-		void addOneRowCommand(QString command_row);
-									//数据 - 获取全部指令（不含其它指令）
+									//搜索 - 获取全部指令（不含其它指令）
 		QStringList getAllAvailableCommand();
-									//数据 - 获取全部指令
+									//搜索 - 获取全部指令
 		QStringList getAllCommand();
-									//数据 - 获取名称
-		QString getGroupFullName();
-									//数据 - 网格竖切 - 获取全部标签
-									//		【说明】：将 指令全文 "插件指令：>xxxx" 竖切，切成两列文本。保留 \n 换行符。
-		QStringList getGrid_TagList();
-									//数据 - 网格竖切 - 获取全部指令
-		QStringList getGrid_CommandList();
-
-	//-----------------------------------
-	//----搜索
-	public:
 									//搜索 - 包含指定指令关键字
 		bool hasCommandKeyWord(QString keyWord);
 									//搜索 - 指令的正则规则
 		QRegExp commandRe();
+		
+	//-----------------------------------
+	//----读取器
+	public:
+									//读取器 - 添加指令
+		void addOneRowCommand(QString command_row);
+
 };
 /*
 -----==========================================================-----
@@ -147,4 +161,8 @@ class C_ScriptHelp_Command{
 	public:
 								//读取器 - 读取新的指令集字符串
 		void readNextGroup(QString group_context, C_ScriptHelp_Docs* c_docs);
+	protected:
+								//读取器 - 获取默认关键字
+		QString getOldKeyword();
+
 };
