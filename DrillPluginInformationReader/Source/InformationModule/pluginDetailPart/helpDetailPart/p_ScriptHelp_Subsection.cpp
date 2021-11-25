@@ -64,7 +64,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 	this->clearAllChild();
 
 	// > 全为空情况
-	if (data == nullptr || data->isNull() ){
+	if (data == nullptr || data->isSubsectionNull() ){
 		QLabel* label = new QLabel("插件没有任何内容说明。");
 		label->setAlignment(Qt::AlignCenter);
 		this->layout()->addWidget(label);

@@ -417,7 +417,7 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	// > 标题捕获
 	QString title = group_reader.d_getRows(0, 1).at(0);
 	QStringList data_list = title.split(QRegExp("[ -]+"));
-	if (data_list.contains("激活条件")){
+	if (data_list.contains("激活条件") || data_list.contains("激活方式") || data_list.contains("激活方法")){
 		group.is_important = true;
 	}else{
 		group.is_important = false;

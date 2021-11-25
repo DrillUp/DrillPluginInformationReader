@@ -46,6 +46,7 @@ P_CommandSearcherPart::P_CommandSearcherPart(QWidget *parent)
 	ui.horizontalLayout_searchType->removeItem(ui.horizontalSpacer);
 	ui.horizontalLayout_searchType->addWidget(this->m_p_historicalSearchRecord);
 	ui.horizontalLayout_searchType->addItem(ui.horizontalSpacer);
+	ui.horizontalLayout_searchType->setStretch(ui.horizontalLayout_searchType->count()-1, 1);
 
 	// > ·ÖÒ³¿Ø¼þ
 	this->m_p_PageNavigator = new P_PageNavigator();

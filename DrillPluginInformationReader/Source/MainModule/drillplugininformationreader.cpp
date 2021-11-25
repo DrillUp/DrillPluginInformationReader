@@ -5,6 +5,7 @@
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/InformationModule/pluginListPart/p_PluginListPart.h"
+#include "Source/InformationModule/commandSearcherPart/p_CommandSearcherPart.h"
 #include "about/w_SoftwareAbout.h"
 
 
@@ -266,6 +267,7 @@ void DrillPluginInformationReader::ui_loadConfig(){
 	// > 子控件的UI读取
 	if (this->m_P_InformationPart != nullptr){
 		this->m_P_InformationPart->m_p_pluginListPart->ui_loadConfig();
+		this->m_P_InformationPart->m_p_commandSearcherPart->ui_loadConfig();
 	}
 
 	// > 【工程数据读取 - 全局】
@@ -301,6 +303,7 @@ void DrillPluginInformationReader::ui_saveConfig(){
 	// > 子控件的UI存储
 	if (this->m_P_InformationPart != nullptr){
 		this->m_P_InformationPart->m_p_pluginListPart->ui_saveConfig();
+		this->m_P_InformationPart->m_p_commandSearcherPart->ui_saveConfig();
 	}
 
 	// > 【工程数据存储 - 全局】

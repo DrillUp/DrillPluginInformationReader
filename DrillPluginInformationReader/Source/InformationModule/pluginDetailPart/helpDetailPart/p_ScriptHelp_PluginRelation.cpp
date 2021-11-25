@@ -97,8 +97,10 @@ void P_ScriptHelp_PluginRelation::setData(C_ScriptHelp_PluginRelation* data){
 	// > 全为空情况
 	if (data == nullptr || data->isNull()){
 		ui.stackedWidget->setCurrentIndex(0);
+		ui.page_2->setVisible(false);
 		return;
 	}
+	ui.page_2->setVisible(true);
 	ui.stackedWidget->setCurrentIndex(1);
 
 	// > 主内容 底板控件
