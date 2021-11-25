@@ -187,6 +187,9 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 小工具支持">
       <UniqueIdentifier>{f04b6a28-e906-4c8d-a29d-55c3b054a4b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\知识点（数据）">
+      <UniqueIdentifier>{72165cf3-4af8-42ca-b18d-462a80da7f5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -134,7 +134,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 
 		int row_count = i_command_end - i_command - 1;
 		if (row_count < 0){ row_count = -1; }
-		QStringList commandComment = reader.d_getRows(i_command + 1, row_count);
+		QStringList commandComment = reader.d_getRows(i_command, row_count);
 		this->m_command->readNextGroup(commandComment.join("\n"), this->m_docs);
 
 		i_command = reader.d_indexOf(QRegExp("----(激活条件|可选设定)"), i_command + 1);

@@ -94,6 +94,8 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 		this->m_p_ScriptHelp_Src->setData(detail->getSrc());
 		// > ²å¼þÀ©Õ¹
 		this->m_p_ScriptHelp_PluginRelation->setData(detail->getPluginRelation());
+		// > Ö¸Áî
+		this->m_p_ScriptHelp_Command->setData(detail->getCommand());
 	}
 }
 /*-------------------------------------------------

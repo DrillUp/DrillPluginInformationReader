@@ -92,6 +92,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			QLabel* label = new QLabel(temp_data, group);
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			label->setCursor(QCursor(Qt::IBeamCursor));
 			layout->addWidget(label);
 			this->m_labelTank.append(label);
 		}
@@ -108,6 +109,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			QLabel* label = new QLabel(temp_data, group);
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			label->setCursor(QCursor(Qt::IBeamCursor));
 			layout->addWidget(label);
 			this->m_labelTank.append(label);
 			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked_docs);
@@ -138,6 +140,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			QLabel* label = new QLabel(temp_data, group);
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			label->setCursor(QCursor(Qt::IBeamCursor));
 			layout->addWidget(label);
 			this->m_labelTank.append(label);
 			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked_docs);
@@ -150,6 +153,7 @@ void P_ScriptHelp_Subsection::setData(C_ScriptHelp_Subsection* data){
 			//	QLabel* label = new QLabel(str, group);
 			//	label->setWordWrap(true);
 			//	label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
+			//	label->setCursor(QCursor(Qt::IBeamCursor));
 			//	layout->addWidget(label);
 			//	this->m_labelTank.append(label);
 			//	connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Subsection::linkClicked);

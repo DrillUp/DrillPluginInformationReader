@@ -74,6 +74,9 @@ QGroupBox{
       </item>
       <item>
        <widget class="QLabel" name="label_context_A">
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
@@ -117,6 +120,9 @@ QGroupBox{
       </item>
       <item>
        <widget class="QLabel" name="label_context_B">
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
@@ -160,6 +166,9 @@ QGroupBox{
       </item>
       <item>
        <widget class="QLabel" name="label_context_C">
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
@@ -203,6 +212,9 @@ QGroupBox{
       </item>
       <item>
        <widget class="QLabel" name="label_context_D">
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>
@@ -246,6 +258,9 @@ QGroupBox{
       </item>
       <item>
        <widget class="QLabel" name="label_context_E">
+        <property name="cursor">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">border:1px solid #000;</string>
         </property>

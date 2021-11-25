@@ -32,7 +32,7 @@ class P_ScriptHelp_CommandSearchCell : public QWidget
 		void clearAllChild();
 										//控件 - 添加显示数据
 		void addOneChildData(QString type_name, QString plugin_name, QString context);
-										//控件 - 根据名称刷新样式
+										//控件 - 刷新 组样式（根据指令类型）
 		void refreshStyle(QGroupBox* groupBox, QString type_name);
 										//控件 - 将指定字符串标蓝
 		QString getStringWithSign(QString text, QString searching_text);
