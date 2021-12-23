@@ -86,6 +86,12 @@ C_ScriptHelp_Performance::C_ScriptHelp_Performance(){
 C_ScriptHelp_Performance::~C_ScriptHelp_Performance(){
 }
 /*-------------------------------------------------
+		数据 - 获取测试结果列表
+*/
+QList<C_ScriptHelp_PerformanceTest> C_ScriptHelp_Performance::getTestList(){
+	return this->test_list;
+}
+/*-------------------------------------------------
 		数据 - 获取最大消耗
 */
 double C_ScriptHelp_Performance::getMaxCost(){
@@ -119,6 +125,12 @@ bool C_ScriptHelp_Performance::isMiddleCost(){
 */
 bool C_ScriptHelp_Performance::isLowCost(){
 	return this->getMaxCost() >= 40;
+}
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Performance::isNull(){
+	return this->test_list.count() == 0;
 }
 
 /*-------------------------------------------------

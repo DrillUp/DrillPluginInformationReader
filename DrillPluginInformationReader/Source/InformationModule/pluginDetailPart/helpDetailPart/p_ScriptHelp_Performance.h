@@ -26,7 +26,11 @@ class P_ScriptHelp_Performance : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		QList<QLabel*> m_labelTank;
 	public slots: 
+										//控件 - 清空全部内容
+		void clearAllChild();
 
 	//-----------------------------------
 	//----块

@@ -59,6 +59,8 @@ class C_ScriptHelp_Performance{
 		QList<C_ScriptHelp_PerformanceTest> test_list;		//测试结果列表
 		QStringList context_note;							//内容列表
 	public:
+								//数据 - 获取测试结果列表
+		QList<C_ScriptHelp_PerformanceTest> getTestList();
 								//数据 - 获取最大消耗
 		double getMaxCost();
 								//数据 - 是否高消耗
@@ -67,6 +69,8 @@ class C_ScriptHelp_Performance{
 		bool isMiddleCost();
 								//数据 - 是否低消耗
 		bool isLowCost();
+								//数据 - 空判断
+		bool isNull();
 
 	//-----------------------------------
 	//----读取器

@@ -107,7 +107,7 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 			ui.groupBox_Knowledge->setVisible(true);
 		}
 		// > ²å¼þÐÔÄÜ
-
+		this->m_p_ScriptHelp_Performance->setData(detail->getPerformance());
 	}
 }
 /*-------------------------------------------------
