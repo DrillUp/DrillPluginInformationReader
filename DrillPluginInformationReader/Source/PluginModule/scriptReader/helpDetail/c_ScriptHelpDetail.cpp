@@ -23,6 +23,7 @@ C_ScriptHelpDetail::C_ScriptHelpDetail(){
 	this->m_docs = nullptr;					//插件文档
 	this->m_subsection = nullptr;			//分段说明
 	this->m_command = nullptr;				//指令
+	this->m_knowledge = nullptr;			//知识点
 	this->m_performance = nullptr;			//插件性能
 }
 C_ScriptHelpDetail::~C_ScriptHelpDetail(){
@@ -63,6 +64,7 @@ void C_ScriptHelpDetail::initHelpContext(){
 	P_TxtFastReader reader = P_TxtFastReader(this->help);
 	this->m_docs = new C_ScriptHelp_Docs();					//数据 - 插件文档（初始就要创建）
 	this->m_command = new C_ScriptHelp_Command();			//数据 - 指令（初始就要创建）
+	this->m_knowledge = new C_ScriptHelp_Knowledge();		//数据 - 知识点（初始就要创建）
 	this->m_subsection = new C_ScriptHelp_Subsection();		//数据 - 分段说明（初始就要创建）
 
 	// > 插件扩展
@@ -141,6 +143,21 @@ void C_ScriptHelpDetail::initHelpContext(){
 		i_command_end = reader.d_indexOf("----------------------", i_command + 1);
 	}
 
+	// > 知识点
+	int i_knowledge = reader.d_indexOf(QRegExp("----(知识点|其他|其它|其他说明|其它说明)"));
+	int i_knowledge_end = reader.d_indexOf("----------------------", i_knowledge + 1);
+	for (int k = 0; k < 20; k++){		//（多组知识点集）
+		if (i_knowledge == -1){ break; }
+
+		int row_count = i_knowledge_end - i_knowledge - 1;
+		if (row_count < 0){ row_count = -1; }
+		QStringList knowledgeComment = reader.d_getRows(i_knowledge, row_count);
+		this->m_knowledge->readNextGroup(knowledgeComment.join("\n"), this->m_docs);
+
+		i_knowledge = reader.d_indexOf(QRegExp("----(知识点|其他|其它|其他说明|其它说明)"), i_knowledge + 1);
+		i_knowledge_end = reader.d_indexOf("----------------------", i_knowledge + 1);
+	}
+
 	// > 插件性能
 	int i_performance = reader.d_indexOf(QRegExp("----插件性能"));
 	int i_performance_end = reader.d_indexOf("----------------------", i_performance + 1);
@@ -188,6 +205,12 @@ C_ScriptHelp_Subsection* C_ScriptHelpDetail::getSubsection(){
 */
 C_ScriptHelp_Command* C_ScriptHelpDetail::getCommand(){
 	return this->m_command;
+}
+/*-------------------------------------------------
+		数据 - 获取知识点
+*/
+C_ScriptHelp_Knowledge* C_ScriptHelpDetail::getKnowledge(){
+	return this->m_knowledge;
 }
 /*-------------------------------------------------
 		数据 - 获取插件性能

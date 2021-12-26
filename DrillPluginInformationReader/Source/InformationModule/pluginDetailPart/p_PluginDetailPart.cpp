@@ -27,18 +27,20 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	//-----------------------------------
 	//----控件初始化
 	this->m_p_ScriptHelp_EffectScope = new P_ScriptHelp_EffectScope();
+	this->m_p_ScriptHelp_PluginRelation = new P_ScriptHelp_PluginRelation();
 	this->m_p_ScriptHelp_Subsection = new P_ScriptHelp_Subsection();
 	this->m_p_ScriptHelp_Src = new P_ScriptHelp_Src();
 	this->m_p_ScriptHelp_Command = new P_ScriptHelp_Command();
+	this->m_p_ScriptHelp_Knowledge = new P_ScriptHelp_Knowledge();
 	this->m_p_ScriptHelp_Performance = new P_ScriptHelp_Performance();
-	this->m_p_ScriptHelp_PluginRelation = new P_ScriptHelp_PluginRelation();
 
 	ui.verticalLayout_EffectScope->addWidget(this->m_p_ScriptHelp_EffectScope);
+	ui.verticalLayout_PluginRelation->addWidget(this->m_p_ScriptHelp_PluginRelation);
 	ui.verticalLayout_Subsection->addWidget(this->m_p_ScriptHelp_Subsection);
 	ui.verticalLayout_Src->addWidget(this->m_p_ScriptHelp_Src);
 	ui.verticalLayout_Command->addWidget(this->m_p_ScriptHelp_Command);
+	ui.verticalLayout_Knowledge->addWidget(this->m_p_ScriptHelp_Knowledge);
 	ui.verticalLayout_Performance->addWidget(this->m_p_ScriptHelp_Performance);
-	ui.verticalLayout_PluginRelation->addWidget(this->m_p_ScriptHelp_PluginRelation);
 	
 	//ui.splitter->handle(1)->setAttribute(Qt::WA_Hover, true);
 	//（水平分割布局会破坏 子类中 大量QLabel+换行 形成的稳定布局结构。 ）
@@ -96,6 +98,16 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 		this->m_p_ScriptHelp_PluginRelation->setData(detail->getPluginRelation());
 		// > 指令
 		this->m_p_ScriptHelp_Command->setData(detail->getCommand());
+		// > 知识点
+		C_ScriptHelp_Knowledge* knowledge = detail->getKnowledge();
+		this->m_p_ScriptHelp_Knowledge->setData(detail->getKnowledge());
+		if (knowledge == nullptr || knowledge->isNull()){
+			ui.groupBox_Knowledge->setVisible(false);
+		}else{
+			ui.groupBox_Knowledge->setVisible(true);
+		}
+		// > 插件性能
+		this->m_p_ScriptHelp_Performance->setData(detail->getPerformance());
 	}
 }
 /*-------------------------------------------------

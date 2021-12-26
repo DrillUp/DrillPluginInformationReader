@@ -136,7 +136,7 @@ void P_CommandSearcherPart::refreshCellAuto(int start_index, int end_index){
 	}
 
 	// > Ê£ÓàµÄÇå¿Õ
-	for (int i = end_index; i < this->m_cellPartList.count(); i++){
+	for (int i = end_index + 1; i < this->m_cellPartList.count(); i++){
 		P_ScriptHelp_CommandSearchCell* cell_part = this->getButtonPartByIndex(i);
 		if (cell_part != nullptr){
 			cell_part->clearAllChild();

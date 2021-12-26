@@ -8,6 +8,7 @@
 #include "c_ScriptHelp_Docs.h"
 #include "c_ScriptHelp_Subsection.h"
 #include "c_ScriptHelp_Command.h"
+#include "c_ScriptHelp_Knowledge.h"
 #include "c_ScriptHelp_Performance.h"
 
 /*
@@ -51,6 +52,7 @@ class C_ScriptHelpDetail{
 		C_ScriptHelp_Docs* m_docs;						//插件文档
 		C_ScriptHelp_Subsection* m_subsection;			//分段说明
 		C_ScriptHelp_Command* m_command;				//指令
+		C_ScriptHelp_Knowledge* m_knowledge;			//知识点
 		C_ScriptHelp_Performance* m_performance;		//插件性能
 	public:
 									//数据 - 获取作用域
@@ -65,6 +67,8 @@ class C_ScriptHelpDetail{
 		C_ScriptHelp_Subsection* getSubsection();
 									//数据 - 获取指令
 		C_ScriptHelp_Command* getCommand();
+									//数据 - 获取知识点
+		C_ScriptHelp_Knowledge* getKnowledge();
 									//数据 - 获取插件性能
 		C_ScriptHelp_Performance* getPerformance();
 

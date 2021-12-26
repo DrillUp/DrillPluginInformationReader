@@ -190,6 +190,9 @@
     <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\知识点（数据）">
       <UniqueIdentifier>{72165cf3-4af8-42ca-b18d-462a80da7f5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\知识点（控件）">
+      <UniqueIdentifier>{79c5186e-2008-4fa5-ab89-ee36f6e3554c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -579,6 +582,18 @@
     <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Knowledge.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\知识点（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Knowledge.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\知识点（控件）</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Knowledge.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ScriptHelp_Knowledge.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -767,6 +782,12 @@
     <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.ui">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
     </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Knowledge.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\知识点（控件）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Knowledge.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\知识点（控件）</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DrillPluginInformationReader.rc" />
@@ -902,6 +923,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_HighConsumption.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Knowledge.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器\帮助数据（%40help）\知识点（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Knowledge.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

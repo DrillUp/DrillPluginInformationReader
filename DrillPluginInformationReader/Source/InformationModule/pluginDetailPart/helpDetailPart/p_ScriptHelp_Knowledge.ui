@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>P_ScriptHelp_Knowledge</class>
+ <widget class="QWidget" name="P_ScriptHelp_Knowledge">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>511</width>
+    <height>88</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* == 整体字体 == */
+QWidget{
+	/*font: 75 10pt &quot;黑体&quot;;*/
+}
+
+/* == 群组控件 == */
+QGroupBox{
+	margin-top: 0.5em;
+	padding-top: 20px;
+	color:#989898;
+	font-weight:bold;
+    border: 1px solid #989898;
+    border-radius: 4px;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFBFA, stop:1 #E5E5E5 );
+}
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	top: 12px;
+	left: 2px;
+	margin-left: 0px;
+	padding: 0 1px;
+}
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>2</number>
+   </property>
+   <property name="topMargin">
+    <number>2</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
+   <property name="bottomMargin">
+    <number>2</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>GroupBox</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
