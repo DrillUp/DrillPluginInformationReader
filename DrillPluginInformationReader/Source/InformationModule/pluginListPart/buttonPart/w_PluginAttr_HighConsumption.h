@@ -4,7 +4,7 @@
 #include <QtWidgets/QDialog>
 #include "ui_W_PluginAttr_HighConsumption.h"
 
-//#include "Source/InformationModule/pluginDetailPart/helpDetailPart/p_ScriptHelp_HighConsumption.h"
+#include "Source/InformationModule/pluginDetailPart/helpDetailPart/p_ScriptHelp_Performance.h"
 
 /*
 -----==========================================================-----
@@ -26,10 +26,10 @@ class W_PluginAttr_HighConsumption : public QDialog
 	//-----------------------------------
 	//----控件
 	public:
-		//P_ScriptHelp_HighConsumption* m_p_HighConsumption;
+		P_ScriptHelp_Performance* m_p_Performance;
 	public:
 									//控件 - 显示信息 - 帮助文档
-		//void showInformation_word(QString pluginName);
+		void showInformation_highConsumption(QString pluginName);
 		
 	//-----------------------------------
 	//----窗口

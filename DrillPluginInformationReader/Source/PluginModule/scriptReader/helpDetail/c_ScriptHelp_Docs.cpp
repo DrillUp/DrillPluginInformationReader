@@ -17,6 +17,12 @@ C_ScriptHelp_Docs::~C_ScriptHelp_Docs(){
 }
 
 /*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Docs::isNull(){
+	return this->main_docx.count() == 0 && this->relative_docx.count() == 0;
+}
+/*-------------------------------------------------
 		数据 - 添加主要文档
 */
 void C_ScriptHelp_Docs::addMainDocx(QString docx){

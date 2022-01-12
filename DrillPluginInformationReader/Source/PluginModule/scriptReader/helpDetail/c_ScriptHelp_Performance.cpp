@@ -48,15 +48,16 @@ double C_ScriptHelp_PerformanceTest::getMaxCost(){
 		读取器 - 读取 测试结果 字符串
 */
 void C_ScriptHelp_PerformanceTest::readTest(QString test_context){
-	test_context = test_context.replace(QRegExp("^测试方法[:： ]+"),"");
-	QStringList data_list = test_context.split(QRegExp("测试结果[:： ]+"));
+	test_context = test_context.replace(QRegExp("^测试方法[\\d:： ]+"),"");
+	QStringList data_list = test_context.split(QRegExp("测试结果[\\d:： ]+"));
 	if (data_list.count() < 2){ return; }
 	
 	// > 测试方法
-	this->text_method = data_list.at(0);
+	this->text_method = data_list.first();
+	data_list.removeFirst();
 	
 	// > 条件列表
-	QStringList condition_str_list = data_list.at(1).split(QRegExp("[\n\r\t][ ]+"));
+	QStringList condition_str_list = data_list.join("").split(QRegExp("[\n\r\t][ ]+"));
 	for (int i = 0; i < condition_str_list.count(); i++){
 		QString condition_str = condition_str_list.at(i);
 		if (condition_str.isEmpty()){ continue; }
@@ -84,6 +85,12 @@ C_ScriptHelp_Performance::C_ScriptHelp_Performance(){
 	this->context_note = QStringList();								//内容列表
 }
 C_ScriptHelp_Performance::~C_ScriptHelp_Performance(){
+}
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Performance::isNull(){
+	return this->test_list.count() == 0;
 }
 /*-------------------------------------------------
 		数据 - 获取最大消耗
@@ -152,16 +159,16 @@ void C_ScriptHelp_Performance::readPerformance(QString performance_context){
 
 	// > 测试列表
 	this->test_list = QList<C_ScriptHelp_PerformanceTest>();
-	int i_test = group_reader.d_indexOf(QRegExp("^(测试方法|测试结果)"));
+	int i_test = group_reader.d_indexOf(QRegExp("^(测试方法|测试结果)"), i_time_complexity);
 	int i_testEnd = group_reader.d_indexOf(QRegExp("^测试结果"), i_test);
-	int i_context_note = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"));		//（说明列表）
+	int i_context_note = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_time_complexity);		//（说明列表）
 	for (int k = 0; k < 15; k++){
 		if (i_test != -1){
 
 			// > 向下搜索
 			QStringList data_list = QStringList();
 			int i_nextTest = group_reader.d_indexOf(QRegExp("^(测试方法|测试结果)"), i_testEnd + 1);	//（找到多个章节后，addPage，再在子函数中继续细分）
-			int i_nextTestEnd = group_reader.d_indexOf(QRegExp("^测试结果"), i_test);
+			int i_nextTestEnd = group_reader.d_indexOf(QRegExp("^测试结果"), i_nextTest);
 			if (i_nextTest != -1){
 				int page_count = i_nextTest - i_test;
 				data_list = group_reader.d_getRows(i_test, page_count);
@@ -169,7 +176,7 @@ void C_ScriptHelp_Performance::readPerformance(QString performance_context){
 				if (i_context_note == -1){
 					data_list = group_reader.d_getRows(i_test);
 				}else{
-					data_list = group_reader.d_getRows(i_context_note-1 - i_test );
+					data_list = group_reader.d_getRows(i_test, i_context_note - 1 - i_test);
 				}
 			}
 
@@ -192,6 +199,7 @@ void C_ScriptHelp_Performance::readPerformance(QString performance_context){
 	// > 说明列表
 	if (i_context_note > 0){
 		QStringList contextComment = group_reader.d_getRows(i_context_note);
+		this->context_note.clear();
 		if (contextComment.count() > 0){
 
 			P_TxtFastReader commentReader = P_TxtFastReader(contextComment.join("\n"));
@@ -213,16 +221,14 @@ void C_ScriptHelp_Performance::readPerformance(QString performance_context){
 					// > 添加到列表
 					if (data_list.count() > 0){
 						QString data = data_list.join("\n");
-						contextComment.append(data);
+						this->context_note.append(data);
 					}
 
 					i_page = i_nextPage;
-				}
-				else{
+				}else{
 					break;
 				}
 			}
 		}
-		this->context_note = contextComment;
 	}
 }

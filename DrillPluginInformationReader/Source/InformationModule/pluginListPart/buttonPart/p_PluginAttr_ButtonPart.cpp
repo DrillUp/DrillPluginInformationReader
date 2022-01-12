@@ -135,7 +135,7 @@ void P_PluginAttr_ButtonPart::btn_src(){
 }
 void P_PluginAttr_ButtonPart::btn_highConsumption(){
 	if (this->m_w_PluginAttr_HighConsumption == nullptr){ return; }
-	//this->m_w_PluginAttr_HighConsumption->showInformation_highConsumption(this->m_pluginName);
+	this->m_w_PluginAttr_HighConsumption->showInformation_highConsumption(this->m_pluginName);
 	this->showWindowAlone(this->m_w_PluginAttr_HighConsumption);
 }
 void P_PluginAttr_ButtonPart::btn_hasTool(){

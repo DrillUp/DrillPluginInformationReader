@@ -22,6 +22,8 @@ class C_ScriptHelp_Docs{
 		QStringList main_docx;		//主要帮助文档
 		QStringList relative_docx;	//相关帮助文档
 	public:
+									//数据 - 空判断
+		bool isNull();
 									//数据 - 添加主要文档
 		void addMainDocx(QString docx);
 		void addMainDocx(QStringList docx_list);

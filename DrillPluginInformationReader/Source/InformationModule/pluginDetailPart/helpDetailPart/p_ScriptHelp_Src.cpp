@@ -23,6 +23,10 @@ P_ScriptHelp_Src::P_ScriptHelp_Src(QWidget *parent)
 	this->m_labelTank = QList<QLabel*>();
 
 	//-----------------------------------
+	//----控件初始化
+	this->setData(nullptr);		//（初始没有任何数据）
+
+	//-----------------------------------
 	//----事件绑定
 	connect(ui.label_context, &QLabel::linkActivated, this, &P_ScriptHelp_Src::linkClicked_specific_pluginListing);
 

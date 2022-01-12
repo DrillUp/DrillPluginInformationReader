@@ -19,15 +19,12 @@ P_ScriptHelp_Knowledge::P_ScriptHelp_Knowledge(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----初始化参数
-
-
-	//-----------------------------------
 	//----控件初始化
-	this->clearAllChild();
+	this->setData(nullptr);		//（初始没有任何数据）
 
 	//-----------------------------------
 	//----事件绑定
+	//（无）
 
 }
 

@@ -28,8 +28,8 @@ W_PluginAttr_HighConsumption::W_PluginAttr_HighConsumption(QWidget *parent)
 
 	//-----------------------------------
 	//----ui初始化
-	//this->m_p_HighConsumption = new P_ScriptHelp_HighConsumption(this);
-	//ui.verticalLayout_HighConsumption->addWidget(this->m_p_HighConsumption);
+	this->m_p_Performance = new P_ScriptHelp_Performance(this);
+	ui.verticalLayout_highConsumption->addWidget(this->m_p_Performance);
 
 	TTool::_chinese_(ui.buttonBox);
 }
@@ -40,14 +40,14 @@ W_PluginAttr_HighConsumption::~W_PluginAttr_HighConsumption(){
 
 /*-------------------------------------------------
 		控件 - 显示信息 - 高消耗
-
-void W_PluginAttr_HighConsumption::showInformation_word(QString pluginName){
+*/
+void W_PluginAttr_HighConsumption::showInformation_highConsumption(QString pluginName){
 	this->setWindowTitle(pluginName + "属性");
 
 	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(pluginName);
 	if (detail == nullptr){
-		this->m_p_HighConsumption->setData(nullptr);
+		this->m_p_Performance->setData(nullptr);
 		return; 
 	}
-	this->m_p_HighConsumption->setData(detail->getHighConsumption());
-}*/
+	this->m_p_Performance->setData(detail->getPerformance());
+}

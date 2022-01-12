@@ -27,6 +27,10 @@ class P_ScriptHelp_Performance : public QWidget
 	//-----------------------------------
 	//----控件
 	public slots: 
+										//控件 - 链接被点击
+		void linkClicked_docs(QString data);
+										//控件 - 给消耗文本上色
+		QString decorateCostColor(QString cost);
 
 	//-----------------------------------
 	//----块

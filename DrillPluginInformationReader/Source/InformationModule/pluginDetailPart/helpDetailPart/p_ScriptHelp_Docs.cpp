@@ -19,15 +19,12 @@ P_ScriptHelp_Docs::P_ScriptHelp_Docs(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----初始化参数
-
-
-	//-----------------------------------
 	//----控件初始化
-
+	this->setData(nullptr);		//（初始没有任何数据）
 
 	//-----------------------------------
 	//----事件绑定
+	//（无）
 
 }
 
@@ -63,6 +60,18 @@ void P_ScriptHelp_Docs::linkClicked_docs(QString data){
 */
 void P_ScriptHelp_Docs::setData(C_ScriptHelp_Docs* data){
 	this->clearAllLabel();
+
+	// > 全为空情况
+	if (data == nullptr || data->isNull()){
+		ui.label_noData->setVisible(true);
+		ui.groupBox_main->setVisible(false);
+		ui.groupBox_relative->setVisible(false);
+		return;
+	}
+
+	ui.label_noData->setVisible(false);
+	ui.groupBox_main->setVisible(true);
+	ui.groupBox_relative->setVisible(true);
 
 	// > 主要文档
 	if (data->main_docx.count() > 0){

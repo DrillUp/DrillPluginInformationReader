@@ -99,7 +99,7 @@ padding:4px;</string>
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string> 该插件性能消耗较高。</string>
+      <string> 该插件在特定情况下会出现较高的性能消耗。</string>
      </property>
     </widget>
    </item>

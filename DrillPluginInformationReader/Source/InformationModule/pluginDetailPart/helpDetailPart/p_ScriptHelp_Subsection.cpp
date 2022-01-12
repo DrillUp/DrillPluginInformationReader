@@ -23,7 +23,12 @@ P_ScriptHelp_Subsection::P_ScriptHelp_Subsection(QWidget *parent)
 	this->m_labelTank = QList<QLabel*>();
 
 	//-----------------------------------
+	//----控件初始化
+	this->setData(nullptr);		//（初始没有任何数据）
+
+	//-----------------------------------
 	//----事件绑定
+	//（无）
 
 }
 

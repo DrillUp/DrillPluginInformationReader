@@ -48,6 +48,16 @@
      <layout class="QVBoxLayout" name="verticalLayout_3"/>
     </widget>
    </item>
+   <item>
+    <widget class="QLabel" name="label_noData">
+     <property name="text">
+      <string>插件没有任何相关文档。</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
