@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "p_HistoricalSearchRecord.h"
 
+#include "Source/Utils/common/TTool.h"
 
 /*
 -----==========================================================-----
 		类：		历史搜索记录.cpp
-		版本：		v1.00
+		版本：		v1.01
 		作者：		drill_up
 		所属模块：	工具模块
 		功能：		显示 历史搜索记录 用的控件。
@@ -194,6 +195,7 @@ void P_HistoricalSearchRecord::cancelBtn_action(){
 		块 - 设置数据（修改）
 */
 void P_HistoricalSearchRecord::setData(QStringList data){
+	TTool::_QStringList_clearEmptyRows_(&data);
 	this->m_textList = data;
 	this->rebuildUI();
 }

@@ -48,12 +48,12 @@ double C_ScriptHelp_PerformanceTest::getMaxCost(){
 		读取器 - 读取 测试结果 字符串
 */
 void C_ScriptHelp_PerformanceTest::readTest(QString test_context){
-	test_context = test_context.replace(QRegExp("^测试方法[\\d:： ]+"),"");
-	QStringList data_list = test_context.split(QRegExp("测试结果[\\d:： ]+"));
+	test_context = test_context.replace(QRegExp("^测试方法[\\d]*[:： ]+"),"");
+	QStringList data_list = test_context.split(QRegExp("测试结果[\\d]*[:： ]+"));
 	if (data_list.count() < 2){ return; }
 	
 	// > 测试方法
-	this->text_method = data_list.first();
+	this->text_method = data_list.first().replace(QRegExp("[\n\r\t ]+"), "");
 	data_list.removeFirst();
 	
 	// > 条件列表

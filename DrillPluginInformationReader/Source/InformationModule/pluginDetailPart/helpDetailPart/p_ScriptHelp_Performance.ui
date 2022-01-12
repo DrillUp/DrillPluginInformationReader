@@ -55,7 +55,7 @@ QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
 QGroupBox{
 	color:#FF7F27;
     border: 1px solid #FF7F27;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFAF1, stop:1 #FEFEF0 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FEF6F1, stop:1 #FEF3E1 );
 }</string>
      </property>
      <property name="title">
@@ -112,7 +112,7 @@ QGroupBox{
 QGroupBox{
 	color:#FF7F27;
     border: 1px solid #FF7F27;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFAF1, stop:1 #FEFEF0 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FEF6F1, stop:1 #FEF3E1 );
 }</string>
      </property>
      <property name="title">
@@ -132,7 +132,7 @@ QGroupBox{
 QGroupBox{
 	color:#FF7F27;
     border: 1px solid #FF7F27;
-	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FAFAF1, stop:1 #FEFEF0 );
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #FEF6F1, stop:1 #FEF3E1 );
 }</string>
      </property>
      <property name="title">

@@ -70,6 +70,7 @@ void P_ScriptHelp_PluginRelation::addGroupWidget(QString title, QStringList cont
 	group->setLayout(layout);
 
 	QString temp_data = context.join("\n");
+	temp_data = S_LinkDirector::getInstance()->signLtGtTag(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signATag_Plugin(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signBrTag(temp_data);
 	temp_data = S_LinkDirector::getInstance()->signPTag(temp_data);
@@ -93,8 +94,10 @@ void P_ScriptHelp_PluginRelation::setData(C_ScriptHelp_PluginRelation* data){
 	// > 全为空情况
 	if (data == nullptr || data->isNull()){
 		ui.stackedWidget->setCurrentIndex(0);
+		ui.page_2->setVisible(false);
 		return;
 	}
+	ui.page_2->setVisible(true);
 	ui.stackedWidget->setCurrentIndex(1);
 
 	// > 主内容 底板控件

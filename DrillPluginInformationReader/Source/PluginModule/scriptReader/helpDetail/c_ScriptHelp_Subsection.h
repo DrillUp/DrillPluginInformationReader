@@ -24,6 +24,9 @@ class C_ScriptHelp_SubsectionHeader{
 		QString introduction;		//简介
 		QString package;			//打包支持提示
 		QStringList condition;		//必要条件列表
+	public:
+									//数据 - 空判断
+		bool isNull();
 };
 
 /*
@@ -74,8 +77,10 @@ class C_ScriptHelp_Subsection{
 		QStringList getMainContext();
 								//数据 - 获取介绍数据
 		C_ScriptHelp_SubsectionHeader getHeader();
-								//数据 - 空判断
-		bool isNull();
+								//数据 - 空判断（介绍数据）
+		bool isHeaderNull();
+								//数据 - 空判断（介绍的条件、章节列表、主内容说明）
+		bool isSubsectionNull();
 								//数据 - 获取章节标题
 		QStringList getAllTitle();
 								//数据 - 获取章节（根据标题）

@@ -52,6 +52,9 @@ class S_LinkDirector : public QObject
 	//-----------------------------------
 	//----链接
 	public:
+										//链接 - 将字符串中的 "<" 替换为"&lt;"，">" 替换为"&gt;"，
+		QString signLtGtTag(QString data);
+		void signLtGtTag(QStringList* data);
 										//链接 - 将字符串中的 "\n" 替换为"<br>"
 										//		【说明】：注意，qt中并不支持"&nbsp"这种字符，直接空格即可。
 		QString signBrTag(QString data);

@@ -19,6 +19,13 @@ C_ScriptHelp_SubsectionHeader::C_ScriptHelp_SubsectionHeader(){
 }
 C_ScriptHelp_SubsectionHeader::~C_ScriptHelp_SubsectionHeader(){
 }
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_SubsectionHeader::isNull(){
+	return this->introduction == "";
+}
+
 
 /*
 -----==========================================================-----
@@ -222,8 +229,14 @@ void C_ScriptHelp_Subsection::readNextPage(QString page_context){
 /*-------------------------------------------------
 		数据 - 空判断
 */
-bool C_ScriptHelp_Subsection::isNull(){
-	return this->main_list.count() == 0 && this->page_list.count() == 0 && this->header.introduction == "";
+bool C_ScriptHelp_Subsection::isHeaderNull(){
+	return this->header.isNull();
+}
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_Subsection::isSubsectionNull(){
+	return this->main_list.count() == 0 && this->page_list.count() == 0 && this->header.condition.count() == 0;
 }
 /*-------------------------------------------------
 		数据 - 获取主内容

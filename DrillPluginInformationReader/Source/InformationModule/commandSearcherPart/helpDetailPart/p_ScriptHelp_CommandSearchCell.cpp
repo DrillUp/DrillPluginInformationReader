@@ -90,22 +90,22 @@ void P_ScriptHelp_CommandSearchCell::addOneChildData(QString type_name, QString 
 */
 void P_ScriptHelp_CommandSearchCell::refreshStyle(QGroupBox* groupBox, QString type_name){
 	if (type_name == "插件指令"){
-		groupBox->setStyleSheet("QGroupBox{ color:#449ed4; border: 1px solid #449ed4; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFF, stop:1 #F0F3FE); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#449ed4; border: 1px solid #449ed4; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFF, stop:1 #E0E3FE); }");
 	}
 	if (type_name == "事件注释"){
-		groupBox->setStyleSheet("QGroupBox{ color:#44c49e; border: 1px solid #44c49e; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#44c49e; border: 1px solid #44c49e; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #E0FEE3); }");
 	}
 	if (type_name == "地图备注"){
-		groupBox->setStyleSheet("QGroupBox{ color:#008000; border: 1px solid #008000; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #F0FEF3); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#008000; border: 1px solid #008000; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFFFB, stop:1 #DDE7D9); }");
 	}
 	if (type_name == "角色注释" || type_name == "敌人注释" || type_name == "状态注释" || type_name == "技能注释"){
-		groupBox->setStyleSheet("QGroupBox{ color:#FF7F27; border: 1px solid #FF7F27; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFAF1, stop:1 #FEFEF0); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#FF7F27; border: 1px solid #FF7F27; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FEF6F1, stop:1 #FEF3E1); }");
 	}
-	if (type_name == "物品/武器/护甲注释" || type_name == "移动路线指令"){
+	if (type_name == "物品/武器/护甲注释" || type_name == "移动路线指令" || type_name == "窗口字符"){
 		groupBox->setStyleSheet("QGroupBox{ color:#d4449e; border: 1px solid #d4449e; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FFFAFB, stop:1 #FEF0F3); }");
 	}
 	if (type_name == "插件指令(旧)"  || type_name == "事件注释(旧)" ){
-		groupBox->setStyleSheet("QGroupBox{ color:#989898; border: 1px solid #989898; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFA, stop:1 #E5E5E5); }");
+		groupBox->setStyleSheet("QGroupBox{ color:#989898; border: 1px solid #989898; background-color: qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #FAFBFA, stop:1 #D5D5D5); }");
 	}
 }
 /*-------------------------------------------------
@@ -138,6 +138,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "插件指令") &&
 		data->hasCommandKeyWord_PluginCommand(search_text)){
 		QStringList command_list = data->getAllCommand_PluginCommand();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("插件指令", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -145,6 +146,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "事件注释") && 
 		data->hasCommandKeyWord_EventComment(search_text)){
 		QStringList command_list = data->getAllCommand_EventComment();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("事件注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -152,6 +154,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "地图备注") && 
 		data->hasCommandKeyWord_MapNote(search_text)){
 		QStringList command_list = data->getAllCommand_MapNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("地图备注", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -159,6 +162,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "角色注释") && 
 		data->hasCommandKeyWord_ActorNote(search_text)){
 		QStringList command_list = data->getAllCommand_ActorNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("角色注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -166,6 +170,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "敌人注释") && 
 		data->hasCommandKeyWord_EnemyNote(search_text)){
 		QStringList command_list = data->getAllCommand_EnemyNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("敌人注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -173,20 +178,23 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "状态注释") &&
 		data->hasCommandKeyWord_StateNote(search_text)){
 		QStringList command_list = data->getAllCommand_StateNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("状态注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
 	// > 指令 - 物品/武器/护甲注释
 	if ((search_type == "全部类型" || search_type == "物品/武器/护甲注释") &&
-		data->hasCommandKeyWord_StateNote(search_text)){
+		data->hasCommandKeyWord_ItemNote(search_text)){
 		QStringList command_list = data->getAllCommand_ItemNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("物品/武器/护甲注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
 	// > 指令 - 技能注释
 	if ((search_type == "全部类型" || search_type == "技能注释") &&
-		data->hasCommandKeyWord_StateNote(search_text)){
+		data->hasCommandKeyWord_SkillNote(search_text)){
 		QStringList command_list = data->getAllCommand_SkillNote();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("技能注释", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -194,13 +202,23 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if ((search_type == "全部类型" || search_type == "移动路线指令") && 
 		data->hasCommandKeyWord_MoveRoute(search_text)){
 		QStringList command_list = data->getAllCommand_MoveRoute();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("移动路线指令", plugin_text, this->getStringWithSign(context_text, search_text));
+	}
+	// > 指令 - 窗口字符
+	if ((search_type == "全部类型" || search_type == "窗口字符") &&
+		data->hasCommandKeyWord_WindowChar(search_text)){
+		QStringList command_list = data->getAllCommand_WindowChar();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
+		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
+		this->addOneChildData("窗口字符", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
 	// > 指令 - 插件指令(旧)
 	if (search_type == "全部类型" && 
 		data->hasCommandKeyWord_PluginCommandOld(search_text)){
 		QStringList command_list = data->getAllCommand_PluginCommandOld();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("插件指令(旧)", plugin_text, this->getStringWithSign(context_text, search_text));
 	}
@@ -208,6 +226,7 @@ void P_ScriptHelp_CommandSearchCell::setData(C_ScriptHelp_Command* data, QString
 	if (search_type == "全部类型" && 
 		data->hasCommandKeyWord_EventCommentOld(search_text)){
 		QStringList command_list = data->getAllCommand_EventCommentOld();
+		S_LinkDirector::getInstance()->signLtGtTag(&command_list);
 		QString context_text = "<p>"; context_text.append(command_list.join("<br>")); context_text.append("</p>");
 		this->addOneChildData("事件注释(旧)", plugin_text, this->getStringWithSign(context_text, search_text));
 	}

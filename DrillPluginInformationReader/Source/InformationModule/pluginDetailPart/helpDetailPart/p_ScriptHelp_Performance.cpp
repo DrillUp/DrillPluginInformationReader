@@ -31,7 +31,6 @@ P_ScriptHelp_Performance::P_ScriptHelp_Performance(QWidget *parent)
 P_ScriptHelp_Performance::~P_ScriptHelp_Performance(){
 }
 
-
 /*-------------------------------------------------
 		控件 - 链接被点击
 */
