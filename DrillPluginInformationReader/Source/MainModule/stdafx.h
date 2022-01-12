@@ -11,3 +11,5 @@
 
 #define QRC_IconSrcPath QString(":/DrillPluginInformationReader/Resources/icons")
 #pragma execution_character_set("utf-8")
+
+#define DRILL_VERSION "v0.90"

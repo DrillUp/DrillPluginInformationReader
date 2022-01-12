@@ -43,24 +43,24 @@ void P_ScriptHelp_EffectScope::setData(C_ScriptHelp_EffectScope* data){
 	// > 三种界面
 	if (data->isEnableSenceBattle()){
 		ui.toolButton_battle->setEnabled(true);
-		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg"));
+		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{
 		ui.toolButton_battle->setEnabled(false);
-		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.svg"));
+		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.png"));
 	}
 	if (data->isEnableSenceMap()){
 		ui.toolButton_map->setEnabled(true);
-		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg"));
+		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{
 		ui.toolButton_map->setEnabled(false);
-		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.svg"));
+		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.png"));
 	}
 	if (data->isEnableSenceMenu()){
 		ui.toolButton_menu->setEnabled(true);
-		ui.toolButton_menu->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.svg"));
+		ui.toolButton_menu->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{
 		ui.toolButton_menu->setEnabled(false);
-		ui.toolButton_menu->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.svg"));
+		ui.toolButton_menu->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.png"));
 	}
 
 	// > 其他界面

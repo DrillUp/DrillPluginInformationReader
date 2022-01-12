@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>511</width>
-    <height>236</height>
+    <height>250</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -62,6 +62,21 @@ QGroupBox{
       <string>性能属性</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing">
+       <number>2</number>
+      </property>
       <item row="0" column="1">
        <widget class="QLabel" name="label_workingType">
         <property name="cursor">
@@ -122,6 +137,18 @@ QGroupBox{
       <property name="spacing">
        <number>3</number>
       </property>
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
      </layout>
     </widget>
    </item>
@@ -138,7 +165,23 @@ QGroupBox{
      <property name="title">
       <string>性能说明</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4"/>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <property name="spacing">
+       <number>5</number>
+      </property>
+      <property name="leftMargin">
+       <number>9</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
+     </layout>
     </widget>
    </item>
    <item>

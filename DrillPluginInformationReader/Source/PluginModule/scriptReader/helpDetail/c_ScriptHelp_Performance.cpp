@@ -57,7 +57,9 @@ void C_ScriptHelp_PerformanceTest::readTest(QString test_context){
 	data_list.removeFirst();
 	
 	// > 条件列表
-	QStringList condition_str_list = data_list.join("").split(QRegExp("[\n\r\t][ ]+"));
+	QString data_str = data_list.join("");
+	data_str = data_str.replace(QRegExp("特殊测试.*"), "");
+	QStringList condition_str_list = data_str.split(QRegExp("[\n\r\t][ ]+"));
 	for (int i = 0; i < condition_str_list.count(); i++){
 		QString condition_str = condition_str_list.at(i);
 		if (condition_str.isEmpty()){ continue; }

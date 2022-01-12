@@ -30,8 +30,7 @@ W_SoftwareAbout::W_SoftwareAbout(QWidget *parent)
 	//----ui初始化
 	TTool::_chinese_(ui.buttonBox);
 
-	QString version = "v1.00";
-	ui.label_title->setText("插件信息读取器（" + version + "）");
+	ui.label_title->setText(QString("插件信息读取器（") + DRILL_VERSION + "）");
 
 }
 

@@ -87,6 +87,7 @@ void DrillPluginInformationReader::_init() {
 	// > UI读取
 	this->ui_loadConfig();
 	this->refreshNav();
+	this->setWindowTitle(QString("插件信息读取器") + DRILL_VERSION + "（DrillPluginInformationReader）");
 	
 	this->m_inited = true;
 }
@@ -151,7 +152,7 @@ void DrillPluginInformationReader::btn_importProject(){
 	this->m_tip->show();
 
 	// > 标题修改
-	this->setWindowTitle("插件信息读取器（DrillPluginInformationReader） - " + this->m_temp_data.getName());
+	this->setWindowTitle(QString("插件信息读取器") + DRILL_VERSION + "（DrillPluginInformationReader） - " + this->m_temp_data.getName());
 	ui.widget_information->setEnabled(true);
 	
 	// > 全局工程参数变化
