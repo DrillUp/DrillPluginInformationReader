@@ -32,14 +32,14 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	this->m_p_pluginListPart = new P_PluginListPart(parent);
 	this->m_p_pluginDetailPart = new P_PluginDetailPart(parent);
 	this->m_p_commandSearcherPart = new P_CommandSearcherPart(parent);
-	this->m_p_otherFunctionPart = new P_OtherFunctionPart(parent);
+	//this->m_p_otherFunctionPart = new P_OtherFunctionPart(parent);
 
 	// > 可折叠选项卡
 	this->m_p_FoldableTabRelater = new P_FoldableTabRelater(ui.tabWidget);	//（ui中的只是示意，该工具类会重建tab）
 	this->m_p_FoldableTabRelater->addPart(" 插件列表  ", this->m_p_pluginListPart);
 	this->m_p_FoldableTabRelater->addPart(" 插件详细信息  ", this->m_p_pluginDetailPart);
 	this->m_p_FoldableTabRelater->addPart(" 指令搜索器  ", this->m_p_commandSearcherPart);
-	this->m_p_FoldableTabRelater->addPart(" 其它功能  ", this->m_p_otherFunctionPart);
+	//this->m_p_FoldableTabRelater->addPart(" 其它功能  ", this->m_p_otherFunctionPart);
 
 	//-----------------------------------
 	//----事件绑定

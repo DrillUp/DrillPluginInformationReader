@@ -115,9 +115,25 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 */
 void P_PluginDetailPart::btn_editPlugin(){
 	if (this->m_curPluginName == ""){ return; }
-
 	QFileInfo file_info = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(this->m_curPluginName);
-	QDesktopServices::openUrl(QUrl("file:/" + file_info.absoluteFilePath()));
+
+	// > 从注册表中获取notepad++
+	QSettings setting("HKEY_CURRENT_USER\\SOFTWARE\\Classes\\Applications\\notepad++.exe\\shell\\open\\command", QSettings::NativeFormat);
+	QString command = setting.value(".").toString();
+	if (command != ""){
+		command = command.replace("%1", file_info.absoluteFilePath());
+		QProcess *proc = new QProcess();
+		proc->start(command);
+		return;
+	}
+
+	// > 如果没有，则用记事本打开
+	command = "notepad.exe \"%1\"";
+	command = command.replace("%1", file_info.absoluteFilePath());
+	QProcess *proc = new QProcess();
+	proc->start(command);
+
+	//QDesktopServices::openUrl(QUrl("file:/" + file_info.absoluteFilePath()));
 }
 
 /*-------------------------------------------------
