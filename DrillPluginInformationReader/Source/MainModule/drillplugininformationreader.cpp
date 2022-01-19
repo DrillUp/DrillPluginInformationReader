@@ -87,7 +87,7 @@ void DrillPluginInformationReader::_init() {
 	// > UI读取
 	this->ui_loadConfig();
 	this->refreshNav();
-	this->setWindowTitle(QString("插件信息读取器") + DRILL_VERSION + "（DrillPluginInformationReader）");
+	this->setWindowTitle(QString("插件信息查看器") + DRILL_VERSION + "（DrillPluginInformationReader）");
 	
 	this->m_inited = true;
 }
@@ -117,11 +117,11 @@ void DrillPluginInformationReader::refreshNav(){
 void DrillPluginInformationReader::openUserManual() {
 	QString sPath = qApp->applicationDirPath();
 
-	QString docx = sPath + "/help/关于插件信息读取器.docx";
+	QString docx = sPath + "/help/关于插件信息查看器.docx";
 	if (QFileInfo(docx).exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + docx)); 
 	}else{
-		QMessageBox::warning(this, "错误", "文档\"关于插件信息读取器.docx\"不见了。", QMessageBox::Yes);
+		QMessageBox::warning(this, "错误", "文档\"关于插件信息查看器.docx\"不见了。", QMessageBox::Yes);
 	}
 
 }
@@ -152,7 +152,7 @@ void DrillPluginInformationReader::btn_importProject(){
 	this->m_tip->show();
 
 	// > 标题修改
-	this->setWindowTitle(QString("插件信息读取器") + DRILL_VERSION + "（DrillPluginInformationReader） - " + this->m_temp_data.getName());
+	this->setWindowTitle(QString("插件信息查看器") + DRILL_VERSION + "（DrillPluginInformationReader） - " + this->m_temp_data.getName());
 	ui.widget_information->setEnabled(true);
 	
 	// > 全局工程参数变化

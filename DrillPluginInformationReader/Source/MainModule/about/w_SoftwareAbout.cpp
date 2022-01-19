@@ -30,7 +30,7 @@ W_SoftwareAbout::W_SoftwareAbout(QWidget *parent)
 	//----ui初始化
 	TTool::_chinese_(ui.buttonBox);
 
-	ui.label_title->setText(QString("插件信息读取器（") + DRILL_VERSION + "）");
+	ui.label_title->setText(QString("插件信息查看器（") + DRILL_VERSION + "）");
 
 }
 
@@ -44,11 +44,11 @@ W_SoftwareAbout::~W_SoftwareAbout(){
 void W_SoftwareAbout::openUserManual() {
 	QString sPath = qApp->applicationDirPath();
 
-	QString docx = sPath + "/help/关于插件信息读取器.docx";
+	QString docx = sPath + "/help/关于插件信息查看器.docx";
 	if (QFileInfo(docx).exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + docx)); 
 	}else{
-		QMessageBox::warning(this, "错误", "文档\"关于插件信息读取器.docx\"不见了。", QMessageBox::Yes);
+		QMessageBox::warning(this, "错误", "文档\"关于插件信息查看器.docx\"不见了。", QMessageBox::Yes);
 	}
 
 }

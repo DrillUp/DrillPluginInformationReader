@@ -62,11 +62,11 @@ void W_SoftwareFirstTip::_init() {
 void W_SoftwareFirstTip::openUserManual() {
 	QString sPath = qApp->applicationDirPath();
 
-	QString docx = sPath + "/help/关于插件信息读取器.docx";
+	QString docx = sPath + "/help/关于插件信息查看器.docx";
 	if (QFileInfo(docx).exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + docx)); 
 	}else{
-		QMessageBox::warning(this, "错误", "文档\"关于插件信息读取器.docx\"不见了。", QMessageBox::Yes);
+		QMessageBox::warning(this, "错误", "文档\"关于插件信息查看器.docx\"不见了。", QMessageBox::Yes);
 	}
 
 }
