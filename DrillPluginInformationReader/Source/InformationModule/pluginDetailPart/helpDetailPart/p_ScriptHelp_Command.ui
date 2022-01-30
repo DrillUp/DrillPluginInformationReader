@@ -38,7 +38,33 @@ QGroupBox::title {
 	margin-left: 0px;
 	padding: 0 1px;
 }
-QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }</string>
+QGroupBox:disabled { border:1px solid #CCCCCC; background: #FFFFFF; }
+
+
+/* == 按钮 == */
+QToolButton{
+	padding-left:2px;
+	border: 1px solid transparent;
+	background: rgba(255,255,255,0);
+}
+QToolButton:hover{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fdecad, stop:0.3 #fde48c, stop:0.9 #fce58c, stop:1 #fdfadf )
+}
+QToolButton:pressed{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}
+QToolButton:checked{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}
+QToolButton:disabled{
+	color:#bbbbbb;
+}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">

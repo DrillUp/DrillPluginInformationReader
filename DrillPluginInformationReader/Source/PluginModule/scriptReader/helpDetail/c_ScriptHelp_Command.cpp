@@ -522,6 +522,9 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	int i_command = group_reader.d_indexOf(group.commandRe());
 	int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
 	int i_command_oldCommandEnd = group_reader.d_indexOf(this->getOldKeyword(), i_command_end);
+	if (i_command_end == -1 && i_command_oldCommandEnd != -1){	//（没有说明列表但有旧指令时）
+		i_command_end = i_command_oldCommandEnd;
+	}
 	if (i_command != -1){
 		int row_count = i_command_end - i_command;
 		if (row_count < 0){ row_count = -1; }

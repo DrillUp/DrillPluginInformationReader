@@ -43,6 +43,12 @@ void P_ScriptHelp_Command::clearAllChild(){
 		disconnect(label);
 	}
 	this->m_labelTank.clear();
+	for (int i = this->m_btnTank.count() - 1; i >= 0; i--){
+		QToolButton* btn = this->m_btnTank.at(i);
+		if (btn == nullptr){ continue; }
+		disconnect(btn);
+	}
+	this->m_btnTank.clear();
 
 	// > 删除下面的全部控件
 	QLayout* layout = this->layout();
@@ -56,6 +62,17 @@ void P_ScriptHelp_Command::clearAllChild(){
 */
 void P_ScriptHelp_Command::linkClicked_docs(QString data){
 	S_LinkDirector::getInstance()->openLink_Doc(data);
+}
+/*-------------------------------------------------
+		控件 - 复制按钮被点击
+*/
+void P_ScriptHelp_Command::copyBtnClicked(){
+	QToolButton* cur_btn = qobject_cast<QToolButton*>(sender());
+	QString command = cur_btn->statusTip();
+
+	QClipboard *board = QApplication::clipboard();
+	board->clear();
+	board->setText(command, QClipboard::Clipboard);
 }
 
 /*-------------------------------------------------
@@ -109,6 +126,24 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 				label_command->setStyleSheet("background-color: rgb(255, 255, 255);");
 				layout->addWidget(label_command, cur_row, 1, 1, 1);
 				this->m_labelTank.append(label_command);
+
+				// > 指令 - 单行指令 - 复制按钮
+				QString copy_command = command.trimmed();
+				if (copy_command.mid(0, 1) == ">" ||
+					copy_command.mid(0, 1) == "<" ||
+					copy_command.mid(0, 1) == "=" ||
+					copy_command.mid(0, 1) == "\\"){
+					QToolButton* btn_copy = new QToolButton(group);
+					btn_copy->setText("复制指令");
+					btn_copy->setToolTip("复制指令");
+					btn_copy->setIcon(QIcon(QRC_IconSrcPath + "/menu/Common_Paste.png"));
+					btn_copy->setIconSize(QSize(14,14));
+					btn_copy->setStatusTip(copy_command);
+					btn_copy->setToolButtonStyle(Qt::ToolButtonIconOnly);
+					connect(btn_copy, &QToolButton::clicked, this, &P_ScriptHelp_Command::copyBtnClicked);
+					layout->addWidget(btn_copy, cur_row, 2, 1, 1);
+					this->m_btnTank.append(btn_copy);
+				}
 			}
 
 			cur_row += 1;
@@ -117,7 +152,7 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 		// > 空行
 		QWidget* widget_empty = new QWidget(group);
 		widget_empty->setMinimumHeight(10);
-		layout->addWidget(widget_empty, cur_row, 0, 1, 2);
+		layout->addWidget(widget_empty, cur_row, 0, 1, 3);
 		cur_row += 1;
 
 		// > 说明内容
@@ -133,7 +168,7 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 			label->setWordWrap(true);
 			label->setTextInteractionFlags(label->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
 			label->setCursor(QCursor(Qt::IBeamCursor));
-			layout->addWidget(label, cur_row, 0, 1, 2);
+			layout->addWidget(label, cur_row, 0, 1, 3);
 			this->m_labelTank.append(label);
 			connect(label, &QLabel::linkActivated, this, &P_ScriptHelp_Command::linkClicked_docs);
 			cur_row += 1;
@@ -164,6 +199,24 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 				label_command->setStyleSheet("background-color: rgb(255, 255, 255);");
 				layout->addWidget(label_command, cur_row, 1, 1, 1);
 				this->m_labelTank.append(label_command);
+
+				// > 指令 - 单行指令 - 复制按钮
+				QString copy_command = command.trimmed();
+				if (copy_command.mid(0, 1) == ">" ||
+					copy_command.mid(0, 1) == "<" ||
+					copy_command.mid(0, 1) == "=" ||
+					copy_command.mid(0, 1) == "\\"){
+					QToolButton* btn_copy = new QToolButton(group);
+					btn_copy->setText("复制指令");
+					btn_copy->setToolTip("复制指令");
+					btn_copy->setIcon(QIcon(QRC_IconSrcPath + "/menu/Common_Paste.png"));
+					btn_copy->setIconSize(QSize(14, 14));
+					btn_copy->setStatusTip(copy_command);
+					btn_copy->setToolButtonStyle(Qt::ToolButtonIconOnly);
+					connect(btn_copy, &QToolButton::clicked, this, &P_ScriptHelp_Command::copyBtnClicked);
+					layout->addWidget(btn_copy, cur_row, 2, 1, 1);
+					this->m_btnTank.append(btn_copy);
+				}
 			}
 
 			cur_row += 1;
@@ -198,7 +251,7 @@ void P_ScriptHelp_Command::refreshLabelStyle(QLabel* label){
 		label->setStyleSheet("color:#FF7F27;font-weight:bold;");
 		return;
 	}
-	if (name.contains("物品注释") || name.contains("武器注释") || name.contains("护甲注释") || name.contains("移动路线指令")){
+	if (name.contains("物品注释") || name.contains("武器注释") || name.contains("护甲注释") || name.contains("移动路线指令") || name.contains("窗口字符")){
 		label->setStyleSheet("color:#d4449e;font-weight:bold;");
 		return;
 	}

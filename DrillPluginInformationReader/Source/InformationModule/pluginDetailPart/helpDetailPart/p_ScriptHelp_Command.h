@@ -28,11 +28,14 @@ class P_ScriptHelp_Command : public QWidget
 	//----控件
 	public:
 		QList<QLabel*> m_labelTank;
+		QList<QToolButton*> m_btnTank;
 	public slots: 
 										//控件 - 清空全部内容
 		void clearAllChild();
 										//控件 - 链接被点击
 		void linkClicked_docs(QString data);
+										//控件 - 复制按钮被点击
+		void copyBtnClicked();
 										//控件 - 刷新颜色（根据指令类型）
 		void refreshLabelStyle(QLabel* label);	
 
