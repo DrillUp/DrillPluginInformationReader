@@ -88,7 +88,14 @@ void DrillPluginInformationReader::_init() {
 	this->ui_loadConfig();
 	this->refreshNav();
 	this->setWindowTitle(QString("插件信息查看器") + DRILL_VERSION + "（DrillPluginInformationReader）");
-	
+
+	// > UI读取后 - 自动导入工程
+	if (this->m_temp_data.isNull() == false &&
+		this->m_temp_data.isProjectExist() == true &&
+		ui.checkBox_autoLoad->isChecked()){
+		this->btn_importProject();
+	}
+
 	this->m_inited = true;
 }
 
@@ -106,6 +113,7 @@ void DrillPluginInformationReader::refreshNav(){
 	if (this->m_temp_data.isNull() || this->m_temp_data.isProjectExist() == false){
 		ui.lineEdit->setText("");
 		ui.toolButton_Import->setEnabled(false);
+		ui.widget_information->setEnabled(false);	//（取消选择后强制置灰）
 	}else{
 		ui.lineEdit->setText(this->m_temp_data.getName());
 		ui.toolButton_Import->setEnabled(true);
@@ -143,7 +151,13 @@ void DrillPluginInformationReader::btn_selectProject(){
 
 	this->m_temp_data = temp;
 	this->refreshNav();
-	ui.widget_information->setEnabled(false);	//（选择后强制置灰）
+
+	// > 自动导入工程
+	if (this->m_temp_data.isNull() == false && 
+		this->m_temp_data.isProjectExist() == true && 
+		ui.checkBox_autoLoad->isChecked()){
+		this->btn_importProject();
+	}
 }
 /*-------------------------------------------------
 		工程 - 导入工程
@@ -265,6 +279,10 @@ void DrillPluginInformationReader::ui_loadConfig(){
 		this->showMaximized();
 	}
 
+	// > 自动读取的勾选项
+	QString config2 = S_IniManager::getInstance()->getConfig("PIR_AutoLoad");
+	ui.checkBox_autoLoad->setChecked(config2 == "true");
+
 	// > 子控件的UI读取
 	if (this->m_P_InformationPart != nullptr){
 		this->m_P_InformationPart->m_p_pluginListPart->ui_loadConfig();
@@ -299,6 +317,13 @@ void DrillPluginInformationReader::ui_saveConfig(){
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "true");
 	}else{
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "false");
+	}
+
+	// > 自动读取的勾选项
+	if (ui.checkBox_autoLoad->isChecked() == true){
+		S_IniManager::getInstance()->setConfig("PIR_AutoLoad", "true");
+	}else{
+		S_IniManager::getInstance()->setConfig("PIR_AutoLoad", "false");
 	}
 
 	// > 子控件的UI存储
