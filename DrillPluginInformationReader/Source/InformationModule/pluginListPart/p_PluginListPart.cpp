@@ -293,6 +293,7 @@ void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWi
 			this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
 			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc_name()));
 		}else{
+			this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
 			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//（读不到版本时，显示全名）
 		}
 		if (c_p == nullptr){
@@ -405,7 +406,9 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), this->m_searchText));
 				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc_name(), this->m_searchText));
 			}else{
+				this->m_table->setItem(row, 3, new QTableWidgetItem());
 				this->m_table->setItem(row, 4, new QTableWidgetItem());
+				this->m_table->setCellWidget(row, 3, this->getLabelWithSign(data.getPlugindesc_type(), this->m_searchText));
 				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), this->m_searchText));
 			}
 			if (c_p == nullptr){

@@ -78,6 +78,9 @@
            <property name="text">
             <string>开始搜索</string>
            </property>
+           <property name="shortcut">
+            <string>Return</string>
+           </property>
           </widget>
          </item>
          <item row="1" column="0" colspan="3">
@@ -256,6 +259,12 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit_search</tabstop>
+  <tabstop>pushButton_search</tabstop>
+  <tabstop>comboBox_commandType</tabstop>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

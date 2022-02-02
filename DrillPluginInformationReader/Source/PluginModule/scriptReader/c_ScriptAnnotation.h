@@ -44,12 +44,6 @@ class C_ScriptAnnotation{
 		C_ScriptHelpDetail* getScriptHelpDetail();
 										//数据 - 参数字典数据
 		C_ScriptDictionary* getScriptDictionary();
-										//数据 - 获取版本（插件描述 截取段）
-		QString getPlugindesc_version();
-										//数据 - 获取类型（插件描述 截取段）
-		QString getPlugindesc_type();
-										//数据 - 获取中文名（插件描述 截取段）
-		QString getPlugindesc_name();
 		
 										//数据 - 设置插件名（文件名）
 		void setName(QString name);
@@ -61,6 +55,23 @@ class C_ScriptAnnotation{
 		void setScriptHelpDetail(C_ScriptHelpDetail* helpDetail);
 										//数据 - 设置参数字典数据
 		void setScriptDictionary(C_ScriptDictionary* dictionary);
+
+	//-----------------------------------
+	//----临时截断数据
+	protected:
+		bool temp_inited;				//标记
+		QString temp_version;			//版本(调取时才初始化）
+		QString temp_type;				//类型（调取时才初始化）
+		QString temp_name;				//中文名（调取时才初始化）
+	public:
+										//数据 - 初始化截取段
+		void initPlugindesc_data();
+										//数据 - 获取版本（插件描述 截取段）
+		QString getPlugindesc_version();
+										//数据 - 获取类型（插件描述 截取段）
+		QString getPlugindesc_type();
+										//数据 - 获取中文名（插件描述 截取段）
+		QString getPlugindesc_name();
 
 	//-----------------------------------
 	//----类属性

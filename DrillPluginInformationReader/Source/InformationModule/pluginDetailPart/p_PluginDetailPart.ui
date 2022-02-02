@@ -431,6 +431,14 @@ QToolButton:checked{
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>lineEdit_pluginName</tabstop>
+  <tabstop>lineEdit_desc</tabstop>
+  <tabstop>lineEdit_author</tabstop>
+  <tabstop>toolButton_editPlugin</tabstop>
+  <tabstop>plainTextEdit_orgHelp</tabstop>
+ </tabstops>
  <resources>
   <include location="../../../drillplugininformationreader.qrc"/>
  </resources>

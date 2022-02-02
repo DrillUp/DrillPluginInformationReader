@@ -21,6 +21,11 @@ C_ScriptAnnotation::C_ScriptAnnotation(){
 	this->author = "";					//作者（@author）
 	this->helpDetail = nullptr;		 	//帮助信息（@help + 解析内容）
 	this->dictionary = nullptr; 		//参数字典（@param全部内容）
+
+	this->temp_inited = false;
+	this->temp_version = "";			//版本(调取时才初始化）
+	this->temp_type = "";				//类型（调取时才初始化）
+	this->temp_name = "";				//中文名（调取时才初始化）
 }
 C_ScriptAnnotation::~C_ScriptAnnotation(){
 }
@@ -48,26 +53,63 @@ C_ScriptHelpDetail* C_ScriptAnnotation::getScriptHelpDetail(){ return this->help
 //数据 - 参数字典数据
 C_ScriptDictionary* C_ScriptAnnotation::getScriptDictionary(){ return this->dictionary; }
 
+
+//数据 - 初始化截取段
+void C_ScriptAnnotation::initPlugindesc_data(){
+	this->temp_inited = true;
+
+	// > 版本
+	if (this->plugindesc.isEmpty() == false){			//（根据方括号截取内容）
+		QString data = this->plugindesc.trimmed();
+		QChar ch = data.at(0);
+		if (ch == '[' || ch == '(' || ch == '（' || data.at(0) == 'v' || data.at(0) == 'V'){
+			QStringList data_list = this->plugindesc.split("]");
+			if (data_list.count() >= 2){
+				this->temp_version = data_list.at(0) + "]";
+			}else{
+				data_list = this->plugindesc.split(" ");
+				if (data_list.count() >= 2){
+					this->temp_version = data_list.at(0);
+				}
+			}
+		}
+	}
+
+	// > 类型
+	QStringList data_list = this->plugindesc.split(" - ");	//（取横杠的左侧内容）
+	if (data_list.count() >= 2){
+		QStringList data_list2 = data_list.at(0).trimmed().split(QRegExp("[ \\]\\)]+"));
+		this->temp_type = data_list2.last();
+		if (this->temp_type.contains(".")){ this->temp_type = ""; }		//（含特殊字符的类型去掉）
+		if (this->temp_type.contains("[")){ this->temp_type = ""; }
+		if (this->temp_type.contains("]")){ this->temp_type = ""; }
+		if (this->temp_type.contains("-")){ this->temp_type = ""; }
+	}
+	
+	// > 中文名
+	QStringList data_list2 = this->plugindesc.split(" ");
+	this->temp_name = data_list2.last();
+}
 //数据 - 获取版本（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_version(){
-	if (this->plugindesc.isEmpty()){ return ""; }			//（根据方括号截取内容）
-	QString data = this->plugindesc.trimmed();
-	if (data.at(0) != '[' && data.at(0) != '(' && data.at(0) != '（' && data.at(0) != 'v'){ return ""; }
-	QStringList data_list = this->plugindesc.split("]");
-	if (data_list.count() < 2){ return ""; }
-	return data_list.at(0) + "]";
+	if (this->temp_inited == false){
+		this->initPlugindesc_data();
+	}
+	return this->temp_version;
 }
 //数据 - 获取类型（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_type(){
-	QStringList data_list = this->plugindesc.split(" - ");	//（取横杠的左侧内容）
-	if (data_list.count() < 2){ return ""; }
-	QStringList data_list2 = data_list.at(0).trimmed().split(QRegExp("[ \\]\\)]+"));
-	return data_list2.last();
+	if (this->temp_inited == false){
+		this->initPlugindesc_data();
+	}
+	return this->temp_type;
 }
 //数据 - 获取中文名（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_name(){
-	QStringList data_list = this->plugindesc.split(" ");
-	return data_list.last();
+	if (this->temp_inited == false){
+		this->initPlugindesc_data();
+	}
+	return this->temp_name;
 }
 
 

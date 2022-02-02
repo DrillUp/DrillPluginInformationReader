@@ -155,6 +155,9 @@
         <property name="text">
          <string>搜索插件</string>
         </property>
+        <property name="shortcut">
+         <string>Return</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -230,6 +233,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>comboBox_pluginMode</tabstop>
+  <tabstop>comboBox_pluginType</tabstop>
+  <tabstop>lineEdit_searchPlugin</tabstop>
+  <tabstop>pushButton_searchPlugin</tabstop>
+  <tabstop>tableWidget_plugin</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
