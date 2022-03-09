@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>331</height>
+    <width>561</width>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -98,8 +98,8 @@ QPushButton:hover{
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>535</width>
-        <height>331</height>
+        <width>561</width>
+        <height>444</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -110,23 +110,9 @@ QPushButton:hover{
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
-           <widget class="QToolButton" name="toolButton_showUnusedPlugin">
+           <widget class="QToolButton" name="toolButton_showDesignTip">
             <property name="text">
-             <string>显示所有未启用的插件</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../../drillplugininformationreader.qrc">
-              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
-            </property>
-            <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QToolButton" name="toolButton_checkVersion">
-            <property name="text">
-             <string>比对当前工程的插件版本</string>
+             <string>设计灵感生成器</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">
@@ -150,8 +136,58 @@ QPushButton:hover{
             </property>
            </spacer>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>其它功能</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QToolButton" name="toolButton_showUnusedPlugin_3">
+            <property name="text">
+             <string>显示所有未启用的插件</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0">
+           <widget class="QToolButton" name="toolButton_checkVersion_4">
+            <property name="text">
+             <string>比对当前工程的插件版本</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="0">
-           <widget class="QToolButton" name="toolButton_checkVersion_2">
+           <widget class="QToolButton" name="toolButton_checkVersion_3">
             <property name="text">
              <string>生成csv插件列表</string>
             </property>

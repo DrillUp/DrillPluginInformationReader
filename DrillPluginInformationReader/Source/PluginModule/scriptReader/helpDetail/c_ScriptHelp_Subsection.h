@@ -49,6 +49,11 @@ class C_ScriptHelp_SubsectionPage{
 	public:
 		QString title;				//章节标题
 		QStringList context;		//内容列表
+	public:
+									//数据 - 空判断
+		bool isNull();
+									//数据 - 判断是否为"设计"章节
+		bool isDesignTip();
 };
 
 /*
@@ -87,6 +92,11 @@ class C_ScriptHelp_Subsection{
 		C_ScriptHelp_SubsectionPage getPageByTitle(QString title);
 								//数据 - 获取章节内容（根据标题）
 		QStringList getPageContextByTitle(QString title);
+
+								//数据 - 是否含有"设计"章节
+		bool hasDesignTip();
+								//数据 - 获取"设计"章节
+		C_ScriptHelp_SubsectionPage getPage_DesignTip();
 
 	//-----------------------------------
 	//----读取器

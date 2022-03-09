@@ -41,6 +41,18 @@ C_ScriptHelp_SubsectionPage::C_ScriptHelp_SubsectionPage(){
 }
 C_ScriptHelp_SubsectionPage::~C_ScriptHelp_SubsectionPage(){
 }
+/*-------------------------------------------------
+		数据 - 空判断
+*/
+bool C_ScriptHelp_SubsectionPage::isNull(){
+	return this->title == "" || this->context.count() == 0;
+}
+/*-------------------------------------------------
+		数据 - 判断是否为"设计"章节
+*/
+bool C_ScriptHelp_SubsectionPage::isDesignTip(){
+	return this->title == "设计";
+}
 
 /*
 -----==========================================================-----
@@ -277,4 +289,29 @@ C_ScriptHelp_SubsectionPage C_ScriptHelp_Subsection::getPageByTitle(QString titl
 */
 QStringList C_ScriptHelp_Subsection::getPageContextByTitle(QString title){
 	return this->getPageByTitle(title).context;
+}
+
+/*-------------------------------------------------
+		数据 - 是否含有"设计"章节
+*/
+bool C_ScriptHelp_Subsection::hasDesignTip(){
+	for (int i = 0; i < this->page_list.count(); i++){
+		C_ScriptHelp_SubsectionPage page = this->page_list.at(i);
+		if (page.isDesignTip()){
+			return true;
+		}
+	}
+	return false;
+}
+/*-------------------------------------------------
+		数据 - 获取"设计"章节
+*/
+C_ScriptHelp_SubsectionPage C_ScriptHelp_Subsection::getPage_DesignTip(){
+	for (int i = 0; i < this->page_list.count(); i++){
+		C_ScriptHelp_SubsectionPage page = this->page_list.at(i);
+		if (page.isDesignTip()){
+			return page;
+		}
+	}
+	return C_ScriptHelp_SubsectionPage();
 }

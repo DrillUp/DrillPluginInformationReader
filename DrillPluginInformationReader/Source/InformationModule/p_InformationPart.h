@@ -19,6 +19,7 @@ class P_PluginListPart;
 class P_PluginDetailPart;
 class P_CommandSearcherPart;
 class P_OtherFunctionPart;
+class P_DesignTipGenerator;
 class P_InformationPart : public QWidget
 {
 	Q_OBJECT
@@ -39,6 +40,14 @@ class P_InformationPart : public QWidget
 	public slots:
 										//控件 - 显示指定插件详细信息
 		void showPluginDetail(QString plugin_name );
+		
+	//-----------------------------------
+	//----特殊大控件
+	public:
+		P_DesignTipGenerator* m_p_DesignTipGenerator;
+	public slots:
+										//控件 - 创建
+		void createPart_DesignTipGenerator();
 
 	//-----------------------------------
 	//----块
