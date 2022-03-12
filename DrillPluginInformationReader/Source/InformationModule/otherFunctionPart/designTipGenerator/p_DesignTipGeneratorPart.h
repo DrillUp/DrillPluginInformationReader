@@ -3,6 +3,8 @@
 
 #include <QtWidgets>
 #include "ui_P_DesignTipGeneratorPart.h"
+#include "c_DesignTipGenerator.h"
+#include "private/p_DesignTip_Cell.h"
 
 /*
 -----==========================================================-----
@@ -24,8 +26,14 @@ class P_DesignTipGeneratorPart : public QWidget
 		
 	//-----------------------------------
 	//----控件
+	public:
+		C_DesignTipGenerator m_data;
+		QList<P_DesignTip_Cell*> m_cellTank;
 	public slots: 
-
+										//控件 - 清理控件块
+		void clearCells();
+										//控件 - 执行生成
+		void doGenerate();
 
 	//-----------------------------------
 	//----块

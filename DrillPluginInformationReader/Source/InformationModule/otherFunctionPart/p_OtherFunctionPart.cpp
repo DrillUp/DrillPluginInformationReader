@@ -24,15 +24,24 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 
 	//-----------------------------------
 	//----控件初始化
+	ui.groupBox_2->setVisible(false);	//（隐藏待填坑）
 
 	//-----------------------------------
 	//----事件绑定
+	connect(ui.toolButton_showDesignTip, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_DesignTipGenerator);
 
 }
 
 P_OtherFunctionPart::~P_OtherFunctionPart(){
 }
 
+
+/*-------------------------------------------------
+		控件 - 选择 灵感生成器
+*/
+void P_OtherFunctionPart::btn_DesignTipGenerator(){
+	emit selected_DesignTipGenerator();
+}
 
 /*-------------------------------------------------
 		块 - 本地数据 -> ui数据

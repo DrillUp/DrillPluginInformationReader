@@ -24,8 +24,12 @@ class P_OtherFunctionPart : public QWidget
 		
 	//-----------------------------------
 	//----控件
-	public slots: 
-
+	public slots:
+										//控件 - 选择 灵感生成器
+		void btn_DesignTipGenerator();
+	signals: 
+										//控件 - 选择 灵感生成器
+		void selected_DesignTipGenerator();
 
 	//-----------------------------------
 	//----块

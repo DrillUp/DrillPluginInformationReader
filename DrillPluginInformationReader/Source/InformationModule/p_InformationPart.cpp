@@ -46,6 +46,7 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	//-----------------------------------
 	//----事件绑定
 	connect(this->m_p_pluginListPart, &P_PluginListPart::pluginTriggered, this, &P_InformationPart::showPluginDetail);
+	connect(this->m_p_otherFunctionPart, &P_OtherFunctionPart::selected_DesignTipGenerator, this, &P_InformationPart::selectPart_DesignTipGenerator);
 
 }
 
@@ -62,6 +63,23 @@ void P_InformationPart::showPluginDetail(QString plugin_name){
 
 	// > 切换到标签页
 	this->m_p_FoldableTabRelater->selectTab(" 插件详细信息  ");
+}
+
+/*-------------------------------------------------
+		控件 - 选择 灵感生成器
+*/
+void P_InformationPart::selectPart_DesignTipGenerator(){
+	if (this->m_p_DesignTipGenerator == nullptr){
+		this->createPart_DesignTipGenerator();
+	}
+	this->m_p_FoldableTabRelater->selectTab(" 灵感生成器  ");
+}
+/*-------------------------------------------------
+		控件 - 创建 灵感生成器
+*/
+void P_InformationPart::createPart_DesignTipGenerator(){
+	this->m_p_DesignTipGenerator = new P_DesignTipGeneratorPart();
+	this->m_p_FoldableTabRelater->addPart(" 灵感生成器  ", this->m_p_DesignTipGenerator);
 }
 
 /*-------------------------------------------------

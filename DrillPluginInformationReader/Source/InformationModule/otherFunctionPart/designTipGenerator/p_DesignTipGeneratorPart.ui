@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -32,6 +32,78 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,0,2">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>11</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string> 条目数量 </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBox">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>30</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButton_generate">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>26</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>  生成  </string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../../drillplugininformationreader.qrc">
+         <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextBesideIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="styleSheet">
@@ -99,32 +171,12 @@ QPushButton:hover{
         <x>0</x>
         <y>0</y>
         <width>535</width>
-        <height>331</height>
+        <height>286</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QGroupBox" name="groupBox">
-         <property name="title">
-          <string>灵感生成器</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QToolButton" name="toolButton_checkVersion_2">
-            <property name="text">
-             <string>开始生成</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../../../drillplugininformationreader.qrc">
-              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
-            </property>
-            <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_tip"/>
        </item>
        <item>
         <spacer name="verticalSpacer">

@@ -19,7 +19,7 @@ class P_PluginListPart;
 class P_PluginDetailPart;
 class P_CommandSearcherPart;
 class P_OtherFunctionPart;
-class P_DesignTipGenerator;
+class P_DesignTipGeneratorPart;
 class P_InformationPart : public QWidget
 {
 	Q_OBJECT
@@ -44,9 +44,11 @@ class P_InformationPart : public QWidget
 	//-----------------------------------
 	//----特殊大控件
 	public:
-		P_DesignTipGenerator* m_p_DesignTipGenerator;
+		P_DesignTipGeneratorPart* m_p_DesignTipGenerator;
 	public slots:
-										//控件 - 创建
+										//控件 - 选择 灵感生成器
+		void selectPart_DesignTipGenerator();
+										//控件 - 创建 灵感生成器
 		void createPart_DesignTipGenerator();
 
 	//-----------------------------------
