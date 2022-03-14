@@ -27,11 +27,19 @@ class P_DesignTipGeneratorPart : public QWidget
 	//-----------------------------------
 	//----控件
 	public:
-		C_DesignTipGenerator m_data;
-		QList<P_DesignTip_Cell*> m_cellTank;
+		C_DesignTipGenerator m_data;			//灵感集合
+		QList<P_DesignTip_Cell*> m_cellTank;	//灵感控件列表
+		QList<int> m_indexOrgTank;				//剩余条目索引
 	public slots: 
 										//控件 - 清理控件块
 		void clearCells();
+										//控件 - 重新开始全部
+		void resetAll();
+										//控件 - 重设序列
+										//		【说明】：每次查询索引项都会减少，确保不重复。	
+		void resetIndexTank();
+										//控件 - 刷新进度
+		void refreshProcess();
 										//控件 - 执行生成
 		void doGenerate();
 

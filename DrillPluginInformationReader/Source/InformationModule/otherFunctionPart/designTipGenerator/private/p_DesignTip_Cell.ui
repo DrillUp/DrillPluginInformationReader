@@ -61,24 +61,14 @@ QGroupBox{
      <property name="title">
       <string>设计</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,1">
-      <item>
-       <widget class="QLabel" name="label_pluginName_A">
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt; 【某插件名称】&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
+     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
       <item>
        <widget class="QLabel" name="label_context_A">
         <property name="cursor">
          <cursorShape>IBeamCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:1px solid #000;</string>
+         <string notr="true">font-size:11pt;</string>
         </property>
         <property name="text">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试的文本。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -88,6 +78,16 @@ QGroupBox{
         </property>
         <property name="textInteractionFlags">
          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_pluginName_A">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;所属插件：&lt;a href=&quot;测试的文本&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;测试的文本&lt;/span&gt;&lt;/a&gt; 【某插件名称】&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

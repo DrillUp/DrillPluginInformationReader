@@ -42,7 +42,7 @@ void P_DesignTip_Cell::linkClicked_plugin(QString data){
 void P_DesignTip_Cell::setData(C_DesignTip_Cell data){
 
 	// > 所属插件 标签文本
-	QString plugin_text = "<p>所属插件：<a href=\"";
+	QString plugin_text = "<p style=\"color:#999;\">所属插件：<a href=\"";
 	plugin_text.append(data.plugin_name);
 	plugin_text.append("\"><span style=\"text-decoration: underline; color:#0000ff; \">");
 	plugin_text.append(data.plugin_name);
