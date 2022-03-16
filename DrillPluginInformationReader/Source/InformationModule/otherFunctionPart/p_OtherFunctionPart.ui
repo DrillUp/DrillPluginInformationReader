@@ -136,19 +136,10 @@ QPushButton:hover{
             </property>
            </spacer>
           </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBox_2">
-         <property name="title">
-          <string>其它功能</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0">
-           <widget class="QToolButton" name="toolButton_showUnusedPlugin_3">
+          <item row="1" column="0">
+           <widget class="QToolButton" name="toolButton_showUnusedPlugin">
             <property name="text">
-             <string>显示所有未启用的插件</string>
+             <string>清理未使用的插件</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">
@@ -159,6 +150,15 @@ QPushButton:hover{
             </property>
            </widget>
           </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>其它功能</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="1">
            <spacer name="horizontalSpacer_2">
             <property name="orientation">

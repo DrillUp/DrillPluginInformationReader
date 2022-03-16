@@ -65,6 +65,18 @@ C_ScriptHelpDetail* S_InformationDataContainer::getHelpDetail(QString pluginName
 	return this->getAnnotation(pluginName).getScriptHelpDetail();
 }
 
+/*-------------------------------------------------
+		数据 - 删除插件数据
+*/
+void S_InformationDataContainer::removeAnnotation(QStringList pluginName_list){
+	for (int i = this->data_AnnotationTank.count()-1; i >= 0; i--){
+		C_ScriptAnnotation data = this->data_AnnotationTank.at(i);
+		if (pluginName_list.contains( data.getName() )){
+			this->data_AnnotationTank.removeAt(i);
+		}
+	}
+}
+
 
 /*-------------------------------------------------
 		读取 - 读取全部完整数据（plugins文件夹下所有插件）
