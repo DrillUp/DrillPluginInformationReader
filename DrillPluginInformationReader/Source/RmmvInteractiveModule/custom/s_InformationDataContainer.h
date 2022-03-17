@@ -38,6 +38,10 @@ class S_InformationDataContainer : public QObject
 										//		【说明】：没有则返回空指针。
 		C_ScriptHelpDetail* getHelpDetail(QString pluginName);
 
+										//数据 - 删除插件数据
+										//		【说明】：注意，此操作为特殊操作。
+		void removeAnnotation(QStringList pluginName_list);
+
 
 	//-----------------------------------
 	//----读取

@@ -25,6 +25,8 @@ class P_OtherFunctionPart : public QWidget
 	//-----------------------------------
 	//----控件
 	public slots:
+										//控件 - 选择 清理未使用的插件
+		void btn_PluginBatchDelete();
 										//控件 - 选择 灵感生成器
 		void btn_DesignTipGenerator();
 	signals: 
