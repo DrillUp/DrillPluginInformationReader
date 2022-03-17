@@ -42,7 +42,7 @@ P_OtherFunctionPart::~P_OtherFunctionPart(){
 		控件 - 选择 清理未使用的插件
 */
 void P_OtherFunctionPart::btn_PluginBatchDelete(){
-	W_PluginBatchDeletePart d;
+	W_PluginBatchDeletePart d(this);
 	d.exec();
 }
 /*-------------------------------------------------

@@ -642,9 +642,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_PluginBatchDeletePart.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.cpp">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\w_PluginBatchDeletePart.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
     </ClCompile>
@@ -653,6 +650,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_w_PluginBatchDeletePart.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1030,11 +1030,11 @@
     <ClInclude Include="GeneratedFiles\ui_p_PluginBatchDeletePart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.h">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_PluginBatchDeletePart.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.h">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

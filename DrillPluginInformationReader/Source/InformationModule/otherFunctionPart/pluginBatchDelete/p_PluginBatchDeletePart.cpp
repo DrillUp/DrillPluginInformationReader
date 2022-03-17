@@ -47,7 +47,7 @@ P_PluginBatchDeletePart::~P_PluginBatchDeletePart(){
 void P_PluginBatchDeletePart::refreshTable(){
 
 	this->m_table->horizontalHeader()->resizeSection(0, 80);
-	this->m_table->horizontalHeader()->resizeSection(1, 140);
+	this->m_table->horizontalHeader()->resizeSection(1, 160);
 	this->m_table->horizontalHeader()->resizeSection(2, 110);
 	this->m_table->horizontalHeader()->resizeSection(3, 80);
 	this->m_table->horizontalHeader()->resizeSection(4, 220);
