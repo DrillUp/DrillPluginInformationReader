@@ -86,7 +86,7 @@ void S_PluginDataContainer::op_remove(C_PluginData* data){
 void S_PluginDataContainer::loadPluginData(QString data_context){
 	QList<C_PluginData*> data_list = this->readPluginData(data_context);
 	this->data_PluginDataTank = data_list;
-	emit pluginDataReloaded();
+	emit pluginDataReloaded();		//数据已读取（信号）
 }
 /*-------------------------------------------------
 		读取 - 读取数据（流程，不发信号）
@@ -94,6 +94,12 @@ void S_PluginDataContainer::loadPluginData(QString data_context){
 void S_PluginDataContainer::loadPluginDataNoSignal(QString data_context){
 	QList<C_PluginData*> data_list = this->readPluginData(data_context);
 	this->data_PluginDataTank = data_list;
+}
+/*-------------------------------------------------
+		读取 - 一次性读取数据（流程，不纳入容器）
+*/
+QList<C_PluginData*> S_PluginDataContainer::loadPluginDataDirectly(QString data_context){
+	return this->readPluginData(data_context);
 }
 /*-------------------------------------------------
 		读取 - 读取数据（私有方法）

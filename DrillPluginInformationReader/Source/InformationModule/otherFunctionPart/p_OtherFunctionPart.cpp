@@ -2,6 +2,7 @@
 #include "p_OtherFunctionPart.h"
 
 #include "Source/InformationModule/otherFunctionPart/pluginBatchDelete/w_PluginBatchDeletePart.h"
+#include "Source/InformationModule/otherFunctionPart/pluginBatchUpdate/w_PluginBatchUpdatePart.h"
 #include "Source/Utils/common/TTool.h"
 
 /*
@@ -29,8 +30,9 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 
 	//-----------------------------------
 	//----事件绑定
-	connect(ui.toolButton_showUnusedPlugin, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchDelete);
 	connect(ui.toolButton_showDesignTip, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_DesignTipGenerator);
+	connect(ui.toolButton_showDeletePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchDelete);
+	connect(ui.toolButton_showUpdatePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchUpdate);
 
 }
 
@@ -39,6 +41,12 @@ P_OtherFunctionPart::~P_OtherFunctionPart(){
 
 
 /*-------------------------------------------------
+		控件 - 选择 灵感生成器
+*/
+void P_OtherFunctionPart::btn_DesignTipGenerator(){
+	emit selected_DesignTipGenerator();
+}
+/*-------------------------------------------------
 		控件 - 选择 清理未使用的插件
 */
 void P_OtherFunctionPart::btn_PluginBatchDelete(){
@@ -46,10 +54,11 @@ void P_OtherFunctionPart::btn_PluginBatchDelete(){
 	d.exec();
 }
 /*-------------------------------------------------
-		控件 - 选择 灵感生成器
+		控件 - 选择 插件更新器
 */
-void P_OtherFunctionPart::btn_DesignTipGenerator(){
-	emit selected_DesignTipGenerator();
+void P_OtherFunctionPart::btn_PluginBatchUpdate(){
+	W_PluginBatchUpdatePart d(this);
+	d.exec();
 }
 
 /*-------------------------------------------------

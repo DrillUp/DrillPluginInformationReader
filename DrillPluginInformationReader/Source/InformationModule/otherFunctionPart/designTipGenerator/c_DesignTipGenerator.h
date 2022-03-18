@@ -21,14 +21,16 @@ class C_DesignTipGenerator{
 	protected:
 		QList<C_DesignTip_Cell> tip_list;	//插件灵感集合
 	public:
-								//数据 - 空判断
-		bool isNull();
+								//数据 - 集合初始化
+		void initData();
+	public:
 								//数据 - 获取单条
 		C_DesignTip_Cell getCellByIndex(int index);
 								//数据 - 获取数量
 		int count();
-	public:
-								//数据 - 集合初始化
-		void initData();
+								//数据 - 判断是否已含某内容（防止多个插件的设计内容重复）
+		bool hasContext(QString context);
+								//数据 - 空判断
+		bool isNull();
 
 };

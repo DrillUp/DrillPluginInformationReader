@@ -205,8 +205,11 @@
     <Filter Include="源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器">
       <UniqueIdentifier>{d4b5c2d0-7667-49fa-ae63-2c08907346fd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件">
+    <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\插件清理器">
       <UniqueIdentifier>{a6f88779-9477-4d48-88c6-263d4328b122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\插件更新器">
+      <UniqueIdentifier>{6cc85751-6032-4840-8603-d8bfe827f0a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -634,7 +637,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\p_PluginBatchDeletePart.cpp">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_PluginBatchDeletePart.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -643,7 +646,7 @@
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\w_PluginBatchDeletePart.cpp">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginBatchDeletePart.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -653,6 +656,24 @@
     </ClCompile>
     <ClCompile Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.cpp">
       <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\p_PluginBatchUpdatePart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_PluginBatchUpdatePart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_PluginBatchUpdatePart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\w_PluginBatchUpdatePart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_PluginBatchUpdatePart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_PluginBatchUpdatePart.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -861,16 +882,28 @@
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\设计灵感生成器\私有类</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\p_PluginBatchDeletePart.h">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\p_PluginBatchDeletePart.ui">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\w_PluginBatchDeletePart.h">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchDelete\w_PluginBatchDeletePart.ui">
-      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\清理未使用的插件</Filter>
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件清理器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\p_PluginBatchUpdatePart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\p_PluginBatchUpdatePart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\w_PluginBatchUpdatePart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\w_PluginBatchUpdatePart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1035,6 +1068,12 @@
     </ClInclude>
     <ClInclude Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.h">
       <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_PluginBatchUpdatePart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_PluginBatchUpdatePart.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -35,9 +35,6 @@ class S_PluginDataContainer : public QObject
 										//		【说明】：获取数据前，要确保你之前 手动 执行了read读取，不然获取不到数据。
 										//		【说明】：没有则返回空指针。
 		C_PluginData* getPluginData(QString pluginName);
-	signals:
-										//数据 - 数据变化（信号）
-		void pluginDataReloaded();
 
 	//-----------------------------------
 	//----操作
@@ -57,10 +54,16 @@ class S_PluginDataContainer : public QObject
 		void loadPluginData(QString data_context);
 										//读取 - 读取数据（plugins.js文本，不发信号）
 		void loadPluginDataNoSignal(QString data_context);
+										//读取 - 一次性读取数据（plugins.js文本，读取后直接返回列表，不纳入容器）
+		QList<C_PluginData*> loadPluginDataDirectly(QString data_context);
+	signals:
+										//读取 - 数据已读取（信号）
+		void pluginDataReloaded();
 	private:
 										//读取 - 读取数据（私有）
 		QList<C_PluginData*> readPluginData(QString data_context);
 		
+
 	//-----------------------------------
 	//----写入
 	public:
