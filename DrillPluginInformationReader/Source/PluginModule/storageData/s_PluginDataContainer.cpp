@@ -5,17 +5,25 @@
 /*
 -----==========================================================-----
 		类：		插件数据 容器.cpp
-		版本：		v1.02
+		版本：		v1.04
 		作者：		drill_up
 		所属模块：	插件模块
 		功能：		管理plugin.js中的全部插件配置数据。
 					【封装的容器结构，注意接收读取的信号】
 		
 		使用方法：
-				>初始化：
-					S_PluginDataContainer::getInstance()->resetPluginDataFromText( data_context );
-					S_PluginDataContainer::getInstance()->getPluginData();
-				
+				> 读取（用容器）：
+					S_PluginDataContainer::getInstance()->loadPluginData( data_context );
+					C_PluginData* data = S_PluginDataContainer::getInstance()->getPluginData( plugin_name );	//单个获取
+					QList<C_PluginData*> data_list = S_PluginDataContainer::getInstance()->getPluginDataTank();	//全部获取
+				> 写入（用容器）：
+					S_PluginDataContainer::getInstance()->loadPluginData( data_context );
+					S_PluginDataContainer::getInstance()->op_add( data ); //添加、修改、删除 操作
+					QString data_context = S_PluginDataContainer::getInstance()->writePluginData();
+				> 读取（直接法）：
+					QList<C_PluginData*> data_list = S_PluginDataContainer::getInstance()->loadPluginDataDirectly( data_context );
+				> 写入（直接法）：
+					QString data_context = S_PluginDataContainer::getInstance()->writePluginDataDirectly( data_list );
 -----==========================================================-----
 */
 S_PluginDataContainer::S_PluginDataContainer(){
