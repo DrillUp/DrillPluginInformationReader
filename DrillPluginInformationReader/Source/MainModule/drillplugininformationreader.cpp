@@ -146,7 +146,7 @@ void DrillPluginInformationReader::openAbout() {
 		工程 - 选择工程
 */
 void DrillPluginInformationReader::btn_selectProject(){
-	C_RmmvProjectData temp = this->callRmmvSelect();
+	C_RmmvProjectData temp = C_RmmvProjectData::callRmmvSelectDialog();
 	if (temp.isNull()){ return; }
 
 	this->m_temp_data = temp;
@@ -192,35 +192,6 @@ void DrillPluginInformationReader::btn_importProject(){
 	this->m_tip->close();
 }
 
-/*-------------------------------------------------
-		工程 - 选择rmmv工程
-*/
-C_RmmvProjectData DrillPluginInformationReader::callRmmvSelect(){
-	QFileDialog fd;
-	fd.setWindowTitle("打开rmmv工程");
-	fd.setAcceptMode(QFileDialog::AcceptOpen);		//对话框类型（打开/保存）（保存会有文件覆盖提示）
-	fd.setDirectory(".");							//默认目录
-	fd.setNameFilters(QStringList()					//文件格式
-		<< "rmmv工程文件(*.rpgproject)"
-		);
-	fd.setViewMode(QFileDialog::Detail);
-
-	if (fd.exec() == QDialog::Accepted) {
-		if (fd.selectedFiles().empty()) {
-			//（没有选择文件进入的情况）
-			return C_RmmvProjectData();
-		}
-		QString file_path = fd.selectedFiles().at(0);
-
-		C_RmmvProjectData data = C_RmmvProjectData();
-		data.initFromFile(file_path);
-		return data;
-	}
-	else {
-		//（点击关闭或者取消操作的情况）
-		return C_RmmvProjectData();
-	}
-}
 
 
 /* --------------------------------------------------------------

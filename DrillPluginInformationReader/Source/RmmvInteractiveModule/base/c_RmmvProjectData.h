@@ -24,6 +24,7 @@ class C_RmmvProjectData{
 		QString path;				//工程根路径
 	public:
 												//数据 - 解析工程文件
+												//		【说明】：文件必须是Game.rpgproject文件的全路径。
 		void initFromFile(QString full_filePath);
 												//数据 - 获取工程名称
 												//		【说明】：index.html中的完整工程名称。
@@ -35,7 +36,13 @@ class C_RmmvProjectData{
 		QString getRootPath();
 												//数据 - 判断工程是否存在
 		bool isProjectExist();
-	
+
+	//-----------------------------------
+	//----快捷操作
+	public:
+												//快捷操作 - 启用文件选择 获取该类数据
+		static C_RmmvProjectData callRmmvSelectDialog();
+
 	//-----------------------------------
 	//----类属性
 	public:

@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include "ui_P_PluginBatchUpdatePart.h"
 
+#include "Source/RmmvInteractiveModule/base/c_RmmvProjectData.h"
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 
@@ -28,29 +29,42 @@ class P_PluginBatchUpdatePart : public QWidget
 	//-----------------------------------
 	//----工程选择
 	public:
+		C_RmmvProjectData m_cur_project;
+		C_RmmvProjectData m_tar_project;
 		QList<C_PluginData*> m_curPluginData;
 		QList<C_PluginData*> m_tarPluginData;
 	public slots: 
+										//控件 - 主工程 - 填入当前工程
+		void btn_cur_fillCur();
+										//控件 - 主工程 - 选择
+		void btn_cur_select();
+										//控件 - 目标工程 - 填入当前工程
+		void btn_tar_fillCur();
+										//控件 - 目标工程 - 选择
+		void btn_tar_select();
 										//控件 - 下一步
 		void btn_nextStep();
 										//控件 - 上一步
 		void btn_lastStep();
+										//控件 - 重刷插件数据
+		bool reloadPluginData();
 
 	//-----------------------------------
 	//----控件
 	public:
 		QTableWidget* m_table;
 		QList<QCheckBox*> m_checkBoxList;
-		QList<C_ScriptAnnotation> m_allSearchedData;	//当前数据（文件夹插件）
 	public slots: 
 										//控件 - 初始化列表
 		void refreshTable();
 										//控件 - 添加一行
-		void setOneRow_configedPlugin(int row, QString pluginName);
+		void setOneRow_configedPlugin(int row, C_PluginData* cur_data, C_PluginData* tar_data);
 										//控件 - 全选
 		void btn_selectAll();
 										//控件 - 取消全选
 		void btn_deselectAll();
+										//控件 - 只选可升级项
+		void btn_selectLevelUp();
 										//控件 - 执行生成
 		void btn_execute();
 

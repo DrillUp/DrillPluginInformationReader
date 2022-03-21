@@ -3,6 +3,7 @@
 
 #include "helpDetail/c_ScriptHelpDetail.h"
 #include "scriptDictionary/c_ScriptDictionary.h"
+#include "Source/Utils/common/TTool.h"
 
 /*
 -----==========================================================-----
@@ -92,23 +93,22 @@ void C_ScriptAnnotation::initPlugindesc_data(){
 }
 //数据 - 获取版本（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_version(){
-	if (this->temp_inited == false){
-		this->initPlugindesc_data();
-	}
+	if (this->temp_inited == false){ this->initPlugindesc_data(); }
 	return this->temp_version;
+}
+double C_ScriptAnnotation::getPlugindesc_versionNum(){
+	if (this->temp_inited == false){ this->initPlugindesc_data(); }
+	if (this->temp_version.isEmpty()){ return -1; }
+	return TTool::_to_double_(this->temp_version);
 }
 //数据 - 获取类型（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_type(){
-	if (this->temp_inited == false){
-		this->initPlugindesc_data();
-	}
+	if (this->temp_inited == false){ this->initPlugindesc_data(); }
 	return this->temp_type;
 }
 //数据 - 获取中文名（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_name(){
-	if (this->temp_inited == false){
-		this->initPlugindesc_data();
-	}
+	if (this->temp_inited == false){ this->initPlugindesc_data(); }
 	return this->temp_name;
 }
 

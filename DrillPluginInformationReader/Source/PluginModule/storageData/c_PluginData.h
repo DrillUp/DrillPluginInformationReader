@@ -26,12 +26,32 @@ class C_PluginData{
 		QJsonObject parameters;			//参数
 	
 	//-----------------------------------
+	//----临时截断数据
+	protected:
+		bool temp_inited;				//标记
+		QString temp_version;			//版本(调取时才初始化）
+		QString temp_type;				//类型（调取时才初始化）
+		QString temp_name;				//中文名（调取时才初始化）
+	public:
+										//数据 - 初始化截取段
+		void initDescription_data();
+										//数据 - 获取版本（插件描述 截取段）
+		QString getDescription_version();
+		double getDescription_versionNum();
+										//数据 - 获取类型（插件描述 截取段）
+		QString getDescription_type();
+										//数据 - 获取中文名（插件描述 截取段）
+		QString getDescription_name();
+
+	//-----------------------------------
 	//----类属性
 	public:
-												//实体类 -> QJsonObject
+										//空判断
+		bool isNull();	
+										//实体类 -> QJsonObject
 		QJsonObject getJsonObject();
-												//QJsonObject -> 实体类
+										//QJsonObject -> 实体类
 		void setJsonObject(QJsonObject obj);
-												//运算符重载
+										//运算符重载
 		const bool operator== (const C_PluginData& a)const;
 };

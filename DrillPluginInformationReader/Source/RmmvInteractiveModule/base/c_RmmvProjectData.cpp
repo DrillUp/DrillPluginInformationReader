@@ -76,6 +76,38 @@ bool C_RmmvProjectData::isProjectExist(){
 	return true;
 }
 
+
+/*-------------------------------------------------
+		快捷操作 - 启用文件选择 获取该类数据
+*/
+C_RmmvProjectData C_RmmvProjectData::callRmmvSelectDialog(){
+	QFileDialog fd;
+	fd.setWindowTitle("打开rmmv工程");
+	fd.setAcceptMode(QFileDialog::AcceptOpen);		//对话框类型（打开/保存）
+	fd.setDirectory(".");							//默认目录
+	fd.setNameFilters(QStringList()					//文件格式
+		<< "rmmv工程文件(*.rpgproject)"
+		);
+	fd.setViewMode(QFileDialog::Detail);
+
+	if (fd.exec() == QDialog::Accepted) {
+		if (fd.selectedFiles().empty()) {
+			//（没有选择文件进入的情况）
+			return C_RmmvProjectData();
+		}
+		QString file_path = fd.selectedFiles().at(0);
+
+		C_RmmvProjectData data = C_RmmvProjectData();
+		data.initFromFile(file_path);
+		return data;
+	
+	}else {
+		//（点击关闭或者取消操作的情况）
+		return C_RmmvProjectData();
+	}
+}
+
+
 /*-------------------------------------------------
 		空判断
 */
@@ -86,7 +118,7 @@ bool C_RmmvProjectData::isNull(){
 		运算符重载
 */
 const bool C_RmmvProjectData::operator== (const C_RmmvProjectData& a)const {
-	return this->name == a.name;
+	return this->path == a.path;
 }
 /*-------------------------------------------------
 		实体类 -> QJsonObject

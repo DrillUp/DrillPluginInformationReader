@@ -61,7 +61,7 @@ class S_PluginDataContainer : public QObject
 		void pluginDataReloaded();
 	private:
 										//读取 - 读取数据（私有）
-		QList<C_PluginData*> readPluginData(QString data_context);
+		QList<C_PluginData*> readPluginDataPrivate(QString data_context);
 		
 
 	//-----------------------------------
@@ -69,7 +69,11 @@ class S_PluginDataContainer : public QObject
 	public:
 										//写入 - 写入数据（plugins.js文本）
 		QString writePluginData();
-
+										//写入 - 一次性写入数据（plugins.js文本，不包括容器的数据）
+		QString writePluginDataDirectly(QList<C_PluginData*> data_list);
+	private:
+										//写入 - 写入数据（私有）
+		QString writePluginDataPrivate(QList<C_PluginData*> data_list);
 
 
 };

@@ -54,8 +54,6 @@ class DrillPluginInformationReader : public QMainWindow
 		void btn_selectProject();
 								//工程 - 导入工程
 		void btn_importProject();
-								//工程 - 选择rmmv工程
-		C_RmmvProjectData callRmmvSelect();
 
 
 	//-----------------------------------

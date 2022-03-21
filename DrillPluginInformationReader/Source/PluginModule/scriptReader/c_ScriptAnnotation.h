@@ -68,6 +68,7 @@ class C_ScriptAnnotation{
 		void initPlugindesc_data();
 										//数据 - 获取版本（插件描述 截取段）
 		QString getPlugindesc_version();
+		double getPlugindesc_versionNum();
 										//数据 - 获取类型（插件描述 截取段）
 		QString getPlugindesc_type();
 										//数据 - 获取中文名（插件描述 截取段）
