@@ -104,9 +104,11 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 		// > 指令全文
 		QStringList tag_list = c_group.getGrid_TagList();
 		QStringList command_list = c_group.getGrid_CommandList();
+		QStringList note_list = c_group.getGrid_NoteList();
 		for (int j = 0; j < tag_list.count(); j++){
 			QString tag = tag_list.at(j);
 			QString command = command_list.at(j);
+			QString note = note_list.at(j);
 
 			// > 指令 - 标签头
 			QLabel* label_tag = new QLabel(tag, group);
@@ -119,6 +121,7 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 
 			// > 指令 - 单行指令
 			if (command != ""){
+				command = command.replace("<", "&lt;");
 				QLabel* label_command = new QLabel(command, group);
 				label_command->setWordWrap(true);
 				label_command->setTextInteractionFlags(label_command->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
@@ -145,7 +148,16 @@ void P_ScriptHelp_Command::setData(C_ScriptHelp_Command* data){
 					this->m_btnTank.append(btn_copy);
 				}
 			}
+			cur_row += 1;
 
+			// > 附加注释情况
+			if (note != ""){
+				QLabel* label_note = new QLabel(note, group);
+				label_note->setAlignment(Qt::AlignLeading | Qt::AlignLeft | Qt::AlignTop);
+				label_note->setWordWrap(true);
+				layout->addWidget(label_note, cur_row, 1, 1, 1);
+				this->m_labelTank.append(label_note);
+			}
 			cur_row += 1;
 		}
 

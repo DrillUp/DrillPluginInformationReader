@@ -6,6 +6,20 @@
 
 /*
 -----==========================================================-----
+		类：		帮助数据-指令 原子类.cpp
+		所属模块：	插件模块
+		功能：		帮助信息中单条指令的数据类。
+-----==========================================================-----
+*/
+C_ScriptHelp_CommandCell::C_ScriptHelp_CommandCell(){
+	this->type = "";
+	this->command = "";
+	this->note = "";
+}
+C_ScriptHelp_CommandCell::~C_ScriptHelp_CommandCell(){
+}
+/*
+-----==========================================================-----
 		类：		帮助数据-指令 数据类.cpp
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
@@ -14,22 +28,26 @@
 C_ScriptHelp_CommandGroup::C_ScriptHelp_CommandGroup(){
 	this->group_name = "";						//组名称
 	this->is_important = false;					//是否为激活条件
-	this->context_note = QStringList();			//内容列表
 
-	this->context_command = QString();					//指令全文
-	this->command_PluginCommand = QStringList();		//指令 - 插件指令
-	this->command_PluginCommand_old = QStringList();	//指令 - 插件指令(旧)
-	this->command_EventComment = QStringList();			//指令 - 事件注释
-	this->command_EventComment_old = QStringList();		//指令 - 事件注释(旧)
-	this->command_MapNote = QStringList();				//指令 - 地图备注
-	this->command_ActorNote = QStringList();			//指令 - 角色注释
-	this->command_EnemyNote = QStringList();			//指令 - 敌人注释
-	this->command_StateNote = QStringList();			//指令 - 状态注释
-	this->command_ItemNote = QStringList();				//指令 - 物品/武器/护甲注释
-	this->command_SkillNote = QStringList();			//指令 - 技能注释
-	this->command_MoveRoute = QStringList();			//指令 - 移动路线指令
-	this->command_WindowChar = QStringList();			//指令 - 窗口字符
-	this->command_Other = QStringList();				//指令 - 其它
+	this->context_note = QStringList();			//内容列表
+	this->context_command;						//指令全文
+	this->context_command_old;					//旧指令全文
+
+	this->command_Available.clear();			//指令 - 有效指令
+	this->command_Other.clear();				//指令 - 其它
+
+	this->command_PluginCommand.clear();		//指令 - 插件指令
+	this->command_PluginCommand_old.clear();	//指令 - 插件指令(旧)
+	this->command_EventComment.clear();			//指令 - 事件注释
+	this->command_EventComment_old.clear();		//指令 - 事件注释(旧)
+	this->command_MapNote.clear();				//指令 - 地图备注
+	this->command_ActorNote.clear();			//指令 - 角色注释
+	this->command_EnemyNote.clear();			//指令 - 敌人注释
+	this->command_StateNote.clear();			//指令 - 状态注释
+	this->command_ItemNote.clear();				//指令 - 物品/武器/护甲注释
+	this->command_SkillNote.clear();			//指令 - 技能注释
+	this->command_MoveRoute.clear();			//指令 - 移动路线指令
+	this->command_WindowChar.clear();			//指令 - 窗口字符
 }
 C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
 }
@@ -39,89 +57,130 @@ C_ScriptHelp_CommandGroup::~C_ScriptHelp_CommandGroup(){
 */
 void C_ScriptHelp_CommandGroup::addOneRowCommand(QString command_row){
 	if (command_row.isEmpty()){ return; }
-	if (command_row.contains(this->commandRe()) == false){ return; }
+	if (command_row.contains(this->commandRe_tag()) == false){ return; }
+	command_row = command_row.trimmed();
 
+	// > 参数解析
 	int index = command_row.indexOf(QRegExp("[:：]"));
 	QString type_str = command_row.mid(0, index);
-	QString commend_str = command_row.mid(index + 1);
+	QString command_str = command_row.mid(index + 1);
+	QStringList command_piece = command_str.split(this->commandRe_note());
+	if (command_piece.count() == 0){ return; }
+
+	// > 创建指令数据
+	C_ScriptHelp_CommandCell cell;
+	cell.command = command_piece.first();
+	command_piece.pop_front();
+	cell.note = command_piece.join(" ");
+
+	// > 添加到容器
 	if (type_str == "插件指令"){
-		this->command_PluginCommand.append(commend_str);
+		cell.type = "插件指令";
+		this->command_Available.append(cell);
+		this->command_PluginCommand.append(cell);
 	}else if (type_str == "事件注释"){
-		this->command_EventComment.append(commend_str);
+		cell.type = "事件注释";
+		this->command_Available.append(cell);
+		this->command_EventComment.append(cell);
 	}else if (type_str == "地图备注"){
-		this->command_MapNote.append(commend_str);
+		cell.type = "地图备注";
+		this->command_Available.append(cell);
+		this->command_MapNote.append(cell);
 	}else if (type_str == "角色注释" || type_str == "角色备注"){
-		this->command_ActorNote.append(commend_str);
+		cell.type = "角色注释";
+		this->command_Available.append(cell);
+		this->command_ActorNote.append(cell);
 	}else if (type_str == "敌人注释" || type_str == "敌人备注"){
-		this->command_EnemyNote.append(commend_str);
+		cell.type = "敌人注释";
+		this->command_Available.append(cell);
+		this->command_EnemyNote.append(cell);
 	}else if (type_str == "状态注释"){
-		this->command_StateNote.append(commend_str);
+		cell.type = "状态注释";
+		this->command_Available.append(cell);
+		this->command_StateNote.append(cell);
 	}else if (type_str == "物品注释" || type_str == "物品备注" || 
 			  type_str == "道具注释" || type_str == "道具备注" || 
 			  type_str == "武器注释" || type_str == "武器备注" || 
 			  type_str == "护甲注释" || type_str == "护甲备注" || 
 			  type_str == "防具注释" || type_str == "防具备注" ){
-		this->command_ItemNote.append(commend_str);
+		cell.type = "物品/武器/护甲注释";
+		this->command_Available.append(cell);
+		this->command_ItemNote.append(cell);
 	}else if (type_str == "技能注释" || type_str == "技能备注"){
-		this->command_SkillNote.append(commend_str);
+		cell.type = "技能注释";
+		this->command_Available.append(cell);
+		this->command_SkillNote.append(cell);
 	}else if (type_str == "移动路线指令" || type_str == "移动路线脚本"){
-		this->command_MoveRoute.append(commend_str);
+		cell.type = "移动路线指令";
+		this->command_Available.append(cell);
+		this->command_MoveRoute.append(cell);
 	}else if (type_str == "窗口字符"){
-		this->command_WindowChar.append(commend_str);
+		cell.type = "窗口字符";
+		this->command_Available.append(cell);
+		this->command_WindowChar.append(cell);
 	}else if (type_str == "插件指令(旧)" || type_str == "插件指令（旧）"){
-		this->command_PluginCommand_old.append(commend_str);
+		cell.type = "插件指令(旧)";
+		this->command_Available.append(cell);
+		this->command_PluginCommand_old.append(cell);
 	}else if (type_str == "事件注释(旧)" || type_str == "事件注释（旧）"){
-		this->command_EventComment_old.append(commend_str);
+		cell.type = "事件注释(旧)";
+		this->command_Available.append(cell);
+		this->command_EventComment_old.append(cell);
 	}else{
-		this->command_Other.append(commend_str);
+		cell.type = type_str;
+		this->command_Other.append(cell);
 	}
 }
 
 /*-------------------------------------------------
 		搜索 - 获取全部指令
 */
-QStringList C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
-	return QStringList()
-		<< this->command_PluginCommand
-		<< this->command_PluginCommand_old
-		<< this->command_EventComment
-		<< this->command_EventComment_old
-		<< this->command_MapNote
-		<< this->command_ActorNote
-		<< this->command_EnemyNote
-		<< this->command_StateNote
-		<< this->command_ItemNote
-		<< this->command_SkillNote
-		<< this->command_MoveRoute
-		<< this->command_WindowChar;
+QList<C_ScriptHelp_CommandCell> C_ScriptHelp_CommandGroup::getAllAvailableCommand(){
+	return this->command_Available;
+}
+/*-------------------------------------------------
+		搜索 - 从对象列表中，获取指令字符串列表
+*/
+QStringList C_ScriptHelp_CommandGroup::getCommandListByObjList(QList<C_ScriptHelp_CommandCell> cell_list){
+	QStringList result;
+	for (int i = 0; i < cell_list.count(); i++){
+		result.append(cell_list.at(i).command);
+	}
+	return result;
 }
 /*-------------------------------------------------
 		搜索 - 获取全部指令
 */
-QStringList C_ScriptHelp_CommandGroup::getAllCommand(){
+QList<C_ScriptHelp_CommandCell> C_ScriptHelp_CommandGroup::getAllCommand(){
 	return this->getAllAvailableCommand() << this->command_Other;
 }
 /*-------------------------------------------------
 		搜索 - 包含指定指令关键字
 */
 bool C_ScriptHelp_CommandGroup::hasCommandKeyWord(QString keyWord){
-	QStringList data_list = this->getAllAvailableCommand();
+	QList<C_ScriptHelp_CommandCell> data_list = this->getAllAvailableCommand();
 	if (keyWord == ""){
 		return data_list.count() > 0;
 	}
 	for (int j = 0; j < data_list.count(); j++){
-		QString data = data_list.at(j);
-		if (data.contains(keyWord)){
+		C_ScriptHelp_CommandCell data = data_list.at(j);
+		if (data.command.contains(keyWord)){
 			return true;
 		}
 	}
 	return false;
 }
 /*-------------------------------------------------
-		搜索 - 指令的正则规则
+		搜索 - 指令的正则规则（类型标签）
 */
-QRegExp C_ScriptHelp_CommandGroup::commandRe(){
+QRegExp C_ScriptHelp_CommandGroup::commandRe_tag(){
 	return QRegExp("^[^ ]{4,7}[:：]");		//（正则：4到7个字以内且含冒号的，算作一条指令行，比如 "插件指令(旧)：" ）
+}
+/*-------------------------------------------------
+		搜索 - 指令的正则规则（附加注释）
+*/
+QRegExp C_ScriptHelp_CommandGroup::commandRe_note(){
+	return QRegExp("[ \t]{3,}");			//（正则：指令中超过三个空格，视作为分成两段，一段指令一段注释。）
 }
 /*-------------------------------------------------
 		数据 - 获取名称
@@ -145,7 +204,7 @@ QString C_ScriptHelp_CommandGroup::getGroupFullName(){
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_TagList(){
 	QStringList data_list = this->context_command.split("\n");
-	QRegExp re = this->commandRe();
+	QRegExp re = this->commandRe_tag();
 	QStringList result_list = QStringList();
 	for (int i = 0; i < data_list.count(); i++){
 		QString data = data_list.at(i);
@@ -163,15 +222,40 @@ QStringList C_ScriptHelp_CommandGroup::getGrid_TagList(){
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_CommandList(){
 	QStringList data_list = this->context_command.split("\n");
-	QRegExp re = this->commandRe();
+	QRegExp re = this->commandRe_tag();
+	QRegExp re2 = this->commandRe_note();
 	QStringList result_list = QStringList();
 	for (int i = 0; i < data_list.count(); i++){
-		QString data = data_list.at(i);
+		QString data = data_list.at(i).trimmed();
+		int pos = re.indexIn(data);
+		int pos2 = re2.indexIn(data);
+		if (pos != -1){
+			int start_index = pos + re.cap(0).length();
+			if (pos2 != -1){
+				result_list << data.mid(start_index, pos2 - start_index);	//（有附加注释时，截断一下）
+			}else{
+				result_list << data.mid(start_index);
+			}
+		}else{
+			result_list << data;	//（若未成功读取，直接显示全部内容）
+		}
+	}
+	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 网格竖切 - 获取全部附加注释
+*/
+QStringList C_ScriptHelp_CommandGroup::getGrid_NoteList(){
+	QStringList data_list = this->context_command.split("\n");
+	QRegExp re = this->commandRe_note();
+	QStringList result_list = QStringList();
+	for (int i = 0; i < data_list.count(); i++){
+		QString data = data_list.at(i).trimmed();
 		int pos = re.indexIn(data);
 		if (pos != -1){
 			result_list << data.mid(pos + re.cap(0).length());
 		}else{
-			result_list << data;	//（若未成功读取，直接显示全部内容）
+			result_list << "";
 		}
 	}
 	return result_list;
@@ -181,7 +265,7 @@ QStringList C_ScriptHelp_CommandGroup::getGrid_CommandList(){
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_OldTagList(){
 	QStringList data_list = this->context_command_old.split("\n");
-	QRegExp re = this->commandRe();
+	QRegExp re = this->commandRe_tag();
 	QStringList result_list = QStringList();
 	for (int i = 1; i < data_list.count(); i++){	//（从第二行开始获取）
 		QString data = data_list.at(i);
@@ -199,7 +283,7 @@ QStringList C_ScriptHelp_CommandGroup::getGrid_OldTagList(){
 */
 QStringList C_ScriptHelp_CommandGroup::getGrid_OldCommandList(){
 	QStringList data_list = this->context_command_old.split("\n");
-	QRegExp re = this->commandRe();
+	QRegExp re = this->commandRe_tag();
 	QStringList result_list = QStringList();
 	for (int i = 1; i < data_list.count(); i++){	//（从第二行开始获取）
 		QString data = data_list.at(i);
@@ -244,7 +328,8 @@ QList<C_ScriptHelp_CommandGroup> C_ScriptHelp_Command::getGroupList(){
 QStringList C_ScriptHelp_Command::getAllCommand_PluginCommand(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_PluginCommand);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_PluginCommand));
 	}
 	return result_list;
 }
@@ -254,7 +339,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_PluginCommand(){
 QStringList C_ScriptHelp_Command::getAllCommand_PluginCommandOld(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_PluginCommand_old);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_PluginCommand_old));
 	}
 	return result_list;
 }
@@ -264,7 +350,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_PluginCommandOld(){
 QStringList C_ScriptHelp_Command::getAllCommand_EventComment(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_EventComment);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_EventComment));
 	}
 	return result_list;
 }
@@ -274,7 +361,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_EventComment(){
 QStringList C_ScriptHelp_Command::getAllCommand_EventCommentOld(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_EventComment_old);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_EventComment_old));
 	}
 	return result_list;
 }
@@ -284,7 +372,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_EventCommentOld(){
 QStringList C_ScriptHelp_Command::getAllCommand_MapNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_MapNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_MapNote));
 	}
 	return result_list;
 }
@@ -294,7 +383,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_MapNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_ActorNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_ActorNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_ActorNote));
 	}
 	return result_list;
 }
@@ -304,7 +394,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_ActorNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_EnemyNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_EnemyNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_EnemyNote));
 	}
 	return result_list;
 }
@@ -314,7 +405,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_EnemyNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_StateNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_StateNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_StateNote));
 	}
 	return result_list;
 }
@@ -324,7 +416,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_StateNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_ItemNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_ItemNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_ItemNote));
 	}
 	return result_list;
 }
@@ -334,7 +427,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_ItemNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_SkillNote(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_SkillNote);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_SkillNote));
 	}
 	return result_list;
 }
@@ -344,7 +438,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_SkillNote(){
 QStringList C_ScriptHelp_Command::getAllCommand_MoveRoute(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_MoveRoute);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_MoveRoute));
 	}
 	return result_list;
 }
@@ -354,7 +449,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_MoveRoute(){
 QStringList C_ScriptHelp_Command::getAllCommand_WindowChar(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_WindowChar);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_WindowChar));
 	}
 	return result_list;
 }
@@ -364,7 +460,8 @@ QStringList C_ScriptHelp_Command::getAllCommand_WindowChar(){
 QStringList C_ScriptHelp_Command::getAllCommand_Other(){
 	QStringList result_list = QStringList();
 	for (int i = 0; i < this->group_list.count(); i++){
-		result_list.append(this->group_list.at(i).command_Other);
+		C_ScriptHelp_CommandGroup group = this->group_list.at(i);
+		result_list.append(group.getCommandListByObjList(group.command_Other));
 	}
 	return result_list;
 }
@@ -519,7 +616,7 @@ void C_ScriptHelp_Command::readNextGroup(QString group_context, C_ScriptHelp_Doc
 	//（指令特殊规则： 3x4 或 2x2x2 这种单个组中出现了间隔性的 插件指令，【要显示指令之间间隔的行，将其换成横线】。 ）
 
 	// > 指令捕获
-	int i_command = group_reader.d_indexOf(group.commandRe());
+	int i_command = group_reader.d_indexOf(group.commandRe_tag());
 	int i_command_end = group_reader.d_indexOf(QRegExp("^[\\d]+[\\.。]"), i_command + 1);
 	int i_command_oldCommandEnd = group_reader.d_indexOf(this->getOldKeyword(), i_command_end);
 	if (i_command_end == -1 && i_command_oldCommandEnd != -1){	//（没有说明列表但有旧指令时）

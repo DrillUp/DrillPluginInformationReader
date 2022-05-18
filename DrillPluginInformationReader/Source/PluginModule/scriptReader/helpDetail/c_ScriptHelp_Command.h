@@ -5,6 +5,24 @@
 
 /*
 -----==========================================================-----
+		类：		帮助数据-指令集 原子类.h
+		所属模块：	插件模块
+		功能：		帮助信息中单条指令的数据类。
+-----==========================================================-----
+*/
+class C_ScriptHelp_CommandCell{
+
+	public:
+		C_ScriptHelp_CommandCell();
+		~C_ScriptHelp_CommandCell();
+		
+	public:
+		QString type;		//指令类型
+		QString command;	//指令内容
+		QString note;		//指令后附加注释
+};
+/*
+-----==========================================================-----
 		类：		帮助数据-指令集 数据类.h
 		所属模块：	插件模块
 		功能：		帮助信息中的章节。
@@ -33,11 +51,16 @@ class C_ScriptHelp_CommandGroup{
 	public:
 									//数据 - 获取名称
 		QString getGroupFullName();
+									//数据 - 从对象列表中，获取指令字符串列表
+		QStringList getCommandListByObjList(QList<C_ScriptHelp_CommandCell> cell_list);
+
 									//数据 - 网格竖切 - 获取全部标签
 									//		【说明】：将 指令全文 "插件指令：>xxxx" 竖切，切成两列文本。保留 \n 换行符。
 		QStringList getGrid_TagList();
 									//数据 - 网格竖切 - 获取全部指令
 		QStringList getGrid_CommandList();
+									//数据 - 网格竖切 - 获取全部附加注释
+		QStringList getGrid_NoteList();
 									//数据 - 网格竖切 - 获取全部标签（旧全文用）
 		QStringList getGrid_OldTagList();
 									//数据 - 网格竖切 - 获取全部指令（旧全文用）
@@ -46,33 +69,40 @@ class C_ScriptHelp_CommandGroup{
 	//-----------------------------------
 	//----搜索	【注意，不含 事件备注、脚本 】
 	public:
-		QStringList command_PluginCommand;		//指令 - 插件指令
-		QStringList command_EventComment;		//指令 - 事件注释
-		QStringList command_MapNote;			//指令 - 地图备注
-		QStringList command_ActorNote;			//指令 - 角色注释
-		QStringList command_EnemyNote;			//指令 - 敌人注释
-		QStringList command_StateNote;			//指令 - 状态注释
-		QStringList command_ItemNote;			//指令 - 物品/武器/护甲注释
-		QStringList command_SkillNote;			//指令 - 技能注释
-		QStringList command_MoveRoute;			//指令 - 移动路线指令
-		QStringList command_WindowChar;			//指令 - 窗口字符
-		QStringList command_Other;				//指令 - 其它
-		QStringList command_PluginCommand_old;	//指令 - 插件指令(旧)
-		QStringList command_EventComment_old;	//指令 - 事件注释(旧)
+		QList<C_ScriptHelp_CommandCell> command_Available;			//指令 - 有效指令
+		QList<C_ScriptHelp_CommandCell> command_Other;				//指令 - 其它
+
+		QList<C_ScriptHelp_CommandCell> command_PluginCommand;		//指令 - 插件指令
+		QList<C_ScriptHelp_CommandCell> command_EventComment;		//指令 - 事件注释
+		QList<C_ScriptHelp_CommandCell> command_MapNote;			//指令 - 地图备注
+		QList<C_ScriptHelp_CommandCell> command_ActorNote;			//指令 - 角色注释
+		QList<C_ScriptHelp_CommandCell> command_EnemyNote;			//指令 - 敌人注释
+		QList<C_ScriptHelp_CommandCell> command_StateNote;			//指令 - 状态注释
+		QList<C_ScriptHelp_CommandCell> command_ItemNote;			//指令 - 物品/武器/护甲注释
+		QList<C_ScriptHelp_CommandCell> command_SkillNote;			//指令 - 技能注释
+		QList<C_ScriptHelp_CommandCell> command_MoveRoute;			//指令 - 移动路线指令
+		QList<C_ScriptHelp_CommandCell> command_WindowChar;			//指令 - 窗口字符
+		QList<C_ScriptHelp_CommandCell> command_PluginCommand_old;	//指令 - 插件指令(旧)
+		QList<C_ScriptHelp_CommandCell> command_EventComment_old;	//指令 - 事件注释(旧)
 	public:
-									//搜索 - 获取全部指令（不含其它指令）
-		QStringList getAllAvailableCommand();
+									//搜索 - 获取有效指令（不含其它指令）
+		QList<C_ScriptHelp_CommandCell> getAllAvailableCommand();
 									//搜索 - 获取全部指令
-		QStringList getAllCommand();
+		QList<C_ScriptHelp_CommandCell> getAllCommand();
 									//搜索 - 包含指定指令关键字
 		bool hasCommandKeyWord(QString keyWord);
-									//搜索 - 指令的正则规则
-		QRegExp commandRe();
+									//搜索 - 指令的正则规则（类型标签）
+		QRegExp commandRe_tag();
+									//搜索 - 指令的正则规则（附加注释）
+		QRegExp commandRe_note();
 		
 	//-----------------------------------
 	//----读取器
 	public:
 									//读取器 - 添加指令
+									//		【说明】：添加一行字符串，格式需要是指令结构。
+									//		【示例1】："插件指令：>某插件 : 变量[21]   （这个指令的内容介绍）"
+									//		【示例2】："窗口字符：<br>   用于表示换行"
 		void addOneRowCommand(QString command_row);
 
 };
@@ -81,7 +111,6 @@ class C_ScriptHelp_CommandGroup{
 		类：		帮助数据-指令 数据类.h
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
-					（详细见.cpp）
 -----==========================================================-----
 */
 class C_ScriptHelp_Command{
