@@ -211,6 +211,12 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\插件更新器">
       <UniqueIdentifier>{6cc85751-6032-4840-8603-d8bfe827f0a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 主窗体 MainModule】\版本日志">
+      <UniqueIdentifier>{b6624ecc-e0c0-4c13-befb-68e9ee4fea79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块">
+      <UniqueIdentifier>{fc5527cd-d660-46fb-9621-d54998829216}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -684,6 +690,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_FileOperater.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MainModule\versionLog\w_SoftwareVersionLog.cpp">
+      <Filter>源文件\【 主窗体 MainModule】\版本日志</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_SoftwareVersionLog.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareVersionLog.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\pluginDetailPart\orgContextPart\p_PluginDetailOrgContextPart.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_PluginDetailOrgContextPart.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_PluginDetailOrgContextPart.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -917,6 +941,18 @@
     <CustomBuild Include="Source\Utils\common\p_FileOperater.h">
       <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
     </CustomBuild>
+    <CustomBuild Include="Source\MainModule\versionLog\w_SoftwareVersionLog.h">
+      <Filter>源文件\【 主窗体 MainModule】\版本日志</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\versionLog\w_SoftwareVersionLog.ui">
+      <Filter>源文件\【 主窗体 MainModule】\版本日志</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\orgContextPart\p_PluginDetailOrgContextPart.h">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\pluginDetailPart\orgContextPart\p_PluginDetailOrgContextPart.ui">
+      <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DrillPluginInformationReader.rc" />
@@ -1085,6 +1121,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_PluginBatchUpdatePart.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_SoftwareVersionLog.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_p_PluginDetailOrgContextPart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

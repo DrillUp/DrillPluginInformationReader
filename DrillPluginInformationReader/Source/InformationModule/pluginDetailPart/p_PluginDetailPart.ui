@@ -389,11 +389,41 @@ QToolButton:checked{
           </item>
           <item>
            <widget class="QGroupBox" name="groupBox_2">
+            <property name="styleSheet">
+             <string notr="true">
+QToolButton{
+	border: 1px solid transparent;
+	background: rgba(255,255,255,0);
+}
+QToolButton:hover{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 #fdecad, stop:0.3 #fde48c, stop:0.9 #fce58c, stop:1 #fdfadf )
+}
+QToolButton:pressed{
+	border-radius:1px;
+	border:1px solid #f2ca58;
+	background-color: #FDF4BF;
+}</string>
+            </property>
             <property name="title">
              <string>原文</string>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="0" colspan="2">
               <widget class="QPlainTextEdit" name="plainTextEdit_orgHelp">
                <property name="minimumSize">
                 <size>
@@ -403,6 +433,23 @@ QToolButton:checked{
                </property>
                <property name="lineWrapMode">
                 <enum>QPlainTextEdit::NoWrap</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QToolButton" name="toolButton_expandOrg">
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <property name="text">
+                <string>展开原文</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../../../drillplugininformationreader.qrc">
+                 <normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_hasTool.png</normaloff>:/DrillPluginInformationReader/Resources/icons/menu/attr_hasTool.png</iconset>
+               </property>
+               <property name="toolButtonStyle">
+                <enum>Qt::ToolButtonTextBesideIcon</enum>
                </property>
               </widget>
              </item>

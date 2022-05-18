@@ -23,6 +23,7 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	//-----------------------------------
 	//----初始化参数
 	this->m_curPluginName = "";
+	this->m_curOrgContext = "";
 
 	//-----------------------------------
 	//----控件初始化
@@ -48,7 +49,8 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	//-----------------------------------
 	//----事件绑定
 	connect(ui.toolButton_editPlugin, &QPushButton::clicked, this, &P_PluginDetailPart::btn_editPlugin);
-
+	connect(ui.toolButton_expandOrg, &QPushButton::clicked, this, &P_PluginDetailPart::btn_expandOrg);
+	
 }
 
 P_PluginDetailPart::~P_PluginDetailPart(){
@@ -84,7 +86,9 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 	}
 
 	// > 原文
-	ui.plainTextEdit_orgHelp->setPlainText(annotation.getHelp());
+	this->m_curOrgContext = annotation.getHelp();
+	ui.plainTextEdit_orgHelp->setPlainText(this->m_curOrgContext);
+	emit orgContextChanged(this->m_curOrgContext);
 
 	// > 控件组
 	if (detail != nullptr){
@@ -134,6 +138,13 @@ void P_PluginDetailPart::btn_editPlugin(){
 	proc->start(command);
 
 	//QDesktopServices::openUrl(QUrl("file:/" + file_info.absoluteFilePath()));
+}
+/*-------------------------------------------------
+		控件 - 展开原文
+*/
+void P_PluginDetailPart::btn_expandOrg(){
+	emit selected_PluginDetailOrgContextPart();
+	emit orgContextChanged(this->m_curOrgContext);
 }
 
 /*-------------------------------------------------

@@ -3,6 +3,7 @@
 
 #include "pluginListPart/p_PluginListPart.h"
 #include "pluginDetailPart/p_PluginDetailPart.h"
+#include "pluginDetailPart/orgContextPart/p_PluginDetailOrgContextPart.h"
 #include "commandSearcherPart/p_CommandSearcherPart.h"
 #include "otherFunctionPart/p_OtherFunctionPart.h"
 #include "otherFunctionPart/designTipGenerator/p_DesignTipGeneratorPart.h"
@@ -35,6 +36,7 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	this->m_p_commandSearcherPart = new P_CommandSearcherPart(parent);
 	this->m_p_otherFunctionPart = new P_OtherFunctionPart(parent);
 	this->m_p_DesignTipGenerator = nullptr;
+	this->m_p_pluginDetailOrgContextPart = nullptr;
 
 	// > 可折叠选项卡
 	this->m_p_FoldableTabRelater = new P_FoldableTabRelater(ui.tabWidget);	//（ui中的只是示意，该工具类会重建tab）
@@ -47,6 +49,7 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	//----事件绑定
 	connect(this->m_p_pluginListPart, &P_PluginListPart::pluginTriggered, this, &P_InformationPart::showPluginDetail);
 	connect(this->m_p_otherFunctionPart, &P_OtherFunctionPart::selected_DesignTipGenerator, this, &P_InformationPart::selectPart_DesignTipGenerator);
+	connect(this->m_p_pluginDetailPart, &P_PluginDetailPart::selected_PluginDetailOrgContextPart, this, &P_InformationPart::selectPart_PluginDetailOrgContextPart);
 
 }
 
@@ -81,6 +84,26 @@ void P_InformationPart::createPart_DesignTipGenerator(){
 	this->m_p_DesignTipGenerator = new P_DesignTipGeneratorPart();
 	this->m_p_FoldableTabRelater->addPart(" 灵感生成器  ", this->m_p_DesignTipGenerator);
 }
+/*-------------------------------------------------
+		控件 - 选择 原文展开
+*/
+void P_InformationPart::selectPart_PluginDetailOrgContextPart(){
+	if (this->m_p_pluginDetailOrgContextPart == nullptr){
+		this->createPart_PluginDetailOrgContextPart();
+	}
+	this->m_p_FoldableTabRelater->selectTab(" 插件原文  ");
+}
+/*-------------------------------------------------
+		控件 - 创建 原文展开
+*/
+void P_InformationPart::createPart_PluginDetailOrgContextPart(){
+	this->m_p_pluginDetailOrgContextPart = new P_PluginDetailOrgContextPart();
+	this->m_p_FoldableTabRelater->addPart(" 插件原文  ", this->m_p_pluginDetailOrgContextPart);
+
+	// > 连上信号
+	connect(this->m_p_pluginDetailPart, &P_PluginDetailPart::orgContextChanged, this->m_p_pluginDetailOrgContextPart, &P_PluginDetailOrgContextPart::setContext);
+}
+
 
 /*-------------------------------------------------
 		块 - 本地数据 -> ui数据

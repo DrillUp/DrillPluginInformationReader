@@ -109,10 +109,10 @@ QPushButton:hover{
           <string>其它功能</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="0">
-           <widget class="QToolButton" name="toolButton_showDeletePart">
+          <item row="2" column="0">
+           <widget class="QToolButton" name="toolButton_showUpdatePart">
             <property name="text">
-             <string>插件清理器（可清理未使用的插件）</string>
+             <string>插件更新器</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">
@@ -123,10 +123,10 @@ QPushButton:hover{
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QToolButton" name="toolButton_showDesignTip">
+          <item row="1" column="0">
+           <widget class="QToolButton" name="toolButton_showDeletePart">
             <property name="text">
-             <string>设计灵感生成器</string>
+             <string>插件清理器（可清理未使用的插件）</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">
@@ -150,10 +150,24 @@ QPushButton:hover{
             </property>
            </spacer>
           </item>
-          <item row="2" column="0">
-           <widget class="QToolButton" name="toolButton_showUpdatePart">
+          <item row="0" column="0">
+           <widget class="QToolButton" name="toolButton_showDesignTip">
             <property name="text">
-             <string>插件更新器</string>
+             <string>设计灵感生成器</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QToolButton" name="toolButton_showVersionLog">
+            <property name="text">
+             <string>版本日志</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">

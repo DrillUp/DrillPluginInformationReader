@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "p_OtherFunctionPart.h"
 
+#include "Source/MainModule/versionLog/w_SoftwareVersionLog.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchDelete/w_PluginBatchDeletePart.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchUpdate/w_PluginBatchUpdatePart.h"
 #include "Source/Utils/common/TTool.h"
@@ -33,7 +34,8 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 	connect(ui.toolButton_showDesignTip, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_DesignTipGenerator);
 	connect(ui.toolButton_showDeletePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchDelete);
 	connect(ui.toolButton_showUpdatePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchUpdate);
-
+	connect(ui.toolButton_showVersionLog, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_VersionLog);
+	
 }
 
 P_OtherFunctionPart::~P_OtherFunctionPart(){
@@ -58,6 +60,13 @@ void P_OtherFunctionPart::btn_PluginBatchDelete(){
 */
 void P_OtherFunctionPart::btn_PluginBatchUpdate(){
 	W_PluginBatchUpdatePart d(this);
+	d.exec();
+}
+/*-------------------------------------------------
+		控件 - 选择 版本日志
+*/
+void P_OtherFunctionPart::btn_VersionLog(){
+	W_SoftwareVersionLog d(this);
 	d.exec();
 }
 

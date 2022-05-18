@@ -35,6 +35,7 @@ class P_PluginDetailPart : public QWidget
 	//----控件
 	public:
 		QString m_curPluginName;
+		QString m_curOrgContext;
 		P_ScriptHelp_EffectScope* m_p_ScriptHelp_EffectScope;
 		P_ScriptHelp_PluginRelation* m_p_ScriptHelp_PluginRelation;
 		P_ScriptHelp_Subsection* m_p_ScriptHelp_Subsection;
@@ -47,6 +48,13 @@ class P_PluginDetailPart : public QWidget
 		void showPluginDetail(QString plugin_name );
 										//控件 - 编辑插件
 		void btn_editPlugin();
+										//控件 - 展开原文
+		void btn_expandOrg();
+	signals:
+										//控件 - 选择 展开原文
+		void selected_PluginDetailOrgContextPart();
+										//控件 - 原文变化
+		void orgContextChanged(QString context);
 
 	//-----------------------------------
 	//----块

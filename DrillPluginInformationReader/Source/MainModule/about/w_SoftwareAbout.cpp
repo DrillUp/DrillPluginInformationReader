@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "W_SoftwareAbout.h"
 
+#include "../versionLog/w_SoftwareVersionLog.h"
 #include "Source/Utils/common/TTool.h"
 
 
@@ -25,6 +26,7 @@ W_SoftwareAbout::W_SoftwareAbout(QWidget *parent)
 	//-----------------------------------
 	//----事件绑定
 	connect(ui.toolButton, &QToolButton::clicked, this, &W_SoftwareAbout::openUserManual);
+	connect(ui.toolButton_2, &QToolButton::clicked, this, &W_SoftwareAbout::openVersionLog);
 
 	//-----------------------------------
 	//----ui初始化
@@ -51,4 +53,11 @@ void W_SoftwareAbout::openUserManual() {
 		QMessageBox::warning(this, "错误", "文档\"关于插件信息查看器.docx\"不见了。", QMessageBox::Yes);
 	}
 
+}
+/* --------------------------------------------------------------
+		控件 - 更新日志
+*/
+void W_SoftwareAbout::openVersionLog(){
+	W_SoftwareVersionLog d(this);
+	d.exec();
 }

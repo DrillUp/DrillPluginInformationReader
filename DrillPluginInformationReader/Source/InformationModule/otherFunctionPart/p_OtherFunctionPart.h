@@ -31,6 +31,8 @@ class P_OtherFunctionPart : public QWidget
 		void btn_PluginBatchDelete();
 										//控件 - 选择 插件更新器
 		void btn_PluginBatchUpdate();
+										//控件 - 选择 版本日志
+		void btn_VersionLog();
 	signals: 
 										//控件 - 选择 灵感生成器
 		void selected_DesignTipGenerator();
