@@ -217,6 +217,12 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块">
       <UniqueIdentifier>{fc5527cd-d660-46fb-9621-d54998829216}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器">
+      <UniqueIdentifier>{f126e9fc-503f-4d85-9c42-8f28ff2b0a1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器">
+      <UniqueIdentifier>{b8ac7e40-7142-4bff-ae3c-71295114610a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -708,6 +714,24 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_PluginDetailOrgContextPart.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\operater\excelOperater\p_ExcelOperater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ExcelOperater.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelOperater.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InformationModule\otherFunctionPart\excelDataGenerator\p_ExcelDataGenerator.cpp">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_p_ExcelDataGenerator.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelDataGenerator.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -952,6 +976,12 @@
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\orgContextPart\p_PluginDetailOrgContextPart.ui">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\operater\excelOperater\p_ExcelOperater.h">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\InformationModule\otherFunctionPart\excelDataGenerator\p_ExcelDataGenerator.h">
+      <Filter>源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

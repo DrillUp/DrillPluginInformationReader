@@ -18,6 +18,7 @@
 
 S_LinkDirector::S_LinkDirector(){
 	this->m_docDir = "";
+	this->m_dirNameInited = false;
 }
 S_LinkDirector::~S_LinkDirector() {
 }
@@ -65,23 +66,59 @@ QString S_LinkDirector::getDocDir(){
 
 
 /*-------------------------------------------------
-		数据 - 获取可点击的文件夹名称
+		数据 - 文件夹名称初始化
 */
-QStringList S_LinkDirector::getAllClickableDirName(){
+void S_LinkDirector::initDirName(){
+	if (this->m_dirNameInited == true){ return; }
 	QDir dir(this->getDocDir());
-	if (!dir.exists()) { return QStringList(); }
+	if (!dir.exists()) { return; }
+	this->m_dirNameInited = true;
 
-	QStringList result_list = QStringList();
-	QFileInfoList c_dir_list;
-	c_dir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
+	// > 一级文件夹
+	this->m_dirNameTank.clear();
+	this->m_docNameTank.clear();
+	QFileInfoList childDir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
+	for (int i = 0; i < childDir_list.count(); i++){
+		QFileInfo child_dir = childDir_list.at(i);
+		QString childDir_name = child_dir.fileName();
+		if (childDir_name == "其它" || childDir_name == "其他"){ continue; }
 
-	for (int i = 0; i < c_dir_list.count(); i++){
-		QFileInfo cur_dir = c_dir_list.at(i);
-		QString name = cur_dir.fileName();
-		if (name == "其它" || name == "其他"){ continue; }
-		result_list.append(name);
+		// > 二级文件夹中的文件
+		QStringList docName_list;
+		QFileInfoList fileInfo_list = QDir(child_dir.filePath()).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
+		for (int j = 0; j < fileInfo_list.count(); j++){
+			QFileInfo fileInfo = fileInfo_list.at(j);
+			QString file_name = fileInfo.fileName();
+			docName_list.append(file_name);
+		}
+		qDebug() << docName_list;
+
+		this->m_dirNameTank.append(childDir_name);
+		this->m_docNameTank.append(docName_list);
 	}
-	return result_list;
+}
+/*-------------------------------------------------
+		数据 - 获取文件夹名称
+*/
+QStringList S_LinkDirector::getDirName_All(){
+	this->initDirName();
+	return m_dirNameTank;
+}
+/*-------------------------------------------------
+		数据 - 获取文件夹名称（根据docx名）
+*/
+QString S_LinkDirector::getDirName_ByDoc(QString doc_name){
+	this->initDirName();
+	qDebug() << doc_name;
+	for (int i = 0; i < this->m_docNameTank.count(); i++){
+		QStringList docName_list = this->m_docNameTank.at(i);
+		for (int j = 0; j < docName_list.count(); j++){
+			if (docName_list.at(j) == doc_name){	//（匹配则说明在此文件夹下）
+				return this->m_dirNameTank.at(i);
+			}
+		}
+	}
+	return "";
 }
 /*-------------------------------------------------
 		数据 - 寻找文档名称
@@ -219,7 +256,7 @@ QString S_LinkDirector::signATag_Docs(QString data){
 	QStringList match_list = this->findDocsNameList(data);
 
 	// > 文档路径（固定的）
-	match_list << this->getAllClickableDirName();
+	match_list << this->getDirName_All();
 
 	// > 使用链接包裹
 	for (int j = 0; j < match_list.count(); j++){

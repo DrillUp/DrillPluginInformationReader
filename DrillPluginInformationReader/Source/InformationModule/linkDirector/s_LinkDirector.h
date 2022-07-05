@@ -39,9 +39,17 @@ class S_LinkDirector : public QObject
 
 	//-----------------------------------
 	//----数据
+	protected:
+		bool m_dirNameInited;			//初始标记
+		QStringList m_dirNameTank;			//文件夹名称
+		QList<QStringList> m_docNameTank;	//文档名称
 	public:
-										//数据 - 获取可点击的文件夹名称
-		QStringList getAllClickableDirName();
+										//数据 - 文件夹名称初始化
+		void initDirName();
+										//数据 - 获取文件夹名称
+		QStringList getDirName_All();
+										//数据 - 获取文件夹名称（根据docx名）
+		QString getDirName_ByDoc(QString doc_name);
 										//数据 - 寻找文档名称
 										//		【说明】：文档包括 docx 和 xlsx。名称前面需要空格或引号，如格式"xxx.docx"或 xxxx xxx.docx。
 		QStringList findDocsNameList(QString data);

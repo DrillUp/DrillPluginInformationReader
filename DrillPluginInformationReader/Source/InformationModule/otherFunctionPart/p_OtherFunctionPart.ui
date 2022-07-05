@@ -184,13 +184,30 @@ QPushButton:hover{
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>其它功能</string>
+          <string>Excel表格生成</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="1" column="0">
-           <widget class="QToolButton" name="toolButton_checkVersion_3">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QToolButton" name="toolButton_excelPluginList">
             <property name="text">
-             <string>生成csv插件列表</string>
+             <string>生成&quot;插件清单&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_excelMapPosList">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>生成&quot;插件示例位置表&quot;</string>
             </property>
             <property name="icon">
              <iconset resource="../../../drillplugininformationreader.qrc">

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "p_OtherFunctionPart.h"
 
+#include "excelDataGenerator/p_ExcelDataGenerator.h"
 #include "Source/MainModule/versionLog/w_SoftwareVersionLog.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchDelete/w_PluginBatchDeletePart.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchUpdate/w_PluginBatchUpdatePart.h"
@@ -27,7 +28,7 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 
 	//-----------------------------------
 	//----控件初始化
-	ui.groupBox_2->setVisible(false);	//（隐藏待填坑）
+	//ui.groupBox_2->setVisible(false);	//（隐藏待填坑）
 
 	//-----------------------------------
 	//----事件绑定
@@ -35,7 +36,10 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 	connect(ui.toolButton_showDeletePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchDelete);
 	connect(ui.toolButton_showUpdatePart, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_PluginBatchUpdate);
 	connect(ui.toolButton_showVersionLog, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_VersionLog);
-	
+
+	connect(ui.toolButton_excelPluginList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelPluginList);
+	connect(ui.toolButton_excelMapPosList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelMapPosList);
+
 }
 
 P_OtherFunctionPart::~P_OtherFunctionPart(){
@@ -68,6 +72,42 @@ void P_OtherFunctionPart::btn_PluginBatchUpdate(){
 void P_OtherFunctionPart::btn_VersionLog(){
 	W_SoftwareVersionLog d(this);
 	d.exec();
+}
+/*-------------------------------------------------
+		控件 - 生成 插件清单
+*/
+void P_OtherFunctionPart::btn_ExcelPluginList(){
+
+	QMessageBox::about(nullptr, "提示", "此生成需要打开你电脑中的Excel软件，然后一个个写入数据，你需要耐心等待此过程，写入完毕后，会自动关掉Excel软件。");
+
+	QString file_path;
+	QFileDialog fd;
+	fd.setWindowTitle("保存数据文件");
+	fd.setAcceptMode(QFileDialog::AcceptSave);				//对话框类型（打开/保存）（保存会有文件覆盖提示）
+	fd.setDirectory(".");									//默认目录
+	fd.setNameFilters(QStringList() << "表格文件(*.xlsx)");	//文件格式
+	if (fd.exec() == QDialog::Accepted) {
+		if (fd.selectedFiles().empty()) {
+			return;
+		}
+		file_path = fd.selectedFiles().at(0);
+	}else {
+		return;
+	}
+
+	P_ExcelDataGenerator p_ExcelDataGenerator;
+	p_ExcelDataGenerator.generatePluginDataList(file_path);
+
+	QFileInfo file_info(file_path);
+	if (file_info.exists()){
+		QDesktopServices::openUrl(QUrl("file:/" + file_info.absolutePath()));
+	}
+}
+/*-------------------------------------------------
+		控件 - 生成 插件示例位置表
+*/
+void P_OtherFunctionPart::btn_ExcelMapPosList(){
+
 }
 
 /*-------------------------------------------------
