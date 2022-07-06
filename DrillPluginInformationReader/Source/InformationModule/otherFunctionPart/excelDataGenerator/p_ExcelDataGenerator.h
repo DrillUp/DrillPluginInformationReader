@@ -24,8 +24,10 @@ class P_ExcelDataGenerator : public QObject
 	//-----------------------------------
 	//----生成器
 	public slots: 
-								//生成器 - 生成插件清单
+								//生成器 - 生成 插件清单
 		void generatePluginDataList(QString save_path);
+								//生成器 - 生成 插件示例位置表（此功能不是这个工具能掌控的）
+		//void generateMapPosList(QString save_path);
 
 };
 

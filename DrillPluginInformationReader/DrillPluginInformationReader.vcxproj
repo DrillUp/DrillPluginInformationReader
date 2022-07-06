@@ -2188,6 +2188,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Source\PluginModule\【插件模块 PluginModule】说明.txt" />
     <Text Include="Source\RmmvInteractiveModule\base\程序入口.txt" />
     <Text Include="Source\Utils\widgetForm\foldableTabWindow\程序入口.txt" />
     <Text Include="Source\日志.txt" />

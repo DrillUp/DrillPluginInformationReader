@@ -38,7 +38,6 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 	connect(ui.toolButton_showVersionLog, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_VersionLog);
 
 	connect(ui.toolButton_excelPluginList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelPluginList);
-	connect(ui.toolButton_excelMapPosList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelMapPosList);
 
 }
 
@@ -102,12 +101,6 @@ void P_OtherFunctionPart::btn_ExcelPluginList(){
 	if (file_info.exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + file_info.absolutePath()));
 	}
-}
-/*-------------------------------------------------
-		控件 - 生成 插件示例位置表
-*/
-void P_OtherFunctionPart::btn_ExcelMapPosList(){
-
 }
 
 /*-------------------------------------------------

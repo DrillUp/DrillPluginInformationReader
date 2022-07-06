@@ -35,8 +35,6 @@ class P_OtherFunctionPart : public QWidget
 		void btn_VersionLog();
 										//控件 - 生成 插件清单
 		void btn_ExcelPluginList();
-										//控件 - 生成 插件示例位置表
-		void btn_ExcelMapPosList();
 	signals: 
 										//控件 - 选择 灵感生成器
 		void selected_DesignTipGenerator();

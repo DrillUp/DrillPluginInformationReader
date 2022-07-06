@@ -91,7 +91,6 @@ void S_LinkDirector::initDirName(){
 			QString file_name = fileInfo.fileName();
 			docName_list.append(file_name);
 		}
-		qDebug() << docName_list;
 
 		this->m_dirNameTank.append(childDir_name);
 		this->m_docNameTank.append(docName_list);
@@ -107,14 +106,35 @@ QStringList S_LinkDirector::getDirName_All(){
 /*-------------------------------------------------
 		数据 - 获取文件夹名称（根据docx名）
 */
-QString S_LinkDirector::getDirName_ByDoc(QString doc_name){
+QString S_LinkDirector::getDirName_ByDoc(QString tar_docName){
 	this->initDirName();
-	qDebug() << doc_name;
 	for (int i = 0; i < this->m_docNameTank.count(); i++){
 		QStringList docName_list = this->m_docNameTank.at(i);
 		for (int j = 0; j < docName_list.count(); j++){
-			if (docName_list.at(j) == doc_name){	//（匹配则说明在此文件夹下）
+			QString cur_docName = docName_list.at(j);
+			QString cur_name = cur_docName.replace(QRegExp("[『][^『]*[』]"), "");	//忽略括号『』包裹的文本。
+			QString tar_name = tar_docName.replace(QRegExp("[『][^『]*[』]"), "");
+			if (cur_name == tar_name){	//（匹配则说明在此文件夹下）
 				return this->m_dirNameTank.at(i);
+			}
+		}
+	}
+	return "";
+}
+/*-------------------------------------------------
+		数据 - 获取文档路径（根据文档名称）
+*/
+QString S_LinkDirector::getFullPath_ByDoc(QString tar_docName){
+	this->initDirName();
+	for (int i = 0; i < this->m_docNameTank.count(); i++){
+		QStringList docName_list = this->m_docNameTank.at(i);
+		for (int j = 0; j < docName_list.count(); j++){
+			QString cur_docName = docName_list.at(j);
+			QString cur_name = QString(cur_docName).replace(QRegExp("[『][^『]*[』]"), "");	//忽略括号『』包裹的文本。
+			QString tar_name = tar_docName.replace(QRegExp("[『][^『]*[』]"), "");
+			if (cur_name == tar_name){
+				QDir dir(this->getDocDir());
+				return dir.absoluteFilePath(this->m_dirNameTank.at(i) + "/" + cur_docName);
 			}
 		}
 	}
@@ -156,30 +176,15 @@ QStringList S_LinkDirector::findPluginNameList(QString data){
 		路径 - 打开指定文档路径
 */
 void S_LinkDirector::openLink_Doc(QString text){
-	QDir dir(this->getDocDir());
-	if (!dir.exists()) { return ; }
-	
-	// > 打开文件夹
-	QFileInfo dir_info(dir.absoluteFilePath(text));
-	if (dir_info.exists()){
-		QDesktopServices::openUrl(QUrl("file:/" + dir_info.absoluteFilePath()));
+	QString path = this->getFullPath_ByDoc(text);
+	QFileInfo cur_file(path);
+	if (cur_file.exists()){
+		QDesktopServices::openUrl(QUrl("file:/" + cur_file.absoluteFilePath()));
 		return;
 	}
 
-	// > 打开文件
-	QFileInfoList c_dir_list;
-	c_dir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
-	for (int i = 0; i < c_dir_list.count(); i++){
-		QFileInfo cur_dir = c_dir_list.at(i);
-		QFileInfo cur_file(cur_dir.absoluteFilePath() + "/" + text);
-		if (cur_file.exists()){
-			QDesktopServices::openUrl(QUrl("file:/" + cur_file.absoluteFilePath()));
-			return;
-		}
-	}
-
 	// > 找不到文件
-	QMessageBox::warning(nullptr, "提示", "插件文档中没有文件：" + text + "");
+	QMessageBox::warning(nullptr, "提示", "插件文档中没有文件：\n" + path + "");
 }
 /*-------------------------------------------------
 		路径 - 打开指定图片路径

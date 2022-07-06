@@ -29,11 +29,13 @@ P_ExcelDataGenerator::P_ExcelDataGenerator(QObject *parent)
 P_ExcelDataGenerator::~P_ExcelDataGenerator(){
 }
 
+
 /*-------------------------------------------------
-		生成器 - 生成插件清单
+		生成器 - 生成 插件清单
 */
 void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 
+	// > 打开
 	P_ExcelOperater operater = P_ExcelOperater();
 	operater.openSoftware();
 	operater.newExcelFile();
@@ -59,6 +61,7 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 
 	// > 插件数据
 	QString last_type = "";
+	QString last_name = "";
 	int cur_row = 2;
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
@@ -67,27 +70,34 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 		C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
 		if (detail == nullptr){ continue; }
 
-		// > 空类型的去掉
+		// > 空类型的插件去掉
 		if (annotation.getPlugindesc_type() == ""){ continue; }
+
+		// > 不同类型隔开一下
 		if (annotation.getPlugindesc_type() != last_type){
 			last_type = annotation.getPlugindesc_type();
-			if (annotation.getName().contains("Drill_X_") == false){
-				cur_row += 1;	//（不同类型隔开一下，但扩展除外）
+			if (annotation.getName().contains("Drill_X_") == true &&
+				last_name.contains("Drill_X_") == true){
+				//（如果插件之间都是扩展，则不隔开）
+			}else{
+				operater.cell_MergeCells("A" + QString::number(cur_row), "F" + QString::number(cur_row), true);
+				operater.cell_Style_SetBackground("A" + QString::number(cur_row), "F" + QString::number(cur_row), QColor(217, 217, 217));
+				cur_row += 1;
 			}
 		}
 
-		// > 作者
+		// > 文本 - 作者
 		QString author_text = annotation.getAuthor();
 		author_text = author_text.replace(QRegExp("[,，、]"),"\n");
 
-		// > 关联文件
+		// > 文本 - 关联文件
 		C_ScriptHelp_Src* src = detail->getSrc();
 		QString src_text = "无";
 		if (src != nullptr && src->src_list.count() > 0){
 			src_text = src->src_list.join("\n");
 		}
 
-		// > 相关文档
+		// > 文本 - 相关文档
 		C_ScriptHelp_Docs* docs = detail->getDocs();
 		QString docs_text = "无";
 		if (docs != nullptr && (docs->main_docx.count() > 0 || docs->relative_docx.count() > 0) ){
@@ -107,6 +117,7 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 			docs_text = docsText_list.join("\n");
 		}
 
+		// > 单行文本写入
 		operater.cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), author_text);
 		operater.cell_SetValue("B" + QString::number(cur_row), "B" + QString::number(cur_row), annotation.getName());
 		operater.cell_SetValue("C" + QString::number(cur_row), "C" + QString::number(cur_row), annotation.getPlugindesc_type());
@@ -114,7 +125,8 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 		operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), src_text);
 		operater.cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), docs_text);
 
-		if (annotation.getName().contains("Drill_up")){	//（名为Drill_up的插件允许自动换行）
+		// > 单行样式设置
+		if (annotation.getAuthor().indexOf("Drill_up") == 0 ){	//（名为Drill_up开头的插件允许自动换行）
 			operater.cell_SetWrapText("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
 		}else{
 			operater.cell_SetWrapText("A" + QString::number(cur_row), "A" + QString::number(cur_row), false);
@@ -122,9 +134,18 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 		operater.cell_SetWrapText("E" + QString::number(cur_row), "E" + QString::number(cur_row), true);
 		operater.cell_SetWrapText("F" + QString::number(cur_row), "F" + QString::number(cur_row), true);
 		operater.cell_Style_SetFontFamily_Row(cur_row, "微软雅黑");
+
+		// > 单行结束
+		last_name = annotation.getName();
 		cur_row += 1;
 	}
 
+	// > 最后一行包裹
+	operater.cell_MergeCells("A" + QString::number(cur_row), "F" + QString::number(cur_row), true);
+	operater.cell_Style_SetBackground("A" + QString::number(cur_row), "F" + QString::number(cur_row), QColor(217, 217, 217));
+	cur_row += 1;
+
+	// > 保存
 	operater.saveAsExcelFile(save_path);
 	operater.closeSoftware();
 }
