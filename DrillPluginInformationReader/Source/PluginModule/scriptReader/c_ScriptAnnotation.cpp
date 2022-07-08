@@ -85,11 +85,16 @@ void C_ScriptAnnotation::initPlugindesc_data(){
 		if (this->temp_type.contains("[")){ this->temp_type = ""; }
 		if (this->temp_type.contains("]")){ this->temp_type = ""; }
 		if (this->temp_type.contains("-")){ this->temp_type = ""; }
+
+		// > 中文名
+		data_list.removeFirst();
+		this->temp_name = data_list.join(" - ");
+	}else{
+
+		// > 中文名
+		QStringList data_list2 = this->plugindesc.split(" ");
+		this->temp_name = data_list2.last();
 	}
-	
-	// > 中文名
-	QStringList data_list2 = this->plugindesc.split(" ");
-	this->temp_name = data_list2.last();
 }
 //数据 - 获取版本（插件描述 截取段）
 QString C_ScriptAnnotation::getPlugindesc_version(){
