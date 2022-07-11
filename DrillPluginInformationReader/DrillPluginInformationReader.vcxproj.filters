@@ -220,6 +220,9 @@
     <Filter Include="源文件\【 交互模块 RmmvInteractiveModule】\基本交互">
       <UniqueIdentifier>{edfe13c6-a3d1-4a14-8224-b67142ec32b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 插件模块 PluginModule】\插件常量">
+      <UniqueIdentifier>{57267868-9802-44f8-b3a2-bb4269db916f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -729,6 +732,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelDataGenerator.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PluginModule\const\s_PluginConstValue.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -1155,6 +1161,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_PluginDetailOrgContextPart.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\const\s_PluginConstValue.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

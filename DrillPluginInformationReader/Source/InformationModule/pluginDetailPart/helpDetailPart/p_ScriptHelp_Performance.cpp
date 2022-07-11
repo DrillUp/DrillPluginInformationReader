@@ -120,9 +120,10 @@ void P_ScriptHelp_Performance::setData(C_ScriptHelp_Performance* data){
 		layout->addWidget(label_result1, cur_row, 0, 1, 1);
 
 		// > ²âÊÔ½á¹ûÏêÏ¸
-		for (int j = 0; j < c_test.cost_list.count(); j++){
-			QString cost = c_test.cost_list.at(j);
-			QString condition = c_test.condition_list.at(j);
+		for (int j = 0; j < c_test.detail_list.count(); j++){
+			C_ScriptHelp_PerformanceTestDetail d = c_test.detail_list.at(j);
+			QString cost = d.cost_text;
+			QString condition = d.condition_text;
 
 			condition.append(this->decorateCostColor(cost));
 			QLabel* label_2 = new QLabel(condition, group);

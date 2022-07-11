@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "c_ScriptHelp_EffectScope.h"
 
+#include "Source/PluginModule/const/s_PluginConstValue.h"
 
 /*
 -----==========================================================-----
@@ -20,19 +21,19 @@ C_ScriptHelp_EffectScope::~C_ScriptHelp_EffectScope(){
 		数据 - 可作用于地图界面
 */
 bool C_ScriptHelp_EffectScope::isEnableSenceMap(){
-	return this->scope_list.contains("地图界面");
+	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Map());
 }
 /*-------------------------------------------------
 		数据 - 可作用于战斗界面
 */
 bool C_ScriptHelp_EffectScope::isEnableSenceBattle(){
-	return this->scope_list.contains("战斗界面");
+	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Battle());
 }
 /*-------------------------------------------------
 		数据 - 可作用于菜单界面
 */
 bool C_ScriptHelp_EffectScope::isEnableSenceMenu(){
-	return this->scope_list.contains("菜单界面");
+	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Menu());
 }
 /*-------------------------------------------------
 		数据 - 除此三种类型以外的界面
@@ -41,9 +42,9 @@ QStringList C_ScriptHelp_EffectScope::getOtherSence(){
 	QStringList result = QStringList();
 	for (int i = 0; i < this->scope_list.count(); i++){
 		QString data = this->scope_list.at(i);
-		if (data == "地图界面"){ continue; }
-		if (data == "战斗界面"){ continue; }
-		if (data == "菜单界面"){ continue; }
+		if (data == S_PluginConstValue::getInstance()->getSceneName_Map()){ continue; }
+		if (data == S_PluginConstValue::getInstance()->getSceneName_Battle()){ continue; }
+		if (data == S_PluginConstValue::getInstance()->getSceneName_Menu()){ continue; }
 		result.append(data);
 	}
 	return result;

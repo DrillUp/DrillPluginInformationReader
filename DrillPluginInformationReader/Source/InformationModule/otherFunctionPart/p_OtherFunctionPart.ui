@@ -201,6 +201,20 @@ QPushButton:hover{
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QToolButton" name="toolButton_excelPerformanceDataList">
+            <property name="text">
+             <string>生成&quot;性能测试统计表&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>

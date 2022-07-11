@@ -13,6 +13,7 @@
 					（详细见cpp）
 -----==========================================================-----
 */
+class P_ExcelOperater;
 class P_ExcelDataGenerator : public QObject
 {
 	Q_OBJECT
@@ -23,11 +24,26 @@ class P_ExcelDataGenerator : public QObject
 		
 	//-----------------------------------
 	//----生成器
+	public:
+		int cur_row;
 	public slots: 
 								//生成器 - 生成 插件清单
 		void generatePluginDataList(QString save_path);
+								//生成器 - 生成 性能测试统计表
+		void generatePerformanceDataList(QString save_path);
 								//生成器 - 生成 插件示例位置表（此功能不是这个工具能掌控的）
 		//void generateMapPosList(QString save_path);
+	
+	private:
+								//阶段 - 生成 性能测试说明内容
+		void generatePerformanceNotes(P_ExcelOperater* operater);
+	private:
+								//颜色 - 灰色
+		QColor getColor_grey();
+								//颜色 - 红色（根据程度）
+		QColor getColor_ByCritical(int critical);
+								//颜色 - 红色（根据值）
+		QColor getColor_ByCriticalValue(double critical_value);
 
 };
 
