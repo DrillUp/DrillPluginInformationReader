@@ -9,7 +9,7 @@
 /*
 -----==========================================================-----
 		类：		Excel操作器.h
-		版本：		v1.00
+		版本：		v1.01
 		作者：		drill_up
 		所属模块：	工具模块
 		功能：		操作Excel表格，写入数据。
@@ -110,11 +110,25 @@ class P_ExcelOperater : public QObject
 	//-----------------------------------
 	//-----操作样式
 	public:
+		enum XlBordersIndex{			//枚举定义来自（https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.office.interop.excel.xlbordersindex?view=excel-pia）
+			xlDiagonalDown = 5,			//单元格的左上角至右下角的边框
+			xlDiagonalUp = 6,			//单元格的左下角至右上角的边框
+			xlEdgeBottom = 9,			//区域的底部边框
+			xlEdgeLeft = 7,				//区域的左边边框
+			xlEdgeRight = 10,			//区域的右边边框
+			xlEdgeTop = 8,				//区域的顶部边框
+			xlInsideHorizontal = 12,	//区域内的水平边框
+			xlInsideVertical = 11,		//区域内的垂直边框
+		};
+	public:
 										//样式 - 设置背景
 										//		【说明】：start_pos与end_pos需填"A1"、"B1"的行列格式。
 		void cell_Style_SetBackground(QString start_pos, QString end_pos, QColor color);
 		void cell_Style_SetBackground_Row(int row_pos, QColor color);
 		void cell_Style_SetBackground_Column(int col_pos, QColor color);
+										//样式 - 设置边框色
+		void cell_Style_SetAllBorder(QString start_pos, QString end_pos, QColor color);
+		void cell_Style_SetBorder(QString start_pos, QString end_pos, QColor color, P_ExcelOperater::XlBordersIndex index);
 										//样式 - 设置字体名称
 		void cell_Style_SetFontFamily(QString start_pos, QString end_pos, QString font_name);
 		void cell_Style_SetFontFamily_Row(int row_pos, QString font_name);

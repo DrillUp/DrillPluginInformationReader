@@ -7,7 +7,7 @@
 /*
 -----==========================================================-----
 		类：		Excel操作器.cpp
-		版本：		v1.00
+		版本：		v1.01
 		作者：		drill_up
 		所属模块：	工具模块
 		功能：		操作Excel表格，写入数据。
@@ -365,6 +365,30 @@ void P_ExcelOperater::cell_Style_SetBackground_Column(int col_pos, QColor color)
 	temp_interior->setProperty("Color", color);
 	delete temp_interior;
 	delete temp_col;
+}
+/*-------------------------------------------------
+		样式 - 设置边框色
+*/
+void P_ExcelOperater::cell_Style_SetAllBorder(QString start_pos, QString end_pos, QColor color){
+	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
+	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	QAxObject* temp_borders = temp_range->querySubObject("Borders");
+	temp_borders->setProperty("Color", color);
+	delete temp_borders;
+	delete temp_range;
+}
+/*-------------------------------------------------
+		样式 - 设置全边框色
+*/
+void P_ExcelOperater::cell_Style_SetBorder(QString start_pos, QString end_pos, QColor color, P_ExcelOperater::XlBordersIndex index){
+	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
+	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	QAxObject* temp_borders = temp_range->querySubObject("Borders");
+	QAxObject* temp_items = temp_borders->querySubObject("Item(QVariant)", index);
+	temp_items->setProperty("Color", color);
+	delete temp_items;
+	delete temp_borders;
+	delete temp_range;
 }
 /*-------------------------------------------------
 		样式 - 设置字体名称

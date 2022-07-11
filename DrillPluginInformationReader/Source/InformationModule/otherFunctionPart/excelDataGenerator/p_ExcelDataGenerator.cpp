@@ -192,10 +192,10 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	QString last_name = "";
 	this->cur_row = 2;
 
-	// > 性能测试说明
+	// > 性能测试说明（头）
 	this->generatePerformanceNotes(&operater);
 
-	// > 地图界面栏
+	// > 地图界面栏（头）
 	operater.cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	operater.cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
 	operater.cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "地图界面");
@@ -232,43 +232,69 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 		operater.cell_SetValue("B" + QString::number(cur_row), "B" + QString::number(cur_row), annotation.getPlugindesc_type());
 		operater.cell_SetValue("C" + QString::number(cur_row), "C" + QString::number(cur_row), annotation.getPlugindesc_name());
 		C_ScriptHelp_Performance* performance = detail->getPerformance();
+
+		// > 没有测试数据时
 		if (performance == nullptr){
 			operater.cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), "无");
-			operater.cell_SetValue("E" + QString::number(cur_row), "H" + QString::number(cur_row), "无");
-			operater.cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), "无");
+
 		}else{
+
+			// > 工作类型（持续执行/单次执行）
 			operater.cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
 
-			// > 分程度
+			// > 分程度（只要有一个测试值 大于5ms 就算）
 			double temp_cost_4 = performance->getMaxCost_ByLevel(4);
-			if (temp_cost_4 > 0){
+			if (temp_cost_4 > 5){
 				double temp_cost_1 = performance->getMaxCost_ByLevel(1);
 				double temp_cost_2 = performance->getMaxCost_ByLevel(2);
 				double temp_cost_3 = performance->getMaxCost_ByLevel(3);
 				double temp_cost_4 = performance->getMaxCost_ByLevel(4);
-				operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString::number(temp_cost_4) + "ms");
-				operater.cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), QString::number(temp_cost_3) + "ms");
-				operater.cell_SetValue("G" + QString::number(cur_row), "G" + QString::number(cur_row), QString::number(temp_cost_2) + "ms");
-				operater.cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), QString::number(temp_cost_1) + "ms");
+				QString temp_costStr_1 = QString::number(temp_cost_1) + "ms";
+				QString temp_costStr_2 = QString::number(temp_cost_2) + "ms";
+				QString temp_costStr_3 = QString::number(temp_cost_3) + "ms";
+				QString temp_costStr_4 = QString::number(temp_cost_4) + "ms";
+				if (temp_cost_1 <= 5){ temp_costStr_1 = "5ms以下"; }
+				if (temp_cost_2 <= 5){ temp_costStr_2 = "5ms以下"; }
+				if (temp_cost_3 <= 5){ temp_costStr_3 = "5ms以下"; }
+				if (temp_cost_4 <= 5){ temp_costStr_4 = "5ms以下"; }
+				if (temp_cost_1 < 0){ temp_costStr_1 = "未测"; }
+				if (temp_cost_2 < 0){ temp_costStr_2 = "未测"; }
+				if (temp_cost_3 < 0){ temp_costStr_3 = "未测"; }
+				if (temp_cost_4 < 0){ temp_costStr_4 = "未测"; }
+				operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_4 );
+				operater.cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), temp_costStr_3 );
+				operater.cell_SetValue("G" + QString::number(cur_row), "G" + QString::number(cur_row), temp_costStr_2 );
+				operater.cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), temp_costStr_1 );
 				operater.cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_4));
 				operater.cell_Style_SetBackground("F" + QString::number(cur_row), "F" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_3));
 				operater.cell_Style_SetBackground("G" + QString::number(cur_row), "G" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_2));
 				operater.cell_Style_SetBackground("H" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_1));
 				
 			}else{
-				// > 不分程度
+
+				// > 不分程度（只要有一个能显示的测试值 就算）
 				double temp_cost_0 = performance->getMaxCost_ByLevel(0);
+				if (temp_cost_4 > 0){ temp_cost_0 = temp_cost_4; }	//（如果四个全部小于5ms，那么就显示整个的为"5ms以下"）
 				if (temp_cost_0 > 0){
-					operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString("  ") + QString::number(temp_cost_0) + "ms");
+					QString temp_costStr_0 = QString("  ") + QString::number(temp_cost_0) + "ms";
+					if (temp_cost_0 <= 5){ temp_costStr_0 = "  5ms以下"; }
+					operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_0);
 					operater.cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_0));
 					operater.cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+
+				// > 数据错误
 				}else{
 					operater.cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "数据错误");
 					operater.cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 				}
 			}
+
+			// > 时间复杂度
 			operater.cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
 		}
+
+		// > 边框设置+字体设置
+		operater.cell_Style_SetAllBorder("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
 		operater.cell_Style_SetFontFamily_Row(cur_row, "微软雅黑");
 
 		// > 单行结束
