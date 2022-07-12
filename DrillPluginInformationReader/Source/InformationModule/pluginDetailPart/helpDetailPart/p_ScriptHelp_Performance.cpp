@@ -40,9 +40,7 @@ void P_ScriptHelp_Performance::linkClicked_docs(QString data){
 /*-------------------------------------------------
 		控件 - 给消耗文本上色
 */
-QString P_ScriptHelp_Performance::decorateCostColor(QString cost){
-	QString cost_str = cost;
-	double cost_value = cost_str.replace(QRegExp("[^0-9e\\.]+"), "").toDouble();	//（筛选数字）
+QString P_ScriptHelp_Performance::decorateCostColor(double cost_value, QString cost_text){
 	QString result = "";
 	if (cost_value >= 120){
 		result.append("<span style=\"background-color:#CC6C6A;\">");
@@ -54,7 +52,7 @@ QString P_ScriptHelp_Performance::decorateCostColor(QString cost){
 		result.append("<span style=\"background-color:#CEF9DB;\">");
 	}
 	result.append("  ");
-	result.append(cost);
+	result.append(cost_text);
 	result.append("  ");
 	result.append("</span>");
 	return result;
@@ -122,11 +120,11 @@ void P_ScriptHelp_Performance::setData(C_ScriptHelp_Performance* data){
 		// > 测试结果详细
 		for (int j = 0; j < c_test.detail_list.count(); j++){
 			C_ScriptHelp_PerformanceTestDetail d = c_test.detail_list.at(j);
-			QString cost = d.cost_text;
-			QString condition = d.condition_text;
+			QString description = d.getDescription();
+			QString cost_text = this->decorateCostColor(d.getCostValue(), d.getCostString());
+			description.append(cost_text);
 
-			condition.append(this->decorateCostColor(cost));
-			QLabel* label_2 = new QLabel(condition, group);
+			QLabel* label_2 = new QLabel(description, group);
 			label_2->setWordWrap(true);
 			label_2->setTextInteractionFlags(label_2->textInteractionFlags() | Qt::TextInteractionFlag::TextSelectableByMouse);
 			label_2->setCursor(QCursor(Qt::IBeamCursor));

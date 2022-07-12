@@ -12,8 +12,8 @@
 -----==========================================================-----
 */
 C_ScriptHelp_PerformanceTestDetail::C_ScriptHelp_PerformanceTestDetail(){
-	this->cost_text = "";				//消耗内容
-	this->condition_text = "";			//条件内容
+	this->cost = -1;					//消耗值
+	this->description = "";				//描述内容
 	this->condition_scene = "";			//条件 - 界面
 	this->condition_level = 0;			//条件 - 程度
 }
@@ -24,43 +24,76 @@ C_ScriptHelp_PerformanceTestDetail::~C_ScriptHelp_PerformanceTestDetail(){
 		数据 - 获取消耗值
 */
 double C_ScriptHelp_PerformanceTestDetail::getCostValue(){
-	QString cost = this->cost_text.replace(QRegExp("[^0-9e\\.]+"), "");		//（只留数字）
-	return cost.toDouble();
+	return this->cost;
+}
+/*-------------------------------------------------
+		数据 - 获取消耗显示文本
+*/
+QString C_ScriptHelp_PerformanceTestDetail::getCostString(){
+	if (this->cost <= 0){ return "消耗值错误"; }
+	if (this->cost < 5){ return "5ms以下"; }
+	return QString::number(this->cost)+"ms";
+}
+/*-------------------------------------------------
+		数据 - 获取描述内容
+*/
+QString C_ScriptHelp_PerformanceTestDetail::getDescription(){
+	return this->description;
+}
+/*-------------------------------------------------
+		数据 - 获取条件 - 界面
+*/
+QString C_ScriptHelp_PerformanceTestDetail::getCondition_scene(){
+	return this->condition_scene;
+}
+/*-------------------------------------------------
+		数据 - 获取条件 - 程度
+*/
+int C_ScriptHelp_PerformanceTestDetail::getCondition_level(){
+	return this->condition_level;
 }
 /*-------------------------------------------------
 		数据 - 空判断
 */
 bool C_ScriptHelp_PerformanceTestDetail::isNull(){
-	return this->cost_text == "";
+	return this->cost == -1;
 }
 /*-------------------------------------------------
 		数据 - 读取 测试结果 字符串
 */
 void C_ScriptHelp_PerformanceTestDetail::readTestDetail(QString one_row){
 	if (one_row.isEmpty()){ return; }
+
+	// > 分离结果值和描述
 	one_row = one_row.replace("】", "");
 	QStringList str_list = one_row.split("【");
 	if (str_list.count() < 2){ return; }
-	this->condition_text = str_list.at(0);	//（分离结果和说明文字）
-	this->cost_text = str_list.at(1);
 
-	// > 第一次找
+	// > 描述内容
+	this->description = str_list.at(0);	
+
+	// > 消耗值
+	QString cost_text = str_list.at(1);
+	cost_text = cost_text.replace(QRegExp("[^0-9e\\.]+"), "");		//（只留数字）
+	this->cost = cost_text.toDouble();
+
+	// > 条件 - 第一次找
 	QStringList word_list = S_PluginConstValue::getInstance()->getPerformanceWord_All();
 	for (int i = 0; i < word_list.count(); i++){
 		QString word = word_list.at(i);
-		if (this->condition_text.contains(word)){
+		if (this->description.contains(word)){
 			this->condition_scene = S_PluginConstValue::getInstance()->getSceneName_ByPerformanceWord(word);
 			this->condition_level = S_PluginConstValue::getInstance()->getPerformanceWord_ByName(this->condition_scene).indexOf(word) + 1; //（值为 1-4）
 			break;
 		}
 	}
 
-	// > 没找到，按界面名称继续找
+	// > 条件 - 没找到，按界面名称继续找
 	if (this->condition_level == 0){
 		QStringList name_list = S_PluginConstValue::getInstance()->getSceneName_All();
 		for (int i = 0; i < name_list.count(); i++){
 			QString name = name_list.at(i);
-			if (this->condition_text.contains(name)){
+			if (this->description.contains(name)){
 				this->condition_scene = name;
 			}
 		}
@@ -108,15 +141,39 @@ double C_ScriptHelp_PerformanceTest::getMaxCost(){
 	return result;
 }
 /*-------------------------------------------------
-		数据 - 获取 测试结果
+		数据 - 获取最大消耗（根据条件）
 */
-double C_ScriptHelp_PerformanceTest::getMaxCost_ByLevel(int level){
+double C_ScriptHelp_PerformanceTest::getMaxCost_ByLevel(QString scene_name, int level){
 	double result = -1;
 	for (int i = 0; i < this->detail_list.count(); i++){
 		C_ScriptHelp_PerformanceTestDetail detail = this->detail_list.at(i);
-		if (detail.condition_level == level &&
-			result < detail.getCostValue()){
-			result = detail.getCostValue();
+		if (detail.getCondition_level() == level &&
+			detail.getCondition_scene() == scene_name){
+			if (result == -1){
+				result = detail.getCostValue();
+			}
+			if (result < detail.getCostValue()){
+				result = detail.getCostValue();
+			}
+		}
+	}
+	return result;
+}
+/*-------------------------------------------------
+		数据 - 获取最小消耗（根据条件）
+*/
+double C_ScriptHelp_PerformanceTest::getMinCost_ByLevel(QString scene_name, int level){
+	double result = -1;
+	for (int i = 0; i < this->detail_list.count(); i++){
+		C_ScriptHelp_PerformanceTestDetail detail = this->detail_list.at(i);
+		if (detail.getCondition_level() == level &&
+			detail.getCondition_scene() == scene_name){
+			if (result == -1){
+				result = detail.getCostValue();
+			}
+			if (result > detail.getCostValue()){
+				result = detail.getCostValue();
+			}
 		}
 	}
 	return result;
@@ -193,15 +250,38 @@ double C_ScriptHelp_Performance::getMaxCost_Private(){
 	return result;
 }
 /*-------------------------------------------------
-		数据 - 获取最大消耗（根据程度）
+		数据 - 获取最大消耗（根据条件）
 */
-double C_ScriptHelp_Performance::getMaxCost_ByLevel(int level){
+double C_ScriptHelp_Performance::getMaxCost_ByLevel(QString scene_name, int level){
 	if (this->test_list.count() == 0){ return -1; }
 	double result = -1;
 	for (int i = 0; i < this->test_list.count(); i++){
 		C_ScriptHelp_PerformanceTest test = this->test_list.at(i);
-		double data = test.getMaxCost_ByLevel(level);
+		double data = test.getMaxCost_ByLevel(scene_name, level);
+		if (data == -1){ continue; }
+		if (result == -1){
+			result = data;
+		}
 		if (result < data){
+			result = data;
+		}
+	}
+	return result;
+}
+/*-------------------------------------------------
+		数据 - 获取最小消耗（根据条件）
+*/
+double C_ScriptHelp_Performance::getMinCost_ByLevel(QString scene_name, int level){
+	if (this->test_list.count() == 0){ return -1; }
+	double result = -1;
+	for (int i = 0; i < this->test_list.count(); i++){
+		C_ScriptHelp_PerformanceTest test = this->test_list.at(i);
+		double data = test.getMinCost_ByLevel(scene_name, level);
+		if (data == -1){ continue; }
+		if (result == -1){
+			result = data;
+		}
+		if (result > data){
 			result = data;
 		}
 	}

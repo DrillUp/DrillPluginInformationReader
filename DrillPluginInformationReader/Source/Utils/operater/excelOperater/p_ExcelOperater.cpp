@@ -211,6 +211,20 @@ int P_ExcelOperater::getSheetCount(){
 bool P_ExcelOperater::isOpened_Sheet(){
 	return this->m_curSheet != nullptr;
 }
+/*-------------------------------------------------
+		工作表 - 获取当前工作表名称
+*/
+QString P_ExcelOperater::getSheetName(){
+	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return ""; }
+	return this->m_curSheet->property("Name").toString();
+}
+/*-------------------------------------------------
+		工作表 - 设置当前工作表名称
+*/
+void P_ExcelOperater::setSheetName(QString name){
+	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
+	this->m_curSheet->setProperty("Name", name);
+}
 
 
 /*-------------------------------------------------

@@ -23,12 +23,16 @@ class C_ScriptHelp_EffectScope{
 		QString comments;			//作用域说明
 	public:
 							//数据 - 可作用于地图界面
-		bool isEnableSenceMap();
+		bool isEnableSceneMap();
 							//数据 - 可作用于战斗界面
-		bool isEnableSenceBattle();
+		bool isEnableSceneBattle();
 							//数据 - 可作用于菜单界面
-		bool isEnableSenceMenu();
+		bool isEnableSceneMenu();
+							//数据 - 可作用于界面
+		bool isEnableScene(QString scene_name);
+							//数据 - 获取作用域
+		QStringList getEnabledScene();
 							//数据 - 除此三种类型以外的界面
-		QStringList getOtherSence();
+		QStringList getOtherScene();
 
 };

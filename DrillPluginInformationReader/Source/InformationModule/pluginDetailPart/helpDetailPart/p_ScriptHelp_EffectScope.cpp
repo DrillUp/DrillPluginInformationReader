@@ -41,21 +41,21 @@ void P_ScriptHelp_EffectScope::setData(C_ScriptHelp_EffectScope* data){
 	}
 
 	// > 三种界面
-	if (data->isEnableSenceBattle()){
+	if (data->isEnableSceneBattle()){
 		ui.toolButton_battle->setEnabled(true);
 		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{
 		ui.toolButton_battle->setEnabled(false);
 		ui.toolButton_battle->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.png"));
 	}
-	if (data->isEnableSenceMap()){
+	if (data->isEnableSceneMap()){
 		ui.toolButton_map->setEnabled(true);
 		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{
 		ui.toolButton_map->setEnabled(false);
 		ui.toolButton_map->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Error.png"));
 	}
-	if (data->isEnableSenceMenu()){
+	if (data->isEnableSceneMenu()){
 		ui.toolButton_menu->setEnabled(true);
 		ui.toolButton_menu->setIcon(QIcon(":/DrillPluginInformationReader/Resources/icons/view/Icon_Selected.png"));
 	}else{

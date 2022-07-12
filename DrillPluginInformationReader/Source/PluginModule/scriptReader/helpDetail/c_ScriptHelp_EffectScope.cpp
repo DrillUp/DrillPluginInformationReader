@@ -20,25 +20,37 @@ C_ScriptHelp_EffectScope::~C_ScriptHelp_EffectScope(){
 /*-------------------------------------------------
 		数据 - 可作用于地图界面
 */
-bool C_ScriptHelp_EffectScope::isEnableSenceMap(){
+bool C_ScriptHelp_EffectScope::isEnableSceneMap(){
 	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Map());
 }
 /*-------------------------------------------------
 		数据 - 可作用于战斗界面
 */
-bool C_ScriptHelp_EffectScope::isEnableSenceBattle(){
+bool C_ScriptHelp_EffectScope::isEnableSceneBattle(){
 	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Battle());
 }
 /*-------------------------------------------------
 		数据 - 可作用于菜单界面
 */
-bool C_ScriptHelp_EffectScope::isEnableSenceMenu(){
+bool C_ScriptHelp_EffectScope::isEnableSceneMenu(){
 	return this->scope_list.contains(S_PluginConstValue::getInstance()->getSceneName_Menu());
+}
+/*-------------------------------------------------
+		数据 - 可作用于界面
+*/
+bool C_ScriptHelp_EffectScope::isEnableScene(QString scene_name){
+	return this->scope_list.contains(scene_name);
+}
+/*-------------------------------------------------
+		数据 - 获取作用域
+*/
+QStringList C_ScriptHelp_EffectScope::getEnabledScene(){
+	return this->scope_list;
 }
 /*-------------------------------------------------
 		数据 - 除此三种类型以外的界面
 */
-QStringList C_ScriptHelp_EffectScope::getOtherSence(){
+QStringList C_ScriptHelp_EffectScope::getOtherScene(){
 	QStringList result = QStringList();
 	for (int i = 0; i < this->scope_list.count(); i++){
 		QString data = this->scope_list.at(i);

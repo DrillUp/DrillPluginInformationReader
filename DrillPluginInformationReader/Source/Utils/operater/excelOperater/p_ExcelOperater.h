@@ -74,6 +74,10 @@ class P_ExcelOperater : public QObject
 		int getSheetCount();
 										//工作簿 - 是否成功打开
 		bool isOpened_Sheet();
+										//工作表 - 获取当前工作表名称
+		QString getSheetName();
+										//工作表 - 设置当前工作表名称
+		void setSheetName(QString name);
 
 	//-----------------------------------
 	//-----操作值

@@ -26,6 +26,7 @@ class P_ExcelDataGenerator : public QObject
 	//----生成器
 	public:
 		int cur_row;
+		P_ExcelOperater* cur_operater;
 	public slots: 
 								//生成器 - 生成 插件清单
 		void generatePluginDataList(QString save_path);
@@ -36,7 +37,9 @@ class P_ExcelDataGenerator : public QObject
 	
 	private:
 								//阶段 - 生成 性能测试说明内容
-		void generatePerformanceNotes(P_ExcelOperater* operater);
+		void generatePerformanceNotes();
+								//阶段 - 生成 界面数据内容
+		void generatePerformanceSceneData(QString scene_name);
 	private:
 								//颜色 - 灰色
 		QColor getColor_grey();

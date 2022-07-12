@@ -21,14 +21,22 @@ class C_ScriptHelp_PerformanceTestDetail{
 		
 	//-----------------------------------
 	//----数据
-	public:
-		QString cost_text;				//消耗内容
-		QString condition_text;			//条件内容
+	protected:
+		double cost;					//消耗值
+		QString description;			//描述内容
 		QString condition_scene;		//条件 - 界面
 		int condition_level;			//条件 - 程度（0:不分程度的界面整体测试；1-4:1为最弱程度,4为最强程度）
 	public:
 								//数据 - 获取消耗值
 		double getCostValue();
+								//数据 - 获取消耗显示文本
+		QString getCostString();
+								//数据 - 获取描述内容
+		QString getDescription();
+								//数据 - 获取条件 - 界面
+		QString getCondition_scene();
+								//数据 - 获取条件 - 程度
+		int getCondition_level();
 								//数据 - 空判断
 		bool isNull();
 		
@@ -63,8 +71,12 @@ class C_ScriptHelp_PerformanceTest{
 		QList<double> getCostList();
 								//数据 - 获取最大消耗
 		double getMaxCost();
-								//数据 - 获取最大消耗（根据程度）
-		double getMaxCost_ByLevel(int level);
+								//数据 - 获取最大消耗（根据条件）
+								//		【说明】：如果没有值，则返回-1。
+		double getMaxCost_ByLevel(QString scene_name, int level);
+								//数据 - 获取最小消耗（根据条件）
+								//		【说明】：如果没有值，则返回-1。
+		double getMinCost_ByLevel(QString scene_name, int level);
 		
 	//-----------------------------------
 	//----读取器
@@ -97,10 +109,16 @@ class C_ScriptHelp_Performance{
 	public:
 								//数据 - 空判断
 		bool isNull();
+
 								//数据 - 获取最大消耗
 		double getMaxCost();
-								//数据 - 获取最大消耗（根据程度）
-		double getMaxCost_ByLevel(int level);
+								//数据 - 获取最大消耗（根据条件）
+								//		【说明】：如果没有值，则返回-1。
+		double getMaxCost_ByLevel(QString scene_name, int level);
+								//数据 - 获取最小消耗（根据条件）
+								//		【说明】：如果没有值，则返回-1。
+		double getMinCost_ByLevel(QString scene_name, int level);
+
 								//数据 - 是否高消耗
 		bool isHighCost();
 								//数据 - 是否中消耗
