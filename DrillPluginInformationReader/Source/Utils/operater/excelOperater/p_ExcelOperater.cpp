@@ -14,8 +14,13 @@
 					【注意，此操作器只能在32位编译下运行】
 
 		使用方法：
-				>初始化
-
+				> 打开
+					cur_operater = new P_ExcelOperater();
+					cur_operater->openSoftware();
+					cur_operater->newExcelFile();
+				> 保存
+					cur_operater->saveAsExcelFile(save_path);
+					cur_operater->closeSoftware();
 -----==========================================================-----
 */
 P_ExcelOperater::P_ExcelOperater(){
@@ -30,6 +35,8 @@ P_ExcelOperater::P_ExcelOperater(){
 	this->m_curSheetTank = nullptr;				//工作表容器
 
 	this->m_curSheet = nullptr;					//当前工作表
+
+	this->m_error_showed = false;				//报错标记
 }
 P_ExcelOperater::~P_ExcelOperater(){
 	delete this->m_curSheet;
@@ -187,6 +194,8 @@ void P_ExcelOperater::selectSheet(int i){
 	if (this->isOpened_ExcelFile() == false){ Q_ASSERT(false); return; }
 	if (this->m_curSheetTank == nullptr){ Q_ASSERT(false); return; }
 	this->m_curSheet = this->m_curSheetTank->querySubObject("Item(int)", i);
+	if (this->m_curSheet == nullptr){ return; }
+	this->m_curSheet->dynamicCall("Activate()");
 }
 /*-------------------------------------------------
 		工作表 - 复制工作表
@@ -233,6 +242,7 @@ void P_ExcelOperater::setSheetName(QString name){
 void P_ExcelOperater::cell_SetValue(QString start_pos, QString end_pos, QString value){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置值"); return; }
 	temp_range->setProperty("Value", value);
 	delete temp_range;
 }
@@ -242,6 +252,7 @@ void P_ExcelOperater::cell_SetValue(QString start_pos, QString end_pos, QString 
 QStringList P_ExcelOperater::cell_GetValue(QString start_pos, QString end_pos, QStringList value){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return QStringList(); }
 	QAxObject *temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("获取值"); return QStringList(); }
 	QVariant var_matrix = temp_range->dynamicCall("Value");
 	QVariantList var_rowList = var_matrix.toList();
 	if (var_rowList.isEmpty()){ return QStringList(); }
@@ -262,10 +273,7 @@ QStringList P_ExcelOperater::cell_GetValue(QString start_pos, QString end_pos, Q
 */
 void P_ExcelOperater::cell_FreezePanes_OnlyRow(){
 	QAxObject* temp_activeWindow = this->m_application->querySubObject("ActiveWindow");
-	if (temp_activeWindow == nullptr){
-		QMessageBox::about(nullptr, "错误", "操作失败(冻结首行)。");
-		return;
-	}
+	if (temp_activeWindow == nullptr){ this->error_show("冻结首行"); return; }
 	temp_activeWindow->setProperty("FreezePanes", false);
 	temp_activeWindow->setProperty("SplitColumn", 0);
 	temp_activeWindow->setProperty("SplitRow", 1);
@@ -277,10 +285,7 @@ void P_ExcelOperater::cell_FreezePanes_OnlyRow(){
 */
 void P_ExcelOperater::cell_FreezePanes_OnlyColumn(){
 	QAxObject* temp_activeWindow = this->m_application->querySubObject("ActiveWindow");
-	if (temp_activeWindow == nullptr){
-		QMessageBox::about(nullptr, "错误", "操作失败(冻结首列)。");
-		return;
-	}
+	if (temp_activeWindow == nullptr){ this->error_show("冻结首列"); return; }
 	temp_activeWindow->setProperty("FreezePanes", false);
 	temp_activeWindow->setProperty("SplitColumn", 1);
 	temp_activeWindow->setProperty("SplitRow", 0);
@@ -292,10 +297,7 @@ void P_ExcelOperater::cell_FreezePanes_OnlyColumn(){
 */
 void P_ExcelOperater::cell_FreezePanes_RowAndColumn(){
 	QAxObject* temp_activeWindow = this->m_application->querySubObject("ActiveWindow");
-	if (temp_activeWindow == nullptr){
-		QMessageBox::about(nullptr, "错误", "操作失败(冻结首行和首列)。");
-		return;
-	}
+	if (temp_activeWindow == nullptr){ this->error_show("冻结首行和首列"); return; }
 	temp_activeWindow->setProperty("FreezePanes", false);
 	temp_activeWindow->setProperty("SplitColumn", 1);
 	temp_activeWindow->setProperty("SplitRow", 1);
@@ -307,10 +309,7 @@ void P_ExcelOperater::cell_FreezePanes_RowAndColumn(){
 */
 void P_ExcelOperater::cell_FreezePanes_None(){
 	QAxObject* temp_activeWindow = this->m_application->querySubObject("ActiveWindow");
-	if (temp_activeWindow == nullptr){
-		QMessageBox::about(nullptr, "错误", "操作失败(关闭冻结)。");
-		return;
-	}
+	if (temp_activeWindow == nullptr){ this->error_show("关闭冻结"); return; }
 	temp_activeWindow->setProperty("FreezePanes", false);
 	delete temp_activeWindow;
 }
@@ -321,6 +320,7 @@ void P_ExcelOperater::cell_FreezePanes_None(){
 void P_ExcelOperater::cell_SetWidth(int col_pos, int width){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_col = this->m_curSheet->querySubObject("Columns(int)", col_pos);
+	if (temp_col == nullptr){ this->error_show("设置宽度"); return; }
 	temp_col->setProperty("ColumnWidth", width);
 	delete temp_col;
 }
@@ -330,6 +330,7 @@ void P_ExcelOperater::cell_SetWidth(int col_pos, int width){
 void P_ExcelOperater::cell_SetHeight(int row_pos, int height){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_row = this->m_curSheet->querySubObject("Rows(int)", row_pos);
+	if (temp_row == nullptr){ this->error_show("设置高度"); return; }
 	temp_row->setProperty("RowHeight", height);
 	delete temp_row;
 }
@@ -339,6 +340,7 @@ void P_ExcelOperater::cell_SetHeight(int row_pos, int height){
 void P_ExcelOperater::cell_MergeCells(QString start_pos, QString end_pos, bool enabled){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("合并单元格"); return; }
 	temp_range->setProperty("MergeCells", enabled);
 	delete temp_range;
 }
@@ -348,6 +350,7 @@ void P_ExcelOperater::cell_MergeCells(QString start_pos, QString end_pos, bool e
 void P_ExcelOperater::cell_SetWrapText(QString start_pos, QString end_pos, bool enabled){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置自动换行"); return; }
 	temp_range->setProperty("WrapText", enabled);
 	delete temp_range;
 }
@@ -359,7 +362,9 @@ void P_ExcelOperater::cell_SetWrapText(QString start_pos, QString end_pos, bool 
 void P_ExcelOperater::cell_Style_SetBackground(QString start_pos, QString end_pos, QColor color){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr ){ this->error_show("设置背景"); return; }
 	QAxObject* temp_interior = temp_range->querySubObject("Interior");
+	if (temp_interior == nullptr){ this->error_show("设置背景"); return; }
 	temp_interior->setProperty("Color", color);
 	delete temp_interior;
 	delete temp_range;
@@ -367,7 +372,9 @@ void P_ExcelOperater::cell_Style_SetBackground(QString start_pos, QString end_po
 void P_ExcelOperater::cell_Style_SetBackground_Row(int row_pos, QColor color){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_row = this->m_curSheet->querySubObject("Rows(int)", row_pos);
+	if (temp_row == nullptr){ this->error_show("设置背景"); return; }
 	QAxObject* temp_interior = temp_row->querySubObject("Interior");
+	if (temp_interior == nullptr){ this->error_show("设置背景"); return; }
 	temp_interior->setProperty("Color", color);
 	delete temp_interior;
 	delete temp_row;
@@ -375,7 +382,9 @@ void P_ExcelOperater::cell_Style_SetBackground_Row(int row_pos, QColor color){
 void P_ExcelOperater::cell_Style_SetBackground_Column(int col_pos, QColor color){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_col = this->m_curSheet->querySubObject("Columns(int)", col_pos);
+	if (temp_col == nullptr){ this->error_show("设置背景"); return; }
 	QAxObject* temp_interior = temp_col->querySubObject("Interior");
+	if (temp_interior == nullptr){ this->error_show("设置背景"); return; }
 	temp_interior->setProperty("Color", color);
 	delete temp_interior;
 	delete temp_col;
@@ -386,7 +395,9 @@ void P_ExcelOperater::cell_Style_SetBackground_Column(int col_pos, QColor color)
 void P_ExcelOperater::cell_Style_SetAllBorder(QString start_pos, QString end_pos, QColor color){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置边框色"); return; }
 	QAxObject* temp_borders = temp_range->querySubObject("Borders");
+	if (temp_borders == nullptr){ this->error_show("设置边框色"); return; }
 	temp_borders->setProperty("Color", color);
 	delete temp_borders;
 	delete temp_range;
@@ -397,8 +408,11 @@ void P_ExcelOperater::cell_Style_SetAllBorder(QString start_pos, QString end_pos
 void P_ExcelOperater::cell_Style_SetBorder(QString start_pos, QString end_pos, QColor color, P_ExcelOperater::XlBordersIndex index){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置全边框色"); return; }
 	QAxObject* temp_borders = temp_range->querySubObject("Borders");
+	if (temp_borders == nullptr){ this->error_show("设置全边框色"); return; }
 	QAxObject* temp_items = temp_borders->querySubObject("Item(QVariant)", index);
+	if (temp_items == nullptr){ this->error_show("设置全边框色"); return; }
 	temp_items->setProperty("Color", color);
 	delete temp_items;
 	delete temp_borders;
@@ -411,7 +425,9 @@ void P_ExcelOperater::cell_Style_SetBorder(QString start_pos, QString end_pos, Q
 void P_ExcelOperater::cell_Style_SetFontFamily(QString start_pos, QString end_pos, QString font_name){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置字体名称"); return; }
 	QAxObject* temp_font = temp_range->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体名称"); return; }
 	temp_font->setProperty("Name", font_name);
 	delete temp_font;
 	delete temp_range;
@@ -419,7 +435,9 @@ void P_ExcelOperater::cell_Style_SetFontFamily(QString start_pos, QString end_po
 void P_ExcelOperater::cell_Style_SetFontFamily_Row(int row_pos, QString font_name){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_row = this->m_curSheet->querySubObject("Rows(int)", row_pos);
+	if (temp_row == nullptr){ this->error_show("设置字体名称"); return; }
 	QAxObject* temp_font = temp_row->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体名称"); return; }
 	temp_font->setProperty("Name", font_name);
 	delete temp_font;
 	delete temp_row;
@@ -427,7 +445,9 @@ void P_ExcelOperater::cell_Style_SetFontFamily_Row(int row_pos, QString font_nam
 void P_ExcelOperater::cell_Style_SetFontFamily_Column(int col_pos, QString font_name){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_col = this->m_curSheet->querySubObject("Columns(int)", col_pos);
+	if (temp_col == nullptr){ this->error_show("设置字体名称"); return; }
 	QAxObject* temp_font = temp_col->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体名称"); return; }
 	temp_font->setProperty("Name", font_name);
 	delete temp_font;
 	delete temp_col;
@@ -438,7 +458,9 @@ void P_ExcelOperater::cell_Style_SetFontFamily_Column(int col_pos, QString font_
 void P_ExcelOperater::cell_Style_SetFontBold(QString start_pos, QString end_pos, bool enabled){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_range->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Bold", enabled);
 	delete temp_font;
 	delete temp_range;
@@ -446,7 +468,9 @@ void P_ExcelOperater::cell_Style_SetFontBold(QString start_pos, QString end_pos,
 void P_ExcelOperater::cell_Style_SetFontBold_Row(int row_pos, bool enabled){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_row = this->m_curSheet->querySubObject("Rows(int)", row_pos);
+	if (temp_row == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_row->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Bold", enabled);
 	delete temp_font;
 	delete temp_row;
@@ -454,7 +478,9 @@ void P_ExcelOperater::cell_Style_SetFontBold_Row(int row_pos, bool enabled){
 void P_ExcelOperater::cell_Style_SetFontBold_Column(int col_pos, bool enabled){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_col = this->m_curSheet->querySubObject("Columns(int)", col_pos);
+	if (temp_col == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_col->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Bold", enabled);
 	delete temp_font;
 	delete temp_col;
@@ -465,7 +491,9 @@ void P_ExcelOperater::cell_Style_SetFontBold_Column(int col_pos, bool enabled){
 void P_ExcelOperater::cell_Style_SetFontSize(QString start_pos, QString end_pos, int font_size){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject* temp_range = this->m_curSheet->querySubObject("Range(QVariant, QVariant)", start_pos, end_pos);
+	if (temp_range == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_range->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Size", font_size);
 	delete temp_font;
 	delete temp_range;
@@ -473,7 +501,9 @@ void P_ExcelOperater::cell_Style_SetFontSize(QString start_pos, QString end_pos,
 void P_ExcelOperater::cell_Style_SetFontSize_Row(int row_pos, int font_size){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_row = this->m_curSheet->querySubObject("Rows(int)", row_pos);
+	if (temp_row == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_row->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Size", font_size);
 	delete temp_font;
 	delete temp_row;
@@ -481,10 +511,26 @@ void P_ExcelOperater::cell_Style_SetFontSize_Row(int row_pos, int font_size){
 void P_ExcelOperater::cell_Style_SetFontSize_Column(int col_pos, int font_size){
 	if (this->isOpened_Sheet() == false){ Q_ASSERT(false); return; }
 	QAxObject *temp_col = this->m_curSheet->querySubObject("Columns(int)", col_pos);
+	if (temp_col == nullptr){ this->error_show("设置字体加粗"); return; }
 	QAxObject* temp_font = temp_col->querySubObject("Font");
+	if (temp_font == nullptr){ this->error_show("设置字体加粗"); return; }
 	temp_font->setProperty("Size", font_size);
 	delete temp_font;
 	delete temp_col;
+}
+
+
+/*-------------------------------------------------
+		报错捕获 - 显示报错信息
+*/
+void P_ExcelOperater::error_show(QString error_msg){
+	if (this->m_error_showed == true){ return; }
+	this->m_error_showed = true;		//（最多只显示一次）
+	QString error_text;
+	error_text.append("操作失败(");
+	error_text.append(error_msg);
+	error_text.append(")。");
+	QMessageBox::about(nullptr, "错误", error_text );
 }
 
 

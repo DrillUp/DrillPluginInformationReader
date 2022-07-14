@@ -83,7 +83,7 @@ void C_ScriptHelp_PerformanceTestDetail::readTestDetail(QString one_row){
 		QString word = word_list.at(i);
 		if (this->description.contains(word)){
 			this->condition_scene = S_PluginConstValue::getInstance()->getSceneName_ByPerformanceWord(word);
-			this->condition_level = S_PluginConstValue::getInstance()->getPerformanceWord_ByName(this->condition_scene).indexOf(word) + 1; //（值为 1-4）
+			this->condition_level = S_PluginConstValue::getInstance()->getLevel_ByPerformanceWord(word) + 1; //（值为 1-4）
 			break;
 		}
 	}

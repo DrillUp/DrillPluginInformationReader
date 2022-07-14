@@ -145,6 +145,16 @@ class P_ExcelOperater : public QObject
 		void cell_Style_SetFontSize(QString start_pos, QString end_pos, int font_size);
 		void cell_Style_SetFontSize_Row(int row_pos, int font_size);
 		void cell_Style_SetFontSize_Column(int col_pos, int font_size);
+		
+
+	//-----------------------------------
+	//-----报错捕获
+	protected:
+		bool m_error_showed;			//报错标记
+	protected:
+										//报错捕获 - 显示报错信息
+		void error_show(QString error_msg);
+
 
 };
 

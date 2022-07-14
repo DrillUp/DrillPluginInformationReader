@@ -237,10 +237,10 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_operater->cell_SetValue("B1", "B1", "插件类型");
 	cur_operater->cell_SetValue("C1", "C1", "中文名");
 	cur_operater->cell_SetValue("D1", "D1", "工作类型");
-	cur_operater->cell_SetValue("E1", "E1", "8个敌人");
-	cur_operater->cell_SetValue("F1", "F1", "4个敌人");
-	cur_operater->cell_SetValue("G1", "G1", "1个敌人");
-	cur_operater->cell_SetValue("H1", "H1", "没有敌人");
+	cur_operater->cell_SetValue("E1", "E1", "8-16个单位");
+	cur_operater->cell_SetValue("F1", "F1", "4-8个单位");
+	cur_operater->cell_SetValue("G1", "G1", "1-2个单位");
+	cur_operater->cell_SetValue("H1", "H1", "无");
 	cur_operater->cell_SetValue("I1", "I1", "时间复杂度");
 
 	// > 性能测试说明（头）
@@ -257,7 +257,7 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_row += 1;
 
 	// > 生成界面数据内容
-	this->generatePerformanceSceneData(scene_name);
+	//this->generatePerformanceSceneData(scene_name);
 
 
 	// > 表头
@@ -300,7 +300,7 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_row += 1;
 
 	// > 生成界面数据内容
-	this->generatePerformanceSceneData(scene_name);
+	//this->generatePerformanceSceneData(scene_name);
 
 
 	// > 保存
@@ -440,71 +440,83 @@ void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 
 		}else{
 
-			// > 数据错误情况
-			double max_cost = performance->getMaxCost();
-			if (max_cost == -1){
-				cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "数据错误");
+			// > 特殊类型
+			if (performance->working_type == "倍率持续"){
+				cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
+				cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "直接影响游戏整体的运行消耗");
 				cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+				cur_operater->cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
 			}else{
 
-				// > 工作类型（持续执行/单次执行）
-				cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
+				// > 数据错误情况
+				double max_cost = performance->getMaxCost();
+				if (max_cost == -1){
+					cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "数据错误");
+					cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+				}
+				else{
 
-				// > 分程度（只要有一个测试值 大于5ms 就算）
-				double temp_cost_4 = performance->getMinCost_ByLevel(scene_name, 4);
-				if (temp_cost_4 > 5){
-					double temp_cost_1 = performance->getMinCost_ByLevel(scene_name, 1);
-					double temp_cost_2 = performance->getMinCost_ByLevel(scene_name, 2);
-					double temp_cost_3 = performance->getMinCost_ByLevel(scene_name, 3);
+					// > 工作类型（持续执行/单次执行）
+					cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
+
+					// > 分程度（只要有一个测试值 大于5ms 就算）
 					double temp_cost_4 = performance->getMinCost_ByLevel(scene_name, 4);
-					QString temp_costStr_1 = QString::number(temp_cost_1) + "ms";
-					QString temp_costStr_2 = QString::number(temp_cost_2) + "ms";
-					QString temp_costStr_3 = QString::number(temp_cost_3) + "ms";
-					QString temp_costStr_4 = QString::number(temp_cost_4) + "ms";
-					if (temp_cost_1 <= 5){ temp_costStr_1 = "5ms以下"; }
-					if (temp_cost_2 <= 5){ temp_costStr_2 = "5ms以下"; }
-					if (temp_cost_3 <= 5){ temp_costStr_3 = "5ms以下"; }
-					if (temp_cost_4 <= 5){ temp_costStr_4 = "5ms以下"; }
-					if (temp_cost_1 < 0){ temp_costStr_1 = "未测"; }
-					if (temp_cost_2 < 0){ temp_costStr_2 = "未测"; }
-					if (temp_cost_3 < 0){ temp_costStr_3 = "未测"; }
-					if (temp_cost_4 < 0){ temp_costStr_4 = "未测"; }
-					cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_4);
-					cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), temp_costStr_3);
-					cur_operater->cell_SetValue("G" + QString::number(cur_row), "G" + QString::number(cur_row), temp_costStr_2);
-					cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), temp_costStr_1);
-					cur_operater->cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_4));
-					cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "F" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_3));
-					cur_operater->cell_Style_SetBackground("G" + QString::number(cur_row), "G" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_2));
-					cur_operater->cell_Style_SetBackground("H" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_1));
+					if (temp_cost_4 > 5){
+						double temp_cost_1 = performance->getMinCost_ByLevel(scene_name, 1);
+						double temp_cost_2 = performance->getMinCost_ByLevel(scene_name, 2);
+						double temp_cost_3 = performance->getMinCost_ByLevel(scene_name, 3);
+						double temp_cost_4 = performance->getMinCost_ByLevel(scene_name, 4);
+						QString temp_costStr_1 = QString::number(temp_cost_1) + "ms";
+						QString temp_costStr_2 = QString::number(temp_cost_2) + "ms";
+						QString temp_costStr_3 = QString::number(temp_cost_3) + "ms";
+						QString temp_costStr_4 = QString::number(temp_cost_4) + "ms";
+						if (temp_cost_1 <= 5){ temp_costStr_1 = "5ms以下"; }
+						if (temp_cost_2 <= 5){ temp_costStr_2 = "5ms以下"; }
+						if (temp_cost_3 <= 5){ temp_costStr_3 = "5ms以下"; }
+						if (temp_cost_4 <= 5){ temp_costStr_4 = "5ms以下"; }
+						if (temp_cost_1 < 0){ temp_costStr_1 = "未测"; }
+						if (temp_cost_2 < 0){ temp_costStr_2 = "未测"; }
+						if (temp_cost_3 < 0){ temp_costStr_3 = "未测"; }
+						if (temp_cost_4 < 0){ temp_costStr_4 = "未测"; }
+						cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_4);
+						cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), temp_costStr_3);
+						cur_operater->cell_SetValue("G" + QString::number(cur_row), "G" + QString::number(cur_row), temp_costStr_2);
+						cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), temp_costStr_1);
+						cur_operater->cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_4));
+						cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "F" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_3));
+						cur_operater->cell_Style_SetBackground("G" + QString::number(cur_row), "G" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_2));
+						cur_operater->cell_Style_SetBackground("H" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_1));
 
-				}else{
+					}
+					else{
 
-					// > 不分程度（只要有一个能显示的测试值 就算）
-					double temp_cost_0 = performance->getMinCost_ByLevel(scene_name, 0);
-					if (temp_cost_4 > 0){ temp_cost_0 = temp_cost_4; }	//（如果四个全部小于5ms，那么就显示整个的为"5ms以下"）
-					if (temp_cost_0 > 0){
-						QString temp_costStr_0 = QString("  ") + QString::number(temp_cost_0) + "ms";
-						if (temp_cost_0 <= 5){ temp_costStr_0 = "  5ms以下"; }
-						cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_0);
-						cur_operater->cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_0));
-						cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
-						
-					// > 都没值（说明作用域不在此处）
-					}else{
-						if (scope->isEnableScene(scene_name)){
-							cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "数据缺失");
+						// > 不分程度（只要有一个能显示的测试值 就算）
+						double temp_cost_0 = performance->getMinCost_ByLevel(scene_name, 0);
+						if (temp_cost_4 > 0){ temp_cost_0 = temp_cost_4; }	//（如果四个全部小于5ms，那么就显示整个的为"5ms以下"）
+						if (temp_cost_0 > 0){
+							QString temp_costStr_0 = QString("  ") + QString::number(temp_cost_0) + "ms";
+							if (temp_cost_0 <= 5){ temp_costStr_0 = "  5ms以下"; }
+							cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_0);
+							cur_operater->cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_0));
 							cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
-						}else{
-							cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString("只作用于")+scope->getEnabledScene().join("、"));
-							cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+
+							// > 都没值（说明作用域不在此处）
+						}
+						else{
+							if (scope->isEnableScene(scene_name)){
+								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "数据缺失");
+								cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+							}
+							else{
+								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString("只作用于") + scope->getEnabledScene().join("、"));
+								cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
+							}
 						}
 					}
+
+					// > 时间复杂度
+					cur_operater->cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
 				}
-
-				// > 时间复杂度
-				cur_operater->cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
-
 			}
 		}
 

@@ -50,4 +50,6 @@ class S_PluginConstValue{
 		QStringList getPerformanceWord_All();
 									//获取 - 性能关键字（根据界面名称）
 		QStringList getPerformanceWord_ByName(QString scene_name);
+									//获取 - 程度（根据性能关键字）
+		int getLevel_ByPerformanceWord(QString performanceWord);
 };
