@@ -585,7 +585,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\MainModule\versionLog\w_SoftwareVersionLog.cpp" />
-    <ClCompile Include="Source\PluginModule\const\s_PluginConstValue.cpp" />
+    <ClCompile Include="Source\PluginModule\const\s_Const_PluginValue.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.cpp" />
@@ -596,6 +596,7 @@
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp" />
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.cpp" />
     <ClCompile Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.cpp" />
@@ -1262,7 +1263,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp" "-fstdafx.h" "-f../../Source/InformationModule/otherFunctionPart/excelDataGenerator/p_ExcelDataGenerator.h"  -DUNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB "-I.\GeneratedFiles" "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWidgets" "-I.\Source\MainModule" "-I$(QTDIR)\include\ActiveQt"</Command>
     </CustomBuild>
-    <ClInclude Include="Source\PluginModule\const\s_PluginConstValue.h" />
+    <ClInclude Include="Source\PluginModule\const\s_Const_PluginValue.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.h" />
@@ -1272,6 +1273,7 @@
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h" />
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.h" />
     <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.h" />
     <ClInclude Include="Source\ProjectModule\storage\s_StorageManagerTemplate.h" />

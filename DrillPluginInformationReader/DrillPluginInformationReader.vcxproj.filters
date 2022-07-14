@@ -732,8 +732,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelDataGenerator.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\const\s_PluginConstValue.cpp">
+    <ClCompile Include="Source\PluginModule\const\s_Const_PluginValue.cpp">
       <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.cpp">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1162,8 +1165,11 @@
     <ClInclude Include="GeneratedFiles\ui_p_PluginDetailOrgContextPart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PluginModule\const\s_PluginConstValue.h">
+    <ClInclude Include="Source\PluginModule\const\s_Const_PluginValue.h">
       <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.h">
+      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

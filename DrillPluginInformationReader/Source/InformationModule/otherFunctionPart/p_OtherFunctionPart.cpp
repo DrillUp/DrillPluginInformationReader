@@ -78,7 +78,7 @@ void P_OtherFunctionPart::btn_VersionLog(){
 */
 void P_OtherFunctionPart::btn_ExcelPluginList(){
 
-	QMessageBox::about(nullptr, "提示", "此生成需要打开你电脑中的Excel软件，然后一个个写入数据，你需要耐心等待此过程，写入完毕后，会自动关掉Excel软件。");
+	QMessageBox::about(nullptr, "提示", "此生成需要打开你电脑中的Excel软件，然后一个个写入数据，你需要耐心等待此过程，写入完毕后，会自动关掉Excel软件。\n另外注意，关闭输入法，输入法会影响程序操作。");
 
 	QString file_path;
 	QFileDialog fd;
@@ -108,7 +108,7 @@ void P_OtherFunctionPart::btn_ExcelPluginList(){
 */
 void P_OtherFunctionPart::btn_ExcelPerformanceDataList(){
 
-	QMessageBox::about(nullptr, "提示", "此生成需要打开你电脑中的Excel软件，然后一个个写入数据，你需要耐心等待此过程，写入完毕后，会自动关掉Excel软件。");
+	QMessageBox::about(nullptr, "提示", "此生成需要打开你电脑中的Excel软件，然后一个个写入数据，你需要耐心等待此过程，写入完毕后，会自动关掉Excel软件。\n另外注意，关闭输入法，输入法会影响程序操作。");
 
 	QString file_path;
 	QFileDialog fd;

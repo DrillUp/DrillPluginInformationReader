@@ -1,12 +1,13 @@
 #include "stdafx.h"
 #include "c_ScriptHelp_Performance.h"
 
-#include "Source/PluginModule/const/s_PluginConstValue.h"
+#include "s_Const_Performance.h"
 
 
 /*
 -----==========================================================-----
 		类：		帮助数据-测试结果 数据类.cpp
+		作者：		drill_up
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
 -----==========================================================-----
@@ -78,19 +79,19 @@ void C_ScriptHelp_PerformanceTestDetail::readTestDetail(QString one_row){
 	this->cost = cost_text.toDouble();
 
 	// > 条件 - 第一次找
-	QStringList word_list = S_PluginConstValue::getInstance()->getPerformanceWord_All();
+	QStringList word_list = S_Const_Performance::getInstance()->getPerformanceWord_All();
 	for (int i = 0; i < word_list.count(); i++){
 		QString word = word_list.at(i);
 		if (this->description.contains(word)){
-			this->condition_scene = S_PluginConstValue::getInstance()->getSceneName_ByPerformanceWord(word);
-			this->condition_level = S_PluginConstValue::getInstance()->getLevel_ByPerformanceWord(word) + 1; //（值为 1-4）
+			this->condition_scene = S_Const_Performance::getInstance()->getSceneName_ByPerformanceWord(word);
+			this->condition_level = S_Const_Performance::getInstance()->getLevel_ByPerformanceWord(word);
 			break;
 		}
 	}
 
 	// > 条件 - 没找到，按界面名称继续找
 	if (this->condition_level == 0){
-		QStringList name_list = S_PluginConstValue::getInstance()->getSceneName_All();
+		QStringList name_list = S_Const_Performance::getInstance()->getSceneName_All();
 		for (int i = 0; i < name_list.count(); i++){
 			QString name = name_list.at(i);
 			if (this->description.contains(name)){
@@ -103,6 +104,7 @@ void C_ScriptHelp_PerformanceTestDetail::readTestDetail(QString one_row){
 /*
 -----==========================================================-----
 		类：		帮助数据-测试结果 数据类.cpp
+		作者：		drill_up
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
 -----==========================================================-----
@@ -208,6 +210,7 @@ void C_ScriptHelp_PerformanceTest::readTest(QString test_context){
 /*
 -----==========================================================-----
 		类：		帮助数据-插件性能 数据类.cpp
+		作者：		drill_up
 		所属模块：	插件模块
 		功能：		帮助信息中的数据。
 -----==========================================================-----

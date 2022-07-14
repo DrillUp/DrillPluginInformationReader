@@ -9,22 +9,22 @@
 		作者：		drill_up
 		所属模块：	工具模块
 		功能：		所有常量值在这里直接获取。
+					（详细见.cpp）
 -----==========================================================-----
 */
-class S_PluginConstValue{
+class S_Const_PluginValue{
 
 	public:
-		S_PluginConstValue();
-		~S_PluginConstValue();
-		static S_PluginConstValue* cur_instance;		//单例
-		static S_PluginConstValue* getInstance();		//单例，获取自己（必须要拿到全局配置才能进行计算）
+		S_Const_PluginValue();
+		~S_Const_PluginValue();
+		static S_Const_PluginValue* cur_instance;		//单例
+		static S_Const_PluginValue* getInstance();		//单例，获取自己（必须要拿到全局配置才能进行计算）
 		
 	//-----------------------------------
 	//----界面常量
 	protected:
 		QList<QString> m_sceneNameList;					//界面名称
 		QList<QList<QString>> m_sceneKeyMatrix;			//界面关键字
-		QList<QList<QString>> m_performanceKeyMatrix;	//性能关键字
 	public:
 									//获取 - 界面名称（全部）
 		QStringList getSceneName_All();
@@ -38,18 +38,9 @@ class S_PluginConstValue{
 		QStringList getSceneName_Other();
 									//获取 - 界面名称（根据界面关键字）
 		QString getSceneName_BySceneKey(QString sceneKey);
-									//获取 - 界面名称（根据性能关键字）
-		QString getSceneName_ByPerformanceWord(QString performanceWord);
 
 									//获取 - 界面关键字（全部）
 		QStringList getSceneKey_All();
 									//获取 - 界面关键字（根据界面名称）
 		QStringList getSceneKey_ByName(QString scene_name);
-
-									//获取 - 性能关键字（全部）
-		QStringList getPerformanceWord_All();
-									//获取 - 性能关键字（根据界面名称）
-		QStringList getPerformanceWord_ByName(QString scene_name);
-									//获取 - 程度（根据性能关键字）
-		int getLevel_ByPerformanceWord(QString performanceWord);
 };

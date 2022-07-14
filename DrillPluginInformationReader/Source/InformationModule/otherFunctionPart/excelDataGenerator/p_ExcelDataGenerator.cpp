@@ -257,7 +257,7 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_row += 1;
 
 	// > 生成界面数据内容
-	//this->generatePerformanceSceneData(scene_name);
+	this->generatePerformanceSceneData(scene_name);
 
 
 	// > 表头
@@ -300,7 +300,7 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_row += 1;
 
 	// > 生成界面数据内容
-	//this->generatePerformanceSceneData(scene_name);
+	this->generatePerformanceSceneData(scene_name);
 
 
 	// > 保存
@@ -390,7 +390,7 @@ void P_ExcelDataGenerator::generatePerformanceNotes(){
 	cur_row += 1;
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "7.另外一提，变速齿轮可以使得所有消耗爆炸式上升，设置速度越快，消耗越大。");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "7.另外一提，执行方式为'倍率持续'的插件，可以使得所有消耗倍数上升，插件设置值越高，消耗越大。");
 	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "微软雅黑");
 	cur_row += 1;
 	cur_row += 1;
