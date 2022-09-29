@@ -37,6 +37,8 @@ class P_OtherFunctionPart : public QWidget
 		void btn_ExcelPluginList();
 										//控件 - 生成 性能测试统计表
 		void btn_ExcelPerformanceDataList();
+										//控件 - 生成 函数校验器
+		void btn_CAFunctionCheck();
 	signals: 
 										//控件 - 选择 灵感生成器
 		void selected_DesignTipGenerator();

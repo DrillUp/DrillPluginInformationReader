@@ -2,6 +2,7 @@
 #include "p_OtherFunctionPart.h"
 
 #include "excelDataGenerator/p_ExcelDataGenerator.h"
+#include "codeAssistance/CAFunctionCheck/p_CAFunctionCheck.h"
 #include "Source/MainModule/versionLog/w_SoftwareVersionLog.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchDelete/w_PluginBatchDeletePart.h"
 #include "Source/InformationModule/otherFunctionPart/pluginBatchUpdate/w_PluginBatchUpdatePart.h"
@@ -39,6 +40,7 @@ P_OtherFunctionPart::P_OtherFunctionPart(QWidget *parent)
 
 	connect(ui.toolButton_excelPluginList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelPluginList);
 	connect(ui.toolButton_excelPerformanceDataList, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_ExcelPerformanceDataList);
+	connect(ui.toolButton_CAFunctionCheck, &QPushButton::clicked, this, &P_OtherFunctionPart::btn_CAFunctionCheck);
 	
 }
 
@@ -95,6 +97,7 @@ void P_OtherFunctionPart::btn_ExcelPluginList(){
 		return;
 	}
 
+	// > 准备Excel表格
 	P_ExcelDataGenerator p_ExcelDataGenerator;
 	p_ExcelDataGenerator.generatePluginDataList(file_path);
 
@@ -126,6 +129,7 @@ void P_OtherFunctionPart::btn_ExcelPerformanceDataList(){
 		return;
 	}
 
+	// > 准备Excel表格
 	P_ExcelDataGenerator p_ExcelDataGenerator;
 	p_ExcelDataGenerator.generatePerformanceDataList(file_path);
 
@@ -133,6 +137,45 @@ void P_OtherFunctionPart::btn_ExcelPerformanceDataList(){
 	if (file_info.exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + file_info.absolutePath()));
 	}
+}
+/*-------------------------------------------------
+		控件 - 生成 函数校验器
+*/
+void P_OtherFunctionPart::btn_CAFunctionCheck(){
+
+	QString file_path;
+	QFileDialog fd;
+	fd.setWindowTitle("保存数据文件");
+	fd.setAcceptMode(QFileDialog::AcceptSave);				//对话框类型（打开/保存）（保存会有文件覆盖提示）
+	fd.setDirectory(".");									//默认目录
+	fd.setNameFilters(QStringList() << "文本文件(*.txt)");	//文件格式
+	if (fd.exec() == QDialog::Accepted) {
+		if (fd.selectedFiles().empty()) {
+			return;
+		}
+		file_path = fd.selectedFiles().at(0);
+	}
+	else {
+		return;
+	}
+
+	// > 文本输出
+	P_CAFunctionCheck p_CAFunctionCheck;
+	QString context = p_CAFunctionCheck.generateFunctionCheckData();
+
+	QFile file_to(file_path);
+	if (!file_to.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+		QMessageBox::warning(this, "错误", "无法打开文件。", QMessageBox::Yes);
+		return;
+	}
+	file_to.write(context.toLocal8Bit());
+	file_to.close();
+
+	QFileInfo file_info(file_path);
+	if (file_info.exists()){
+		QDesktopServices::openUrl(QUrl("file:/" + file_info.absolutePath()));
+	}
+
 }
 
 /*-------------------------------------------------

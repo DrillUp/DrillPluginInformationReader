@@ -186,8 +186,8 @@ QPushButton:hover{
          <property name="title">
           <string>Excel表格生成</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
            <widget class="QToolButton" name="toolButton_excelPluginList">
             <property name="text">
              <string>生成&quot;插件清单&quot;</string>
@@ -201,7 +201,7 @@ QPushButton:hover{
             </property>
            </widget>
           </item>
-          <item>
+          <item row="1" column="0">
            <widget class="QToolButton" name="toolButton_excelPerformanceDataList">
             <property name="text">
              <string>生成&quot;性能测试统计表&quot;</string>
@@ -214,6 +214,55 @@ QPushButton:hover{
              <enum>Qt::ToolButtonTextBesideIcon</enum>
             </property>
            </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>代码辅助</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QToolButton" name="toolButton_CAFunctionCheck">
+            <property name="text">
+             <string>生成&quot;全函数继承表&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>367</width>
+              <height>23</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
