@@ -33,7 +33,7 @@ P_CAFunctionCheck::~P_CAFunctionCheck(){
 /*-------------------------------------------------
 		生成器 - 生成 函数文本
 */
-QString P_CAFunctionCheck::generateFunctionCheckData(){
+QString P_CAFunctionCheck::generateFunctionCheckData2(){
 	QString result;
 
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
@@ -101,4 +101,55 @@ QString P_CAFunctionCheck::generateFunctionCheckData(){
 	return result;
 }
 
+/*-------------------------------------------------
+		生成器 - 生成 函数文本
+*/
+QString P_CAFunctionCheck::generateFunctionCheckData(){
+	QString result;
 
+	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
+	for (int i = 0; i < plugin_list.count(); i++){
+		C_PluginData* plugin = plugin_list.at(i); 
+		result.append("=================================");
+		result.append("\n");
+		result.append(plugin->name);
+		result.append("\n");
+
+		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+
+		// > 读取工程文件
+		QFile plugin_file(fileinfo.absoluteFilePath());
+		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QMessageBox::warning(nullptr, "错误", "无法打开文件：" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			continue;
+		}
+		QString plugin_context = plugin_file.readAll();
+		plugin_file.close();
+
+		// > 读取基本信息
+		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
+
+		int i_first = 0;
+		while (true)
+		{
+			i_first = reader.d_indexOf(QRegExp("插件简称"), i_first+1);
+			if (i_first == -1){ break; }
+
+			QString code_var = reader.d_rowAt(i_first);
+
+			result.append(code_var);
+			result.append("\n");
+
+		}
+	}
+
+	return result;
+}
+
+
+/*-------------------------------------------------
+		生成器 - 生成 重复定义的变量名
+*/
+QString P_CAFunctionCheck::generateFunctionCheckData3(){
+
+}

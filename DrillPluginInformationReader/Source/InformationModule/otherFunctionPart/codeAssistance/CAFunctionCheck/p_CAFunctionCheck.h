@@ -26,6 +26,10 @@ class P_CAFunctionCheck : public QObject
 	public slots: 
 								//生成器 - 生成 函数文本
 		QString generateFunctionCheckData();
+								//生成器 - 生成 所有插件缩写
+		QString generateFunctionCheckData2();
+								//生成器 - 生成 重复定义的变量名
+		QString generateFunctionCheckData3();
 
 };
 
