@@ -234,24 +234,10 @@ QPushButton:hover{
        <item>
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
-          <string>代码辅助</string>
+          <string>断点夹（脚本检查用）</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <widget class="QToolButton" name="toolButton_CAFunctionCheck">
-            <property name="text">
-             <string>生成&quot;全函数继承表&quot;</string>
-            </property>
-            <property name="icon">
-             <iconset resource="../../../drillplugininformationreader.qrc">
-              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/drill_logo_64x64.png</iconset>
-            </property>
-            <property name="toolButtonStyle">
-             <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
+          <item row="1" column="2">
            <spacer name="horizontalSpacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -263,6 +249,62 @@ QPushButton:hover{
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="1" column="0">
+           <widget class="QToolButton" name="toolButton_CAFunctionCheck_WrongInheritFunctionName">
+            <property name="text">
+             <string>列出&quot;错误的函数继承名&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QToolButton" name="toolButton_CAFunctionCheck_RepeatDefinition">
+            <property name="text">
+             <string>列出&quot;重复定义的函数名&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QToolButton" name="toolButton_CAFunctionCheck_AllAbbreviation">
+            <property name="text">
+             <string>列出&quot;全部插件简称&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QToolButton" name="toolButton_CAFunctionCheck_AllInheritFunctionName">
+            <property name="text">
+             <string>列出&quot;全部插件继承函数名&quot;</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../drillplugininformationreader.qrc">
+              <normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</normaloff>:/DrillPluginInformationReader/Resources/icons/global/HoverCursor_1.png</iconset>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextBesideIcon</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>

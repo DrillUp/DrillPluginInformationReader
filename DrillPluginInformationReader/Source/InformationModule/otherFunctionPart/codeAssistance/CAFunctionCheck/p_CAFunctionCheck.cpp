@@ -31,9 +31,107 @@ P_CAFunctionCheck::~P_CAFunctionCheck(){
 
 
 /*-------------------------------------------------
-		生成器 - 生成 函数文本
+		生成器 - 生成 所有插件缩写
 */
-QString P_CAFunctionCheck::generateFunctionCheckData2(){
+QString P_CAFunctionCheck::generate_AllAbbreviation(){
+	QString result;
+
+	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
+	for (int i = 0; i < plugin_list.count(); i++){
+		C_PluginData* plugin = plugin_list.at(i); 
+		result.append("=================================");
+		result.append("\n");
+		result.append(plugin->name);
+		result.append("\n");
+
+		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+
+		// > 读取工程文件
+		QFile plugin_file(fileinfo.absoluteFilePath());
+		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QMessageBox::warning(nullptr, "错误", "无法打开文件：" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			continue;
+		}
+		QString plugin_context = plugin_file.readAll();
+		plugin_file.close();
+
+		// > 读取基本信息
+		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
+
+		int i_first = 0;
+		while (true)
+		{
+			i_first = reader.d_indexOf(QRegExp("插件简称"), i_first+1);
+			if (i_first == -1){ break; }
+
+			QString code_var = reader.d_rowAt(i_first);
+
+			result.append(code_var);
+			result.append("\n");
+
+		}
+	}
+
+	return result;
+}
+/*-------------------------------------------------
+		生成器 - 生成 所有插件继承的方法名
+*/
+QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
+	QString result;
+
+	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
+	for (int i = 0; i < plugin_list.count(); i++){
+		C_PluginData* plugin = plugin_list.at(i); 
+		result.append("=================================");
+		result.append("\n");
+		result.append(plugin->name);
+		result.append("\n");
+
+		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+
+		// > 读取工程文件
+		QFile plugin_file(fileinfo.absoluteFilePath());
+		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QMessageBox::warning(nullptr, "错误", "无法打开文件：" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			continue;
+		}
+		QString plugin_context = plugin_file.readAll();
+		plugin_file.close();
+
+		// > 读取基本信息
+		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
+
+		int i_first = 0;
+		while (true)
+		{
+			QRegExp re("^var[ ]+(_drill_[\\w]+)");
+			i_first = reader.d_indexOf(re, i_first + 1);
+			if (i_first == -1){ break; }
+
+			QString code_row = reader.d_rowAt(i_first);
+			code_row.indexOf(re);
+			QString code_var = re.cap(1);
+			QRegExp re2("=[ ]+([\\w]+\\.[\\w]+(\\.[\\w]+)?)");
+			int i_var = code_row.indexOf(re2);
+			QString code_method = re2.cap(1);
+
+			result.append("变量：");
+			result.append(code_var);
+			result.append("，继承函数：");
+			result.append(code_method);
+			result.append("\n");
+
+		}
+	}
+
+	return result;
+}
+
+/*-------------------------------------------------
+		生成器 - 校验错误的函数继承名
+*/
+QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 	QString result;
 
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
@@ -101,15 +199,17 @@ QString P_CAFunctionCheck::generateFunctionCheckData2(){
 	return result;
 }
 
+
 /*-------------------------------------------------
-		生成器 - 生成 函数文本
+		生成器 - 生成 重复定义的变量名
 */
-QString P_CAFunctionCheck::generateFunctionCheckData(){
+QString P_CAFunctionCheck::generate_RepeatDefinition(){
 	QString result;
 
+	QStringList repeatTank = QStringList();
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
-		C_PluginData* plugin = plugin_list.at(i); 
+		C_PluginData* plugin = plugin_list.at(i);
 		result.append("=================================");
 		result.append("\n");
 		result.append(plugin->name);
@@ -132,24 +232,26 @@ QString P_CAFunctionCheck::generateFunctionCheckData(){
 		int i_first = 0;
 		while (true)
 		{
-			i_first = reader.d_indexOf(QRegExp("插件简称"), i_first+1);
+			QRegExp re("^(var[ ]+_drill_[\\w]+)");
+			i_first = reader.d_indexOf(re, i_first + 1);
 			if (i_first == -1){ break; }
 
-			QString code_var = reader.d_rowAt(i_first);
+			QString code_row = reader.d_rowAt(i_first);
+			code_row.indexOf(re);
+			QString code_var = re.cap(1);
 
-			result.append(code_var);
-			result.append("\n");
+			if (repeatTank.contains(code_var)){
+
+				// > 有重复的
+				result.append(code_row);
+				result.append("\n");
+			
+			}else{
+				repeatTank.append(code_var);
+			}
 
 		}
 	}
 
 	return result;
-}
-
-
-/*-------------------------------------------------
-		生成器 - 生成 重复定义的变量名
-*/
-QString P_CAFunctionCheck::generateFunctionCheckData3(){
-
 }

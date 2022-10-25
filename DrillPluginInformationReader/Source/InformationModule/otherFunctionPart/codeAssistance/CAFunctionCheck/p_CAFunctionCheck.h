@@ -24,12 +24,16 @@ class P_CAFunctionCheck : public QObject
 	//-----------------------------------
 	//----生成器
 	public slots: 
-								//生成器 - 生成 函数文本
-		QString generateFunctionCheckData();
 								//生成器 - 生成 所有插件缩写
-		QString generateFunctionCheckData2();
-								//生成器 - 生成 重复定义的变量名
-		QString generateFunctionCheckData3();
+		QString generate_AllAbbreviation();
+								//生成器 - 生成 所有插件继承的方法名
+		QString generate_AllInheritFunctionName();
+								//生成器 - 校验错误的函数继承名
+								//		【说明】：继承的函数名与取代的函数名不一致，会被列出。
+		QString generate_WrongInheritFunctionName();
+								//生成器 - 校验重复定义的函数名
+								//		【说明】：只要"var _drill"参数重复出现，那么就列出。
+		QString generate_RepeatDefinition();
 
 };
 

@@ -37,11 +37,21 @@ class P_OtherFunctionPart : public QWidget
 		void btn_ExcelPluginList();
 										//控件 - 生成 性能测试统计表
 		void btn_ExcelPerformanceDataList();
-										//控件 - 生成 函数校验器
-		void btn_CAFunctionCheck();
 	signals: 
 										//控件 - 选择 灵感生成器
 		void selected_DesignTipGenerator();
+		
+	//-----------------------------------
+	//----函数校验器
+	public slots:
+										//校验 - 生成 所有插件缩写
+		void btn_CAFunctionCheck_AllAbbreviation();
+										//校验 - 生成 所有插件继承函数名
+		void btn_CAFunctionCheck_AllInheritFunctionName();
+										//校验 - 校验错误的函数继承名
+		void btn_CAFunctionCheck_WrongInheritFunctionName();
+										//校验 - 校验重复定义的函数名
+		void btn_CAFunctionCheck_RepeatDefinition();
 
 	//-----------------------------------
 	//----块
