@@ -1,39 +1,36 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "W_SoftwareVersionLog.h"
 
 #include "Source/Utils/common/TTool.h"
 
-
 /*
 -----==========================================================-----
-		Àà£º		°æ±¾ÈÕÖ¾´°¿Ú.cpp
-		ËùÊôÄ£¿é£º	Ö÷´°ÌåÄ£¿é
-		¹¦ÄÜ£º		°æ±¾ÈÕÖ¾´°¿Ú¡£
+		ç±»ï¼š		ç‰ˆæœ¬æ—¥å¿—çª—å£.cpp
+		æ‰€å±žæ¨¡å—ï¼š	ä¸»çª—ä½“æ¨¡å—
+		åŠŸèƒ½ï¼š		ç‰ˆæœ¬æ—¥å¿—çª—å£ã€‚
 
-		Ê¹ÓÃ·½·¨£º
-				>´ò¿ª´°¿Ú
+		ä½¿ç”¨æ–¹æ³•ï¼š
+				> æ‰“å¼€çª—å£
 					W_SoftwareVersionLog d;
 					d.exec();
-
 -----==========================================================-----
 */
+
 W_SoftwareVersionLog::W_SoftwareVersionLog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----ÊÂ¼þ°ó¶¨
-	//£¨ÎÞ£©
+	//----uiåˆå§‹åŒ–
 
-	//-----------------------------------
-	//----ui³õÊ¼»¯
+	// > æ ‡é¢˜å—æ–‡æœ¬
+	ui.label_title->setText(QString("æ’ä»¶ä¿¡æ¯æŸ¥çœ‹å™¨ï¼ˆ") + DRILL_VERSION + "ï¼‰");
+
+	// > æŒ‰é’®ç»„
 	TTool::_chinese_(ui.buttonBox);
 
-	ui.label_title->setText(QString("²å¼þÐÅÏ¢²é¿´Æ÷£¨") + DRILL_VERSION + "£©");
-
 }
-
 W_SoftwareVersionLog::~W_SoftwareVersionLog(){
 }
 

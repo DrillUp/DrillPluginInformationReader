@@ -1,20 +1,21 @@
-#include "stdafx.h"
+Ôªø#include "stdafx.h"
 #include "drillplugininformationreader.h"
 
+#include "about/w_SoftwareAbout.h"
+#include "birthDayTip/w_SoftwareBirthDayTip.h"
 #include "Source/ProjectModule/storageGlobal/s_IniManager.h"
 #include "Source/PluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/InformationModule/pluginListPart/p_PluginListPart.h"
 #include "Source/InformationModule/commandSearcherPart/p_CommandSearcherPart.h"
-#include "about/w_SoftwareAbout.h"
 
 
 /*
 -----==========================================================-----
-		¿‡£∫		÷˜¥∞ÃÂ.cpp
-		◊˜’ﬂ£∫		drill_up
-		À˘ Ùƒ£øÈ£∫	÷˜¥∞ÃÂƒ£øÈ
-		π¶ƒ‹£∫		≥Ã–ÚΩ¯»Î∫Ûµƒ÷˜øÿ÷∆¥∞ø⁄°£
+		Á±ªÔºö		‰∏ªÁ™ó‰Ωì.cpp
+		‰ΩúËÄÖÔºö		drill_up
+		ÊâÄÂ±ûÊ®°ÂùóÔºö	‰∏ªÁ™ó‰ΩìÊ®°Âùó
+		ÂäüËÉΩÔºö		Á®ãÂ∫èËøõÂÖ•ÂêéÁöÑ‰∏ªÊéßÂà∂Á™óÂè£„ÄÇ
 					
 -----==========================================================-----
 */
@@ -32,7 +33,7 @@ DrillPluginInformationReader::~DrillPluginInformationReader(){
 
 
 /*-------------------------------------------------
-		µ•¿˝
+		Âçï‰æã
 */
 DrillPluginInformationReader* DrillPluginInformationReader::cur_instance = NULL;
 DrillPluginInformationReader* DrillPluginInformationReader::getInstance() {
@@ -42,12 +43,12 @@ DrillPluginInformationReader* DrillPluginInformationReader::getInstance() {
 	return cur_instance;
 }
 /*-------------------------------------------------
-		≥ı ºªØ
+		ÂàùÂßãÂåñ
 */
 void DrillPluginInformationReader::_init() {
 
 	//-----------------------------------
-	//----◊Ó¥ÛªØ/◊Ó–°ªØ
+	//----ÊúÄÂ§ßÂåñ/ÊúÄÂ∞èÂåñ
 	Qt::WindowFlags flags = Qt::Dialog;
 	flags |= Qt::WindowCloseButtonHint;
 	flags |= Qt::WindowMaximizeButtonHint;
@@ -55,27 +56,27 @@ void DrillPluginInformationReader::_init() {
 	this->setWindowFlags(flags);
 
 	//-----------------------------------
-	//----ui≥ı ºªØ
+	//----uiÂàùÂßãÂåñ
 	S_RmmvDataContainer::getInstance();
 	S_PluginDataContainer::getInstance();
 	S_InformationDataContainer::getInstance();
 	S_LinkDirector::getInstance();
 
 	//-----------------------------------
-	//----ui≥ı ºªØ
+	//----uiÂàùÂßãÂåñ
 	this->m_P_InformationPart = new P_InformationPart(ui.widget_information);
 	QVBoxLayout* layout = new QVBoxLayout(ui.widget_information);
 	layout->setMargin(6);
 	layout->addWidget(this->m_P_InformationPart);
 
-	this->m_tip = new W_LoadingTip("≤Âº˛∂¡»°÷–...", this);
+	this->m_tip = new W_LoadingTip("Êèí‰ª∂ËØªÂèñ‰∏≠...", this);
 
-	// > ◊÷ÃÂ
-	//ui.main_widget->setStyleSheet("font: 75 9pt \"∫⁄ÃÂ\";");
-	ui.main_widget->setStyleSheet("font: 75 9pt;");		//”√ƒ¨»œµƒÀŒÃÂ+Àı–°¥÷ÃÂ
+	// > Â≠ó‰Ωì
+	//ui.main_widget->setStyleSheet("font: 75 9pt \"Èªë‰Ωì\";");
+	ui.main_widget->setStyleSheet("font: 75 9pt;");		//Áî®ÈªòËÆ§ÁöÑÂÆã‰Ωì+Áº©Â∞èÁ≤ó‰Ωì
 
 	//-----------------------------------
-	//---- ¬º˛∞Û∂®
+	//----‰∫ã‰ª∂ÁªëÂÆö
 	connect(ui.toolButton_rmmv, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_selectProject);
 	connect(ui.toolButton_Import, &QToolButton::clicked, this, &DrillPluginInformationReader::btn_importProject);
 	connect(ui.toolButton_userManual, &QToolButton::clicked, this, &DrillPluginInformationReader::openUserManual);
@@ -84,12 +85,12 @@ void DrillPluginInformationReader::_init() {
 	//qDebug() << S_LinkDirector::getInstance()->getDocDir();
 	//qDebug() << S_LinkDirector::getInstance()->getDataAllDocDirName();
 
-	// > UI∂¡»°
+	// > UIËØªÂèñ
 	this->ui_loadConfig();
 	this->refreshNav();
-	this->setWindowTitle(QString("≤Âº˛–≈œ¢≤Èø¥∆˜") + DRILL_VERSION + "£®DrillPluginInformationReader£©");
+	this->setWindowTitle(QString("Êèí‰ª∂‰ø°ÊÅØÊü•ÁúãÂô®") + DRILL_VERSION + "ÔºàDrillPluginInformationReaderÔºâ");
 
-	// > UI∂¡»°∫Û - ◊‘∂Øµº»Îπ§≥Ã
+	// > UIËØªÂèñÂêé - Ëá™Âä®ÂØºÂÖ•Â∑•Á®ã
 	if (this->m_temp_data.isNull() == false &&
 		this->m_temp_data.isProjectExist() == true &&
 		ui.checkBox_autoLoad->isChecked()){
@@ -97,44 +98,51 @@ void DrillPluginInformationReader::_init() {
 	}
 
 	this->m_inited = true;
+
+
+	// > ÁîüÊó•ÂΩ©Ëõã
+	W_SoftwareBirthDayTip d(this);
+	if (d.isInBirthDay()){
+		d.exec();
+	}
 }
 
 /* --------------------------------------------------------------
-		øÿº˛ - œ‘ æ÷∏∂®≤Âº˛œÍœ∏–≈œ¢
+		Êéß‰ª∂ - ÊòæÁ§∫ÊåáÂÆöÊèí‰ª∂ËØ¶ÁªÜ‰ø°ÊÅØ
 */
 void DrillPluginInformationReader::showPluginDetail(QString plugin_name){
 	this->m_P_InformationPart->showPluginDetail(plugin_name);
 }
 /* --------------------------------------------------------------
-		øÿº˛ - À¢–¬µº∫Ω¿∏ƒ⁄»›
+		Êéß‰ª∂ - Âà∑Êñ∞ÂØºËà™Ê†èÂÜÖÂÆπ
 */
 void DrillPluginInformationReader::refreshNav(){
 
 	if (this->m_temp_data.isNull() || this->m_temp_data.isProjectExist() == false){
 		ui.lineEdit->setText("");
 		ui.toolButton_Import->setEnabled(false);
-		ui.widget_information->setEnabled(false);	//£®»°œ˚—°‘Ò∫Û«ø÷∆÷√ª“£©
+		ui.widget_information->setEnabled(false);	//ÔºàÂèñÊ∂àÈÄâÊã©ÂêéÂº∫Âà∂ÁΩÆÁÅ∞Ôºâ
 	}else{
 		ui.lineEdit->setText(this->m_temp_data.getName());
 		ui.toolButton_Import->setEnabled(true);
 	}
 }
 /* --------------------------------------------------------------
-		øÿº˛ - ”√ªß ÷≤·
+		Êéß‰ª∂ - Áî®Êà∑ÊâãÂÜå
 */
 void DrillPluginInformationReader::openUserManual() {
 	QString sPath = qApp->applicationDirPath();
 
-	QString docx = sPath + "/help/πÿ”⁄≤Âº˛–≈œ¢≤Èø¥∆˜.docx";
+	QString docx = sPath + "/help/ÂÖ≥‰∫éÊèí‰ª∂‰ø°ÊÅØÊü•ÁúãÂô®.docx";
 	if (QFileInfo(docx).exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + docx)); 
 	}else{
-		QMessageBox::warning(this, "¥ÌŒÛ", "Œƒµµ\"πÿ”⁄≤Âº˛–≈œ¢≤Èø¥∆˜.docx\"≤ªº˚¡À°£", QMessageBox::Yes);
+		QMessageBox::warning(this, "ÈîôËØØ", "ÊñáÊ°£\"ÂÖ≥‰∫éÊèí‰ª∂‰ø°ÊÅØÊü•ÁúãÂô®.docx\"‰∏çËßÅ‰∫Ü„ÄÇ", QMessageBox::Yes);
 	}
 
 }
 /* --------------------------------------------------------------
-		øÿº˛ - πÿ”⁄...
+		Êéß‰ª∂ - ÂÖ≥‰∫é...
 */
 void DrillPluginInformationReader::openAbout() {
 	W_SoftwareAbout d(this);
@@ -143,7 +151,7 @@ void DrillPluginInformationReader::openAbout() {
 
 
 /*-------------------------------------------------
-		π§≥Ã - —°‘Òπ§≥Ã
+		Â∑•Á®ã - ÈÄâÊã©Â∑•Á®ã
 */
 void DrillPluginInformationReader::btn_selectProject(){
 	C_RmmvProjectData temp = C_RmmvProjectData::callRmmvSelectDialog();
@@ -152,7 +160,7 @@ void DrillPluginInformationReader::btn_selectProject(){
 	this->m_temp_data = temp;
 	this->refreshNav();
 
-	// > ◊‘∂Øµº»Îπ§≥Ã
+	// > Ëá™Âä®ÂØºÂÖ•Â∑•Á®ã
 	if (this->m_temp_data.isNull() == false && 
 		this->m_temp_data.isProjectExist() == true && 
 		ui.checkBox_autoLoad->isChecked()){
@@ -160,33 +168,33 @@ void DrillPluginInformationReader::btn_selectProject(){
 	}
 }
 /*-------------------------------------------------
-		π§≥Ã - µº»Îπ§≥Ã
+		Â∑•Á®ã - ÂØºÂÖ•Â∑•Á®ã
 */
 void DrillPluginInformationReader::btn_importProject(){
 	this->m_tip->show();
 
-	// > ±ÍÃ‚–ﬁ∏ƒ
-	this->setWindowTitle(QString("≤Âº˛–≈œ¢≤Èø¥∆˜") + DRILL_VERSION + "£®DrillPluginInformationReader£© - " + this->m_temp_data.getName());
+	// > Ê†áÈ¢ò‰øÆÊîπ
+	this->setWindowTitle(QString("Êèí‰ª∂‰ø°ÊÅØÊü•ÁúãÂô®") + DRILL_VERSION + "ÔºàDrillPluginInformationReaderÔºâ - " + this->m_temp_data.getName());
 	ui.widget_information->setEnabled(true);
 	
-	// > »´æ÷π§≥Ã≤Œ ˝±‰ªØ
+	// > ÂÖ®Â±ÄÂ∑•Á®ãÂèÇÊï∞ÂèòÂåñ
 	S_RmmvDataContainer::getInstance()->modify(this->m_temp_data);
 
-	// > ∂¡»°≤Âº˛Œƒº˛
+	// > ËØªÂèñÊèí‰ª∂Êñá‰ª∂
 	QFileInfo plugin_info = S_RmmvDataContainer::getInstance()->getRmmvFile_PluginsData();
 	QFile plugin_file(plugin_info.absoluteFilePath());
 	if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		QMessageBox::warning(nullptr, "¥ÌŒÛ", "Œ¥’“µΩplugins.jsŒƒº˛°£", QMessageBox::Yes);
+		QMessageBox::warning(nullptr, "ÈîôËØØ", "Êú™ÊâæÂà∞plugins.jsÊñá‰ª∂„ÄÇ", QMessageBox::Yes);
 		return;
 	}
 	QString plugin_context = plugin_file.readAll();
 	
-	// > »´≤ø ˝æ›≥ı ºªØ
+	// > ÂÖ®ÈÉ®Êï∞ÊçÆÂàùÂßãÂåñ
 	S_PluginDataContainer::getInstance()->loadPluginData(plugin_context);
 	S_InformationDataContainer::getInstance()->loadAllAnnotationData();
 	plugin_file.close(); 
 
-	// > «ø÷∆À¢–¬
+	// > Âº∫Âà∂Âà∑Êñ∞
 	this->m_P_InformationPart->m_p_pluginListPart->rebuildTable();	
 
 	this->m_tip->close();
@@ -195,7 +203,7 @@ void DrillPluginInformationReader::btn_importProject(){
 
 
 /* --------------------------------------------------------------
-		 ¬º˛ - ¥∞ø⁄«–ªª¥Û–° ¬º˛
+		‰∫ã‰ª∂ - Á™óÂè£ÂàáÊç¢Â§ßÂ∞è‰∫ã‰ª∂
 */
 void DrillPluginInformationReader::resizeEvent(QResizeEvent *event){
 	if (this->m_inited == false){ return; }
@@ -203,10 +211,10 @@ void DrillPluginInformationReader::resizeEvent(QResizeEvent *event){
 	QSize size = event->size();
 	if (size.width() + 100 < QApplication::desktop()->width() &&
 		size.height() + 80 < QApplication::desktop()->height()){
-		this->m_last_uiSize = size;		//£®◊Ó¥ÛªØ ±≤ª¥Ê÷µ£¨“≤≤ª¥Êπ˝¥Ûµƒ÷µ£©
+		this->m_last_uiSize = size;		//ÔºàÊúÄÂ§ßÂåñÊó∂‰∏çÂ≠òÂÄºÔºå‰πü‰∏çÂ≠òËøáÂ§ßÁöÑÂÄºÔºâ
 	}
 
-	// > À¢–¬≤Âº˛¡–±Ìµƒƒø¬º¡–
+	// > Âà∑Êñ∞Êèí‰ª∂ÂàóË°®ÁöÑÁõÆÂΩïÂàó
 	if (this->m_P_InformationPart &&
 		this->m_P_InformationPart->m_p_pluginListPart ){
 		this->m_P_InformationPart->m_p_pluginListPart->refreshHorizontalSize(this->geometry().width() - 120);
@@ -215,52 +223,52 @@ void DrillPluginInformationReader::resizeEvent(QResizeEvent *event){
 	event->accept();
 }
 /* --------------------------------------------------------------
-		 ¬º˛ - ¥∞ø⁄πÿ±’ ¬º˛£®µ„ª˜πÿ±’∞¥≈•£©
+		‰∫ã‰ª∂ - Á™óÂè£ÂÖ≥Èó≠‰∫ã‰ª∂ÔºàÁÇπÂáªÂÖ≥Èó≠ÊåâÈíÆÔºâ
 */
 void DrillPluginInformationReader::closeEvent(QCloseEvent *event){
 
-	// > UI±£¥Ê
+	// > UI‰øùÂ≠ò
 	this->ui_saveConfig();
 
 	event->accept();
 }
 
 /* --------------------------------------------------------------
-		¥∞ø⁄ - ”√ªß◊‘∂®“ÂUI∂¡»°
+		Á™óÂè£ - Áî®Êà∑Ëá™ÂÆö‰πâUIËØªÂèñ
 */
 void DrillPluginInformationReader::ui_loadConfig(){
 
-	// > ¥∞ø⁄∏ﬂøÌ
+	// > Á™óÂè£È´òÂÆΩ
 	QString ww = S_IniManager::getInstance()->getConfig("PIR_MainWindow_Width");
 	QString hh = S_IniManager::getInstance()->getConfig("PIR_MainWindow_Height");
 	if (ww != "" && hh != "" && ww.toInt() >0 && hh.toInt() >0){
 		this->resize(ww.toInt(), hh.toInt());
 	}
 
-	// > ¥∞ø⁄Œª÷√£®‘›≤ª”√£©
+	// > Á™óÂè£‰ΩçÁΩÆÔºàÊöÇ‰∏çÁî®Ôºâ
 	//QString xx = S_IniManager::getInstance()->getConfig("PIR_MainWindow_X");
 	//QString yy = S_IniManager::getInstance()->getConfig("PIR_MainWindow_Y");
 	//if (xx != "" && yy != ""){
 	//	this->move(xx.toInt(), yy.toInt());
 	//}
 
-	// > ◊Ó¥ÛªØ
+	// > ÊúÄÂ§ßÂåñ
 	QString config = S_IniManager::getInstance()->getConfig("PIR_MainWindow_Maximized");
 	if (config == "true"){
 		this->showMaximized();
 	}
 
-	// > ◊‘∂Ø∂¡»°µƒπ¥—°œÓ
+	// > Ëá™Âä®ËØªÂèñÁöÑÂãæÈÄâÈ°π
 	QString config2 = S_IniManager::getInstance()->getConfig("PIR_AutoLoad");
 	ui.checkBox_autoLoad->setChecked(config2 == "true");
 
-	// > ◊”øÿº˛µƒUI∂¡»°
+	// > Â≠êÊéß‰ª∂ÁöÑUIËØªÂèñ
 	if (this->m_P_InformationPart != nullptr){
 		this->m_P_InformationPart->m_p_pluginListPart->ui_loadConfig();
 		this->m_P_InformationPart->m_p_commandSearcherPart->ui_loadConfig();
 	}
 
-	// > °æπ§≥Ã ˝æ›∂¡»° - »´æ÷°ø
+	// > „ÄêÂ∑•Á®ãÊï∞ÊçÆËØªÂèñ - ÂÖ®Â±Ä„Äë
 	QString project_str = S_IniManager::getInstance()->getConfig("PIR_Project");
 	if (project_str != ""){
 		QJsonDocument jsonDocument = QJsonDocument::fromJson(project_str.toUtf8());
@@ -271,39 +279,39 @@ void DrillPluginInformationReader::ui_loadConfig(){
 	}
 }
 /* --------------------------------------------------------------
-		¥∞ø⁄ - ”√ªß◊‘∂®“ÂUI¥Ê¥¢
+		Á™óÂè£ - Áî®Êà∑Ëá™ÂÆö‰πâUIÂ≠òÂÇ®
 */
 void DrillPluginInformationReader::ui_saveConfig(){
 
-	// > ¥∞ø⁄∏ﬂøÌ
+	// > Á™óÂè£È´òÂÆΩ
 	S_IniManager::getInstance()->setConfig("PIR_MainWindow_Width",QString::number(this->m_last_uiSize.width()));
 	S_IniManager::getInstance()->setConfig("PIR_MainWindow_Height", QString::number(this->m_last_uiSize.height()));
 
-	// > ¥∞ø⁄Œª÷√£®‘›≤ª”√£©
+	// > Á™óÂè£‰ΩçÁΩÆÔºàÊöÇ‰∏çÁî®Ôºâ
 	//S_IniManager::getInstance()->setConfig("PIR_MainWindow_X", QString::number(this->x()));
 	//S_IniManager::getInstance()->setConfig("PIR_MainWindow_Y", QString::number(this->y()));
 
-	// > ◊Ó¥ÛªØ
+	// > ÊúÄÂ§ßÂåñ
 	if (this->isMaximized() == true){
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "true");
 	}else{
 		S_IniManager::getInstance()->setConfig("PIR_MainWindow_Maximized", "false");
 	}
 
-	// > ◊‘∂Ø∂¡»°µƒπ¥—°œÓ
+	// > Ëá™Âä®ËØªÂèñÁöÑÂãæÈÄâÈ°π
 	if (ui.checkBox_autoLoad->isChecked() == true){
 		S_IniManager::getInstance()->setConfig("PIR_AutoLoad", "true");
 	}else{
 		S_IniManager::getInstance()->setConfig("PIR_AutoLoad", "false");
 	}
 
-	// > ◊”øÿº˛µƒUI¥Ê¥¢
+	// > Â≠êÊéß‰ª∂ÁöÑUIÂ≠òÂÇ®
 	if (this->m_P_InformationPart != nullptr){
 		this->m_P_InformationPart->m_p_pluginListPart->ui_saveConfig();
 		this->m_P_InformationPart->m_p_commandSearcherPart->ui_saveConfig();
 	}
 
-	// > °æπ§≥Ã ˝æ›¥Ê¥¢ - »´æ÷°ø
+	// > „ÄêÂ∑•Á®ãÊï∞ÊçÆÂ≠òÂÇ® - ÂÖ®Â±Ä„Äë
 	QJsonObject project_obj = S_RmmvDataContainer::getInstance()->getAllDataOfJsonObject();
 	S_IniManager::getInstance()->setConfig("PIR_Project", QJsonDocument(project_obj).toJson(QJsonDocument::Compact));
 }

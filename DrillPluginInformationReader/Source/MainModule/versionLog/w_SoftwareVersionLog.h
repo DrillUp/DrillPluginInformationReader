@@ -1,4 +1,4 @@
-#ifndef W_SoftwareVersionLog_H
+ï»¿#ifndef W_SoftwareVersionLog_H
 #define W_SoftwareVersionLog_H
 
 #include <QtWidgets/QDialog>
@@ -6,10 +6,10 @@
 
 /*
 -----==========================================================-----
-		Àà£º		°æ±¾ÈÕÖ¾´°¿Ú.h
-		ËùÊôÄ£¿é£º	Ö÷´°ÌåÄ£¿é
-		¹¦ÄÜ£º		°æ±¾ÈÕÖ¾´°¿Ú¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ç±»ï¼š		ç‰ˆæœ¬æ—¥å¿—çª—å£.h
+		æ‰€å±æ¨¡å—ï¼š	ä¸»çª—ä½“æ¨¡å—
+		åŠŸèƒ½ï¼š		ç‰ˆæœ¬æ—¥å¿—çª—å£ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 
@@ -18,19 +18,19 @@ class W_SoftwareVersionLog : public QDialog
 	Q_OBJECT
 
 	public:
-		W_SoftwareVersionLog(QWidget *parent = 0);		//¹¹Ôìº¯Êı
-		~W_SoftwareVersionLog();						//Îö¹¹º¯Êı
+		W_SoftwareVersionLog(QWidget *parent = 0);		//æ„é€ å‡½æ•°
+		~W_SoftwareVersionLog();						//ææ„å‡½æ•°
 		
 	//-----------------------------------
-	//----´°¿Ú
-									//´°¿Ú - ÉèÖÃÊı¾İ
-									//´°¿Ú - »ñÈ¡Êı¾İ
-									//´°¿Ú - ±¾µØÊı¾İ -> uiÊı¾İ
-									//´°¿Ú - uiÊı¾İ -> ±¾µØÊı¾İ
-									//´°¿Ú - Ìá½»Êı¾İ£¨Ğ£Ñé£©
+	//----çª—å£
+									//çª—å£ - è®¾ç½®æ•°æ®
+									//çª—å£ - è·å–æ•°æ®
+									//çª—å£ - æœ¬åœ°æ•°æ® -> uiæ•°æ®
+									//çª—å£ - uiæ•°æ® -> æœ¬åœ°æ•°æ®
+									//çª—å£ - æäº¤æ•°æ®ï¼ˆæ ¡éªŒï¼‰
 	private:
 		Ui::W_SoftwareVersionLog ui;
 		
 };
 
-#endif // W_QExpressionTest_H
+#endif // W_SoftwareVersionLog_H

@@ -229,6 +229,9 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\代码辅助\函数校验器">
       <UniqueIdentifier>{b1df4f62-432b-439d-96b2-72cae0df13e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\【 主窗体 MainModule】\生日彩蛋">
+      <UniqueIdentifier>{fefd3cad-7d69-4cbf-9a68-9a389385656c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -753,6 +756,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_CAFunctionCheck.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MainModule\birthDayTip\w_SoftwareBirthDayTip.cpp">
+      <Filter>源文件\【 主窗体 MainModule】\生日彩蛋</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_w_SoftwareBirthDayTip.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareBirthDayTip.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -1007,6 +1019,12 @@
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\codeAssistance\CAFunctionCheck\p_CAFunctionCheck.h">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\代码辅助\函数校验器</Filter>
     </CustomBuild>
+    <CustomBuild Include="Source\MainModule\birthDayTip\w_SoftwareBirthDayTip.h">
+      <Filter>源文件\【 主窗体 MainModule】\生日彩蛋</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\MainModule\birthDayTip\w_SoftwareBirthDayTip.ui">
+      <Filter>源文件\【 主窗体 MainModule】\生日彩蛋</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DrillPluginInformationReader.rc" />
@@ -1188,6 +1206,9 @@
     </ClInclude>
     <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.h">
       <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_w_SoftwareBirthDayTip.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
