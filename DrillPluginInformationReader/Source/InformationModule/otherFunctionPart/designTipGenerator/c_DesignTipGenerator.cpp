@@ -2,8 +2,8 @@
 #include "c_DesignTipGenerator.h"
 
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Subsection.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Subsection.h"
 
 /*
 -----==========================================================-----

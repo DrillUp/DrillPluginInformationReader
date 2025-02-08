@@ -2,7 +2,7 @@
 #include "p_ScriptHelp_Command.h"
 
 #include "Source/InformationModule/linkDirector/s_LinkDirector.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----

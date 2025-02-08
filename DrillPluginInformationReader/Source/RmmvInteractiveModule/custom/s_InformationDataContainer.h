@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 
-#include "Source/PluginModule/scriptReader/s_ScriptAnnotationReader.h"
+#include "Source/RmmvUtilsPluginModule/scriptReader/s_ScriptAnnotationReader.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şÏêÏ¸ĞÅÏ¢ ÈİÆ÷.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	½»»¥Ä£¿é
-		¹¦ÄÜ£º		¹ÜÀíÖ¸¶¨¹¤³ÌÖĞµÄÈ«²¿²å¼şÅäÖÃÊı¾İ¡£
-					¡¾·â×°µÄÈİÆ÷½á¹¹£¬×¢Òâ½ÓÊÕ¶ÁÈ¡µÄĞÅºÅ¡¿
-					£¨ÏêÏ¸¼û.cpp£©
+		ç±»ï¼š		æ’ä»¶è¯¦ç»†ä¿¡æ¯ å®¹å™¨.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	äº¤äº’æ¨¡å—
+		åŠŸèƒ½ï¼š		ç®¡ç†æŒ‡å®šå·¥ç¨‹ä¸­çš„å…¨éƒ¨æ’ä»¶é…ç½®æ•°æ®ã€‚
+					ã€å°è£…çš„å®¹å™¨ç»“æ„ï¼Œæ³¨æ„æ¥æ”¶è¯»å–çš„ä¿¡å·ã€‘
+					ï¼ˆè¯¦ç»†è§.cppï¼‰
 -----==========================================================-----
 */
 class S_InformationDataContainer : public QObject
@@ -19,34 +19,34 @@ class S_InformationDataContainer : public QObject
 	public:
 		S_InformationDataContainer();
 		~S_InformationDataContainer();
-		static S_InformationDataContainer* cur_manager;			//µ¥Àı
-		static S_InformationDataContainer* getInstance();		//µ¥Àı£¬»ñÈ¡×Ô¼º£¨±ØĞëÒªÄÃµ½È«¾ÖÅäÖÃ²ÅÄÜ½øĞĞ¼ÆËã£©
+		static S_InformationDataContainer* cur_manager;			//å•ä¾‹
+		static S_InformationDataContainer* getInstance();		//å•ä¾‹ï¼Œè·å–è‡ªå·±
 
 	//-----------------------------------
-	//----Êı¾İ
+	//----æ•°æ®
 	private:
 		QList<C_ScriptAnnotation> data_AnnotationTank;
 	public:
-										//Êı¾İ - »ñÈ¡È«²¿²å¼şÊı¾İ
-										//		¡¾ËµÃ÷¡¿£º»ñÈ¡Êı¾İÇ°£¬ÒªÈ·±£ÄãÖ®Ç° ÊÖ¶¯ Ö´ĞĞÁËread¶ÁÈ¡£¬²»È»»ñÈ¡²»µ½Êı¾İ¡£
+										//æ•°æ® - è·å–å…¨éƒ¨æ’ä»¶æ•°æ®
+										//		ã€è¯´æ˜ã€‘ï¼šè·å–æ•°æ®å‰ï¼Œè¦ç¡®ä¿ä½ ä¹‹å‰ æ‰‹åŠ¨ æ‰§è¡Œäº†readè¯»å–ï¼Œä¸ç„¶è·å–ä¸åˆ°æ•°æ®ã€‚
 		QList<C_ScriptAnnotation> getAnnotationTank();
-										//Êı¾İ - »ñÈ¡¶ÔÓ¦µÄ²å¼şÊı¾İ
-										//		¡¾ËµÃ÷¡¿£º»ñÈ¡Êı¾İÇ°£¬ÒªÈ·±£ÄãÖ®Ç° ÊÖ¶¯ Ö´ĞĞÁËread¶ÁÈ¡£¬²»È»»ñÈ¡²»µ½Êı¾İ¡£
+										//æ•°æ® - è·å–å¯¹åº”çš„æ’ä»¶æ•°æ®
+										//		ã€è¯´æ˜ã€‘ï¼šè·å–æ•°æ®å‰ï¼Œè¦ç¡®ä¿ä½ ä¹‹å‰ æ‰‹åŠ¨ æ‰§è¡Œäº†readè¯»å–ï¼Œä¸ç„¶è·å–ä¸åˆ°æ•°æ®ã€‚
 		C_ScriptAnnotation getAnnotation(QString pluginName);
-										//Êı¾İ - »ñÈ¡¶ÔÓ¦µÄ°ïÖúÃ÷Ï¸Êı¾İ
-										//		¡¾ËµÃ÷¡¿£º»ñÈ¡Êı¾İÇ°£¬ÒªÈ·±£ÄãÖ®Ç° ÊÖ¶¯ Ö´ĞĞÁËread¶ÁÈ¡£¬²»È»»ñÈ¡²»µ½Êı¾İ¡£
-										//		¡¾ËµÃ÷¡¿£ºÃ»ÓĞÔò·µ»Ø¿ÕÖ¸Õë¡£
+										//æ•°æ® - è·å–å¯¹åº”çš„å¸®åŠ©æ˜ç»†æ•°æ®
+										//		ã€è¯´æ˜ã€‘ï¼šè·å–æ•°æ®å‰ï¼Œè¦ç¡®ä¿ä½ ä¹‹å‰ æ‰‹åŠ¨ æ‰§è¡Œäº†readè¯»å–ï¼Œä¸ç„¶è·å–ä¸åˆ°æ•°æ®ã€‚
+										//		ã€è¯´æ˜ã€‘ï¼šæ²¡æœ‰åˆ™è¿”å›ç©ºæŒ‡é’ˆã€‚
 		C_ScriptHelpDetail* getHelpDetail(QString pluginName);
 
-										//Êı¾İ - É¾³ı²å¼şÊı¾İ
-										//		¡¾ËµÃ÷¡¿£º×¢Òâ£¬´Ë²Ù×÷ÎªÌØÊâ²Ù×÷¡£
+										//æ•°æ® - åˆ é™¤æ’ä»¶æ•°æ®
+										//		ã€è¯´æ˜ã€‘ï¼šæ³¨æ„ï¼Œæ­¤æ“ä½œä¸ºç‰¹æ®Šæ“ä½œã€‚
 		void removeAnnotation(QStringList pluginName_list);
 
 
 	//-----------------------------------
-	//----¶ÁÈ¡
+	//----è¯»å–
 	public slots:
-										//¶ÁÈ¡ - ¶ÁÈ¡È«²¿ÍêÕûÊı¾İ£¨pluginsÎÄ¼ş¼ĞÏÂËùÓĞ²å¼ş£©
+										//è¯»å– - è¯»å–å…¨éƒ¨å®Œæ•´æ•°æ®ï¼ˆpluginsæ–‡ä»¶å¤¹ä¸‹æ‰€æœ‰æ’ä»¶ï¼‰
 		void loadAllAnnotationData();
 
 };

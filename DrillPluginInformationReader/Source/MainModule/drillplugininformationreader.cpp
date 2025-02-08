@@ -3,8 +3,8 @@
 
 #include "about/w_SoftwareAbout.h"
 #include "birthDayTip/w_SoftwareBirthDayTip.h"
-#include "Source/ProjectModule/storageGlobal/s_IniManager.h"
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
+#include "Source/ProjectModule/StorageGlobal/S_IniManager.h"
+#include "Source/RmmvUtilsPluginModule/storageData/s_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/InformationModule/pluginListPart/p_PluginListPart.h"
 #include "Source/InformationModule/commandSearcherPart/p_CommandSearcherPart.h"

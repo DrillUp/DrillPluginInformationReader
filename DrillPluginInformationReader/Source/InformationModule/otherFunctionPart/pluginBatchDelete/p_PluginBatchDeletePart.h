@@ -1,20 +1,20 @@
-#ifndef P_PluginBatchDeletePart_H
+ï»¿#ifndef P_PluginBatchDeletePart_H
 #define P_PluginBatchDeletePart_H
 
 #include <QtWidgets>
 #include "ui_P_PluginBatchDeletePart.h"
 
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
+#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
 
 /*
 -----==========================================================-----
-		Àà£º		ÇåÀí²å¼ş ±à¼­¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ¸…ç†æ’ä»¶ ç¼–è¾‘å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ÇåÀí²å¼şµÄ±à¼­¿é½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	æ¸…ç†æ’ä»¶çš„ç¼–è¾‘å—ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_PluginBatchDeletePart : public QWidget
@@ -26,29 +26,29 @@ class P_PluginBatchDeletePart : public QWidget
 		~P_PluginBatchDeletePart();
 		
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
 		QTableWidget* m_table;
 		QList<QCheckBox*> m_checkBoxList;
-		QList<C_ScriptAnnotation> m_allSearchedData;	//µ±Ç°Êı¾İ£¨ÎÄ¼ş¼Ğ²å¼ş£©
+		QList<C_ScriptAnnotation> m_allSearchedData;	//å½“å‰æ•°æ®ï¼ˆæ–‡ä»¶å¤¹æ’ä»¶ï¼‰
 	public slots: 
-										//¿Ø¼ş - ³õÊ¼»¯ÁĞ±í
+										//æ§ä»¶ - åˆå§‹åŒ–åˆ—è¡¨
 		void refreshTable();
-										//¿Ø¼ş - Ìí¼ÓÒ»ĞĞ
+										//æ§ä»¶ - æ·»åŠ ä¸€è¡Œ
 		void setOneRow_configedPlugin(int row, QString pluginName);
-										//¿Ø¼ş - È«Ñ¡
+										//æ§ä»¶ - å…¨é€‰
 		void btn_selectAll();
-										//¿Ø¼ş - È¡ÏûÈ«Ñ¡
+										//æ§ä»¶ - å–æ¶ˆå…¨é€‰
 		void btn_deselectAll();
-										//¿Ø¼ş - Ö´ĞĞÉú³É
+										//æ§ä»¶ - æ‰§è¡Œç”Ÿæˆ
 		void btn_execute();
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+										//å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 		void putDataToUi();
-										//¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+										//å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 		void putUiToData();
 	private:
 		Ui::P_PluginBatchDeletePart ui;

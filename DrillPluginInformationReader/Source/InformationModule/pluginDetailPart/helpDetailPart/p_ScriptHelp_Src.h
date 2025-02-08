@@ -1,19 +1,19 @@
-#ifndef P_ScriptHelp_Src_H
+ï»¿#ifndef P_ScriptHelp_Src_H
 #define P_ScriptHelp_Src_H
 
 #include <QtWidgets>
 #include "ui_P_ScriptHelp_Src.h"
 
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Src.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Src.h"
 
 /*
 -----==========================================================-----
-		Àà£º		×ÊÔ´Â·¾¶ ¿Ø¼ş¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	²å¼şÄ£¿é
+		ç±»ï¼š		èµ„æºè·¯å¾„ æ§ä»¶å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	æ’ä»¶æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ÏÔÊ¾¿Ø¼şĞÅÏ¢µÄ½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	æ˜¾ç¤ºæ§ä»¶ä¿¡æ¯çš„ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_ScriptHelp_Src : public QWidget
@@ -25,25 +25,25 @@ class P_ScriptHelp_Src : public QWidget
 		~P_ScriptHelp_Src();
 		
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
 		QList<QLabel*> m_labelTank;
 	public slots: 
-										//¿Ø¼ş - Çå¿ÕÈ«²¿×Ó¿Ø¼ş
+										//æ§ä»¶ - æ¸…ç©ºå…¨éƒ¨å­æ§ä»¶
 		void clearAllChild();
-										//¿Ø¼ş - Á´½Ó±»µã»÷
+										//æ§ä»¶ - é“¾æ¥è¢«ç‚¹å‡»
 		void linkClicked_src(QString data);
-										//¿Ø¼ş - Á´½Ó"²å¼şÇåµ¥.xlsx"±»µã»÷
+										//æ§ä»¶ - é“¾æ¥"æ’ä»¶æ¸…å•.xlsx"è¢«ç‚¹å‡»
 		void linkClicked_specific_pluginListing(QString data);
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ÉèÖÃÊı¾İ
+										//å— - è®¾ç½®æ•°æ®
 		void setData(C_ScriptHelp_Src* data);
-										//¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+										//å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 		void putDataToUi();
-										//¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+										//å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 		void putUiToData();
 	private:
 		Ui::P_ScriptHelp_Src ui;

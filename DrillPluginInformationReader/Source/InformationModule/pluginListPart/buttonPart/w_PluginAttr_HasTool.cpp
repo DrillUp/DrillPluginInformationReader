@@ -2,8 +2,8 @@
 #include "W_PluginAttr_HasTool.h"
 
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/Utils/Common/TTool.h"
 
 
 /*

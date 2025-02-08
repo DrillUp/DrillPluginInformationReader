@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_InformationPart.h"
 
 #include "pluginListPart/p_PluginListPart.h"
@@ -8,15 +8,15 @@
 #include "otherFunctionPart/p_OtherFunctionPart.h"
 #include "otherFunctionPart/designTipGenerator/p_DesignTipGeneratorPart.h"
 
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		ĞÅÏ¢Ä£¿é Ö÷±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		ä¿¡æ¯æ¨¡å— ä¸»ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
 					
 -----==========================================================-----
 */
@@ -26,11 +26,11 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	this->m_p_pluginListPart = new P_PluginListPart(parent);
 	this->m_p_pluginDetailPart = new P_PluginDetailPart(parent);
 	this->m_p_commandSearcherPart = new P_CommandSearcherPart(parent);
@@ -38,15 +38,15 @@ P_InformationPart::P_InformationPart(QWidget *parent)
 	this->m_p_DesignTipGenerator = nullptr;
 	this->m_p_pluginDetailOrgContextPart = nullptr;
 
-	// > ¿ÉÕÛµşÑ¡Ïî¿¨
-	this->m_p_FoldableTabRelater = new P_FoldableTabRelater(ui.tabWidget);	//£¨uiÖĞµÄÖ»ÊÇÊ¾Òâ£¬¸Ã¹¤¾ßÀà»áÖØ½¨tab£©
-	this->m_p_FoldableTabRelater->addPart(" ²å¼şÁĞ±í  ", this->m_p_pluginListPart);
-	this->m_p_FoldableTabRelater->addPart(" ²å¼şÏêÏ¸ĞÅÏ¢  ", this->m_p_pluginDetailPart);
-	this->m_p_FoldableTabRelater->addPart(" Ö¸ÁîËÑË÷Æ÷  ", this->m_p_commandSearcherPart);
-	this->m_p_FoldableTabRelater->addPart(" ÆäËü¹¦ÄÜ  ", this->m_p_otherFunctionPart);
+	// > å¯æŠ˜å é€‰é¡¹å¡
+	this->m_p_FoldableTabRelater = new P_FoldableTabRelater(ui.tabWidget);	//ï¼ˆuiä¸­çš„åªæ˜¯ç¤ºæ„ï¼Œè¯¥å·¥å…·ç±»ä¼šé‡å»ºtabï¼‰
+	this->m_p_FoldableTabRelater->addPart(" æ’ä»¶åˆ—è¡¨  ", this->m_p_pluginListPart);
+	this->m_p_FoldableTabRelater->addPart(" æ’ä»¶è¯¦ç»†ä¿¡æ¯  ", this->m_p_pluginDetailPart);
+	this->m_p_FoldableTabRelater->addPart(" æŒ‡ä»¤æœç´¢å™¨  ", this->m_p_commandSearcherPart);
+	this->m_p_FoldableTabRelater->addPart(" å…¶å®ƒåŠŸèƒ½  ", this->m_p_otherFunctionPart);
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 	connect(this->m_p_pluginListPart, &P_PluginListPart::pluginTriggered, this, &P_InformationPart::showPluginDetail);
 	connect(this->m_p_otherFunctionPart, &P_OtherFunctionPart::selected_DesignTipGenerator, this, &P_InformationPart::selectPart_DesignTipGenerator);
 	connect(this->m_p_pluginDetailPart, &P_PluginDetailPart::selected_PluginDetailOrgContextPart, this, &P_InformationPart::selectPart_PluginDetailOrgContextPart);
@@ -57,63 +57,63 @@ P_InformationPart::~P_InformationPart(){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ÏÔÊ¾Ö¸¶¨²å¼şÏêÏ¸ĞÅÏ¢
+		æ§ä»¶ - æ˜¾ç¤ºæŒ‡å®šæ’ä»¶è¯¦ç»†ä¿¡æ¯
 */
 void P_InformationPart::showPluginDetail(QString plugin_name){
 	
-	// > ÏÔÊ¾ÄÚÈİ
+	// > æ˜¾ç¤ºå†…å®¹
 	this->m_p_pluginDetailPart->showPluginDetail(plugin_name);
 
-	// > ÇĞ»»µ½±êÇ©Ò³
-	this->m_p_FoldableTabRelater->selectTab(" ²å¼şÏêÏ¸ĞÅÏ¢  ");
+	// > åˆ‡æ¢åˆ°æ ‡ç­¾é¡µ
+	this->m_p_FoldableTabRelater->selectTab_ByName(" æ’ä»¶è¯¦ç»†ä¿¡æ¯  ");
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - Ñ¡Ôñ Áé¸ĞÉú³ÉÆ÷
+		æ§ä»¶ - é€‰æ‹© çµæ„Ÿç”Ÿæˆå™¨
 */
 void P_InformationPart::selectPart_DesignTipGenerator(){
 	if (this->m_p_DesignTipGenerator == nullptr){
 		this->createPart_DesignTipGenerator();
 	}
-	this->m_p_FoldableTabRelater->selectTab(" Áé¸ĞÉú³ÉÆ÷  ");
+	this->m_p_FoldableTabRelater->selectTab_ByName(" çµæ„Ÿç”Ÿæˆå™¨  ");
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ´´½¨ Áé¸ĞÉú³ÉÆ÷
+		æ§ä»¶ - åˆ›å»º çµæ„Ÿç”Ÿæˆå™¨
 */
 void P_InformationPart::createPart_DesignTipGenerator(){
 	this->m_p_DesignTipGenerator = new P_DesignTipGeneratorPart();
-	this->m_p_FoldableTabRelater->addPart(" Áé¸ĞÉú³ÉÆ÷  ", this->m_p_DesignTipGenerator);
+	this->m_p_FoldableTabRelater->addPart(" çµæ„Ÿç”Ÿæˆå™¨  ", this->m_p_DesignTipGenerator);
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ñ¡Ôñ Ô­ÎÄÕ¹¿ª
+		æ§ä»¶ - é€‰æ‹© åŸæ–‡å±•å¼€
 */
 void P_InformationPart::selectPart_PluginDetailOrgContextPart(){
 	if (this->m_p_pluginDetailOrgContextPart == nullptr){
 		this->createPart_PluginDetailOrgContextPart();
 	}
-	this->m_p_FoldableTabRelater->selectTab(" ²å¼şÔ­ÎÄ  ");
+	this->m_p_FoldableTabRelater->selectTab_ByName(" æ’ä»¶åŸæ–‡  ");
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ´´½¨ Ô­ÎÄÕ¹¿ª
+		æ§ä»¶ - åˆ›å»º åŸæ–‡å±•å¼€
 */
 void P_InformationPart::createPart_PluginDetailOrgContextPart(){
 	this->m_p_pluginDetailOrgContextPart = new P_PluginDetailOrgContextPart();
-	this->m_p_FoldableTabRelater->addPart(" ²å¼şÔ­ÎÄ  ", this->m_p_pluginDetailOrgContextPart);
+	this->m_p_FoldableTabRelater->addPart(" æ’ä»¶åŸæ–‡  ", this->m_p_pluginDetailOrgContextPart);
 
-	// > Á¬ÉÏĞÅºÅ
+	// > è¿ä¸Šä¿¡å·
 	connect(this->m_p_pluginDetailPart, &P_PluginDetailPart::orgContextChanged, this->m_p_pluginDetailOrgContextPart, &P_PluginDetailOrgContextPart::setContext);
 }
 
 
 /*-------------------------------------------------
-		¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+		å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 */
 void P_InformationPart::putDataToUi(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }
 /*-------------------------------------------------
-		¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+		å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 */
 void P_InformationPart::putUiToData(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }

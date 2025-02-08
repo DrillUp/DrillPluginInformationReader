@@ -2,7 +2,7 @@
 #include "s_InformationDataContainer.h"
 
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/PluginModule/scriptReader/s_ScriptAnnotationReader.h"
+#include "Source/RmmvUtilsPluginModule/scriptReader/s_ScriptAnnotationReader.h"
 
 /*
 -----==========================================================-----

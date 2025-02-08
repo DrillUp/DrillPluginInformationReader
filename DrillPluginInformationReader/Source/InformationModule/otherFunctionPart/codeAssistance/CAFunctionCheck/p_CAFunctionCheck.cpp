@@ -4,13 +4,13 @@
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/InformationModule/linkDirector/s_LinkDirector.h"
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Src.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Docs.h"
+#include "Source/RmmvUtilsPluginModule/storageData/s_PluginDataContainer.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Src.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Docs.h"
 
 #include "Source/Utils/operater/excelOperater/p_ExcelOperater.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----

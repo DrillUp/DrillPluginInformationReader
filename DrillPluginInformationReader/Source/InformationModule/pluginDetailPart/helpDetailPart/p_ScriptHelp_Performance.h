@@ -1,19 +1,19 @@
-#ifndef P_ScriptHelp_Performance_H
+ï»¿#ifndef P_ScriptHelp_Performance_H
 #define P_ScriptHelp_Performance_H
 
 #include <QtWidgets>
 #include "ui_P_ScriptHelp_Performance.h"
 
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Performance.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Performance.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şĞÔÄÜ ¿Ø¼ş¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	²å¼şÄ£¿é
+		ç±»ï¼š		æ’ä»¶æ€§èƒ½ æ§ä»¶å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	æ’ä»¶æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ÏÔÊ¾¿Ø¼şĞÅÏ¢µÄ½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	æ˜¾ç¤ºæ§ä»¶ä¿¡æ¯çš„ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_ScriptHelp_Performance : public QWidget
@@ -25,21 +25,21 @@ class P_ScriptHelp_Performance : public QWidget
 		~P_ScriptHelp_Performance();
 		
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public slots: 
-										//¿Ø¼ş - Á´½Ó±»µã»÷
+										//æ§ä»¶ - é“¾æ¥è¢«ç‚¹å‡»
 		void linkClicked_docs(QString data);
-										//¿Ø¼ş - ¸øÏûºÄÎÄ±¾ÉÏÉ«
+										//æ§ä»¶ - ç»™æ¶ˆè€—æ–‡æœ¬ä¸Šè‰²
 		QString decorateCostColor(double cost_value, QString cost_text);
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ÉèÖÃÊı¾İ
+										//å— - è®¾ç½®æ•°æ®
 		void setData(C_ScriptHelp_Performance* data);
-										//¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+										//å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 		void putDataToUi();
-										//¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+										//å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 		void putUiToData();
 	private:
 		Ui::P_ScriptHelp_Performance ui;

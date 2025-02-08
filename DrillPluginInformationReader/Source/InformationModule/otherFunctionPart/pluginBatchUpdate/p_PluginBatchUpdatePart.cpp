@@ -1,20 +1,20 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_PluginBatchUpdatePart.h"
 
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
 #include "Source/Utils/operater/recycleBinOperater/p_RecycleBinOperater.h"
-#include "Source/Utils/common/p_FileOperater.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Common/P_FileOperater.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		¸üĞÂ²å¼ş ±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ›´æ–°æ’ä»¶ ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	¸üĞÂ²å¼şµÄ±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	æ›´æ–°æ’ä»¶çš„ç¼–è¾‘å—ç»“æ„ã€‚
 
-		ËµÃ÷£º		´Ë¿Ø¼ş¿é´´½¨ºó£¬Ö±½Ó´Óµ±Ç° ÒÑ¶ÁÈ¡µÄ²å¼şÊı¾İ ÖĞ½âÎö¡£
+		è¯´æ˜ï¼š		æ­¤æ§ä»¶å—åˆ›å»ºåï¼Œç›´æ¥ä»å½“å‰ å·²è¯»å–çš„æ’ä»¶æ•°æ® ä¸­è§£æã€‚
 -----==========================================================-----
 */
 P_PluginBatchUpdatePart::P_PluginBatchUpdatePart(QWidget *parent)
@@ -23,15 +23,15 @@ P_PluginBatchUpdatePart::P_PluginBatchUpdatePart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 	
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	this->m_table = ui.tableWidget_plugin;
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 	connect(ui.pushButton_cur_1, &QPushButton::clicked, this, &P_PluginBatchUpdatePart::btn_cur_fillCur);
 	connect(ui.pushButton_cur_2, &QPushButton::clicked, this, &P_PluginBatchUpdatePart::btn_cur_select);
 	connect(ui.pushButton_tar_1, &QPushButton::clicked, this, &P_PluginBatchUpdatePart::btn_tar_fillCur);
@@ -51,14 +51,14 @@ P_PluginBatchUpdatePart::~P_PluginBatchUpdatePart(){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - Ö÷¹¤³Ì - ÌîÈëµ±Ç°¹¤³Ì
+		æ§ä»¶ - ä¸»å·¥ç¨‹ - å¡«å…¥å½“å‰å·¥ç¨‹
 */
 void P_PluginBatchUpdatePart::btn_cur_fillCur(){
 	this->m_cur_project = S_RmmvDataContainer::getInstance()->getRmmvProjectData();
 	ui.lineEdit_curProject->setText(this->m_cur_project.getName());
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ö÷¹¤³Ì - Ñ¡Ôñ
+		æ§ä»¶ - ä¸»å·¥ç¨‹ - é€‰æ‹©
 */
 void P_PluginBatchUpdatePart::btn_cur_select(){
 	C_RmmvProjectData temp_data = C_RmmvProjectData::callRmmvSelectDialog();
@@ -68,14 +68,14 @@ void P_PluginBatchUpdatePart::btn_cur_select(){
 	ui.lineEdit_curProject->setText(temp_data.getName());
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ä¿±ê¹¤³Ì - ÌîÈëµ±Ç°¹¤³Ì
+		æ§ä»¶ - ç›®æ ‡å·¥ç¨‹ - å¡«å…¥å½“å‰å·¥ç¨‹
 */
 void P_PluginBatchUpdatePart::btn_tar_fillCur(){
 	this->m_tar_project = S_RmmvDataContainer::getInstance()->getRmmvProjectData();
 	ui.lineEdit_tarProject->setText(this->m_tar_project.getName());
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ä¿±ê¹¤³Ì - Ñ¡Ôñ
+		æ§ä»¶ - ç›®æ ‡å·¥ç¨‹ - é€‰æ‹©
 */
 void P_PluginBatchUpdatePart::btn_tar_select(){
 	C_RmmvProjectData temp_data = C_RmmvProjectData::callRmmvSelectDialog();
@@ -86,17 +86,17 @@ void P_PluginBatchUpdatePart::btn_tar_select(){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ÏÂÒ»²½
+		æ§ä»¶ - ä¸‹ä¸€æ­¥
 */
 void P_PluginBatchUpdatePart::btn_nextStep(){
 
-	// > Ğ£Ñé
+	// > æ ¡éªŒ
 	if (this->m_cur_project.isNull() || this->m_tar_project.isNull()){
-		QMessageBox::warning(this, "´íÎó", "ÌîÈëµÄÁ½¸ö¹¤³Ì²»ÄÜÎª¿Õ¡£", QMessageBox::Yes);
+		QMessageBox::warning(this, "é”™è¯¯", "å¡«å…¥çš„ä¸¤ä¸ªå·¥ç¨‹ä¸èƒ½ä¸ºç©ºã€‚", QMessageBox::Yes);
 		return;
 	}
 	if (this->m_cur_project.getRootPath() == this->m_tar_project.getRootPath()){
-		QMessageBox::warning(this, "´íÎó", "ÌîÈë²»ÄÜÊÇÍ¬Ò»¸ö¹¤³Ì¡£", QMessageBox::Yes);
+		QMessageBox::warning(this, "é”™è¯¯", "å¡«å…¥ä¸èƒ½æ˜¯åŒä¸€ä¸ªå·¥ç¨‹ã€‚", QMessageBox::Yes);
 		return;
 	}
 
@@ -106,49 +106,49 @@ void P_PluginBatchUpdatePart::btn_nextStep(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ÉÏÒ»²½
+		æ§ä»¶ - ä¸Šä¸€æ­¥
 */
 void P_PluginBatchUpdatePart::btn_lastStep(){
 	ui.stackedWidget->setCurrentIndex(0);
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ÖØË¢²å¼şÊı¾İ
+		æ§ä»¶ - é‡åˆ·æ’ä»¶æ•°æ®
 */
 bool P_PluginBatchUpdatePart::reloadPluginData(){
 	this->m_curPluginData.clear();
 	this->m_tarPluginData.clear();
 
-	// > ×¼±¸Êı¾İ£¨Ö÷¹¤³Ì£©
+	// > å‡†å¤‡æ•°æ®ï¼ˆä¸»å·¥ç¨‹ï¼‰
 	if (this->m_cur_project == S_RmmvDataContainer::getInstance()->getRmmvProjectData()){
 		this->m_curPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	}else{
-		// > ¶ÁÈ¡²å¼şÎÄ¼ş
+		// > è¯»å–æ’ä»¶æ–‡ä»¶
 		QString file_path = this->m_cur_project.getRootPath() + "/js/plugins.js";
 		QFile plugin_file(file_path);
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "Î´ÕÒµ½plugins.jsÎÄ¼ş¡£", QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æœªæ‰¾åˆ°plugins.jsæ–‡ä»¶ã€‚", QMessageBox::Yes);
 			return false;
 		}
 		QString plugin_context = plugin_file.readAll();
 
-		// > È«²¿Êı¾İ³õÊ¼»¯
+		// > å…¨éƒ¨æ•°æ®åˆå§‹åŒ–
 		this->m_curPluginData = S_PluginDataContainer::getInstance()->loadPluginDataDirectly(plugin_context);
 	}
 
-	// > ×¼±¸Êı¾İ£¨Ä¿±ê¹¤³Ì£©
+	// > å‡†å¤‡æ•°æ®ï¼ˆç›®æ ‡å·¥ç¨‹ï¼‰
 	if (this->m_tar_project == S_RmmvDataContainer::getInstance()->getRmmvProjectData()){
 		this->m_tarPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	}else{
-		// > ¶ÁÈ¡²å¼şÎÄ¼ş
+		// > è¯»å–æ’ä»¶æ–‡ä»¶
 		QString file_path = this->m_tar_project.getRootPath() + "/js/plugins.js";
 		QFile plugin_file(file_path);
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "Î´ÕÒµ½plugins.jsÎÄ¼ş¡£", QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æœªæ‰¾åˆ°plugins.jsæ–‡ä»¶ã€‚", QMessageBox::Yes);
 			return false;
 		}
 		QString plugin_context = plugin_file.readAll();
 
-		// > È«²¿Êı¾İ³õÊ¼»¯
+		// > å…¨éƒ¨æ•°æ®åˆå§‹åŒ–
 		this->m_tarPluginData = S_PluginDataContainer::getInstance()->loadPluginDataDirectly(plugin_context);
 	}
 
@@ -158,7 +158,7 @@ bool P_PluginBatchUpdatePart::reloadPluginData(){
 
 
 /*-------------------------------------------------
-		¿Ø¼ş - ³õÊ¼»¯ÁĞ±í
+		æ§ä»¶ - åˆå§‹åŒ–åˆ—è¡¨
 */
 void P_PluginBatchUpdatePart::refreshTable(){
 
@@ -172,7 +172,7 @@ void P_PluginBatchUpdatePart::refreshTable(){
 	if (this->m_tarPluginData.count() == 0){ return; }
 	if (this->m_curPluginData.count() == 0){ return; }
 
-	// > ÏÔÊ¾µÄ²å¼ş
+	// > æ˜¾ç¤ºçš„æ’ä»¶
 	this->m_checkBoxList.clear();
 	this->m_table->clearContents();
 	this->m_table->setRowCount(0);
@@ -184,17 +184,17 @@ void P_PluginBatchUpdatePart::refreshTable(){
 
 		for (int j = 0; j < this->m_curPluginData.count(); j++){
 			C_PluginData* cur_data = this->m_curPluginData.at(j);
-			if (cur_data->name == tar_data->name){	//£¨Æ¥ÅäµÄ²å¼şÃûÊ±£¬Ìí¼ÓÒ»ĞĞ£©
+			if (cur_data->name == tar_data->name){	//ï¼ˆåŒ¹é…çš„æ’ä»¶åæ—¶ï¼Œæ·»åŠ ä¸€è¡Œï¼‰
 				this->setOneRow_configedPlugin(cur_row, cur_data, tar_data);
 				cur_row += 1;
 				break;
 			}
 		}
 	}
-	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//ĞĞ×ÔÊÊÓ¦
+	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//è¡Œè‡ªé€‚åº”
 }
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - Ìí¼ÓÒ»ĞĞ
+		æ–‡ä»¶å¤¹æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 */
 void P_PluginBatchUpdatePart::setOneRow_configedPlugin(int row, C_PluginData* cur_data, C_PluginData* tar_data){
 	if (row >= this->m_table->rowCount()){
@@ -210,13 +210,13 @@ void P_PluginBatchUpdatePart::setOneRow_configedPlugin(int row, C_PluginData* cu
 	checkBox->setChecked(false);
 	checkBox->setToolTip(cur_data->name);
 	if (cur_version == -1 || tar_version == -1){
-		checkBox->setStatusTip("Î´Ê¶±ğ");
+		checkBox->setStatusTip("æœªè¯†åˆ«");
 	}else if (tar_version < cur_version){
-		checkBox->setStatusTip("Éı¼¶");
+		checkBox->setStatusTip("å‡çº§");
 	}else if (tar_version == cur_version){
-		checkBox->setStatusTip("Í¬²½");
+		checkBox->setStatusTip("åŒæ­¥");
 	}else if (tar_version > cur_version){
-		checkBox->setStatusTip("½µ¼¶");
+		checkBox->setStatusTip("é™çº§");
 	}
 	l->addWidget(checkBox);
 	w->setLayout(l);
@@ -228,16 +228,16 @@ void P_PluginBatchUpdatePart::setOneRow_configedPlugin(int row, C_PluginData* cu
 	first_item->setToolTip(cur_data->name);
 	this->m_table->setItem(row, 1, first_item);
 
-	// > ÎÄ±¾
+	// > æ–‡æœ¬
 	if (cur_version == -1 || tar_version == -1){
-		this->m_table->setItem(row, 2, new QTableWidgetItem("¡¾Î´Ê¶±ğ¡¿"));
+		this->m_table->setItem(row, 2, new QTableWidgetItem("ã€æœªè¯†åˆ«ã€‘"));
 		this->m_table->setItem(row, 3, new QTableWidgetItem(cur_data->getDescription_type()));
-		this->m_table->setItem(row, 4, new QTableWidgetItem(cur_data->description));		//£¨¶Á²»µ½°æ±¾Ê±£¬ÏÔÊ¾È«Ãû£©
+		this->m_table->setItem(row, 4, new QTableWidgetItem(cur_data->description));		//ï¼ˆè¯»ä¸åˆ°ç‰ˆæœ¬æ—¶ï¼Œæ˜¾ç¤ºå…¨åï¼‰
 	}else{
 		QString version_text = "";
 		if (cur_version == tar_version){
 			version_text.append( cur_data->getDescription_version() );
-			version_text.append(" ÎŞĞè¸üĞÂ");
+			version_text.append(" æ— éœ€æ›´æ–°");
 		}else{
 			//version_text.append(QString::number(tar_version, 'f', 2));
 			//version_text.append(" -> ");
@@ -245,13 +245,13 @@ void P_PluginBatchUpdatePart::setOneRow_configedPlugin(int row, C_PluginData* cu
 			version_text.append( tar_data->getDescription_version() );
 			version_text.append(" -> ");
 			version_text.append( cur_data->getDescription_version() );
-			version_text.append("¡¾");
+			version_text.append("ã€");
 			if (cur_version > tar_version){
-				version_text.append("¿ÉÉı¼¶");
+				version_text.append("å¯å‡çº§");
 			}else{
-				version_text.append("»á½µ¼¶");
+				version_text.append("ä¼šé™çº§");
 			}
-			version_text.append("¡¿");
+			version_text.append("ã€‘");
 		}
 		this->m_table->setItem(row, 2, new QTableWidgetItem(version_text));
 		this->m_table->setItem(row, 3, new QTableWidgetItem(cur_data->getDescription_type()));
@@ -260,7 +260,7 @@ void P_PluginBatchUpdatePart::setOneRow_configedPlugin(int row, C_PluginData* cu
 	this->m_table->setItem(row, 5, new QTableWidgetItem(tar_data->status ? "ON" : "OFF"));
 }
 /*-------------------------------------------------
-		¿Ø¼ş - È«Ñ¡
+		æ§ä»¶ - å…¨é€‰
 */
 void P_PluginBatchUpdatePart::btn_selectAll(){
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
@@ -269,7 +269,7 @@ void P_PluginBatchUpdatePart::btn_selectAll(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - È¡ÏûÈ«Ñ¡
+		æ§ä»¶ - å–æ¶ˆå…¨é€‰
 */
 void P_PluginBatchUpdatePart::btn_deselectAll(){
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
@@ -278,12 +278,12 @@ void P_PluginBatchUpdatePart::btn_deselectAll(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ö»Ñ¡¿ÉÉı¼¶Ïî
+		æ§ä»¶ - åªé€‰å¯å‡çº§é¡¹
 */
 void P_PluginBatchUpdatePart::btn_selectLevelUp(){
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
 		QCheckBox* checkbox = this->m_checkBoxList.at(i);
-		if (checkbox->statusTip() == "Éı¼¶"){
+		if (checkbox->statusTip() == "å‡çº§"){
 			checkbox->setChecked(true);
 		}else{
 			checkbox->setChecked(false);
@@ -291,18 +291,18 @@ void P_PluginBatchUpdatePart::btn_selectLevelUp(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ö´ĞĞ¸üĞÂ
+		æ§ä»¶ - æ‰§è¡Œæ›´æ–°
 */
 void P_PluginBatchUpdatePart::btn_execute(){
 	QStringList data_list = QStringList();
 
-	// > ¿ÕÁĞ±íÇé¿ö
+	// > ç©ºåˆ—è¡¨æƒ…å†µ
 	if (this->m_checkBoxList.count() == 0){
-		QMessageBox::warning(nullptr, "ÌáÊ¾", "Ã»ÓĞÈÎºÎĞèÒª¸üĞÂµÄ²å¼ş¡£", QMessageBox::Yes);
+		QMessageBox::warning(nullptr, "æç¤º", "æ²¡æœ‰ä»»ä½•éœ€è¦æ›´æ–°çš„æ’ä»¶ã€‚", QMessageBox::Yes);
 		return;
 	}
 
-	// > ¼ì²é¹´Ñ¡
+	// > æ£€æŸ¥å‹¾é€‰
 	bool has_check = false;
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
 		QCheckBox* checkbox = this->m_checkBoxList.at(i);
@@ -312,31 +312,31 @@ void P_PluginBatchUpdatePart::btn_execute(){
 		}
 	}
 	if (has_check == false){
-		QMessageBox::warning(nullptr, "ÌáÊ¾", "ÄãÎ´¹´Ñ¡ÈÎºÎ²å¼ş¡£", QMessageBox::Yes);
+		QMessageBox::warning(nullptr, "æç¤º", "ä½ æœªå‹¾é€‰ä»»ä½•æ’ä»¶ã€‚", QMessageBox::Yes);
 		return;
 	}
 
-	// > ¼ì²éÉı¼¶/½µ¼¶Çé¿ö
+	// > æ£€æŸ¥å‡çº§/é™çº§æƒ…å†µ
 	bool has_des = false;
 	bool has_inc = false;
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
 		QCheckBox* checkbox = this->m_checkBoxList.at(i);
 		if (checkbox->isChecked() == true){
-			if (checkbox->statusTip() == "½µ¼¶"){
+			if (checkbox->statusTip() == "é™çº§"){
 				has_des = true;
 			}
-			else if (checkbox->statusTip() == "Éı¼¶"){
+			else if (checkbox->statusTip() == "å‡çº§"){
 				has_inc = true;
 			}
-			else if (checkbox->statusTip() == "Î´Ê¶±ğ"){	//£¨Î´Ê¶±ğËãÉı¼¶Ïî£©
+			else if (checkbox->statusTip() == "æœªè¯†åˆ«"){	//ï¼ˆæœªè¯†åˆ«ç®—å‡çº§é¡¹ï¼‰
 				has_inc = true;
 			}
 		}
 	}
 
-	// > ¸üĞÂÌáÊ¾
+	// > æ›´æ–°æç¤º
 	if (has_des == true){
-		switch (QMessageBox::information(this, "ÌáÊ¾", "¹´Ñ¡ÖĞ°üº¬½µ¼¶µÄ²å¼ş£¬\n\r²¢ÇÒ¸üĞÂºó±»¸²¸ÇµÄÎÄ¼şÎŞ·¨ÕÒ»Ø£¬ÊÇ·ñÖ´ĞĞ¸üĞÂ£¿", "È·¶¨", "È¡Ïû", 0, 1)){
+		switch (QMessageBox::information(this, "æç¤º", "å‹¾é€‰ä¸­åŒ…å«é™çº§çš„æ’ä»¶ï¼Œ\n\rå¹¶ä¸”æ›´æ–°åè¢«è¦†ç›–çš„æ–‡ä»¶æ— æ³•æ‰¾å›ï¼Œæ˜¯å¦æ‰§è¡Œæ›´æ–°ï¼Ÿ", "ç¡®å®š", "å–æ¶ˆ", 0, 1)){
 			case 0:
 				break;
 			case 1:
@@ -344,7 +344,7 @@ void P_PluginBatchUpdatePart::btn_execute(){
 				return;
 			}
 	}else if (has_inc == false){
-		switch (QMessageBox::information(this, "ÌáÊ¾", "¹´Ñ¡ÖĞÃ»ÓĞ¿ÉÉı¼¶µÄ²å¼ş£¬\n\r²¢ÇÒ¸üĞÂºó±»¸²¸ÇµÄÎÄ¼şÎŞ·¨ÕÒ»Ø£¬ÊÇ·ñÖ´ĞĞ¸üĞÂ£¿", "È·¶¨", "È¡Ïû", 0, 1)){
+		switch (QMessageBox::information(this, "æç¤º", "å‹¾é€‰ä¸­æ²¡æœ‰å¯å‡çº§çš„æ’ä»¶ï¼Œ\n\rå¹¶ä¸”æ›´æ–°åè¢«è¦†ç›–çš„æ–‡ä»¶æ— æ³•æ‰¾å›ï¼Œæ˜¯å¦æ‰§è¡Œæ›´æ–°ï¼Ÿ", "ç¡®å®š", "å–æ¶ˆ", 0, 1)){
 			case 0:
 				break;
 			case 1:
@@ -352,7 +352,7 @@ void P_PluginBatchUpdatePart::btn_execute(){
 				return;
 		}
 	}else{
-		switch (QMessageBox::information(this, "ÌáÊ¾", "¸üĞÂºó±»¸²¸ÇµÄÎÄ¼şÎŞ·¨ÕÒ»Ø£¬ÊÇ·ñÖ´ĞĞ¸üĞÂ£¿", "È·¶¨", "È¡Ïû", 0, 1)){
+		switch (QMessageBox::information(this, "æç¤º", "æ›´æ–°åè¢«è¦†ç›–çš„æ–‡ä»¶æ— æ³•æ‰¾å›ï¼Œæ˜¯å¦æ‰§è¡Œæ›´æ–°ï¼Ÿ", "ç¡®å®š", "å–æ¶ˆ", 0, 1)){
 			case 0:
 				break;
 			case 1:
@@ -361,13 +361,13 @@ void P_PluginBatchUpdatePart::btn_execute(){
 		}
 	}
 
-	// > Éú³É¸üĞÂÇåµ¥
+	// > ç”Ÿæˆæ›´æ–°æ¸…å•
 	QStringList pluginList;
 	QString context;
 	context.append(QDateTime::currentDateTime().toString("yyyy/MM/dd hh:mm:ss"));
 	context.append("\r\n");
 	context.append("\r\n");
-	context.append("\t×¢Òâ£¬¸üĞÂÖ»Ìæ»»²å¼şÎÄ¼ş£¬²å¼şµÄ²ÎÊıÅäÖÃÈÔĞèÒªÄãÈ¥´ò¿ª ²å¼ş¹ÜÀíÆ÷ µã¿ª²å¼şÈ»ºóÈ·¶¨¶Ô»°¿ò ²ÅÄÜ¸üĞÂ¡£");
+	context.append("\tæ³¨æ„ï¼Œæ›´æ–°åªæ›¿æ¢æ’ä»¶æ–‡ä»¶ï¼Œæ’ä»¶çš„å‚æ•°é…ç½®ä»éœ€è¦ä½ å»æ‰“å¼€ æ’ä»¶ç®¡ç†å™¨ ç‚¹å¼€æ’ä»¶ç„¶åç¡®å®šå¯¹è¯æ¡† æ‰èƒ½æ›´æ–°ã€‚");
 	context.append("\r\n");
 	context.append("\r\n");
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
@@ -381,19 +381,19 @@ void P_PluginBatchUpdatePart::btn_execute(){
 		context.append("\r\n");
 	}
 
-	// > Éú³É¸üĞÂÇåµ¥£¨¸ù¾İ¹´Ñ¡Éú³É£©
+	// > ç”Ÿæˆæ›´æ–°æ¸…å•ï¼ˆæ ¹æ®å‹¾é€‰ç”Ÿæˆï¼‰
 	if (ui.checkBox_makeList->isChecked()){
-		QString context_path = this->m_tar_project.getRootPath() + "/js/plugins/²å¼ş¸üĞÂ" + QDateTime::currentDateTime().toString("yyyy-MM-dd") + ".txt";
+		QString context_path = this->m_tar_project.getRootPath() + "/js/plugins/æ’ä»¶æ›´æ–°" + QDateTime::currentDateTime().toString("yyyy-MM-dd") + ".txt";
 		QFile file_to(context_path);
 		if (!file_to.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-			QMessageBox::warning(this, "´íÎó", "ÎŞ·¨Éú³É²å¼şÇåµ¥¡£", QMessageBox::Yes);
+			QMessageBox::warning(this, "é”™è¯¯", "æ— æ³•ç”Ÿæˆæ’ä»¶æ¸…å•ã€‚", QMessageBox::Yes);
 			return;
 		}
 		file_to.write(context.toLocal8Bit());
 		file_to.close();
 	}
 
-	// > ¸üĞÂ²å¼ş
+	// > æ›´æ–°æ’ä»¶
 	P_FileOperater p_FileOperater;
 	for (int i = 0; i < pluginList.count(); i++){
 		QString plugin_name = pluginList.at(i);
@@ -403,7 +403,7 @@ void P_PluginBatchUpdatePart::btn_execute(){
 		p_FileOperater.copy_File(QFileInfo(cur_path), QFileInfo(tar_path));
 	}
 
-	// > ¸üĞÂ²å¼şÁĞ±í
+	// > æ›´æ–°æ’ä»¶åˆ—è¡¨
 	for (int i = 0; i < pluginList.count(); i++){
 		QString plugin_name = pluginList.at(i);
 		C_PluginData* cur_data = nullptr;
@@ -430,25 +430,25 @@ void P_PluginBatchUpdatePart::btn_execute(){
 	QString plugin_tar_path = this->m_tar_project.getRootPath() + "/js/plugins.js";
 	QFile file_plugin(plugin_tar_path);
 	if (!file_plugin.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-		QMessageBox::warning(this, "´íÎó", "ÎŞ·¨¸üĞÂ²å¼şÅäÖÃ¡£", QMessageBox::Yes);
+		QMessageBox::warning(this, "é”™è¯¯", "æ— æ³•æ›´æ–°æ’ä»¶é…ç½®ã€‚", QMessageBox::Yes);
 		return;
 	}
 	file_plugin.write(plugin_context.toUtf8());
 	file_plugin.close();
 
-	QMessageBox::warning(this, "ÌáÊ¾", "¸üĞÂÍê³É¡£", QMessageBox::Yes);
+	QMessageBox::warning(this, "æç¤º", "æ›´æ–°å®Œæˆã€‚", QMessageBox::Yes);
 	this->reloadPluginData();
 }
 
 /*-------------------------------------------------
-		¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+		å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 */
 void P_PluginBatchUpdatePart::putDataToUi(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }
 /*-------------------------------------------------
-		¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+		å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 */
 void P_PluginBatchUpdatePart::putUiToData(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }

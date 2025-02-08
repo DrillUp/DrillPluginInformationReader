@@ -2,8 +2,8 @@
 #include "p_PluginDetailPart.h"
 
 #include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----

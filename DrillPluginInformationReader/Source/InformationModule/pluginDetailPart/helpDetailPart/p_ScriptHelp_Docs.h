@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include "ui_P_ScriptHelp_Docs.h"
 
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Docs.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Docs.h"
 
 /*
 -----==========================================================-----

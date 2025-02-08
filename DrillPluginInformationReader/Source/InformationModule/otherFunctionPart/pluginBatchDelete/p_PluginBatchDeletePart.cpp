@@ -1,19 +1,19 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_PluginBatchDeletePart.h"
 
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/Utils/operater/recycleBinOperater/p_RecycleBinOperater.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/RmmvInteractiveModule/Base/S_RmmvDataContainer.h"
+#include "Source/Utils/Operater/RecycleBinOperater/P_RecycleBinOperater.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		ÇåÀí²å¼ş ±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ¸…ç†æ’ä»¶ ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ÇåÀí²å¼şµÄ±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	æ¸…ç†æ’ä»¶çš„ç¼–è¾‘å—ç»“æ„ã€‚
 
-		ËµÃ÷£º		´Ë¿Ø¼ş¿é´´½¨ºó£¬Ö±½Ó´Óµ±Ç° ÒÑ¶ÁÈ¡µÄ²å¼şÊı¾İ ÖĞ½âÎö¡£
+		è¯´æ˜ï¼š		æ­¤æ§ä»¶å—åˆ›å»ºåï¼Œç›´æ¥ä»å½“å‰ å·²è¯»å–çš„æ’ä»¶æ•°æ® ä¸­è§£æã€‚
 -----==========================================================-----
 */
 P_PluginBatchDeletePart::P_PluginBatchDeletePart(QWidget *parent)
@@ -22,15 +22,15 @@ P_PluginBatchDeletePart::P_PluginBatchDeletePart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 	
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	this->m_table = ui.tableWidget_plugin;
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 	connect(ui.pushButton_selectAll, &QPushButton::clicked, this, &P_PluginBatchDeletePart::btn_selectAll);
 	connect(ui.pushButton_deselectAll, &QPushButton::clicked, this, &P_PluginBatchDeletePart::btn_deselectAll);
 	connect(ui.pushButton_execute, &QPushButton::clicked, this, &P_PluginBatchDeletePart::btn_execute);
@@ -42,7 +42,7 @@ P_PluginBatchDeletePart::~P_PluginBatchDeletePart(){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ³õÊ¼»¯ÁĞ±í
+		æ§ä»¶ - åˆå§‹åŒ–åˆ—è¡¨
 */
 void P_PluginBatchDeletePart::refreshTable(){
 
@@ -53,7 +53,7 @@ void P_PluginBatchDeletePart::refreshTable(){
 	this->m_table->horizontalHeader()->resizeSection(4, 220);
 	this->m_table->horizontalHeader()->resizeSection(5, 80);
 
-	// > ÏÔÊ¾µÄ²å¼ş
+	// > æ˜¾ç¤ºçš„æ’ä»¶
 	this->m_checkBoxList.clear();
 	this->m_table->clearContents();
 	this->m_table->setRowCount(0);
@@ -67,10 +67,10 @@ void P_PluginBatchDeletePart::refreshTable(){
 			cur_row += 1;
 		}
 	}
-	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//ĞĞ×ÔÊÊÓ¦
+	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//è¡Œè‡ªé€‚åº”
 }
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - Ìí¼ÓÒ»ĞĞ
+		æ–‡ä»¶å¤¹æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 */
 void P_PluginBatchDeletePart::setOneRow_configedPlugin(int row, QString pluginName){
 	C_ScriptAnnotation data = S_InformationDataContainer::getInstance()->getAnnotation(pluginName);
@@ -93,14 +93,14 @@ void P_PluginBatchDeletePart::setOneRow_configedPlugin(int row, QString pluginNa
 	first_item->setToolTip(pluginName);
 	this->m_table->setItem(row, 1, first_item);
 
-	// > ·Ö¸îÏß
+	// > åˆ†å‰²çº¿
 	if (pluginName.contains("---")){
 		this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
 
-	// > ²å¼şĞĞ
+	// > æ’ä»¶è¡Œ
 	}else{
 
-		// > ÎÄ±¾
+		// > æ–‡æœ¬
 		QString version = data.getPlugindesc_version();
 		if (version.isEmpty() == false){
 			this->m_table->setItem(row, 2, new QTableWidgetItem(version));
@@ -108,13 +108,13 @@ void P_PluginBatchDeletePart::setOneRow_configedPlugin(int row, QString pluginNa
 			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc_name()));
 		}else{
 			this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
-			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//£¨¶Á²»µ½°æ±¾Ê±£¬ÏÔÊ¾È«Ãû£©
+			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//ï¼ˆè¯»ä¸åˆ°ç‰ˆæœ¬æ—¶ï¼Œæ˜¾ç¤ºå…¨åï¼‰
 		}
-		this->m_table->setItem(row, 5, new QTableWidgetItem("Î´×°ÔØ"));			//£¨ÅäÖÃÖĞÎ´ÕÒµ½µÄ£¬±ê¼Ç Î´×°ÔØ£©
+		this->m_table->setItem(row, 5, new QTableWidgetItem("æœªè£…è½½"));			//ï¼ˆé…ç½®ä¸­æœªæ‰¾åˆ°çš„ï¼Œæ ‡è®° æœªè£…è½½ï¼‰
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - È«Ñ¡
+		æ§ä»¶ - å…¨é€‰
 */
 void P_PluginBatchDeletePart::btn_selectAll(){
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
@@ -123,7 +123,7 @@ void P_PluginBatchDeletePart::btn_selectAll(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - È¡ÏûÈ«Ñ¡
+		æ§ä»¶ - å–æ¶ˆå…¨é€‰
 */
 void P_PluginBatchDeletePart::btn_deselectAll(){
 	for (int i = 0; i < this->m_checkBoxList.count(); i++){
@@ -132,7 +132,7 @@ void P_PluginBatchDeletePart::btn_deselectAll(){
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Ö´ĞĞÉ¾³ı
+		æ§ä»¶ - æ‰§è¡Œåˆ é™¤
 */
 void P_PluginBatchDeletePart::btn_execute(){
 	QStringList data_list = QStringList();
@@ -143,7 +143,7 @@ void P_PluginBatchDeletePart::btn_execute(){
 		}
 	}
 
-	// > ÒÆ¶¯µ½»ØÊÕÕ¾
+	// > ç§»åŠ¨åˆ°å›æ”¶ç«™
 	if (ui.radioButton_recycleBin->isChecked()){
 		for (int i = 0; i < data_list.count(); i++){
 			QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
@@ -154,7 +154,7 @@ void P_PluginBatchDeletePart::btn_execute(){
 		this->refreshTable();
 	}
 
-	// > Ö±½ÓÉ¾³ı
+	// > ç›´æ¥åˆ é™¤
 	if (ui.radioButton_delete->isChecked()){
 		for (int i = 0; i < data_list.count(); i++){
 			QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
@@ -168,14 +168,14 @@ void P_PluginBatchDeletePart::btn_execute(){
 }
 
 /*-------------------------------------------------
-		¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+		å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 */
 void P_PluginBatchDeletePart::putDataToUi(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }
 /*-------------------------------------------------
-		¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+		å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 */
 void P_PluginBatchDeletePart::putUiToData(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }

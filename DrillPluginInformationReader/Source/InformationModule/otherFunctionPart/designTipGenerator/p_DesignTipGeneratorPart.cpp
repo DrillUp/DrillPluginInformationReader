@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "p_DesignTipGeneratorPart.h"
 
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----

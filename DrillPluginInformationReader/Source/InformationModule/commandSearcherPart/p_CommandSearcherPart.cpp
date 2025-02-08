@@ -1,17 +1,17 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_CommandSearcherPart.h"
 
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/ProjectModule/storageGlobal/s_IniManager.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/ProjectModule/StorageGlobal/S_IniManager.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		Ö¸ÁîËÑË÷Æ÷ ±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æŒ‡ä»¤æœç´¢å™¨ ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
 					
 -----==========================================================-----
 */
@@ -21,14 +21,14 @@ P_CommandSearcherPart::P_CommandSearcherPart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	TTool::_ChangeCombox_itemHeight_(ui.comboBox_commandType, 30);
 
-	// > Ö¸Áî¿Ø¼ş¿é
+	// > æŒ‡ä»¤æ§ä»¶å—
 	for (int i = 0; i < 30; i++){
 		P_ScriptHelp_CommandSearchCell* cell = new P_ScriptHelp_CommandSearchCell();
 		if (i% 2 == 0){
@@ -41,27 +41,27 @@ P_CommandSearcherPart::P_CommandSearcherPart(QWidget *parent)
 	ui.verticalLayout_left->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
 	ui.verticalLayout_right->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
 
-	// > ÀúÊ·²éÑ¯¿Ø¼ş
+	// > å†å²æŸ¥è¯¢æ§ä»¶
 	this->m_p_historicalSearchRecord = new P_HistoricalSearchRecord(this);
 	ui.horizontalLayout_searchType->removeItem(ui.horizontalSpacer);
 	ui.horizontalLayout_searchType->addWidget(this->m_p_historicalSearchRecord);
 	ui.horizontalLayout_searchType->addItem(ui.horizontalSpacer);
 	ui.horizontalLayout_searchType->setStretch(ui.horizontalLayout_searchType->count()-1, 1);
 
-	// > ·ÖÒ³¿Ø¼ş
+	// > åˆ†é¡µæ§ä»¶
 	this->m_p_PageNavigator = new P_PageNavigator();
 	this->m_p_PageNavigator->initNavigator(30, 30, 5);
 	ui.verticalLayout_PageNavigator->addWidget(this->m_p_PageNavigator);
 
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 
-	// > Ö´ĞĞËÑË÷Ê±
+	// > æ‰§è¡Œæœç´¢æ—¶
 	connect(ui.pushButton_search, &QPushButton::clicked, this, &P_CommandSearcherPart::btn_search);
 	connect(this->m_p_historicalSearchRecord, &P_HistoricalSearchRecord::textClicked, this, &P_CommandSearcherPart::searchTextClicked);
 
-	// > ·ÖÒ³±ä»¯Ê±
+	// > åˆ†é¡µå˜åŒ–æ—¶
 	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_CommandSearcherPart::refreshCellAuto);
 
 }
@@ -71,7 +71,7 @@ P_CommandSearcherPart::~P_CommandSearcherPart(){
 
 
 /*-------------------------------------------------
-		ËÑË÷Ö¸Áî - ËÑË÷
+		æœç´¢æŒ‡ä»¤ - æœç´¢
 */
 void P_CommandSearcherPart::btn_search(){
 
@@ -79,10 +79,10 @@ void P_CommandSearcherPart::btn_search(){
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
 	this->m_p_historicalSearchRecord->addText(m_searchText);
 
-	// > ËÑË÷ÀàĞÍ
+	// > æœç´¢ç±»å‹
 	QString commandType = ui.comboBox_commandType->currentText();
 
-	// > È«²¿²å¼ş
+	// > å…¨éƒ¨æ’ä»¶
 	QList<C_ScriptAnnotation> data_list = QList<C_ScriptAnnotation>();
 	for (int i = 0; i < this->m_allSearchedData.count(); i++){
 		C_ScriptAnnotation data = this->m_allSearchedData.at(i);
@@ -91,38 +91,38 @@ void P_CommandSearcherPart::btn_search(){
 		C_ScriptHelp_Command* command = detail->getCommand();
 		if (command == nullptr){ continue; }
 
-		// > É¸Ñ¡Ìõ¼ş
-		if (commandType == "È«²¿ÀàĞÍ" && command->hasCommandKeyWord_All(m_searchText)){ data_list.append(data); }
-		if (commandType == "²å¼şÖ¸Áî" && command->hasCommandKeyWord_PluginCommand(m_searchText)){ data_list.append(data); }
-		if (commandType == "ÊÂ¼ş×¢ÊÍ" && command->hasCommandKeyWord_EventComment(m_searchText)){ data_list.append(data); }
-		if (commandType == "µØÍ¼±¸×¢" && command->hasCommandKeyWord_MapNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "½ÇÉ«×¢ÊÍ" && command->hasCommandKeyWord_ActorNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "µĞÈË×¢ÊÍ" && command->hasCommandKeyWord_EnemyNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "×´Ì¬×¢ÊÍ" && command->hasCommandKeyWord_StateNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "ÎïÆ·/ÎäÆ÷/»¤¼××¢ÊÍ" && command->hasCommandKeyWord_ItemNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "¼¼ÄÜ×¢ÊÍ" && command->hasCommandKeyWord_SkillNote(m_searchText)){ data_list.append(data); }
-		if (commandType == "ÒÆ¶¯Â·ÏßÖ¸Áî" && command->hasCommandKeyWord_MoveRoute(m_searchText)){ data_list.append(data); }
-		if (commandType == "´°¿Ú×Ö·û" && command->hasCommandKeyWord_WindowChar(m_searchText)){ data_list.append(data); }
+		// > ç­›é€‰æ¡ä»¶
+		if (commandType == "å…¨éƒ¨ç±»å‹" && command->hasCommandKeyWord_All(m_searchText)){ data_list.append(data); }
+		if (commandType == "æ’ä»¶æŒ‡ä»¤" && command->hasCommandKeyWord_PluginCommand(m_searchText)){ data_list.append(data); }
+		if (commandType == "äº‹ä»¶æ³¨é‡Š" && command->hasCommandKeyWord_EventComment(m_searchText)){ data_list.append(data); }
+		if (commandType == "åœ°å›¾å¤‡æ³¨" && command->hasCommandKeyWord_MapNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "è§’è‰²æ³¨é‡Š" && command->hasCommandKeyWord_ActorNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "æ•Œäººæ³¨é‡Š" && command->hasCommandKeyWord_EnemyNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "çŠ¶æ€æ³¨é‡Š" && command->hasCommandKeyWord_StateNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "ç‰©å“/æ­¦å™¨/æŠ¤ç”²æ³¨é‡Š" && command->hasCommandKeyWord_ItemNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "æŠ€èƒ½æ³¨é‡Š" && command->hasCommandKeyWord_SkillNote(m_searchText)){ data_list.append(data); }
+		if (commandType == "ç§»åŠ¨è·¯çº¿æŒ‡ä»¤" && command->hasCommandKeyWord_MoveRoute(m_searchText)){ data_list.append(data); }
+		if (commandType == "çª—å£å­—ç¬¦" && command->hasCommandKeyWord_WindowChar(m_searchText)){ data_list.append(data); }
 	}
-	this->m_allSearchedData = data_list;	//£¨ĞŞ¸ÄÊı¾İ·¶Î§£©
+	this->m_allSearchedData = data_list;	//ï¼ˆä¿®æ”¹æ•°æ®èŒƒå›´ï¼‰
 
-	// > Ë¢ĞÂ·ÖÒ³Æ÷
+	// > åˆ·æ–°åˆ†é¡µå™¨
 	this->m_p_PageNavigator->setAllCount(this->m_allSearchedData.count());	
 	
 	this->refreshCellAuto(0, 29);
 }
 
 /*-------------------------------------------------
-		ËÑË÷Ö¸Áî - Ë¢ĞÂ¿Ø¼ş
+		æœç´¢æŒ‡ä»¤ - åˆ·æ–°æ§ä»¶
 */
 void P_CommandSearcherPart::refreshCellAuto(int start_index, int end_index){
 	if (start_index < 0){ start_index = 0; }
 	if (end_index <= 0){ return; }
 
-	// > ËÑË÷ÀàĞÍ
+	// > æœç´¢ç±»å‹
 	QString commandType = ui.comboBox_commandType->currentText();
 
-	// > ÏÔÊ¾µÄ²å¼ş
+	// > æ˜¾ç¤ºçš„æ’ä»¶
 	if (end_index >= this->m_allSearchedData.count()){ end_index = this->m_allSearchedData.count() - 1; }
 	for (int i = start_index; i <= end_index; i++){
 		C_ScriptAnnotation data = this->m_allSearchedData.at(i);
@@ -135,7 +135,7 @@ void P_CommandSearcherPart::refreshCellAuto(int start_index, int end_index){
 		cell_part->setData(c_detail->getCommand(), data.getName(), data.getPlugindesc(), this->m_searchText, commandType);
 	}
 
-	// > Ê£ÓàµÄÇå¿Õ
+	// > å‰©ä½™çš„æ¸…ç©º
 	for (int i = end_index + 1; i < this->m_cellPartList.count(); i++){
 		P_ScriptHelp_CommandSearchCell* cell_part = this->getButtonPartByIndex(i);
 		if (cell_part != nullptr){
@@ -145,7 +145,7 @@ void P_CommandSearcherPart::refreshCellAuto(int start_index, int end_index){
 }
 
 /*-------------------------------------------------
-		ÊôĞÔ - »ñÈ¡°´Å¥×é
+		å±æ€§ - è·å–æŒ‰é’®ç»„
 */
 P_ScriptHelp_CommandSearchCell* P_CommandSearcherPart::getButtonPartByIndex(int index){
 	if (index < 0){ return nullptr; }
@@ -154,14 +154,14 @@ P_ScriptHelp_CommandSearchCell* P_CommandSearcherPart::getButtonPartByIndex(int 
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ËÑË÷µÄ×Ö·û´®±»µã»÷
+		æ§ä»¶ - æœç´¢çš„å­—ç¬¦ä¸²è¢«ç‚¹å‡»
 */
 void P_CommandSearcherPart::searchTextClicked(QString text){
 	ui.lineEdit_search->setText(text);
 }
 
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 */
 void P_CommandSearcherPart::ui_loadConfig(){
 
@@ -169,7 +169,7 @@ void P_CommandSearcherPart::ui_loadConfig(){
 	this->m_p_historicalSearchRecord->setData(search_str.split("|||"));
 }
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 */
 void P_CommandSearcherPart::ui_saveConfig(){
 

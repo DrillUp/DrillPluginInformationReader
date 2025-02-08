@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "p_PluginListPart.h"
 
-#include "Source/ProjectModule/storageGlobal/s_IniManager.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/ProjectModule/StorageGlobal/S_IniManager.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----

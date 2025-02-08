@@ -1,23 +1,23 @@
-#include "stdafx.h"
+Ôªø#include "stdafx.h"
 #include "p_ExcelDataGenerator.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
-#include "Source/InformationModule/linkDirector/s_LinkDirector.h"
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelpDetail.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Src.h"
-#include "Source/PluginModule/scriptReader/helpDetail/c_ScriptHelp_Docs.h"
+#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/InformationModule/LinkDirector/S_LinkDirector.h"
+#include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Src.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Docs.h"
 
-#include "Source/Utils/operater/excelOperater/p_ExcelOperater.h"
-#include "Source/Utils/common/TTool.h"
+#include "Source/Utils/Operater/ExcelOperater/P_ExcelOperater.h"
+#include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		¿‡£∫		Excel±Ì∏Ò…˙≥…∆˜.cpp
-		◊˜’ﬂ£∫		drill_up
-		À˘ Ùƒ£øÈ£∫	–≈œ¢ƒ£øÈ
+		Á±ªÔºö		ExcelË°®Ê†ºÁîüÊàêÂô®.cpp
+		‰ΩúËÄÖÔºö		drill_up
+		ÊâÄÂ±ûÊ®°ÂùóÔºö	‰ø°ÊÅØÊ®°Âùó
 		
-		÷˜π¶ƒ‹£∫	…˙≥…◊‘∂®“ÂµƒExcel±Ì∏Ò∏Ò Ω°£
+		‰∏ªÂäüËÉΩÔºö	ÁîüÊàêËá™ÂÆö‰πâÁöÑExcelË°®Ê†ºÊ†ºÂºè„ÄÇ
 -----==========================================================-----
 */
 P_ExcelDataGenerator::P_ExcelDataGenerator(QObject *parent)
@@ -31,35 +31,35 @@ P_ExcelDataGenerator::~P_ExcelDataGenerator(){
 
 
 /*-------------------------------------------------
-		…˙≥…∆˜ - …˙≥… ≤Âº˛«Âµ•
+		ÁîüÊàêÂô® - ÁîüÊàê Êèí‰ª∂Ê∏ÖÂçï
 */
 void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 
-	// > ¥Úø™
+	// > ÊâìÂºÄ
 	cur_operater = new P_ExcelOperater();
 	cur_operater->openSoftware();
 	cur_operater->newExcelFile();
 
-	// > ±ÌÕ∑
+	// > Ë°®Â§¥
 	cur_operater->cell_FreezePanes_OnlyRow();
 	cur_operater->cell_SetWidth(2, 30);
 	cur_operater->cell_Style_SetBackground_Row(1, this->getColor_grey());
 	cur_operater->cell_Style_SetFontBold_Row(1, true);
-	cur_operater->cell_Style_SetFontFamily_Row(1, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(1, "ÂæÆËΩØÈõÖÈªë");
 	cur_operater->cell_SetWidth(1, 10);
 	cur_operater->cell_SetWidth(2, 36);
 	cur_operater->cell_SetWidth(3, 9);
 	cur_operater->cell_SetWidth(4, 28);
 	cur_operater->cell_SetWidth(5, 31);
 	cur_operater->cell_SetWidth(6, 50);
-	cur_operater->cell_SetValue("A1", "A1", "◊˜’ﬂ");
-	cur_operater->cell_SetValue("B1", "B1", "≤Âº˛√˚");
-	cur_operater->cell_SetValue("C1", "C1", "≤Âº˛¿‡–Õ");
-	cur_operater->cell_SetValue("D1", "D1", "÷–Œƒ√˚");
-	cur_operater->cell_SetValue("E1", "E1", "πÿ¡™Œƒº˛");
-	cur_operater->cell_SetValue("F1", "F1", "œ‡πÿŒƒµµ");
+	cur_operater->cell_SetValue("A1", "A1", "‰ΩúËÄÖ");
+	cur_operater->cell_SetValue("B1", "B1", "Êèí‰ª∂Âêç");
+	cur_operater->cell_SetValue("C1", "C1", "Êèí‰ª∂Á±ªÂûã");
+	cur_operater->cell_SetValue("D1", "D1", "‰∏≠ÊñáÂêç");
+	cur_operater->cell_SetValue("E1", "E1", "ÂÖ≥ËÅîÊñá‰ª∂");
+	cur_operater->cell_SetValue("F1", "F1", "Áõ∏ÂÖ≥ÊñáÊ°£");
 
-	// > ≤Âº˛ ˝æ›
+	// > Êèí‰ª∂Êï∞ÊçÆ
 	QString last_type = "";
 	QString last_name = "";
 	this->cur_row = 2;
@@ -70,15 +70,15 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 		C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
 		if (detail == nullptr){ continue; }
 
-		// > ø’¿‡–Õµƒ≤Âº˛»•µÙ
+		// > Á©∫Á±ªÂûãÁöÑÊèí‰ª∂ÂéªÊéâ
 		if (annotation.getPlugindesc_type() == ""){ continue; }
 
-		// > ≤ªÕ¨¿‡–Õ∏Ùø™“ªœ¬
+		// > ‰∏çÂêåÁ±ªÂûãÈöîÂºÄ‰∏Ä‰∏ã
 		if (annotation.getPlugindesc_type() != last_type){
 			last_type = annotation.getPlugindesc_type();
 			if (annotation.getName().contains("Drill_X_") == true &&
 				last_name.contains("Drill_X_") == true){
-				//£®»Áπ˚≤Âº˛÷Æº‰∂º «¿©’π£¨‘Ú≤ª∏Ùø™£©
+				//ÔºàÂ¶ÇÊûúÊèí‰ª∂‰πãÈó¥ÈÉΩÊòØÊâ©Â±ïÔºåÂàô‰∏çÈöîÂºÄÔºâ
 			}else{
 				cur_operater->cell_MergeCells("A" + QString::number(cur_row), "F" + QString::number(cur_row), true);
 				cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "F" + QString::number(cur_row), this->getColor_grey());
@@ -86,20 +86,20 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 			}
 		}
 
-		// > Œƒ±æ - ◊˜’ﬂ
+		// > ÊñáÊú¨ - ‰ΩúËÄÖ
 		QString author_text = annotation.getAuthor();
-		author_text = author_text.replace(QRegExp("[,£¨°¢]"),"\n");
+		author_text = author_text.replace(QRegExp("[,Ôºå„ÄÅ]"),"\n");
 
-		// > Œƒ±æ - πÿ¡™Œƒº˛
+		// > ÊñáÊú¨ - ÂÖ≥ËÅîÊñá‰ª∂
 		C_ScriptHelp_Src* src = detail->getSrc();
-		QString src_text = "Œﬁ";
+		QString src_text = "Êó†";
 		if (src != nullptr && src->src_list.count() > 0){
 			src_text = src->src_list.join("\n");
 		}
 
-		// > Œƒ±æ - œ‡πÿŒƒµµ
+		// > ÊñáÊú¨ - Áõ∏ÂÖ≥ÊñáÊ°£
 		C_ScriptHelp_Docs* docs = detail->getDocs();
-		QString docs_text = "Œﬁ";
+		QString docs_text = "Êó†";
 		if (docs != nullptr && (docs->main_docx.count() > 0 || docs->relative_docx.count() > 0) ){
 			QStringList docs_list, docsText_list;
 			docs_list << docs->main_docx << docs->relative_docx;
@@ -109,7 +109,7 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 				if (dir_name == ""){
 					docsText_list.append(docs);
 				}else{
-					dir_name.append(" > ");			//£®œ‘ æ ’Ê µŒƒº˛º–√˚≥∆ + Œƒµµ√˚≥∆£©
+					dir_name.append(" > ");			//ÔºàÊòæÁ§∫ ÁúüÂÆûÊñá‰ª∂Â§πÂêçÁß∞ + ÊñáÊ°£ÂêçÁß∞Ôºâ
 					dir_name.append(docs);
 					docsText_list.append(dir_name);
 				}
@@ -117,7 +117,7 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 			docs_text = docsText_list.join("\n");
 		}
 
-		// > µ•––Œƒ±æ–¥»Î
+		// > ÂçïË°åÊñáÊú¨ÂÜôÂÖ•
 		cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), author_text);
 		cur_operater->cell_SetValue("B" + QString::number(cur_row), "B" + QString::number(cur_row), annotation.getName());
 		cur_operater->cell_SetValue("C" + QString::number(cur_row), "C" + QString::number(cur_row), annotation.getPlugindesc_type());
@@ -125,27 +125,27 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 		cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), src_text);
 		cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), docs_text);
 
-		// > µ•––—˘ Ω…Ë÷√
-		if (annotation.getAuthor().indexOf("Drill_up") == 0 ){	//£®√˚Œ™Drill_upø™Õ∑µƒ≤Âº˛‘ –Ì◊‘∂Øªª––£©
+		// > ÂçïË°åÊ†∑ÂºèËÆæÁΩÆ
+		if (annotation.getAuthor().indexOf("Drill_up") == 0 ){	//ÔºàÂêç‰∏∫Drill_upÂºÄÂ§¥ÁöÑÊèí‰ª∂ÂÖÅËÆ∏Ëá™Âä®Êç¢Ë°åÔºâ
 			cur_operater->cell_SetWrapText("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
 		}else{
 			cur_operater->cell_SetWrapText("A" + QString::number(cur_row), "A" + QString::number(cur_row), false);
 		}
 		cur_operater->cell_SetWrapText("E" + QString::number(cur_row), "E" + QString::number(cur_row), true);
 		cur_operater->cell_SetWrapText("F" + QString::number(cur_row), "F" + QString::number(cur_row), true);
-		cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+		cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 
-		// > µ•––Ω· ¯
+		// > ÂçïË°åÁªìÊùü
 		last_name = annotation.getName();
 		cur_row += 1;
 	}
 
-	// > ◊Ó∫Û“ª––∞¸π¸
+	// > ÊúÄÂêé‰∏ÄË°åÂåÖË£π
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "F" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "F" + QString::number(cur_row), this->getColor_grey());
 	cur_row += 1;
 
-	// > ±£¥Ê
+	// > ‰øùÂ≠ò
 	cur_operater->saveAsExcelFile(save_path);
 	cur_operater->closeSoftware();
 	delete cur_operater;
@@ -154,33 +154,33 @@ void P_ExcelDataGenerator::generatePluginDataList(QString save_path){
 
 
 /*-------------------------------------------------
-		…˙≥…∆˜ - …˙≥… –‘ƒ‹≤‚ ‘Õ≥º∆±Ì
+		ÁîüÊàêÂô® - ÁîüÊàê ÊÄßËÉΩÊµãËØïÁªüËÆ°Ë°®
 */
 void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 
-	// > ¥Úø™
+	// > ÊâìÂºÄ
 	cur_operater = new P_ExcelOperater();
 	cur_operater->openSoftware();
 	cur_operater->newExcelFile();
 
-	// > π§◊˜«Âµ•±Ì
+	// > Â∑•‰ΩúÊ∏ÖÂçïË°®
 	cur_operater->copyCurSheet();
 	cur_operater->copyCurSheet();
 	cur_operater->selectSheet(1);
-	cur_operater->setSheetName("µÿÕºΩÁ√Ê");
+	cur_operater->setSheetName("Âú∞ÂõæÁïåÈù¢");
 	cur_operater->selectSheet(2);
-	cur_operater->setSheetName("’Ω∂∑ΩÁ√Ê");
+	cur_operater->setSheetName("ÊàòÊñóÁïåÈù¢");
 	cur_operater->selectSheet(3);
-	cur_operater->setSheetName("≤Àµ•ΩÁ√Ê");
+	cur_operater->setSheetName("ËèúÂçïÁïåÈù¢");
 
 
-	// > ±ÌÕ∑
+	// > Ë°®Â§¥
 	cur_operater->selectSheet(1);
 	cur_operater->cell_FreezePanes_OnlyRow();
 	cur_operater->cell_SetWidth(2, 30);
 	cur_operater->cell_Style_SetBackground_Row(1, this->getColor_grey());
 	cur_operater->cell_Style_SetFontBold_Row(1, true);
-	cur_operater->cell_Style_SetFontFamily_Row(1, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(1, "ÂæÆËΩØÈõÖÈªë");
 	cur_operater->cell_SetWidth(1, 36);
 	cur_operater->cell_SetWidth(2, 9);
 	cur_operater->cell_SetWidth(3, 28);
@@ -190,40 +190,40 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_operater->cell_SetWidth(7, 10);
 	cur_operater->cell_SetWidth(8, 10);
 	cur_operater->cell_SetWidth(9, 38);
-	cur_operater->cell_SetValue("A1", "A1", "≤Âº˛√˚");
-	cur_operater->cell_SetValue("B1", "B1", "≤Âº˛¿‡–Õ");
-	cur_operater->cell_SetValue("C1", "C1", "÷–Œƒ√˚");
-	cur_operater->cell_SetValue("D1", "D1", "π§◊˜¿‡–Õ");
-	cur_operater->cell_SetValue("E1", "E1", "200∏ˆ ¬º˛");
-	cur_operater->cell_SetValue("F1", "F1", "100∏ˆ ¬º˛");
-	cur_operater->cell_SetValue("G1", "G1", "50∏ˆ ¬º˛");
-	cur_operater->cell_SetValue("H1", "H1", "20∏ˆ ¬º˛");
-	cur_operater->cell_SetValue("I1", "I1", " ±º‰∏¥‘”∂»");
+	cur_operater->cell_SetValue("A1", "A1", "Êèí‰ª∂Âêç");
+	cur_operater->cell_SetValue("B1", "B1", "Êèí‰ª∂Á±ªÂûã");
+	cur_operater->cell_SetValue("C1", "C1", "‰∏≠ÊñáÂêç");
+	cur_operater->cell_SetValue("D1", "D1", "Â∑•‰ΩúÁ±ªÂûã");
+	cur_operater->cell_SetValue("E1", "E1", "200‰∏™‰∫ã‰ª∂");
+	cur_operater->cell_SetValue("F1", "F1", "100‰∏™‰∫ã‰ª∂");
+	cur_operater->cell_SetValue("G1", "G1", "50‰∏™‰∫ã‰ª∂");
+	cur_operater->cell_SetValue("H1", "H1", "20‰∏™‰∫ã‰ª∂");
+	cur_operater->cell_SetValue("I1", "I1", "Êó∂Èó¥Â§çÊùÇÂ∫¶");
 
-	// > –‘ƒ‹≤‚ ‘Àµ√˜£®Õ∑£©
+	// > ÊÄßËÉΩÊµãËØïËØ¥ÊòéÔºàÂ§¥Ôºâ
 	this->cur_row = 2;
 	this->generatePerformanceNotes();
 
-	// > µÿÕºΩÁ√Ê¿∏£®Õ∑£©
-	QString scene_name = "µÿÕºΩÁ√Ê";
+	// > Âú∞ÂõæÁïåÈù¢Ê†èÔºàÂ§¥Ôºâ
+	QString scene_name = "Âú∞ÂõæÁïåÈù¢";
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
 	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), scene_name);
 	cur_operater->cell_Style_SetFontBold("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
-	// > …˙≥…ΩÁ√Ê ˝æ›ƒ⁄»›
+	// > ÁîüÊàêÁïåÈù¢Êï∞ÊçÆÂÜÖÂÆπ
 	this->generatePerformanceSceneData(scene_name);
 
 
-	// > ±ÌÕ∑
+	// > Ë°®Â§¥
 	cur_operater->selectSheet(2);
 	cur_operater->cell_FreezePanes_OnlyRow();
 	cur_operater->cell_SetWidth(2, 30);
 	cur_operater->cell_Style_SetBackground_Row(1, this->getColor_grey());
 	cur_operater->cell_Style_SetFontBold_Row(1, true);
-	cur_operater->cell_Style_SetFontFamily_Row(1, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(1, "ÂæÆËΩØÈõÖÈªë");
 	cur_operater->cell_SetWidth(1, 36);
 	cur_operater->cell_SetWidth(2, 9);
 	cur_operater->cell_SetWidth(3, 28);
@@ -233,40 +233,40 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_operater->cell_SetWidth(7, 10);
 	cur_operater->cell_SetWidth(8, 10);
 	cur_operater->cell_SetWidth(9, 38);
-	cur_operater->cell_SetValue("A1", "A1", "≤Âº˛√˚");
-	cur_operater->cell_SetValue("B1", "B1", "≤Âº˛¿‡–Õ");
-	cur_operater->cell_SetValue("C1", "C1", "÷–Œƒ√˚");
-	cur_operater->cell_SetValue("D1", "D1", "π§◊˜¿‡–Õ");
-	cur_operater->cell_SetValue("E1", "E1", "8-16∏ˆµ•Œª");
-	cur_operater->cell_SetValue("F1", "F1", "4-8∏ˆµ•Œª");
-	cur_operater->cell_SetValue("G1", "G1", "1-2∏ˆµ•Œª");
-	cur_operater->cell_SetValue("H1", "H1", "Œﬁ");
-	cur_operater->cell_SetValue("I1", "I1", " ±º‰∏¥‘”∂»");
+	cur_operater->cell_SetValue("A1", "A1", "Êèí‰ª∂Âêç");
+	cur_operater->cell_SetValue("B1", "B1", "Êèí‰ª∂Á±ªÂûã");
+	cur_operater->cell_SetValue("C1", "C1", "‰∏≠ÊñáÂêç");
+	cur_operater->cell_SetValue("D1", "D1", "Â∑•‰ΩúÁ±ªÂûã");
+	cur_operater->cell_SetValue("E1", "E1", "8-16‰∏™Âçï‰Ωç");
+	cur_operater->cell_SetValue("F1", "F1", "4-8‰∏™Âçï‰Ωç");
+	cur_operater->cell_SetValue("G1", "G1", "1-2‰∏™Âçï‰Ωç");
+	cur_operater->cell_SetValue("H1", "H1", "Êó†");
+	cur_operater->cell_SetValue("I1", "I1", "Êó∂Èó¥Â§çÊùÇÂ∫¶");
 
-	// > –‘ƒ‹≤‚ ‘Àµ√˜£®Õ∑£©
+	// > ÊÄßËÉΩÊµãËØïËØ¥ÊòéÔºàÂ§¥Ôºâ
 	this->cur_row = 2;
 	this->generatePerformanceNotes();
 
-	// > µÿÕºΩÁ√Ê¿∏£®Õ∑£©
-	scene_name = "’Ω∂∑ΩÁ√Ê";
+	// > Âú∞ÂõæÁïåÈù¢Ê†èÔºàÂ§¥Ôºâ
+	scene_name = "ÊàòÊñóÁïåÈù¢";
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
 	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), scene_name);
 	cur_operater->cell_Style_SetFontBold("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
-	// > …˙≥…ΩÁ√Ê ˝æ›ƒ⁄»›
+	// > ÁîüÊàêÁïåÈù¢Êï∞ÊçÆÂÜÖÂÆπ
 	this->generatePerformanceSceneData(scene_name);
 
 
-	// > ±ÌÕ∑
+	// > Ë°®Â§¥
 	cur_operater->selectSheet(3);
 	cur_operater->cell_FreezePanes_OnlyRow();
 	cur_operater->cell_SetWidth(2, 30);
 	cur_operater->cell_Style_SetBackground_Row(1, this->getColor_grey());
 	cur_operater->cell_Style_SetFontBold_Row(1, true);
-	cur_operater->cell_Style_SetFontFamily_Row(1, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(1, "ÂæÆËΩØÈõÖÈªë");
 	cur_operater->cell_SetWidth(1, 36);
 	cur_operater->cell_SetWidth(2, 9);
 	cur_operater->cell_SetWidth(3, 28);
@@ -276,47 +276,47 @@ void P_ExcelDataGenerator::generatePerformanceDataList(QString save_path){
 	cur_operater->cell_SetWidth(7, 10);
 	cur_operater->cell_SetWidth(8, 10);
 	cur_operater->cell_SetWidth(9, 38);
-	cur_operater->cell_SetValue("A1", "A1", "≤Âº˛√˚");
-	cur_operater->cell_SetValue("B1", "B1", "≤Âº˛¿‡–Õ");
-	cur_operater->cell_SetValue("C1", "C1", "÷–Œƒ√˚");
-	cur_operater->cell_SetValue("D1", "D1", "π§◊˜¿‡–Õ");
-	cur_operater->cell_SetValue("E1", "E1", "≥Ã∂»4");
-	cur_operater->cell_SetValue("F1", "F1", "≥Ã∂»3");
-	cur_operater->cell_SetValue("G1", "G1", "≥Ã∂»2");
-	cur_operater->cell_SetValue("H1", "H1", "≥Ã∂»1");
-	cur_operater->cell_SetValue("I1", "I1", " ±º‰∏¥‘”∂»");
+	cur_operater->cell_SetValue("A1", "A1", "Êèí‰ª∂Âêç");
+	cur_operater->cell_SetValue("B1", "B1", "Êèí‰ª∂Á±ªÂûã");
+	cur_operater->cell_SetValue("C1", "C1", "‰∏≠ÊñáÂêç");
+	cur_operater->cell_SetValue("D1", "D1", "Â∑•‰ΩúÁ±ªÂûã");
+	cur_operater->cell_SetValue("E1", "E1", "Á®ãÂ∫¶4");
+	cur_operater->cell_SetValue("F1", "F1", "Á®ãÂ∫¶3");
+	cur_operater->cell_SetValue("G1", "G1", "Á®ãÂ∫¶2");
+	cur_operater->cell_SetValue("H1", "H1", "Á®ãÂ∫¶1");
+	cur_operater->cell_SetValue("I1", "I1", "Êó∂Èó¥Â§çÊùÇÂ∫¶");
 
-	// > –‘ƒ‹≤‚ ‘Àµ√˜£®Õ∑£©
+	// > ÊÄßËÉΩÊµãËØïËØ¥ÊòéÔºàÂ§¥Ôºâ
 	this->cur_row = 2;
 	this->generatePerformanceNotes();
 
-	// > µÿÕºΩÁ√Ê¿∏£®Õ∑£©
-	scene_name = "≤Àµ•ΩÁ√Ê";
+	// > Âú∞ÂõæÁïåÈù¢Ê†èÔºàÂ§¥Ôºâ
+	scene_name = "ËèúÂçïÁïåÈù¢";
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
 	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), scene_name);
 	cur_operater->cell_Style_SetFontBold("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
-	// > …˙≥…ΩÁ√Ê ˝æ›ƒ⁄»›
+	// > ÁîüÊàêÁïåÈù¢Êï∞ÊçÆÂÜÖÂÆπ
 	this->generatePerformanceSceneData(scene_name);
 
 
-	// > ±£¥Ê
+	// > ‰øùÂ≠ò
 	cur_operater->saveAsExcelFile(save_path);
 	cur_operater->closeSoftware();
 }
 /*-------------------------------------------------
-		Ω◊∂Œ - …˙≥… –‘ƒ‹≤‚ ‘Àµ√˜ƒ⁄»›
+		Èò∂ÊÆµ - ÁîüÊàê ÊÄßËÉΩÊµãËØïËØ¥ÊòéÂÜÖÂÆπ
 */
 void P_ExcelDataGenerator::generatePerformanceNotes(){
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "–‘ƒ‹≤‚ ‘Àµ√˜");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "ÊÄßËÉΩÊµãËØïËØ¥Êòé");
 	cur_operater->cell_Style_SetFontBold("A" + QString::number(cur_row), "A" + QString::number(cur_row), true);
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
@@ -325,82 +325,82 @@ void P_ExcelDataGenerator::generatePerformanceNotes(){
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "1.–‘ƒ‹≤‚ ‘ «ª˘”⁄µÕ≈‰µÁƒ‘µƒ±Í◊º£¨‘⁄∏ﬂ≈‰µÁƒ‘÷–≤‚ ‘µƒœ˚∫ƒ ˝÷µøœ∂®ª·±»µÕ≈‰µÁƒ‘–°µ√∂‡°£");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "1.ÊÄßËÉΩÊµãËØïÊòØÂü∫‰∫é‰ΩéÈÖçÁîµËÑëÁöÑÊ†áÂáÜÔºåÂú®È´òÈÖçÁîµËÑë‰∏≠ÊµãËØïÁöÑÊ∂àËÄóÊï∞ÂÄºËÇØÂÆö‰ºöÊØî‰ΩéÈÖçÁîµËÑëÂ∞èÂæóÂ§ö„ÄÇ");
 
 	cur_operater->cell_MergeCells("F" + QString::number(cur_row), "G" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_grey());
 	cur_operater->cell_Style_SetAllBorder("F" + QString::number(cur_row), "H" + QString::number(cur_row), QColor(0,0,0));
-	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "∑∂Œß");
-	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "≥Ã∂»");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "ËåÉÂõ¥");
+	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "Á®ãÂ∫¶");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "2.≤Âº˛‘Ω∂‡£¨œ˚∫ƒµƒ“≤‘Ω∂‡°£ƒ„ø…“‘ºı…Ÿ∏ﬂœ˚∫ƒµƒ≤Âº˛¿¥±£≥÷”Œœ∑¡˜≥©–‘°£");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "2.Êèí‰ª∂Ë∂äÂ§öÔºåÊ∂àËÄóÁöÑ‰πüË∂äÂ§ö„ÄÇ‰Ω†ÂèØ‰ª•ÂáèÂ∞ëÈ´òÊ∂àËÄóÁöÑÊèí‰ª∂Êù•‰øùÊåÅÊ∏∏ÊàèÊµÅÁïÖÊÄß„ÄÇ");
 
 	cur_operater->cell_MergeCells("F" + QString::number(cur_row), "G" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCritical(0));
 	cur_operater->cell_Style_SetAllBorder("F" + QString::number(cur_row), "H" + QString::number(cur_row), QColor(0, 0, 0));
 	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "0.00ms - 40.00ms");
-	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "º∏∫ıŒﬁœ˚∫ƒ");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "Âá†‰πéÊó†Ê∂àËÄó");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "3.∞¥F2ø…“‘ µ ±≤Èø¥”Œœ∑µƒ÷° ˝«Èøˆ£¨»Áπ˚≥÷–¯µÕ”⁄30÷°£¨ƒ„æÕ“™øº¬«ø®∂ŸŒ Ã‚¡À°£");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "3.ÊåâF2ÂèØ‰ª•ÂÆûÊó∂Êü•ÁúãÊ∏∏ÊàèÁöÑÂ∏ßÊï∞ÊÉÖÂÜµÔºåÂ¶ÇÊûúÊåÅÁª≠‰Ωé‰∫é30Â∏ßÔºå‰Ω†Â∞±Ë¶ÅËÄÉËôëÂç°È°øÈóÆÈ¢ò‰∫Ü„ÄÇ");
 
 	cur_operater->cell_MergeCells("F" + QString::number(cur_row), "G" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCritical(1));
 	cur_operater->cell_Style_SetAllBorder("F" + QString::number(cur_row), "H" + QString::number(cur_row), QColor(0, 0, 0));
 	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "40.00ms - 80.00ms");
-	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "µÕœ˚∫ƒ");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "‰ΩéÊ∂àËÄó");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "4.À˘”–≤‚ ‘µƒ ±≥§Œ™20000.00ms£®20√Î£©£¨msæÕ «∫¡√Î£¨1√Î=1000∫¡√Î°£");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "4.ÊâÄÊúâÊµãËØïÁöÑÊó∂Èïø‰∏∫20000.00msÔºà20ÁßíÔºâÔºåmsÂ∞±ÊòØÊØ´ÁßíÔºå1Áßí=1000ÊØ´Áßí„ÄÇ");
 
 	cur_operater->cell_MergeCells("F" + QString::number(cur_row), "G" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCritical(2));
 	cur_operater->cell_Style_SetAllBorder("F" + QString::number(cur_row), "H" + QString::number(cur_row), QColor(0, 0, 0));
 	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "80.00ms - 120.00ms");
-	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "÷–œ˚∫ƒ");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "‰∏≠Ê∂àËÄó");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "5.≤‚ ‘Ω·π˚µƒ“‚Àº «£∫20√Îµƒ ±º‰¿Ô£¨µ•∏ˆ≤Âº˛π≤’º”√¡À∂‡…Ÿ∫¡√Î¿¥Ω¯––º∆À„°£");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "5.ÊµãËØïÁªìÊûúÁöÑÊÑèÊÄùÊòØÔºö20ÁßíÁöÑÊó∂Èó¥ÈáåÔºåÂçï‰∏™Êèí‰ª∂ÂÖ±Âç†Áî®‰∫ÜÂ§öÂ∞ëÊØ´ÁßíÊù•ËøõË°åËÆ°ÁÆó„ÄÇ");
 
 	cur_operater->cell_MergeCells("F" + QString::number(cur_row), "G" + QString::number(cur_row), true);
 	cur_operater->cell_Style_SetBackground("F" + QString::number(cur_row), "H" + QString::number(cur_row), this->getColor_ByCritical(3));
 	cur_operater->cell_Style_SetAllBorder("F" + QString::number(cur_row), "H" + QString::number(cur_row), QColor(0, 0, 0));
-	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "120.00ms“‘…œ");
-	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "∏ﬂœ˚∫ƒ");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), "120.00ms‰ª•‰∏ä");
+	cur_operater->cell_SetValue("H" + QString::number(cur_row), "H" + QString::number(cur_row), "È´òÊ∂àËÄó");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "6.≤‚ ‘Ω·π˚≤¢≤ª «æ´»∑÷µ£¨∑∂Œß‘⁄∏¯∂®÷µµƒ10.00ms∑∂Œßƒ⁄≤®∂Ø°£");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "6.ÊµãËØïÁªìÊûúÂπ∂‰∏çÊòØÁ≤æÁ°ÆÂÄºÔºåËåÉÂõ¥Âú®ÁªôÂÆöÂÄºÁöÑ10.00msËåÉÂõ¥ÂÜÖÊ≥¢Âä®„ÄÇ");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 
 	cur_operater->cell_MergeCells("A" + QString::number(cur_row), "E" + QString::number(cur_row), true);
-	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "7.¡ÌÕ‚“ªÃ·£¨÷¥––∑Ω ΩŒ™'±∂¬ ≥÷–¯'µƒ≤Âº˛£¨ø…“‘ πµ√À˘”–œ˚∫ƒ±∂ ˝…œ…˝£¨≤Âº˛…Ë÷√÷µ‘Ω∏ﬂ£¨œ˚∫ƒ‘Ω¥Û°£");
-	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+	cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), "7.Âè¶Â§ñ‰∏ÄÊèêÔºåÊâßË°åÊñπÂºè‰∏∫'ÂÄçÁéáÊåÅÁª≠'ÁöÑÊèí‰ª∂ÔºåÂèØ‰ª•‰ΩøÂæóÊâÄÊúâÊ∂àËÄóÂÄçÊï∞‰∏äÂçáÔºåÊèí‰ª∂ËÆæÁΩÆÂÄºË∂äÈ´òÔºåÊ∂àËÄóË∂äÂ§ß„ÄÇ");
+	cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 	cur_row += 1;
 	cur_row += 1;
 }
 /*-------------------------------------------------
-		Ω◊∂Œ - …˙≥… ΩÁ√Ê ˝æ›ƒ⁄»›
+		Èò∂ÊÆµ - ÁîüÊàê ÁïåÈù¢Êï∞ÊçÆÂÜÖÂÆπ
 */
 void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 
-	// > ≤Âº˛ ˝æ›
+	// > Êèí‰ª∂Êï∞ÊçÆ
 	QString last_type = "";
 	QString last_name = "";
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
@@ -410,15 +410,15 @@ void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 		C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
 		if (detail == nullptr){ continue; }
 
-		// > ø’¿‡–Õµƒ≤Âº˛»•µÙ
+		// > Á©∫Á±ªÂûãÁöÑÊèí‰ª∂ÂéªÊéâ
 		if (annotation.getPlugindesc_type() == ""){ continue; }
 
-		// > ≤ªÕ¨¿‡–Õ∏Ùø™“ªœ¬
+		// > ‰∏çÂêåÁ±ªÂûãÈöîÂºÄ‰∏Ä‰∏ã
 		if (annotation.getPlugindesc_type() != last_type){
 			last_type = annotation.getPlugindesc_type();
 			if (annotation.getName().contains("Drill_X_") == true &&
 				last_name.contains("Drill_X_") == true){
-				//£®»Áπ˚≤Âº˛÷Æº‰∂º «¿©’π£¨‘Ú≤ª∏Ùø™£©
+				//ÔºàÂ¶ÇÊûúÊèí‰ª∂‰πãÈó¥ÈÉΩÊòØÊâ©Â±ïÔºåÂàô‰∏çÈöîÂºÄÔºâ
 			}
 			else{
 				cur_operater->cell_MergeCells("A" + QString::number(cur_row), "I" + QString::number(cur_row), true);
@@ -427,39 +427,39 @@ void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 			}
 		}
 
-		// > µ•––Œƒ±æ–¥»Î
+		// > ÂçïË°åÊñáÊú¨ÂÜôÂÖ•
 		cur_operater->cell_SetValue("A" + QString::number(cur_row), "A" + QString::number(cur_row), annotation.getName());
 		cur_operater->cell_SetValue("B" + QString::number(cur_row), "B" + QString::number(cur_row), annotation.getPlugindesc_type());
 		cur_operater->cell_SetValue("C" + QString::number(cur_row), "C" + QString::number(cur_row), annotation.getPlugindesc_name());
 		C_ScriptHelp_Performance* performance = detail->getPerformance();
 		C_ScriptHelp_EffectScope* scope = detail->getEffectScope();
 
-		// > √ª”–≤‚ ‘ ˝æ› ±
+		// > Ê≤°ÊúâÊµãËØïÊï∞ÊçÆÊó∂
 		if (performance == nullptr){
-			cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), "Œﬁ");
+			cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), "Êó†");
 
 		}else{
 
-			// > Ãÿ ‚¿‡–Õ
-			if (performance->working_type == "±∂¬ ≥÷–¯"){
+			// > ÁâπÊÆäÁ±ªÂûã
+			if (performance->working_type == "ÂÄçÁéáÊåÅÁª≠"){
 				cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
-				cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "÷±Ω””∞œÏ”Œœ∑’˚ÃÂµƒ‘À––œ˚∫ƒ");
+				cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "Áõ¥Êé•ÂΩ±ÂìçÊ∏∏ÊàèÊï¥‰ΩìÁöÑËøêË°åÊ∂àËÄó");
 				cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 				cur_operater->cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
 			}else{
 
-				// >  ˝æ›¥ÌŒÛ«Èøˆ
+				// > Êï∞ÊçÆÈîôËØØÊÉÖÂÜµ
 				double max_cost = performance->getMaxCost();
 				if (max_cost == -1){
-					cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), " ˝æ›¥ÌŒÛ");
+					cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "Êï∞ÊçÆÈîôËØØ");
 					cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 				}
 				else{
 
-					// > π§◊˜¿‡–Õ£®≥÷–¯÷¥––/µ•¥Œ÷¥––£©
+					// > Â∑•‰ΩúÁ±ªÂûãÔºàÊåÅÁª≠ÊâßË°å/ÂçïÊ¨°ÊâßË°åÔºâ
 					cur_operater->cell_SetValue("D" + QString::number(cur_row), "D" + QString::number(cur_row), performance->working_type);
 
-					// > ∑÷≥Ã∂»£®÷ª“™”–“ª∏ˆ≤‚ ‘÷µ ¥Û”⁄5ms æÕÀ„£©
+					// > ÂàÜÁ®ãÂ∫¶ÔºàÂè™Ë¶ÅÊúâ‰∏Ä‰∏™ÊµãËØïÂÄº Â§ß‰∫é5ms Â∞±ÁÆóÔºâ
 					double temp_cost_4 = performance->getMinCost_ByLevel(scene_name, 4);
 					if (temp_cost_4 > 5){
 						double temp_cost_1 = performance->getMinCost_ByLevel(scene_name, 1);
@@ -470,14 +470,14 @@ void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 						QString temp_costStr_2 = QString::number(temp_cost_2) + "ms";
 						QString temp_costStr_3 = QString::number(temp_cost_3) + "ms";
 						QString temp_costStr_4 = QString::number(temp_cost_4) + "ms";
-						if (temp_cost_1 <= 5){ temp_costStr_1 = "5ms“‘œ¬"; }
-						if (temp_cost_2 <= 5){ temp_costStr_2 = "5ms“‘œ¬"; }
-						if (temp_cost_3 <= 5){ temp_costStr_3 = "5ms“‘œ¬"; }
-						if (temp_cost_4 <= 5){ temp_costStr_4 = "5ms“‘œ¬"; }
-						if (temp_cost_1 < 0){ temp_costStr_1 = "Œ¥≤‚"; }
-						if (temp_cost_2 < 0){ temp_costStr_2 = "Œ¥≤‚"; }
-						if (temp_cost_3 < 0){ temp_costStr_3 = "Œ¥≤‚"; }
-						if (temp_cost_4 < 0){ temp_costStr_4 = "Œ¥≤‚"; }
+						if (temp_cost_1 <= 5){ temp_costStr_1 = "5ms‰ª•‰∏ã"; }
+						if (temp_cost_2 <= 5){ temp_costStr_2 = "5ms‰ª•‰∏ã"; }
+						if (temp_cost_3 <= 5){ temp_costStr_3 = "5ms‰ª•‰∏ã"; }
+						if (temp_cost_4 <= 5){ temp_costStr_4 = "5ms‰ª•‰∏ã"; }
+						if (temp_cost_1 < 0){ temp_costStr_1 = "Êú™Êµã"; }
+						if (temp_cost_2 < 0){ temp_costStr_2 = "Êú™Êµã"; }
+						if (temp_cost_3 < 0){ temp_costStr_3 = "Êú™Êµã"; }
+						if (temp_cost_4 < 0){ temp_costStr_4 = "Êú™Êµã"; }
 						cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_4);
 						cur_operater->cell_SetValue("F" + QString::number(cur_row), "F" + QString::number(cur_row), temp_costStr_3);
 						cur_operater->cell_SetValue("G" + QString::number(cur_row), "G" + QString::number(cur_row), temp_costStr_2);
@@ -490,53 +490,53 @@ void P_ExcelDataGenerator::generatePerformanceSceneData(QString scene_name){
 					}
 					else{
 
-						// > ≤ª∑÷≥Ã∂»£®÷ª“™”–“ª∏ˆƒ‹œ‘ æµƒ≤‚ ‘÷µ æÕÀ„£©
+						// > ‰∏çÂàÜÁ®ãÂ∫¶ÔºàÂè™Ë¶ÅÊúâ‰∏Ä‰∏™ËÉΩÊòæÁ§∫ÁöÑÊµãËØïÂÄº Â∞±ÁÆóÔºâ
 						double temp_cost_0 = performance->getMinCost_ByLevel(scene_name, 0);
-						if (temp_cost_4 > 0){ temp_cost_0 = temp_cost_4; }	//£®»Áπ˚Àƒ∏ˆ»´≤ø–°”⁄5ms£¨ƒ«√¥æÕœ‘ æ’˚∏ˆµƒŒ™"5ms“‘œ¬"£©
+						if (temp_cost_4 > 0){ temp_cost_0 = temp_cost_4; }	//ÔºàÂ¶ÇÊûúÂõõ‰∏™ÂÖ®ÈÉ®Â∞è‰∫é5msÔºåÈÇ£‰πàÂ∞±ÊòæÁ§∫Êï¥‰∏™ÁöÑ‰∏∫"5ms‰ª•‰∏ã"Ôºâ
 						if (temp_cost_0 > 0){
 							QString temp_costStr_0 = QString("  ") + QString::number(temp_cost_0) + "ms";
-							if (temp_cost_0 <= 5){ temp_costStr_0 = "  5ms“‘œ¬"; }
+							if (temp_cost_0 <= 5){ temp_costStr_0 = "  5ms‰ª•‰∏ã"; }
 							cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), temp_costStr_0);
 							cur_operater->cell_Style_SetBackground("E" + QString::number(cur_row), "E" + QString::number(cur_row), this->getColor_ByCriticalValue(temp_cost_0));
 							cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 
-							// > ∂º√ª÷µ£®Àµ√˜◊˜”√”Ú≤ª‘⁄¥À¥¶£©
+							// > ÈÉΩÊ≤°ÂÄºÔºàËØ¥Êòé‰ΩúÁî®Âüü‰∏çÂú®Ê≠§Â§ÑÔºâ
 						}
 						else{
 							if (scope->isEnableScene(scene_name)){
-								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), " ˝æ›»± ß");
+								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), "Êï∞ÊçÆÁº∫Â§±");
 								cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 							}
 							else{
-								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString("÷ª◊˜”√”⁄") + scope->getEnabledScene().join("°¢"));
+								cur_operater->cell_SetValue("E" + QString::number(cur_row), "E" + QString::number(cur_row), QString("Âè™‰ΩúÁî®‰∫é") + scope->getEnabledScene().join("„ÄÅ"));
 								cur_operater->cell_MergeCells("E" + QString::number(cur_row), "H" + QString::number(cur_row), true);
 							}
 						}
 					}
 
-					// >  ±º‰∏¥‘”∂»
+					// > Êó∂Èó¥Â§çÊùÇÂ∫¶
 					cur_operater->cell_SetValue("I" + QString::number(cur_row), "I" + QString::number(cur_row), performance->time_complexity);
 				}
 			}
 		}
 
-		// > ±ﬂøÚ…Ë÷√+◊÷ÃÂ…Ë÷√
+		// > ËæπÊ°ÜËÆæÁΩÆ+Â≠ó‰ΩìËÆæÁΩÆ
 		cur_operater->cell_Style_SetAllBorder("A" + QString::number(cur_row), "I" + QString::number(cur_row), this->getColor_grey());
-		cur_operater->cell_Style_SetFontFamily_Row(cur_row, "Œ¢»Ì—≈∫⁄");
+		cur_operater->cell_Style_SetFontFamily_Row(cur_row, "ÂæÆËΩØÈõÖÈªë");
 
-		// > µ•––Ω· ¯
+		// > ÂçïË°åÁªìÊùü
 		last_name = annotation.getName();
 		cur_row += 1;
 	}
 }
 /*-------------------------------------------------
-		—’…´ - ª“…´
+		È¢úËâ≤ - ÁÅ∞Ëâ≤
 */
 QColor P_ExcelDataGenerator::getColor_grey(){
 	return QColor(217, 217, 217);
 }
 /*-------------------------------------------------
-		—’…´ - ∫Ï…´
+		È¢úËâ≤ - Á∫¢Ëâ≤
 */
 QColor P_ExcelDataGenerator::getColor_ByCritical(int critical){
 	if (critical == 0){
@@ -554,7 +554,7 @@ QColor P_ExcelDataGenerator::getColor_ByCritical(int critical){
 	return QColor(255, 255, 255);
 }
 /*-------------------------------------------------
-		—’…´ - ∫Ï…´£®∏˘æ›÷µ£©
+		È¢úËâ≤ - Á∫¢Ëâ≤ÔºàÊ†πÊçÆÂÄºÔºâ
 */
 QColor P_ExcelDataGenerator::getColor_ByCriticalValue(double critical_value){
 	if (critical_value >= 120){

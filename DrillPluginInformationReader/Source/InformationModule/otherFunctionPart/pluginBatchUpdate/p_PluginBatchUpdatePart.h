@@ -1,21 +1,21 @@
-#ifndef P_PluginBatchUpdatePart_H
+ï»¿#ifndef P_PluginBatchUpdatePart_H
 #define P_PluginBatchUpdatePart_H
 
 #include <QtWidgets>
 #include "ui_P_PluginBatchUpdatePart.h"
 
-#include "Source/RmmvInteractiveModule/base/c_RmmvProjectData.h"
-#include "Source/PluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/Base/C_RmmvProjectData.h"
+#include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
+#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
 
 /*
 -----==========================================================-----
-		Àà£º		¸üĞÂ²å¼ş ±à¼­¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ›´æ–°æ’ä»¶ ç¼–è¾‘å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	¸üĞÂ²å¼şµÄ±à¼­¿é½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	æ›´æ–°æ’ä»¶çš„ç¼–è¾‘å—ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_PluginBatchUpdatePart : public QWidget
@@ -27,53 +27,53 @@ class P_PluginBatchUpdatePart : public QWidget
 		~P_PluginBatchUpdatePart();
 		
 	//-----------------------------------
-	//----¹¤³ÌÑ¡Ôñ
+	//----å·¥ç¨‹é€‰æ‹©
 	public:
 		C_RmmvProjectData m_cur_project;
 		C_RmmvProjectData m_tar_project;
 		QList<C_PluginData*> m_curPluginData;
 		QList<C_PluginData*> m_tarPluginData;
 	public slots: 
-										//¿Ø¼ş - Ö÷¹¤³Ì - ÌîÈëµ±Ç°¹¤³Ì
+										//æ§ä»¶ - ä¸»å·¥ç¨‹ - å¡«å…¥å½“å‰å·¥ç¨‹
 		void btn_cur_fillCur();
-										//¿Ø¼ş - Ö÷¹¤³Ì - Ñ¡Ôñ
+										//æ§ä»¶ - ä¸»å·¥ç¨‹ - é€‰æ‹©
 		void btn_cur_select();
-										//¿Ø¼ş - Ä¿±ê¹¤³Ì - ÌîÈëµ±Ç°¹¤³Ì
+										//æ§ä»¶ - ç›®æ ‡å·¥ç¨‹ - å¡«å…¥å½“å‰å·¥ç¨‹
 		void btn_tar_fillCur();
-										//¿Ø¼ş - Ä¿±ê¹¤³Ì - Ñ¡Ôñ
+										//æ§ä»¶ - ç›®æ ‡å·¥ç¨‹ - é€‰æ‹©
 		void btn_tar_select();
-										//¿Ø¼ş - ÏÂÒ»²½
+										//æ§ä»¶ - ä¸‹ä¸€æ­¥
 		void btn_nextStep();
-										//¿Ø¼ş - ÉÏÒ»²½
+										//æ§ä»¶ - ä¸Šä¸€æ­¥
 		void btn_lastStep();
-										//¿Ø¼ş - ÖØË¢²å¼şÊı¾İ
+										//æ§ä»¶ - é‡åˆ·æ’ä»¶æ•°æ®
 		bool reloadPluginData();
 
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
 		QTableWidget* m_table;
 		QList<QCheckBox*> m_checkBoxList;
 	public slots: 
-										//¿Ø¼ş - ³õÊ¼»¯ÁĞ±í
+										//æ§ä»¶ - åˆå§‹åŒ–åˆ—è¡¨
 		void refreshTable();
-										//¿Ø¼ş - Ìí¼ÓÒ»ĞĞ
+										//æ§ä»¶ - æ·»åŠ ä¸€è¡Œ
 		void setOneRow_configedPlugin(int row, C_PluginData* cur_data, C_PluginData* tar_data);
-										//¿Ø¼ş - È«Ñ¡
+										//æ§ä»¶ - å…¨é€‰
 		void btn_selectAll();
-										//¿Ø¼ş - È¡ÏûÈ«Ñ¡
+										//æ§ä»¶ - å–æ¶ˆå…¨é€‰
 		void btn_deselectAll();
-										//¿Ø¼ş - Ö»Ñ¡¿ÉÉı¼¶Ïî
+										//æ§ä»¶ - åªé€‰å¯å‡çº§é¡¹
 		void btn_selectLevelUp();
-										//¿Ø¼ş - Ö´ĞĞÉú³É
+										//æ§ä»¶ - æ‰§è¡Œç”Ÿæˆ
 		void btn_execute();
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+										//å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 		void putDataToUi();
-										//¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+										//å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 		void putUiToData();
 	private:
 		Ui::P_PluginBatchUpdatePart ui;

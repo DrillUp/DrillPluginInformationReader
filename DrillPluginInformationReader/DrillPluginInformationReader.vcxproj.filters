@@ -28,9 +28,6 @@
     <Filter Include="源文件\【 主窗体 MainModule】">
       <UniqueIdentifier>{ba1ffb30-c256-4483-820f-1e83af3ceab3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】">
-      <UniqueIdentifier>{c453fb24-231f-46ea-a122-3211dd19dfcb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\【 工具箱 Utils】">
       <UniqueIdentifier>{cf0a6586-c793-4787-9a25-8e8c802db4e0}</UniqueIdentifier>
     </Filter>
@@ -46,9 +43,6 @@
     <Filter Include="源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器">
       <UniqueIdentifier>{f7b5c3ba-c08d-47e9-a1dc-6f6a2ca7b22c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\最大值编辑器（无）">
-      <UniqueIdentifier>{988fb124-e00a-4c8d-ab46-baca5eb576b4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】">
       <UniqueIdentifier>{48847f0e-79bd-4e85-a841-53f61785aa10}</UniqueIdentifier>
     </Filter>
@@ -60,9 +54,6 @@
     </Filter>
     <Filter Include="源文件\【 项目管理模块 ProjectModule】">
       <UniqueIdentifier>{a84fd180-43aa-49da-b4e5-ce9fe40b6fb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件-全局">
-      <UniqueIdentifier>{254748ec-d387-4f36-bd3b-c571b61ec422}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】\指令搜索器块">
       <UniqueIdentifier>{688276f9-2829-407c-ac6a-0bad093d7213}</UniqueIdentifier>
@@ -81,15 +72,6 @@
     </Filter>
     <Filter Include="源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类">
       <UniqueIdentifier>{da67bfbf-1023-4add-ae1a-4424e2988c1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 交互模块 RmmvInteractiveModule】">
-      <UniqueIdentifier>{99c0e92d-fd1e-480f-9715-8573306045e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件">
-      <UniqueIdentifier>{e3171ef0-3ce5-46e5-8452-17075a7bbd6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 交互模块 RmmvInteractiveModule】\专用交互">
-      <UniqueIdentifier>{630af739-43d5-48a0-96e7-3077f96ca8de}</UniqueIdentifier>
     </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组">
       <UniqueIdentifier>{1bfea040-92eb-4591-b40a-af55ddcb767e}</UniqueIdentifier>
@@ -181,48 +163,6 @@
     <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器">
       <UniqueIdentifier>{b8ac7e40-7142-4bff-ae3c-71295114610a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]">
-      <UniqueIdentifier>{323facdb-5bd8-4ed6-aac6-fcc714f5a494}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）">
-      <UniqueIdentifier>{eebae6fa-536a-48e5-b503-4dd03d81b3a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件扩展（数据）">
-      <UniqueIdentifier>{1de890a9-e3e8-49e6-9506-db5272911a79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件文档（数据）">
-      <UniqueIdentifier>{34213b7e-af3a-4d08-88ad-f33e64b2114d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）">
-      <UniqueIdentifier>{3b1211da-6c74-4740-ae4d-98a2bbc92bdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\分段说明（数据）">
-      <UniqueIdentifier>{7a79bdea-60b8-48a9-8fc0-1633d7484bdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\指令（数据）">
-      <UniqueIdentifier>{432b5226-d7f7-4b65-9fc6-26c5a10bded4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\资源路径（数据）">
-      <UniqueIdentifier>{9b2112b2-2207-4b78-b46f-781d01200cc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\作用域（数据）">
-      <UniqueIdentifier>{064c9f1e-fc8d-46bd-8db9-cd27d2242bc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\知识点（数据）">
-      <UniqueIdentifier>{72165cf3-4af8-42ca-b18d-462a80da7f5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\注解字典（%40param）">
-      <UniqueIdentifier>{8e3ec55b-25cb-4708-8013-0a8291a36c3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件存储数据容器  [plugins.js，读写]">
-      <UniqueIdentifier>{2de722da-8c5c-4472-be72-0659ce9e2fc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 交互模块 RmmvInteractiveModule】\基本交互">
-      <UniqueIdentifier>{edfe13c6-a3d1-4a14-8224-b67142ec32b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="源文件\【 插件模块 PluginModule】\插件常量">
-      <UniqueIdentifier>{57267868-9802-44f8-b3a2-bb4269db916f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\【 信息模块 InformationModule】\其它功能块\代码辅助">
       <UniqueIdentifier>{1bb416f8-1d9f-4dc2-968d-99057ada97b6}</UniqueIdentifier>
     </Filter>
@@ -231,6 +171,63 @@
     </Filter>
     <Filter Include="源文件\【 主窗体 MainModule】\生日彩蛋">
       <UniqueIdentifier>{fefd3cad-7d69-4cbf-9a68-9a389385656c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV交互模块 RmmvInteractiveModule】">
+      <UniqueIdentifier>{99c0e92d-fd1e-480f-9715-8573306045e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV交互模块 RmmvInteractiveModule】\专用交互">
+      <UniqueIdentifier>{630af739-43d5-48a0-96e7-3077f96ca8de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互">
+      <UniqueIdentifier>{edfe13c6-a3d1-4a14-8224-b67142ec32b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】">
+      <UniqueIdentifier>{c453fb24-231f-46ea-a122-3211dd19dfcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\最大值编辑器（无）">
+      <UniqueIdentifier>{988fb124-e00a-4c8d-ab46-baca5eb576b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件存储数据容器（StorageData）[读写][plugins.js]">
+      <UniqueIdentifier>{2de722da-8c5c-4472-be72-0659ce9e2fc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]">
+      <UniqueIdentifier>{323facdb-5bd8-4ed6-aac6-fcc714f5a494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）">
+      <UniqueIdentifier>{eebae6fa-536a-48e5-b503-4dd03d81b3a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件扩展（数据）">
+      <UniqueIdentifier>{1de890a9-e3e8-49e6-9506-db5272911a79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件文档（数据）">
+      <UniqueIdentifier>{34213b7e-af3a-4d08-88ad-f33e64b2114d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件性能（数据）">
+      <UniqueIdentifier>{3b1211da-6c74-4740-ae4d-98a2bbc92bdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\指令（数据）">
+      <UniqueIdentifier>{432b5226-d7f7-4b65-9fc6-26c5a10bded4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\资源路径（数据）">
+      <UniqueIdentifier>{9b2112b2-2207-4b78-b46f-781d01200cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\作用域（数据）">
+      <UniqueIdentifier>{064c9f1e-fc8d-46bd-8db9-cd27d2242bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\知识点（数据）">
+      <UniqueIdentifier>{72165cf3-4af8-42ca-b18d-462a80da7f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\注解字典（%40param）">
+      <UniqueIdentifier>{8e3ec55b-25cb-4708-8013-0a8291a36c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\分段说明（数据）">
+      <UniqueIdentifier>{7a79bdea-60b8-48a9-8fc0-1633d7484bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件-全局（StorageGlobal）">
+      <UniqueIdentifier>{254748ec-d387-4f36-bd3b-c571b61ec422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\【 项目管理模块 ProjectModule】\存储文件（Storage）">
+      <UniqueIdentifier>{e3171ef0-3ce5-46e5-8452-17075a7bbd6b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -255,54 +252,6 @@
     <ClCompile Include="Source\Utils\common\TTool.cpp">
       <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\manager\txtRead\p_TxtFastReader.cpp">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\manager\txtRead\p_TxtFastReaderWithRecord.cpp">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\manager\txtRead\s_TxtReadingManager.cpp">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_TxtReadingManager.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_TxtReadingManager.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\manager\callManager\s_CallManager.cpp">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_CallManager.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_CallManager.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_ScriptAnnotationReader.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_ScriptAnnotationReader.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\storageData\c_PluginData.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据容器  [plugins.js，读写]</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\storageData\s_PluginDataContainer.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据容器  [plugins.js，读写]</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_PluginDataContainer.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_PluginDataContainer.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MainModule\about\w_SoftwareAbout.cpp">
       <Filter>源文件\【 主窗体 MainModule】\关于</Filter>
     </ClCompile>
@@ -319,15 +268,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareFirstTip.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProjectModule\storageGlobal\s_IniManager.cpp">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_IniManager.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_IniManager.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\p_InformationPart.cpp">
@@ -366,32 +306,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_CommandSearcherPart.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\p_FoldableTabRelater.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_FoldableTabRelater.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_FoldableTabRelater.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\private\c_FoldableTabPrivate.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_w_FoldableTabChildWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_w_FoldableTabChildWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RmmvInteractiveModule\base\c_RmmvProjectData.cpp">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\基本交互</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互</Filter>
     </ClCompile>
     <ClCompile Include="Source\RmmvInteractiveModule\base\s_RmmvDataContainer.cpp">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\基本交互</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_s_RmmvDataContainer.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -399,29 +318,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_s_RmmvDataContainer.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ProjectModule\storage\s_StorageManagerTemplate.cpp">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ProjectModule\storage\s_StorageManager.cpp">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_s_StorageManager.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_s_StorageManager.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\注解字典（%40param）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\注解字典（%40param）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）</Filter>
-    </ClCompile>
     <ClCompile Include="Source\RmmvInteractiveModule\custom\s_InformationDataContainer.cpp">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\专用交互</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\专用交互</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_s_InformationDataContainer.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -437,45 +335,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_p_PluginAttr_ButtonPart.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\pageNavigator\p_PageNavigator.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_PageNavigator.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_PageNavigator.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\作用域（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件扩展（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\指令（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件文档（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\分段说明（数据）</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\loadingTip\w_LoadingTip.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_w_LoadingTip.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_w_LoadingTip.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\资源路径（数据）</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_p_ScriptHelp_Command.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -549,15 +408,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_s_LinkDirector.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.cpp">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_historicalSearchRecord.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_historicalSearchRecord.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\p_OtherFunctionPart.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块</Filter>
     </ClCompile>
@@ -621,9 +471,6 @@
     <ClCompile Include="Source\InformationModule\pluginListPart\buttonPart\w_PluginAttr_HighConsumption.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组\属性 - 高消耗</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Knowledge.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\知识点（数据）</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Knowledge.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\知识点（控件）</Filter>
     </ClCompile>
@@ -675,9 +522,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_w_PluginBatchDeletePart.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.cpp">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\p_PluginBatchUpdatePart.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
     </ClCompile>
@@ -694,15 +538,6 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_w_PluginBatchUpdatePart.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\common\p_FileOperater.cpp">
-      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_FileOperater.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_FileOperater.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Source\MainModule\versionLog\w_SoftwareVersionLog.cpp">
@@ -723,15 +558,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_p_PluginDetailOrgContextPart.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\operater\excelOperater\p_ExcelOperater.cpp">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_p_ExcelOperater.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelOperater.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\excelDataGenerator\p_ExcelDataGenerator.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器</Filter>
     </ClCompile>
@@ -740,12 +566,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_p_ExcelDataGenerator.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\const\s_Const_PluginValue.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.cpp">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
     </ClCompile>
     <ClCompile Include="Source\InformationModule\otherFunctionPart\codeAssistance\CAFunctionCheck\p_CAFunctionCheck.cpp">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\代码辅助\函数校验器</Filter>
@@ -765,6 +585,168 @@
     <ClCompile Include="GeneratedFiles\Release\moc_w_SoftwareBirthDayTip.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\StorageData\C_PluginData.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件存储数据容器（StorageData）[读写][plugins.js]</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\StorageData\S_PluginDataContainer.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件存储数据容器（StorageData）[读写][plugins.js]</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_S_PluginDataContainer.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_S_PluginDataContainer.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\C_ScriptAnnotation.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\S_ScriptAnnotationReader.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_S_ScriptAnnotationReader.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_S_ScriptAnnotationReader.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\ScriptDictionary\C_ScriptDictionary.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\注解字典（%40param）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\ScriptDictionary\C_ScriptDictionary_Param.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\注解字典（%40param）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelpDetail.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Knowledge.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\知识点（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Command.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\指令（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Docs.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件文档（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_EffectScope.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\作用域（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Performance.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件性能（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_PluginRelation.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件扩展（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Src.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\资源路径（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\S_Const_Performance.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件性能（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Subsection.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\分段说明（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\TxtRead\P_TxtFastReader.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\TxtRead\P_TxtFastReaderWithRecord.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\manager\CallManager\S_CallManager.cpp">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_S_CallManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_S_CallManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\S_Const_EffectScope.cpp">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\作用域（数据）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProjectModule\StorageGlobal\S_IniManager.cpp">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局（StorageGlobal）</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_S_IniManager.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_S_IniManager.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProjectModule\Storage\S_StorageManager.cpp">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件（Storage）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProjectModule\Storage\S_StorageManagerTemplate.cpp">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件（Storage）</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\common\P_FileOperater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_P_FileOperater.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_P_FileOperater.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\operater\ExcelOperater\P_ExcelOperater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_P_ExcelOperater.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_P_ExcelOperater.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\operater\RecycleBinOperater\P_RecycleBinOperater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\PageNavigator\P_PageNavigator.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_P_PageNavigator.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_P_PageNavigator.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\LoadingTip\W_LoadingTip.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_W_LoadingTip.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_W_LoadingTip.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\FoldableTabWindow\P_FoldableTabRelater.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_P_FoldableTabRelater.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_P_FoldableTabRelater.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\FoldableTabWindow\Private\P_FoldableTabPrivate.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\FoldableTabWindow\Private\W_FoldableTabChildWindow.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_W_FoldableTabChildWindow.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_W_FoldableTabChildWindow.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\widgetForm\HistoricalSearchRecord\P_HistoricalSearchRecord.cpp">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_P_HistoricalSearchRecord.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_P_HistoricalSearchRecord.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="drillplugininformationreader.qrc">
@@ -775,18 +757,6 @@
     </CustomBuild>
     <CustomBuild Include="Source\MainModule\drillplugininformationreader.ui">
       <Filter>源文件\【 主窗体 MainModule】</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\manager\txtRead\s_TxtReadingManager.h">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\manager\callManager\s_CallManager.h">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\scriptReader\s_ScriptAnnotationReader.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\PluginModule\storageData\s_PluginDataContainer.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据容器  [plugins.js，读写]</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\MainModule\about\w_SoftwareAbout.h">
       <Filter>源文件\【 主窗体 MainModule】\关于</Filter>
@@ -799,9 +769,6 @@
     </CustomBuild>
     <CustomBuild Include="Source\MainModule\firstTip\w_SoftwareFirstTip.ui">
       <Filter>源文件\【 主窗体 MainModule】\首页提示</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\ProjectModule\storageGlobal\s_IniManager.h">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\p_InformationPart.h">
       <Filter>源文件\【 信息模块 InformationModule】</Filter>
@@ -827,38 +794,17 @@
     <CustomBuild Include="Source\InformationModule\commandSearcherPart\p_CommandSearcherPart.ui">
       <Filter>源文件\【 信息模块 InformationModule】\指令搜索器块</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\p_FoldableTabRelater.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\foldableTabWindow\private\w_FoldableTabChildWindow.ui">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
-    </CustomBuild>
     <CustomBuild Include="Source\RmmvInteractiveModule\base\s_RmmvDataContainer.h">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\基本交互</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\ProjectModule\storage\s_StorageManager.h">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\RmmvInteractiveModule\custom\s_InformationDataContainer.h">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\专用交互</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\专用交互</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\p_PluginAttr_ButtonPart.h">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginListPart\buttonPart\p_PluginAttr_ButtonPart.ui">
       <Filter>源文件\【 信息模块 InformationModule】\插件列表块\属性按钮组</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\pageNavigator\p_PageNavigator.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\pageNavigator\p_PageNavigator.ui">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\loadingTip\w_LoadingTip.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\helpDetailPart\p_ScriptHelp_Command.h">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\指令（控件 - 详细信息）</Filter>
@@ -904,12 +850,6 @@
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\linkDirector\s_LinkDirector.h">
       <Filter>源文件\【 信息模块 InformationModule】\链接文件引导器</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
-    </CustomBuild>
-    <CustomBuild Include="Source\Utils\widgetForm\historicalSearchRecord\p_historicalSearchRecord.ui">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
     </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\p_OtherFunctionPart.h">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块</Filter>
@@ -995,9 +935,6 @@
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\pluginBatchUpdate\w_PluginBatchUpdatePart.ui">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\插件更新器</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\Utils\common\p_FileOperater.h">
-      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
-    </CustomBuild>
     <CustomBuild Include="Source\MainModule\versionLog\w_SoftwareVersionLog.h">
       <Filter>源文件\【 主窗体 MainModule】\版本日志</Filter>
     </CustomBuild>
@@ -1010,9 +947,6 @@
     <CustomBuild Include="Source\InformationModule\pluginDetailPart\orgContextPart\p_PluginDetailOrgContextPart.ui">
       <Filter>源文件\【 信息模块 InformationModule】\插件详细信息块\原文展开块</Filter>
     </CustomBuild>
-    <CustomBuild Include="Source\Utils\operater\excelOperater\p_ExcelOperater.h">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
-    </CustomBuild>
     <CustomBuild Include="Source\InformationModule\otherFunctionPart\excelDataGenerator\p_ExcelDataGenerator.h">
       <Filter>源文件\【 信息模块 InformationModule】\其它功能块\Excel表格生成器</Filter>
     </CustomBuild>
@@ -1024,6 +958,48 @@
     </CustomBuild>
     <CustomBuild Include="Source\MainModule\birthDayTip\w_SoftwareBirthDayTip.ui">
       <Filter>源文件\【 主窗体 MainModule】\生日彩蛋</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\RmmvUtilsPluginModule\StorageData\S_PluginDataContainer.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件存储数据容器（StorageData）[读写][plugins.js]</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\RmmvUtilsPluginModule\ScriptReader\S_ScriptAnnotationReader.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\manager\CallManager\S_CallManager.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\句柄调取管理器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\ProjectModule\StorageGlobal\S_IniManager.h">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件-全局（StorageGlobal）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\common\P_FileOperater.h">
+      <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\operater\ExcelOperater\P_ExcelOperater.h">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\Excel操作器</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\PageNavigator\P_PageNavigator.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\PageNavigator\P_PageNavigator.ui">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\分页控件组</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\LoadingTip\W_LoadingTip.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\加载中</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\FoldableTabWindow\P_FoldableTabRelater.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\FoldableTabWindow\Private\W_FoldableTabChildWindow.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\FoldableTabWindow\Private\W_FoldableTabChildWindow.ui">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\HistoricalSearchRecord\P_HistoricalSearchRecord.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
+    </CustomBuild>
+    <CustomBuild Include="Source\Utils\widgetForm\HistoricalSearchRecord\P_HistoricalSearchRecord.ui">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\历史搜索记录</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -1038,18 +1014,6 @@
     </ClInclude>
     <ClInclude Include="Source\Utils\common\TTool.h">
       <Filter>源文件\【 工具箱 Utils】\通用工具（common）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\manager\txtRead\p_TxtFastReader.h">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\manager\txtRead\p_TxtFastReaderWithRecord.h">
-      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\c_ScriptAnnotation.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\storageData\c_PluginData.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件存储数据容器  [plugins.js，读写]</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_SoftwareAbout.h">
       <Filter>Generated Files</Filter>
@@ -1069,53 +1033,11 @@
     <ClInclude Include="GeneratedFiles\ui_p_CommandSearcherPart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\widgetForm\foldableTabWindow\private\c_FoldableTabPrivate.h">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_w_FoldableTabChildWindow.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\RmmvInteractiveModule\base\c_RmmvProjectData.h">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\基本交互</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\ProjectModule\storage\s_StorageManagerTemplate.h">
-      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\注解字典（%40param）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\scriptDictionary\c_ScriptDictionary_Param.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\注解字典（%40param）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelpDetail.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_PluginAttr_ButtonPart.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_p_PageNavigator.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_EffectScope.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\作用域（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_PluginRelation.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件扩展（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Command.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\指令（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Docs.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件文档（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Performance.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Subsection.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\分段说明（数据）</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Src.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\资源路径（数据）</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Command.h">
       <Filter>Generated Files</Filter>
@@ -1136,9 +1058,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Subsection.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_p_historicalSearchRecord.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_OtherFunctionPart.h">
@@ -1162,9 +1081,6 @@
     <ClInclude Include="GeneratedFiles\ui_w_PluginAttr_HighConsumption.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\c_ScriptHelp_Knowledge.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\知识点（数据）</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_ScriptHelp_Knowledge.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -1186,9 +1102,6 @@
     <ClInclude Include="GeneratedFiles\ui_w_PluginBatchDeletePart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\operater\recycleBinOperater\p_RecycleBinOperater.h">
-      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_p_PluginBatchUpdatePart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -1201,36 +1114,99 @@
     <ClInclude Include="GeneratedFiles\ui_p_PluginDetailOrgContextPart.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PluginModule\const\s_Const_PluginValue.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件常量</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PluginModule\scriptReader\helpDetail\s_Const_Performance.h">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）\插件性能（数据）</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_w_SoftwareBirthDayTip.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\StorageData\C_PluginData.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件存储数据容器（StorageData）[读写][plugins.js]</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\C_ScriptAnnotation.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\ScriptDictionary\C_ScriptDictionary.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\注解字典（%40param）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\ScriptDictionary\C_ScriptDictionary_Param.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\注解字典（%40param）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelpDetail.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Knowledge.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\知识点（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Command.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\指令（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Docs.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件文档（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_EffectScope.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\作用域（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Performance.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件性能（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_PluginRelation.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件扩展（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Src.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\资源路径（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\S_Const_Performance.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\插件性能（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\C_ScriptHelp_Subsection.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\分段说明（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\manager\TxtRead\P_TxtFastReader.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\manager\TxtRead\P_TxtFastReaderWithRecord.h">
+      <Filter>源文件\【 工具箱 Utils】\管理器工具（manager）\文本读取器</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\S_Const_EffectScope.h">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）\作用域（数据）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProjectModule\Storage\S_StorageManager.h">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件（Storage）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProjectModule\Storage\S_StorageManagerTemplate.h">
+      <Filter>源文件\【 项目管理模块 ProjectModule】\存储文件（Storage）</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\operater\RecycleBinOperater\P_RecycleBinOperater.h">
+      <Filter>源文件\【 工具箱 Utils】\辅助操作工具（operater）\回收站操作器</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_P_PageNavigator.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\widgetForm\FoldableTabWindow\Private\P_FoldableTabPrivate.h">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡\私有类</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_W_FoldableTabChildWindow.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_P_HistoricalSearchRecord.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\PluginModule\scriptReader\注释参数集合.docx">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]</Filter>
-    </None>
-    <None Include="Source\PluginModule\scriptReader\helpDetail\帮助数据规则.docx">
-      <Filter>源文件\【 插件模块 PluginModule】\插件注解读取器  [plugins文件夹，只读]\帮助数据（%40help）</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Source\Utils\widgetForm\foldableTabWindow\程序入口.txt">
-      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
-    </Text>
     <Text Include="Source\RmmvInteractiveModule\base\程序入口.txt">
-      <Filter>源文件\【 交互模块 RmmvInteractiveModule】\基本交互</Filter>
+      <Filter>源文件\【 RMMV交互模块 RmmvInteractiveModule】\基本交互</Filter>
     </Text>
     <Text Include="Source\日志.txt">
       <Filter>源文件\【 主窗体 MainModule】</Filter>
     </Text>
-    <Text Include="Source\PluginModule\【插件模块 PluginModule】说明.txt">
-      <Filter>源文件\【 插件模块 PluginModule】</Filter>
+    <Text Include="Source\Utils\widgetForm\FoldableTabWindow\程序入口.txt">
+      <Filter>源文件\【 工具箱 Utils】\集合组件-表单（widgetForm）\可折叠选项卡</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\RmmvUtilsPluginModule\ScriptReader\注释参数集合.docx">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]</Filter>
+    </None>
+    <None Include="Source\RmmvUtilsPluginModule\ScriptReader\HelpDetail\帮助数据规则.docx">
+      <Filter>源文件\【 RMMV工具-插件模块 RmmvUtilsPluginModule】\插件注解读取器（ScriptReader）[只读][plugins文件夹]\帮助数据（%40help）</Filter>
+    </None>
   </ItemGroup>
 </Project>
