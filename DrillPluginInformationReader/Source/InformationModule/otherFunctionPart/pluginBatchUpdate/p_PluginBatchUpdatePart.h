@@ -4,7 +4,7 @@
 #include <QtWidgets>
 #include "ui_P_PluginBatchUpdatePart.h"
 
-#include "Source/RmmvInteractiveModule/Base/C_RmmvProjectData.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/C_RmmvProjectData.h"
 #include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
 #include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
 

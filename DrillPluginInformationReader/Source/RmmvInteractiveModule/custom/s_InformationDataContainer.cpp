@@ -1,20 +1,20 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "s_InformationDataContainer.h"
 
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/RmmvUtilsPluginModule/scriptReader/s_ScriptAnnotationReader.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/S_ScriptAnnotationReader.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şÊı¾İ ÈİÆ÷.cpp
-		°æ±¾£º		v1.02
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	²å¼şÄ£¿é
-		¹¦ÄÜ£º		¹ÜÀíplugin.jsÖĞµÄÈ«²¿²å¼şÅäÖÃÊı¾İ¡£
-					¡¾·â×°µÄÈİÆ÷½á¹¹£¬×¢Òâ½ÓÊÕ¶ÁÈ¡µÄĞÅºÅ¡¿
+		ç±»ï¼š		æ’ä»¶æ•°æ® å®¹å™¨.cpp
+		ç‰ˆæœ¬ï¼š		v1.02
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	æ’ä»¶æ¨¡å—
+		åŠŸèƒ½ï¼š		ç®¡ç†plugin.jsä¸­çš„å…¨éƒ¨æ’ä»¶é…ç½®æ•°æ®ã€‚
+					ã€å°è£…çš„å®¹å™¨ç»“æ„ï¼Œæ³¨æ„æ¥æ”¶è¯»å–çš„ä¿¡å·ã€‘
 		
-		Ê¹ÓÃ·½·¨£º
-				>³õÊ¼»¯£º
+		ä½¿ç”¨æ–¹æ³•ï¼š
+				>åˆå§‹åŒ–ï¼š
 					S_InformationDataContainer::getInstance()->resetPluginDataFromText( data_context );
 					S_InformationDataContainer::getInstance()->getPluginData();
 				
@@ -27,7 +27,7 @@ S_InformationDataContainer::~S_InformationDataContainer() {
 }
 
 /* --------------------------------------------------------------
-----------PluginDataManager µ¥Àı
+----------PluginDataManager å•ä¾‹
 */
 S_InformationDataContainer* S_InformationDataContainer::cur_manager = NULL;
 S_InformationDataContainer* S_InformationDataContainer::getInstance() {
@@ -39,16 +39,16 @@ S_InformationDataContainer* S_InformationDataContainer::getInstance() {
 
 
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡È«²¿²å¼şÊı¾İ
+		æ•°æ® - è·å–å…¨éƒ¨æ’ä»¶æ•°æ®
 */
 QList<C_ScriptAnnotation> S_InformationDataContainer::getAnnotationTank() {
 	return this->data_AnnotationTank;
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡¶ÔÓ¦µÄ²å¼şÊı¾İ
+		æ•°æ® - è·å–å¯¹åº”çš„æ’ä»¶æ•°æ®
 */
 C_ScriptAnnotation S_InformationDataContainer::getAnnotation(QString pluginName){
-	pluginName = pluginName.replace(".js", "");		//£¨È¥µôºó×º£©
+	pluginName = pluginName.replace(".js", "");		//ï¼ˆå»æ‰åç¼€ï¼‰
 
 	for (int i = 0; i < this->data_AnnotationTank.count(); i++){
 		C_ScriptAnnotation data = this->data_AnnotationTank.at(i);
@@ -59,14 +59,14 @@ C_ScriptAnnotation S_InformationDataContainer::getAnnotation(QString pluginName)
 	return C_ScriptAnnotation();
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡¶ÔÓ¦µÄ²å¼şÊı¾İ
+		æ•°æ® - è·å–å¯¹åº”çš„æ’ä»¶æ•°æ®
 */
 C_ScriptHelpDetail* S_InformationDataContainer::getHelpDetail(QString pluginName){
 	return this->getAnnotation(pluginName).getScriptHelpDetail();
 }
 
 /*-------------------------------------------------
-		Êı¾İ - É¾³ı²å¼şÊı¾İ
+		æ•°æ® - åˆ é™¤æ’ä»¶æ•°æ®
 */
 void S_InformationDataContainer::removeAnnotation(QStringList pluginName_list){
 	for (int i = this->data_AnnotationTank.count()-1; i >= 0; i--){
@@ -79,16 +79,15 @@ void S_InformationDataContainer::removeAnnotation(QStringList pluginName_list){
 
 
 /*-------------------------------------------------
-		¶ÁÈ¡ - ¶ÁÈ¡È«²¿ÍêÕûÊı¾İ£¨pluginsÎÄ¼ş¼ĞÏÂËùÓĞ²å¼ş£©
+		è¯»å– - è¯»å–å…¨éƒ¨å®Œæ•´æ•°æ®ï¼ˆpluginsæ–‡ä»¶å¤¹ä¸‹æ‰€æœ‰æ’ä»¶ï¼‰
 */
 void S_InformationDataContainer::loadAllAnnotationData(){
 	this->data_AnnotationTank.clear();
 
-	// > »ñÈ¡Â·¾¶ÏÂÈ«²¿²å¼ş
-	QString dir_path = S_RmmvDataContainer::getInstance()->getRmmvProjectData().getRootPath() + "/js/plugins";
-	QDir dir(dir_path);
-	QFileInfoList fileList;
+	// > è·å–è·¯å¾„ä¸‹å…¨éƒ¨æ’ä»¶
+	QDir dir = S_RmmvProjectDataContainer::getInstance()->getRmmvDir_Plugins();
 	if (!dir.exists()) { return; }
+	QFileInfoList fileList;
 	fileList = dir.entryInfoList(QDir::Dirs | QDir::Files | QDir::Readable | QDir::Writable | QDir::Hidden | QDir::NoDotAndDotDot, QDir::Name);
 
 	for (int i = 0; i < fileList.count(); i++){

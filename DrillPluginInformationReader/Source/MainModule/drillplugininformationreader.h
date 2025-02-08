@@ -1,4 +1,4 @@
-#ifndef DRILLPLUGININFORMATIONREADER_H
+ï»¿#ifndef DRILLPLUGININFORMATIONREADER_H
 #define DRILLPLUGININFORMATIONREADER_H
 
 #include <QtWidgets/QMainWindow>
@@ -6,16 +6,16 @@
 
 #include "Source/InformationModule/p_InformationPart.h"
 #include "Source/InformationModule/linkDirector/s_LinkDirector.h"
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/C_RmmvProjectData.h"
 #include "Source/Utils/widgetForm/loadingTip/w_LoadingTip.h"
 
 /*
 -----==========================================================-----
-		Àà£º		Ö÷´°Ìå.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	Ö÷´°ÌåÄ£¿é
-		¹¦ÄÜ£º		³ÌĞò½øÈëºóµÄÖ÷¿ØÖÆ´°¿Ú¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ç±»ï¼š		ä¸»çª—ä½“.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¸»çª—ä½“æ¨¡å—
+		åŠŸèƒ½ï¼š		ç¨‹åºè¿›å…¥åçš„ä¸»æ§åˆ¶çª—å£ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class DrillPluginInformationReader : public QMainWindow
@@ -25,55 +25,55 @@ class DrillPluginInformationReader : public QMainWindow
 	public:
 		DrillPluginInformationReader(QWidget *parent = 0);
 		~DrillPluginInformationReader();
-		static DrillPluginInformationReader* cur_instance;		//µ¥Àı
-		static DrillPluginInformationReader* getInstance();		//µ¥Àı£¬»ñÈ¡×Ô¼º
-		void _init();											//³õÊ¼»¯
+		static DrillPluginInformationReader* cur_instance;		//å•ä¾‹
+		static DrillPluginInformationReader* getInstance();		//å•ä¾‹ï¼Œè·å–è‡ªå·±
+		void _init();											//åˆå§‹åŒ–
 		
 
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
 		W_LoadingTip* m_tip;
 		P_InformationPart* m_P_InformationPart;
 	public slots:
-								//¿Ø¼ş - ÏÔÊ¾Ö¸¶¨²å¼şÏêÏ¸ĞÅÏ¢
+								//æ§ä»¶ - æ˜¾ç¤ºæŒ‡å®šæ’ä»¶è¯¦ç»†ä¿¡æ¯
 		void showPluginDetail(QString plugin_name);
-								//¿Ø¼ş - Ë¢ĞÂµ¼º½À¸ÄÚÈİ
+								//æ§ä»¶ - åˆ·æ–°å¯¼èˆªæ å†…å®¹
 		void refreshNav();
-								//¿Ø¼ş - °ïÖúÎÄµµ
+								//æ§ä»¶ - å¸®åŠ©æ–‡æ¡£
 		void openUserManual();
-								//¿Ø¼ş - ¹ØÓÚ...
+								//æ§ä»¶ - å…³äº...
 		void openAbout();
 		
 	//-----------------------------------
-	//----¹¤³Ì
+	//----å·¥ç¨‹
 	private:
 		C_RmmvProjectData m_temp_data;
 	private slots:
-								//¹¤³Ì - Ñ¡Ôñ¹¤³Ì
+								//å·¥ç¨‹ - é€‰æ‹©å·¥ç¨‹
 		void btn_selectProject();
-								//¹¤³Ì - µ¼Èë¹¤³Ì
+								//å·¥ç¨‹ - å¯¼å…¥å·¥ç¨‹
 		void btn_importProject();
 
 
 	//-----------------------------------
-	//----ÊÂ¼ş
+	//----äº‹ä»¶
 	private:
 		bool m_inited;
 		QSize m_last_uiSize;
 	public:
-								//ÊÂ¼ş - ´°¿ÚÇĞ»»´óĞ¡ÊÂ¼ş
+								//äº‹ä»¶ - çª—å£åˆ‡æ¢å¤§å°äº‹ä»¶
 		void resizeEvent(QResizeEvent *event);
-								//ÊÂ¼ş - ´°¿Ú¹Ø±ÕÊÂ¼ş£¨µã»÷¹Ø±Õ°´Å¥£©
+								//äº‹ä»¶ - çª—å£å…³é—­äº‹ä»¶ï¼ˆç‚¹å‡»å…³é—­æŒ‰é’®ï¼‰
 		void closeEvent(QCloseEvent *event);
 
 		
 	//-----------------------------------
-	//----´°¿Ú
+	//----çª—å£
 	public:
-								//´°¿Ú - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+								//çª—å£ - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 		void ui_loadConfig();
-								//´°¿Ú - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+								//çª—å£ - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 		void ui_saveConfig();
 	private:
 		Ui::DrillPluginInformationReaderClass ui;

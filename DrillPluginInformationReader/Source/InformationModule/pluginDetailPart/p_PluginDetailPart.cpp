@@ -1,17 +1,17 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_PluginDetailPart.h"
 
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şĞÅÏ¢ ±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ’ä»¶ä¿¡æ¯ ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
 					
 -----==========================================================-----
 */
@@ -21,12 +21,12 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 	this->m_curPluginName = "";
 	this->m_curOrgContext = "";
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	this->m_p_ScriptHelp_EffectScope = new P_ScriptHelp_EffectScope();
 	this->m_p_ScriptHelp_PluginRelation = new P_ScriptHelp_PluginRelation();
 	this->m_p_ScriptHelp_Subsection = new P_ScriptHelp_Subsection();
@@ -44,10 +44,10 @@ P_PluginDetailPart::P_PluginDetailPart(QWidget *parent)
 	ui.verticalLayout_Performance->addWidget(this->m_p_ScriptHelp_Performance);
 	
 	//ui.splitter->handle(1)->setAttribute(Qt::WA_Hover, true);
-	//£¨Ë®Æ½·Ö¸î²¼¾Ö»áÆÆ»µ ×ÓÀàÖĞ ´óÁ¿QLabel+»»ĞĞ ĞÎ³ÉµÄÎÈ¶¨²¼¾Ö½á¹¹¡£ £©
+	//ï¼ˆæ°´å¹³åˆ†å‰²å¸ƒå±€ä¼šç ´å å­ç±»ä¸­ å¤§é‡QLabel+æ¢è¡Œ å½¢æˆçš„ç¨³å®šå¸ƒå±€ç»“æ„ã€‚ ï¼‰
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 	connect(ui.toolButton_editPlugin, &QPushButton::clicked, this, &P_PluginDetailPart::btn_editPlugin);
 	connect(ui.toolButton_expandOrg, &QPushButton::clicked, this, &P_PluginDetailPart::btn_expandOrg);
 	
@@ -58,7 +58,7 @@ P_PluginDetailPart::~P_PluginDetailPart(){
 
 
 /*-------------------------------------------------
-		¿Ø¼ş - ÏÔÊ¾Ö¸¶¨²å¼şÏêÏ¸ĞÅÏ¢
+		æ§ä»¶ - æ˜¾ç¤ºæŒ‡å®šæ’ä»¶è¯¦ç»†ä¿¡æ¯
 */
 void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 	if (plugin_name == ""){ return; }
@@ -68,11 +68,11 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 	C_ScriptAnnotation annotation = S_InformationDataContainer::getInstance()->getAnnotation(plugin_name);
 	C_ScriptHelpDetail* detail = annotation.getScriptHelpDetail();
 
-	// > »ù±¾ĞÅÏ¢
+	// > åŸºæœ¬ä¿¡æ¯
 	ui.lineEdit_pluginName->setText(plugin_name);
 	ui.lineEdit_desc->setText(annotation.getPlugindesc());
 	ui.lineEdit_author->setText(annotation.getAuthor());
-	// > »ù±¾ĞÅÏ¢ - ½éÉÜ£¨·ÖÒ³ËµÃ÷ - ½éÉÜ£©
+	// > åŸºæœ¬ä¿¡æ¯ - ä»‹ç»ï¼ˆåˆ†é¡µè¯´æ˜ - ä»‹ç»ï¼‰
 	if (detail != nullptr){
 		QString introduction = detail->getSubsection()->getHeader().introduction;
 		if (introduction == ""){
@@ -85,24 +85,24 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 		}
 	}
 
-	// > Ô­ÎÄ
+	// > åŸæ–‡
 	this->m_curOrgContext = annotation.getHelp();
 	ui.plainTextEdit_orgHelp->setPlainText(this->m_curOrgContext);
 	emit orgContextChanged(this->m_curOrgContext);
 
-	// > ¿Ø¼ş×é
+	// > æ§ä»¶ç»„
 	if (detail != nullptr){
-		// > ×÷ÓÃÓò
+		// > ä½œç”¨åŸŸ
 		this->m_p_ScriptHelp_EffectScope->setData(detail->getEffectScope());
-		// > ·ÖÒ³ËµÃ÷
+		// > åˆ†é¡µè¯´æ˜
 		this->m_p_ScriptHelp_Subsection->setData(detail->getSubsection());
-		// > ×ÊÔ´Â·¾¶
+		// > èµ„æºè·¯å¾„
 		this->m_p_ScriptHelp_Src->setData(detail->getSrc());
-		// > ²å¼şÀ©Õ¹
+		// > æ’ä»¶æ‰©å±•
 		this->m_p_ScriptHelp_PluginRelation->setData(detail->getPluginRelation());
-		// > Ö¸Áî
+		// > æŒ‡ä»¤
 		this->m_p_ScriptHelp_Command->setData(detail->getCommand());
-		// > ÖªÊ¶µã
+		// > çŸ¥è¯†ç‚¹
 		C_ScriptHelp_Knowledge* knowledge = detail->getKnowledge();
 		this->m_p_ScriptHelp_Knowledge->setData(detail->getKnowledge());
 		if (knowledge == nullptr || knowledge->isNull()){
@@ -110,18 +110,18 @@ void P_PluginDetailPart::showPluginDetail(QString plugin_name){
 		}else{
 			ui.groupBox_Knowledge->setVisible(true);
 		}
-		// > ²å¼şĞÔÄÜ
+		// > æ’ä»¶æ€§èƒ½
 		this->m_p_ScriptHelp_Performance->setData(detail->getPerformance());
 	}
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ±à¼­²å¼ş
+		æ§ä»¶ - ç¼–è¾‘æ’ä»¶
 */
 void P_PluginDetailPart::btn_editPlugin(){
 	if (this->m_curPluginName == ""){ return; }
-	QFileInfo file_info = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(this->m_curPluginName);
+	QFileInfo file_info = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(this->m_curPluginName);
 
-	// > ´Ó×¢²á±íÖĞ»ñÈ¡notepad++
+	// > ä»æ³¨å†Œè¡¨ä¸­è·å–notepad++
 	QSettings setting("HKEY_CURRENT_USER\\SOFTWARE\\Classes\\Applications\\notepad++.exe\\shell\\open\\command", QSettings::NativeFormat);
 	QString command = setting.value(".").toString();
 	if (command != ""){
@@ -131,7 +131,7 @@ void P_PluginDetailPart::btn_editPlugin(){
 		return;
 	}
 
-	// > Èç¹ûÃ»ÓĞ£¬ÔòÓÃ¼ÇÊÂ±¾´ò¿ª
+	// > å¦‚æœæ²¡æœ‰ï¼Œåˆ™ç”¨è®°äº‹æœ¬æ‰“å¼€
 	command = "notepad.exe \"%1\"";
 	command = command.replace("%1", file_info.absoluteFilePath());
 	QProcess *proc = new QProcess();
@@ -140,7 +140,7 @@ void P_PluginDetailPart::btn_editPlugin(){
 	//QDesktopServices::openUrl(QUrl("file:/" + file_info.absoluteFilePath()));
 }
 /*-------------------------------------------------
-		¿Ø¼ş - Õ¹¿ªÔ­ÎÄ
+		æ§ä»¶ - å±•å¼€åŸæ–‡
 */
 void P_PluginDetailPart::btn_expandOrg(){
 	emit selected_PluginDetailOrgContextPart();
@@ -148,14 +148,14 @@ void P_PluginDetailPart::btn_expandOrg(){
 }
 
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 */
 void P_PluginDetailPart::ui_loadConfig(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 */
 void P_PluginDetailPart::ui_saveConfig(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }

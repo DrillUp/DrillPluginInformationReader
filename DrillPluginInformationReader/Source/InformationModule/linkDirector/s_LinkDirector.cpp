@@ -1,17 +1,17 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "s_LinkDirector.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
+#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 
 /*
 -----==========================================================-----
-		Àà£º		Á´½ÓÎÄ¼şÒıµ¼Æ÷.cpp
-		ËùÊôÄ£¿é£º	²å¼şÄ£¿é
-		¹¦ÄÜ£º		¶ÁÈ¡jsÎÄ¼şÄÚµÄËùÓĞÊı¾İ @µÄ×¢½â ÄÚÈİ¡£
+		ç±»ï¼š		é“¾æ¥æ–‡ä»¶å¼•å¯¼å™¨.cpp
+		æ‰€å±æ¨¡å—ï¼š	æ’ä»¶æ¨¡å—
+		åŠŸèƒ½ï¼š		è¯»å–jsæ–‡ä»¶å†…çš„æ‰€æœ‰æ•°æ® @çš„æ³¨è§£ å†…å®¹ã€‚
 
-		Ê¹ÓÃ·½·¨£º
-				>³õÊ¼»¯£º
+		ä½¿ç”¨æ–¹æ³•ï¼š
+				>åˆå§‹åŒ–ï¼š
 				
 -----==========================================================-----
 */
@@ -24,7 +24,7 @@ S_LinkDirector::~S_LinkDirector() {
 }
 
 /* --------------------------------------------------------------
-----------PluginFrameManager µ¥Àı
+----------PluginFrameManager å•ä¾‹
 */
 S_LinkDirector* S_LinkDirector::cur_manager = NULL;
 S_LinkDirector* S_LinkDirector::getInstance() {
@@ -36,26 +36,26 @@ S_LinkDirector* S_LinkDirector::getInstance() {
 
 
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡¹¤³ÌÂ·¾¶
+		æ•°æ® - è·å–å·¥ç¨‹è·¯å¾„
 */
 QString S_LinkDirector::getProjectDir(){
-	return S_RmmvDataContainer::getInstance()->getRmmvProjectData().getRootPath();
+	return S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData().getRootPath();
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡ÎÄµµÂ·¾¶
+		æ•°æ® - è·å–æ–‡æ¡£è·¯å¾„
 */
 QString S_LinkDirector::getDocDir(){
 
-	// > ×Ô¶¨ÒåÎÄµµÂ·¾¶
+	// > è‡ªå®šä¹‰æ–‡æ¡£è·¯å¾„
 	if (this->m_docDir != ""){
 		return this->m_docDir;
 	}
 
-	// > Ê¾ÀıµÄÂ·¾¶
-	QString root_path = S_RmmvDataContainer::getInstance()->getRmmvProjectData().getRootPath();
+	// > ç¤ºä¾‹çš„è·¯å¾„
+	QString root_path = S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData().getRootPath();
 	QFileInfo fileinfo(root_path);
-	QString p_path = fileinfo.absolutePath();
-	QFileInfo doc_info(p_path + "/²å¼şÏêÏ¸ÊÖ²á");
+	QString p_path = fileinfo.absolutePath();	//ï¼ˆä¸Šä¸€çº§æ–‡ä»¶å¤¹ï¼‰
+	QFileInfo doc_info(p_path + "/æ’ä»¶è¯¦ç»†æ‰‹å†Œ");
 	if (doc_info.exists()){
 		return doc_info.absoluteFilePath();
 	}
@@ -66,7 +66,7 @@ QString S_LinkDirector::getDocDir(){
 
 
 /*-------------------------------------------------
-		Êı¾İ - ÎÄ¼ş¼ĞÃû³Æ³õÊ¼»¯
+		æ•°æ® - æ–‡ä»¶å¤¹åç§°åˆå§‹åŒ–
 */
 void S_LinkDirector::initDirName(){
 	if (this->m_dirNameInited == true){ return; }
@@ -74,16 +74,16 @@ void S_LinkDirector::initDirName(){
 	if (!dir.exists()) { return; }
 	this->m_dirNameInited = true;
 
-	// > Ò»¼¶ÎÄ¼ş¼Ğ
+	// > ä¸€çº§æ–‡ä»¶å¤¹
 	this->m_dirNameTank.clear();
 	this->m_docNameTank.clear();
 	QFileInfoList childDir_list = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
 	for (int i = 0; i < childDir_list.count(); i++){
 		QFileInfo child_dir = childDir_list.at(i);
 		QString childDir_name = child_dir.fileName();
-		if (childDir_name == "ÆäËü" || childDir_name == "ÆäËû"){ continue; }
+		if (childDir_name == "å…¶å®ƒ" || childDir_name == "å…¶ä»–"){ continue; }
 
-		// > ¶ş¼¶ÎÄ¼ş¼ĞÖĞµÄÎÄ¼ş
+		// > äºŒçº§æ–‡ä»¶å¤¹ä¸­çš„æ–‡ä»¶
 		QStringList docName_list;
 		QFileInfoList fileInfo_list = QDir(child_dir.filePath()).entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
 		for (int j = 0; j < fileInfo_list.count(); j++){
@@ -97,14 +97,14 @@ void S_LinkDirector::initDirName(){
 	}
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡ÎÄ¼ş¼ĞÃû³Æ
+		æ•°æ® - è·å–æ–‡ä»¶å¤¹åç§°
 */
 QStringList S_LinkDirector::getDirName_All(){
 	this->initDirName();
 	return m_dirNameTank;
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡ÎÄ¼ş¼ĞÃû³Æ£¨¸ù¾İdocxÃû£©
+		æ•°æ® - è·å–æ–‡ä»¶å¤¹åç§°ï¼ˆæ ¹æ®docxåï¼‰
 */
 QString S_LinkDirector::getDirName_ByDoc(QString tar_docName){
 	this->initDirName();
@@ -112,9 +112,9 @@ QString S_LinkDirector::getDirName_ByDoc(QString tar_docName){
 		QStringList docName_list = this->m_docNameTank.at(i);
 		for (int j = 0; j < docName_list.count(); j++){
 			QString cur_docName = docName_list.at(j);
-			QString cur_name = cur_docName.replace(QRegExp("[¡º][^¡º]*[¡»]"), "");	//ºöÂÔÀ¨ºÅ¡º¡»°ü¹üµÄÎÄ±¾¡£
-			QString tar_name = tar_docName.replace(QRegExp("[¡º][^¡º]*[¡»]"), "");
-			if (cur_name == tar_name){	//£¨Æ¥ÅäÔòËµÃ÷ÔÚ´ËÎÄ¼ş¼ĞÏÂ£©
+			QString cur_name = cur_docName.replace(QRegExp("[ã€][^ã€]*[ã€]"), "");	//å¿½ç•¥æ‹¬å·ã€ã€åŒ…è£¹çš„æ–‡æœ¬ã€‚
+			QString tar_name = tar_docName.replace(QRegExp("[ã€][^ã€]*[ã€]"), "");
+			if (cur_name == tar_name){	//ï¼ˆåŒ¹é…åˆ™è¯´æ˜åœ¨æ­¤æ–‡ä»¶å¤¹ä¸‹ï¼‰
 				return this->m_dirNameTank.at(i);
 			}
 		}
@@ -122,7 +122,7 @@ QString S_LinkDirector::getDirName_ByDoc(QString tar_docName){
 	return "";
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡ÎÄµµÂ·¾¶£¨¸ù¾İÎÄµµÃû³Æ£©
+		æ•°æ® - è·å–æ–‡æ¡£è·¯å¾„ï¼ˆæ ¹æ®æ–‡æ¡£åç§°ï¼‰
 */
 QString S_LinkDirector::getFullPath_ByDoc(QString tar_docName){
 	this->initDirName();
@@ -130,8 +130,8 @@ QString S_LinkDirector::getFullPath_ByDoc(QString tar_docName){
 		QStringList docName_list = this->m_docNameTank.at(i);
 		for (int j = 0; j < docName_list.count(); j++){
 			QString cur_docName = docName_list.at(j);
-			QString cur_name = QString(cur_docName).replace(QRegExp("[¡º][^¡º]*[¡»]"), "");	//ºöÂÔÀ¨ºÅ¡º¡»°ü¹üµÄÎÄ±¾¡£
-			QString tar_name = tar_docName.replace(QRegExp("[¡º][^¡º]*[¡»]"), "");
+			QString cur_name = QString(cur_docName).replace(QRegExp("[ã€][^ã€]*[ã€]"), "");	//å¿½ç•¥æ‹¬å·ã€ã€åŒ…è£¹çš„æ–‡æœ¬ã€‚
+			QString tar_name = tar_docName.replace(QRegExp("[ã€][^ã€]*[ã€]"), "");
 			if (cur_name == tar_name){
 				QDir dir(this->getDocDir());
 				return dir.absoluteFilePath(this->m_dirNameTank.at(i) + "/" + cur_docName);
@@ -141,13 +141,13 @@ QString S_LinkDirector::getFullPath_ByDoc(QString tar_docName){
 	return "";
 }
 /*-------------------------------------------------
-		Êı¾İ - Ñ°ÕÒÎÄµµÃû³Æ
+		æ•°æ® - å¯»æ‰¾æ–‡æ¡£åç§°
 */
 QStringList S_LinkDirector::findDocsNameList(QString data){
-	//£¨¸Ãº¯ÊıÓë C_ScriptHelpDetailÀà ÖĞµÄÒ»Ä£Ò»Ñù£¬µ«ÎªÁË¶Ï¿ª¶şÕß¹ØÏµ£¬¸Ãº¯Êı·Ö¿ªĞ´£©
+	//ï¼ˆè¯¥å‡½æ•°ä¸ C_ScriptHelpDetailç±» ä¸­çš„ä¸€æ¨¡ä¸€æ ·ï¼Œä½†ä¸ºäº†æ–­å¼€äºŒè€…å…³ç³»ï¼Œè¯¥å‡½æ•°åˆ†å¼€å†™ï¼‰
 
-	// > »ñÈ¡µ½Æ¥Åä£¨Ãû³ÆÇ°ÃæÓĞ ¿Õ¸ñ¡¢ÒıºÅ ¶¼¿ÉÒÔ£©
-	QRegExp rx("[ \"¡°]([^ \"¡°]+\\.(docx|xlsx))");
+	// > è·å–åˆ°åŒ¹é…ï¼ˆåç§°å‰é¢æœ‰ ç©ºæ ¼ã€å¼•å· éƒ½å¯ä»¥ï¼‰
+	QRegExp rx("[ \"â€œ]([^ \"â€œ]+\\.(docx|xlsx))");
 	QStringList match_list = QStringList();
 	int pos = 0;
 	while ((pos = rx.indexIn(data, pos)) != -1) {
@@ -157,7 +157,7 @@ QStringList S_LinkDirector::findDocsNameList(QString data){
 	return match_list;
 }
 /*-------------------------------------------------
-		Êı¾İ - Ñ°ÕÒ²å¼şÃû³Æ
+		æ•°æ® - å¯»æ‰¾æ’ä»¶åç§°
 */
 QStringList S_LinkDirector::findPluginNameList(QString data){
 	QStringList result_list = QStringList();
@@ -165,7 +165,7 @@ QStringList S_LinkDirector::findPluginNameList(QString data){
 	QList<C_ScriptAnnotation> annotation_list = S_InformationDataContainer::getInstance()->getAnnotationTank();
 	for (int i = 0; i < annotation_list.count(); i++){
 		C_ScriptAnnotation annotation = annotation_list.at(i);
-		if (data.contains( annotation.getName()+" " )){	//£¨²å¼şÖ¸ÁîºóÃæ±ØĞëÒªÓĞ¿Õ¸ñ£©
+		if (data.contains( annotation.getName()+" " )){	//ï¼ˆæ’ä»¶æŒ‡ä»¤åé¢å¿…é¡»è¦æœ‰ç©ºæ ¼ï¼‰
 			result_list.append(annotation.getName());
 		}
 	}
@@ -173,7 +173,7 @@ QStringList S_LinkDirector::findPluginNameList(QString data){
 }
 
 /*-------------------------------------------------
-		Â·¾¶ - ´ò¿ªÖ¸¶¨ÎÄµµÂ·¾¶
+		è·¯å¾„ - æ‰“å¼€æŒ‡å®šæ–‡æ¡£è·¯å¾„
 */
 void S_LinkDirector::openLink_Doc(QString text){
 	QString path = this->getFullPath_ByDoc(text);
@@ -183,52 +183,52 @@ void S_LinkDirector::openLink_Doc(QString text){
 		return;
 	}
 
-	// > ÕÒ²»µ½ÎÄ¼ş
-	QMessageBox::warning(nullptr, "ÌáÊ¾", "²å¼şÎÄµµÖĞÃ»ÓĞÎÄ¼ş£º\n" + path + "");
+	// > æ‰¾ä¸åˆ°æ–‡ä»¶
+	QMessageBox::warning(nullptr, "æç¤º", "æ’ä»¶æ–‡æ¡£ä¸­æ²¡æœ‰æ–‡ä»¶ï¼š\n" + path + "");
 }
 /*-------------------------------------------------
-		Â·¾¶ - ´ò¿ªÖ¸¶¨Í¼Æ¬Â·¾¶
+		è·¯å¾„ - æ‰“å¼€æŒ‡å®šå›¾ç‰‡è·¯å¾„
 */
 void S_LinkDirector::openLink_Src(QString text){
 	QDir dir(this->getProjectDir());
 	if (!dir.exists()) { return; }
 
-	// > ´ò¿ªÎÄ¼ş¼Ğ
+	// > æ‰“å¼€æ–‡ä»¶å¤¹
 	QFileInfo dir_info(dir.absolutePath() + "/" + text);
 	if (dir_info.exists()){
 		QDesktopServices::openUrl(QUrl("file:/" + dir_info.absoluteFilePath()));
 		return;
 	}
 
-	// > ÕÒ²»µ½ÎÄ¼ş
-	QMessageBox::warning(nullptr, "ÌáÊ¾", "¹¤³ÌÖĞÃ»ÓĞ×ÊÔ´ÎÄ¼ş¼Ğ£º" + text );
+	// > æ‰¾ä¸åˆ°æ–‡ä»¶
+	QMessageBox::warning(nullptr, "æç¤º", "å·¥ç¨‹ä¸­æ²¡æœ‰èµ„æºæ–‡ä»¶å¤¹ï¼š" + text );
 }
 /*-------------------------------------------------
-		Â·¾¶ - ´ò¿ª²å¼şÇåµ¥
+		è·¯å¾„ - æ‰“å¼€æ’ä»¶æ¸…å•
 */
 void S_LinkDirector::openLink_specific_pluginListing(){
 	QDir dir(this->getDocDir());
 	if (!dir.exists()) { return; }
 
-	// > ´ò¿ªÎÄ¼ş
+	// > æ‰“å¼€æ–‡ä»¶
 	QFileInfoList c_dir_list;
 	c_dir_list = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot, QDir::Name);
 	for (int i = 0; i < c_dir_list.count(); i++){
 		QFileInfo cur_file = c_dir_list.at(i);
-		if (cur_file.fileName().contains("²å¼şÇåµ¥")){
+		if (cur_file.fileName().contains("æ’ä»¶æ¸…å•")){
 			QDesktopServices::openUrl(QUrl("file:/" + cur_file.absoluteFilePath()));
 			return;
 		}
 	}
 
-	// > ÕÒ²»µ½ÎÄ¼ş
-	QMessageBox::warning(nullptr, "ÌáÊ¾", "¹¤³ÌÖĞÃ»ÓĞ\"²å¼şÇåµ¥.xlsx\"");
+	// > æ‰¾ä¸åˆ°æ–‡ä»¶
+	QMessageBox::warning(nullptr, "æç¤º", "å·¥ç¨‹ä¸­æ²¡æœ‰\"æ’ä»¶æ¸…å•.xlsx\"");
 }
 
 
 
 /*-------------------------------------------------
-		Á´½Ó - ½«×Ö·û´®ÖĞµÄ "<" Ìæ»»Îª"\\<"
+		é“¾æ¥ - å°†å­—ç¬¦ä¸²ä¸­çš„ "<" æ›¿æ¢ä¸º"\\<"
 */
 QString S_LinkDirector::signLtGtTag(QString data){
 	return data.replace("<", "&lt;").replace(">", "&gt;");
@@ -239,13 +239,13 @@ void S_LinkDirector::signLtGtTag(QStringList* data){
 	}
 }
 /*-------------------------------------------------
-		Á´½Ó - ½«×Ö·û´®ÖĞµÄ "\n" Ìæ»»Îª"<br>"
+		é“¾æ¥ - å°†å­—ç¬¦ä¸²ä¸­çš„ "\n" æ›¿æ¢ä¸º"<br>"
 */
 QString S_LinkDirector::signBrTag(QString data){
 	return data.replace("\n","<br>");
 }
 /*-------------------------------------------------
-		Á´½Ó - Ê¹ÓÃ"<p>"°ü¹ü×Ö·û´®
+		é“¾æ¥ - ä½¿ç”¨"<p>"åŒ…è£¹å­—ç¬¦ä¸²
 */
 QString S_LinkDirector::signPTag(QString data){
 	QString result;
@@ -255,15 +255,15 @@ QString S_LinkDirector::signPTag(QString data){
 	return result;
 }
 /*-------------------------------------------------
-		Á´½Ó - ½«×Ö·û´®ÖĞµÄ ÎÄµµ¡¢Â·¾¶ ×ªÎª"<a>"Á´½Ó
+		é“¾æ¥ - å°†å­—ç¬¦ä¸²ä¸­çš„ æ–‡æ¡£ã€è·¯å¾„ è½¬ä¸º"<a>"é“¾æ¥
 */
 QString S_LinkDirector::signATag_Docs(QString data){
 	QStringList match_list = this->findDocsNameList(data);
 
-	// > ÎÄµµÂ·¾¶£¨¹Ì¶¨µÄ£©
+	// > æ–‡æ¡£è·¯å¾„ï¼ˆå›ºå®šçš„ï¼‰
 	match_list << this->getDirName_All();
 
-	// > Ê¹ÓÃÁ´½Ó°ü¹ü
+	// > ä½¿ç”¨é“¾æ¥åŒ…è£¹
 	for (int j = 0; j < match_list.count(); j++){
 		QString str = match_list.at(j);
 		QString tar_str;
@@ -274,12 +274,12 @@ QString S_LinkDirector::signATag_Docs(QString data){
 		tar_str.append("</span></a>");
 		data = data.replace(str, tar_str);
 	}
-	//<p>²âÊÔµÄÎÄ±¾£¬<a href="²âÊÔµÄÎÄ±¾"><span style=" text-decoration: underline; color:#0000ff;">²âÊÔµÄÎÄ±¾</span></a>¡£</p>
+	//<p>æµ‹è¯•çš„æ–‡æœ¬ï¼Œ<a href="æµ‹è¯•çš„æ–‡æœ¬"><span style=" text-decoration: underline; color:#0000ff;">æµ‹è¯•çš„æ–‡æœ¬</span></a>ã€‚</p>
 
 	return data;
 }
 /*-------------------------------------------------
-		Á´½Ó - ½« ×ÊÔ´Â·¾¶ °ü¹ü"<a>"Á´½Ó
+		é“¾æ¥ - å°† èµ„æºè·¯å¾„ åŒ…è£¹"<a>"é“¾æ¥
 */
 QString S_LinkDirector::signATag_Src(QString src_path){
 
@@ -293,12 +293,12 @@ QString S_LinkDirector::signATag_Src(QString src_path){
 	return result;
 }
 /*-------------------------------------------------
-		Á´½Ó - ½«×Ö·û´®ÖĞµÄ ²å¼şÃû³Æ ×ªÎª"<a>"Á´½Ó
+		é“¾æ¥ - å°†å­—ç¬¦ä¸²ä¸­çš„ æ’ä»¶åç§° è½¬ä¸º"<a>"é“¾æ¥
 */
 QString S_LinkDirector::signATag_Plugin(QString data){
 	QStringList match_list = this->findPluginNameList(data);
 
-	// > Ê¹ÓÃÁ´½Ó°ü¹ü
+	// > ä½¿ç”¨é“¾æ¥åŒ…è£¹
 	for (int j = 0; j < match_list.count(); j++){
 		QString str = match_list.at(j);
 		QString tar_str;
@@ -313,17 +313,17 @@ QString S_LinkDirector::signATag_Plugin(QString data){
 	return data;
 }
 /*-------------------------------------------------
-		Á´½Ó - ½«×Ö·û´®ÖĞµÄ "²å¼şÇåµ¥.xlsx" ×ªÎª"<a>"Á´½Ó
+		é“¾æ¥ - å°†å­—ç¬¦ä¸²ä¸­çš„ "æ’ä»¶æ¸…å•.xlsx" è½¬ä¸º"<a>"é“¾æ¥
 */
 QString S_LinkDirector::signATag_specific_pluginListing(QString data){
 
 	QString tar_str;
 	tar_str.append("<a href=\"");
-	tar_str.append("²å¼şÇåµ¥.xlsx");
+	tar_str.append("æ’ä»¶æ¸…å•.xlsx");
 	tar_str.append("\"><span style = \"text-decoration: underline; color:#0000ff;\">");
-	tar_str.append("²å¼şÇåµ¥.xlsx");
+	tar_str.append("æ’ä»¶æ¸…å•.xlsx");
 	tar_str.append("</span></a>");
-	data = data.replace(QRegExp("²å¼şÇåµ¥[.]{0,6}\\.xlsx") , tar_str);
+	data = data.replace(QRegExp("æ’ä»¶æ¸…å•[.]{0,6}\\.xlsx") , tar_str);
 
 	return data;
 }

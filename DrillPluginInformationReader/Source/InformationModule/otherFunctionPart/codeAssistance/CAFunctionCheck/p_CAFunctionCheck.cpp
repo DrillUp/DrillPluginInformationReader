@@ -1,10 +1,11 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_CAFunctionCheck.h"
 
 #include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
 #include "Source/InformationModule/linkDirector/s_LinkDirector.h"
-#include "Source/RmmvInteractiveModule/base/s_RmmvDataContainer.h"
-#include "Source/RmmvUtilsPluginModule/storageData/s_PluginDataContainer.h"
+
+#include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
+#include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Src.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Docs.h"
@@ -14,11 +15,11 @@
 
 /*
 -----==========================================================-----
-		Àà£º		º¯ÊıĞ£ÑéÆ÷.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		å‡½æ•°æ ¡éªŒå™¨.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	Éú³É×Ô¶¨ÒåµÄExcel±í¸ñ¸ñÊ½¡£
+		ä¸»åŠŸèƒ½ï¼š	ç”Ÿæˆè‡ªå®šä¹‰çš„Excelè¡¨æ ¼æ ¼å¼ã€‚
 -----==========================================================-----
 */
 P_CAFunctionCheck::P_CAFunctionCheck(QObject *parent)
@@ -31,7 +32,7 @@ P_CAFunctionCheck::~P_CAFunctionCheck(){
 
 
 /*-------------------------------------------------
-		Éú³ÉÆ÷ - Éú³É ËùÓĞ²å¼şËõĞ´
+		ç”Ÿæˆå™¨ - ç”Ÿæˆ æ‰€æœ‰æ’ä»¶ç¼©å†™
 */
 QString P_CAFunctionCheck::generate_AllAbbreviation(){
 	QString result;
@@ -44,24 +45,24 @@ QString P_CAFunctionCheck::generate_AllAbbreviation(){
 		result.append(plugin->name);
 		result.append("\n");
 
-		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
 
-		// > ¶ÁÈ¡¹¤³ÌÎÄ¼ş
+		// > è¯»å–å·¥ç¨‹æ–‡ä»¶
 		QFile plugin_file(fileinfo.absoluteFilePath());
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "ÎŞ·¨´ò¿ªÎÄ¼ş£º" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
 			continue;
 		}
 		QString plugin_context = plugin_file.readAll();
 		plugin_file.close();
 
-		// > ¶ÁÈ¡»ù±¾ĞÅÏ¢
+		// > è¯»å–åŸºæœ¬ä¿¡æ¯
 		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
 
 		int i_first = 0;
 		while (true)
 		{
-			i_first = reader.d_indexOf(QRegExp("²å¼ş¼ò³Æ"), i_first+1);
+			i_first = reader.d_indexOf(QRegExp("æ’ä»¶ç®€ç§°"), i_first+1);
 			if (i_first == -1){ break; }
 
 			QString code_var = reader.d_rowAt(i_first);
@@ -75,7 +76,7 @@ QString P_CAFunctionCheck::generate_AllAbbreviation(){
 	return result;
 }
 /*-------------------------------------------------
-		Éú³ÉÆ÷ - Éú³É ËùÓĞ²å¼ş¼Ì³ĞµÄ·½·¨Ãû
+		ç”Ÿæˆå™¨ - ç”Ÿæˆ æ‰€æœ‰æ’ä»¶ç»§æ‰¿çš„æ–¹æ³•å
 */
 QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
 	QString result;
@@ -88,18 +89,18 @@ QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
 		result.append(plugin->name);
 		result.append("\n");
 
-		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
 
-		// > ¶ÁÈ¡¹¤³ÌÎÄ¼ş
+		// > è¯»å–å·¥ç¨‹æ–‡ä»¶
 		QFile plugin_file(fileinfo.absoluteFilePath());
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "ÎŞ·¨´ò¿ªÎÄ¼ş£º" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
 			continue;
 		}
 		QString plugin_context = plugin_file.readAll();
 		plugin_file.close();
 
-		// > ¶ÁÈ¡»ù±¾ĞÅÏ¢
+		// > è¯»å–åŸºæœ¬ä¿¡æ¯
 		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
 
 		int i_first = 0;
@@ -116,9 +117,9 @@ QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
 			int i_var = code_row.indexOf(re2);
 			QString code_method = re2.cap(1);
 
-			result.append("±äÁ¿£º");
+			result.append("å˜é‡ï¼š");
 			result.append(code_var);
-			result.append("£¬¼Ì³Ğº¯Êı£º");
+			result.append("ï¼Œç»§æ‰¿å‡½æ•°ï¼š");
 			result.append(code_method);
 			result.append("\n");
 
@@ -129,7 +130,7 @@ QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
 }
 
 /*-------------------------------------------------
-		Éú³ÉÆ÷ - Ğ£Ñé´íÎóµÄº¯Êı¼Ì³ĞÃû
+		ç”Ÿæˆå™¨ - æ ¡éªŒé”™è¯¯çš„å‡½æ•°ç»§æ‰¿å
 */
 QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 	QString result;
@@ -142,18 +143,18 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 		result.append(plugin->name);
 		result.append("\n");
 
-		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
 
-		// > ¶ÁÈ¡¹¤³ÌÎÄ¼ş
+		// > è¯»å–å·¥ç¨‹æ–‡ä»¶
 		QFile plugin_file(fileinfo.absoluteFilePath());
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "ÎŞ·¨´ò¿ªÎÄ¼ş£º" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
 			continue;
 		}
 		QString plugin_context = plugin_file.readAll();
 		plugin_file.close();
 
-		// > ¶ÁÈ¡»ù±¾ĞÅÏ¢
+		// > è¯»å–åŸºæœ¬ä¿¡æ¯
 		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
 
 		int i_first = 0;
@@ -165,7 +166,7 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 			QString code_var = reader.d_rowAt(i_first);
 			QString code_function = reader.d_rowAt(i_first+1);
 
-			// > È«ÏÔÊ¾
+			// > å…¨æ˜¾ç¤º
 			//result.append(code_var);
 			//result.append("\n");
 			//result.append(code_function);
@@ -177,7 +178,7 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 			int i_function = code_function.indexOf(re);
 			QString matched_function = re.cap(0);
 
-			// > ÅÅÁĞÎ»ÖÃ²»ÕıÈ·µÄ
+			// > æ’åˆ—ä½ç½®ä¸æ­£ç¡®çš„
 			if (i_var == -1 || i_function == -1){
 				result.append(code_var);
 				result.append("\n");
@@ -185,7 +186,7 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 				result.append("\n");
 			}
 			
-			// > ÏÔÊ¾´íÎóµÄ
+			// > æ˜¾ç¤ºé”™è¯¯çš„
 			if (matched_var != matched_function){
 				result.append(code_var);
 				result.append("\n");
@@ -201,7 +202,7 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 
 
 /*-------------------------------------------------
-		Éú³ÉÆ÷ - Éú³É ÖØ¸´¶¨ÒåµÄ±äÁ¿Ãû
+		ç”Ÿæˆå™¨ - ç”Ÿæˆ é‡å¤å®šä¹‰çš„å˜é‡å
 */
 QString P_CAFunctionCheck::generate_RepeatDefinition(){
 	QString result;
@@ -215,18 +216,18 @@ QString P_CAFunctionCheck::generate_RepeatDefinition(){
 		result.append(plugin->name);
 		result.append("\n");
 
-		QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
+		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
 
-		// > ¶ÁÈ¡¹¤³ÌÎÄ¼ş
+		// > è¯»å–å·¥ç¨‹æ–‡ä»¶
 		QFile plugin_file(fileinfo.absoluteFilePath());
 		if (!plugin_file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-			QMessageBox::warning(nullptr, "´íÎó", "ÎŞ·¨´ò¿ªÎÄ¼ş£º" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
+			QMessageBox::warning(nullptr, "é”™è¯¯", "æ— æ³•æ‰“å¼€æ–‡ä»¶ï¼š" + fileinfo.absoluteFilePath(), QMessageBox::Yes);
 			continue;
 		}
 		QString plugin_context = plugin_file.readAll();
 		plugin_file.close();
 
-		// > ¶ÁÈ¡»ù±¾ĞÅÏ¢
+		// > è¯»å–åŸºæœ¬ä¿¡æ¯
 		P_TxtFastReader reader = P_TxtFastReader(plugin_context);
 
 		int i_first = 0;
@@ -242,7 +243,7 @@ QString P_CAFunctionCheck::generate_RepeatDefinition(){
 
 			if (repeatTank.contains(code_var)){
 
-				// > ÓĞÖØ¸´µÄ
+				// > æœ‰é‡å¤çš„
 				result.append(code_row);
 				result.append("\n");
 			

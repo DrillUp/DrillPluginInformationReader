@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "p_PluginBatchDeletePart.h"
 
-#include "Source/RmmvInteractiveModule/Base/S_RmmvDataContainer.h"
+#include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 #include "Source/Utils/Operater/RecycleBinOperater/P_RecycleBinOperater.h"
 #include "Source/Utils/Common/TTool.h"
 
@@ -146,7 +146,7 @@ void P_PluginBatchDeletePart::btn_execute(){
 	// > 移动到回收站
 	if (ui.radioButton_recycleBin->isChecked()){
 		for (int i = 0; i < data_list.count(); i++){
-			QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
+			QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
 			P_RecycleBinOperater::moveToRecycleBin(fileinfo.absoluteFilePath());
 		}
 
@@ -157,7 +157,7 @@ void P_PluginBatchDeletePart::btn_execute(){
 	// > 直接删除
 	if (ui.radioButton_delete->isChecked()){
 		for (int i = 0; i < data_list.count(); i++){
-			QFileInfo fileinfo = S_RmmvDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
+			QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(data_list.at(i));
 			QFile file(fileinfo.absoluteFilePath());
 			file.remove();
 		}
