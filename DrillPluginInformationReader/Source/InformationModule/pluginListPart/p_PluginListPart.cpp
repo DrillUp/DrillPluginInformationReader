@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_PluginListPart.h"
 
 #include "Source/ProjectModule/StorageGlobal/S_IniManager.h"
@@ -6,14 +6,14 @@
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şÁĞ±í ±à¼­¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ’ä»¶åˆ—è¡¨ ç¼–è¾‘å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
 		
-		ËµÃ÷£º		> ¡¾×¢Òâ£¬ÊôĞÔ°´Å¥×é£¬ĞèÒª¶àÌ×Ò»²ãWidget£¬ÔÙaddCellWidget¡£¡¿
-					  ·´¸´ÊÔÑé£¬cellWidget»á±»±í¸ñ¸¸ÀàÉ¾µô£¬±ØĞëÓÃÇ¶Ì×¸ôÀë³öÀ´¡£
+		è¯´æ˜ï¼š		> ã€æ³¨æ„ï¼Œå±æ€§æŒ‰é’®ç»„ï¼Œéœ€è¦å¤šå¥—ä¸€å±‚Widgetï¼Œå†addCellWidgetã€‚ã€‘
+					  åå¤è¯•éªŒï¼ŒcellWidgetä¼šè¢«è¡¨æ ¼çˆ¶ç±»åˆ æ‰ï¼Œå¿…é¡»ç”¨åµŒå¥—éš”ç¦»å‡ºæ¥ã€‚
 -----==========================================================-----
 */
 P_PluginListPart::P_PluginListPart(QWidget *parent)
@@ -22,23 +22,23 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 
 
 	//-----------------------------------
-	//----¿Ø¼ş³õÊ¼»¯
+	//----æ§ä»¶åˆå§‹åŒ–
 	TTool::_ChangeCombox_itemHeight_(ui.comboBox_pluginMode, 30);
 	TTool::_ChangeCombox_itemHeight_(ui.comboBox_pluginType, 30);
 	ui.widget_search->setVisible(false);
 	this->slot_block = false;
 	this->initTable(ui.tableWidget_plugin);
 
-	// > ÀúÊ·²éÑ¯¿Ø¼ş
+	// > å†å²æŸ¥è¯¢æ§ä»¶
 	this->m_p_historicalSearchRecord = new P_HistoricalSearchRecord(this);
 	this->m_p_historicalSearchRecord->setVisible(false);
 	ui.widget_nav->layout()->addWidget(this->m_p_historicalSearchRecord);
 
-	// > ±í¸ñ°´Å¥¿Ø¼ş
+	// > è¡¨æ ¼æŒ‰é’®æ§ä»¶
 	this->m_w_PluginAttr_Docs = new W_PluginAttr_Docs(this);
 	this->m_w_PluginAttr_Src = new W_PluginAttr_Src(this);
 	this->m_w_PluginAttr_HighConsumption = new W_PluginAttr_HighConsumption(this);
@@ -56,22 +56,22 @@ P_PluginListPart::P_PluginListPart(QWidget *parent)
 		this->m_btnPartList.append(btn_part);
 	}
 
-	// > ·ÖÒ³¿Ø¼ş
+	// > åˆ†é¡µæ§ä»¶
 	this->m_p_PageNavigator = new P_PageNavigator();
 	this->m_p_PageNavigator->initNavigator(100, 100, 5);
 	ui.verticalLayout_PageNavigator->addWidget(this->m_p_PageNavigator);
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 
-	// > ÏÂÀ­¿ò±ä»¯Ê±£¬Ë¢ĞÂ
+	// > ä¸‹æ‹‰æ¡†å˜åŒ–æ—¶ï¼Œåˆ·æ–°
 	connect(ui.comboBox_pluginMode, &QComboBox::currentTextChanged, this, &P_PluginListPart::modeChanged);
 
-	// > Ö´ĞĞËÑË÷Ê±
+	// > æ‰§è¡Œæœç´¢æ—¶
 	connect(ui.pushButton_searchPlugin, &QPushButton::clicked, this, &P_PluginListPart::btn_search);
 	connect(this->m_p_historicalSearchRecord, &P_HistoricalSearchRecord::textClicked, this, &P_PluginListPart::searchTextClicked);
 
-	// > ·ÖÒ³±ä»¯Ê±
+	// > åˆ†é¡µå˜åŒ–æ—¶
 	connect(this->m_p_PageNavigator, &P_PageNavigator::indexChanged, this, &P_PluginListPart::refreshTableAuto);
 	
 }
@@ -80,23 +80,23 @@ P_PluginListPart::~P_PluginListPart(){
 
 
 /*-------------------------------------------------
-		±í¸ñ - ³õÊ¼»¯
+		è¡¨æ ¼ - åˆå§‹åŒ–
 */
 void P_PluginListPart::initTable(QTableWidget* table){
 	this->m_table = table;
 
-	// > ui³õÊ¼»¯
+	// > uiåˆå§‹åŒ–
 	this->refreshHorizontalSize(0);
-	//this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//ĞĞ×ÔÊÊÓ¦
-	//£¨²»Òª×ÔÊÊÓ¦£¬Ó°ÏìĞÔÄÜ£¬ÇÒQLabelÎŞ·¨×Ô¶¯»»ĞĞ£©
+	//this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//è¡Œè‡ªé€‚åº”
+	//ï¼ˆä¸è¦è‡ªé€‚åº”ï¼Œå½±å“æ€§èƒ½ï¼Œä¸”QLabelæ— æ³•è‡ªåŠ¨æ¢è¡Œï¼‰
 
-	// > ÊÂ¼ş°ó¶¨
+	// > äº‹ä»¶ç»‘å®š
 	connect(this->m_table, &QTableWidget::itemDoubleClicked, this, &P_PluginListPart::tableDoubled);
 	connect(this->m_table, &QTableWidget::customContextMenuRequested, this, &P_PluginListPart::tableRightClicked);
 	
 }
 /*-------------------------------------------------
-		±í¸ñ - Ë¢ĞÂºáÏò¿í¶È
+		è¡¨æ ¼ - åˆ·æ–°æ¨ªå‘å®½åº¦
 */
 void P_PluginListPart::refreshHorizontalSize(int table_width){
 	int ww = table_width;
@@ -118,11 +118,11 @@ void P_PluginListPart::refreshHorizontalSize(int table_width){
 	}
 }
 /*-------------------------------------------------
-		±í¸ñ - ÇåÀíÏî
+		è¡¨æ ¼ - æ¸…ç†é¡¹
 */
 void P_PluginListPart::clearTableItem(){
 
-	// > ÍË°´Å¥×é£¨×ªÒÆµ½±ğ´¦£©
+	// > é€€æŒ‰é’®ç»„ï¼ˆè½¬ç§»åˆ°åˆ«å¤„ï¼‰
 	for (int i = 0; i < this->m_table->rowCount(); i++){
 		QWidget* w = this->m_table->cellWidget(i,1);
 		if (w == nullptr){ continue; }
@@ -132,22 +132,22 @@ void P_PluginListPart::clearTableItem(){
 			P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
 			w->layout()->removeWidget(btn_part);
 		}
-		this->m_table->removeCellWidget(i, 1);		//¡¾±ØĞë¼Ğ¸öÖĞ¼äwidget²ã£¬È»ºóÒÆ³ıWidget¡¿
+		this->m_table->removeCellWidget(i, 1);		//ã€å¿…é¡»å¤¹ä¸ªä¸­é—´widgetå±‚ï¼Œç„¶åç§»é™¤Widgetã€‘
 	}
 	for (int j = 0; j < this->m_btnPartList.count(); j++){
 		P_PluginAttr_ButtonPart* btn_part = this->m_btnPartList.at(j);
 		btn_part->setParent(this);
 	}
 
-	// > Çå³ı±í¸ñ¿Ø¼ş
+	// > æ¸…é™¤è¡¨æ ¼æ§ä»¶
 	this->m_table->clearContents();
 }
 /*-------------------------------------------------
-		±í¸ñ - ÏÂÀ­¿ò±ä»¯
+		è¡¨æ ¼ - ä¸‹æ‹‰æ¡†å˜åŒ–
 */
 void P_PluginListPart::modeChanged(QString mode_text){
 
-	// > ËÑË÷ÏÔÊ¾
+	// > æœç´¢æ˜¾ç¤º
 	if (ui.comboBox_pluginMode->currentIndex() == 0){
 		ui.widget_pluginType->setVisible(true);
 		ui.widget_search->setVisible(false);
@@ -159,24 +159,24 @@ void P_PluginListPart::modeChanged(QString mode_text){
 		this->m_p_historicalSearchRecord->setVisible(true);
 	}
 	
-	// > Ë¢ĞÂ±í¸ñ
+	// > åˆ·æ–°è¡¨æ ¼
 	this->refreshTableAuto(0, 99);
 }
 /*-------------------------------------------------
-		±í¸ñ - ÖØË¢±í¸ñ£¨¶ÁÈ¡Ê±£©
+		è¡¨æ ¼ - é‡åˆ·è¡¨æ ¼ï¼ˆè¯»å–æ—¶ï¼‰
 */
 void P_PluginListPart::rebuildTable(){
 	
-	// > Êı¾İÖØË¢
+	// > æ•°æ®é‡åˆ·
 	ui.lineEdit_searchPlugin->setText("");
 	this->m_searchText = "";
 	this->m_allConfigedData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
 
-	// > ³õÊ¼»¯ÀàĞÍ£¨ÅäÖÃµÄ²å¼ş£©
+	// > åˆå§‹åŒ–ç±»å‹ï¼ˆé…ç½®çš„æ’ä»¶ï¼‰
 	ui.comboBox_pluginType->clear();
 	disconnect(ui.comboBox_pluginType);
-	QStringList type_list = QStringList() << "È«²¿ÀàĞÍ";
+	QStringList type_list = QStringList() << "å…¨éƒ¨ç±»å‹";
 	for (int i = 0; i < this->m_allConfigedData.count(); i++){
 		C_PluginData* p_data = this->m_allConfigedData.at(i);
 		C_ScriptAnnotation annotation = S_InformationDataContainer::getInstance()->getAnnotation(p_data->name);
@@ -188,35 +188,35 @@ void P_PluginListPart::rebuildTable(){
 	ui.comboBox_pluginType->addItems(type_list);
 	connect(ui.comboBox_pluginType, &QComboBox::currentTextChanged, this, &P_PluginListPart::pluginTypeChanged);
 
-	// > Ë¢ĞÂ
+	// > åˆ·æ–°
 	this->refreshTableAuto(0, 99);
 }
 /*-------------------------------------------------
-		±í¸ñ - Ë¢ĞÂ±í¸ñ£¨×Ô¶¯£©
+		è¡¨æ ¼ - åˆ·æ–°è¡¨æ ¼ï¼ˆè‡ªåŠ¨ï¼‰
 */
 void P_PluginListPart::refreshTableAuto(int start_index, int end_index){
 	if (ui.comboBox_pluginMode->currentIndex() == 0){
-		this->m_p_PageNavigator->setAllCount(this->m_allConfigedData.count());	//£¨Ë¢ĞÂ·ÖÒ³Æ÷£©
-		this->refreshTable_configedPlugin(start_index, end_index);				//£¨Ë¢ĞÂ±í¸ñÄÚÈİ£©
+		this->m_p_PageNavigator->setAllCount(this->m_allConfigedData.count());	//ï¼ˆåˆ·æ–°åˆ†é¡µå™¨ï¼‰
+		this->refreshTable_configedPlugin(start_index, end_index);				//ï¼ˆåˆ·æ–°è¡¨æ ¼å†…å®¹ï¼‰
 	}
 	if (ui.comboBox_pluginMode->currentIndex() == 1){
-		this->m_p_PageNavigator->setAllCount(this->m_allSearchedData.count());	//£¨Ë¢ĞÂ·ÖÒ³Æ÷£©
-		this->refreshTable_searchedPlugin(start_index, end_index);				//£¨Ë¢ĞÂ±í¸ñÄÚÈİ£©
+		this->m_p_PageNavigator->setAllCount(this->m_allSearchedData.count());	//ï¼ˆåˆ·æ–°åˆ†é¡µå™¨ï¼‰
+		this->refreshTable_searchedPlugin(start_index, end_index);				//ï¼ˆåˆ·æ–°è¡¨æ ¼å†…å®¹ï¼‰
 	}
 }
 
 
 
 /*-------------------------------------------------
-		ÅäÖÃµÄ²å¼ş - ÏÂÀ­¿ò±ä»¯
+		é…ç½®çš„æ’ä»¶ - ä¸‹æ‹‰æ¡†å˜åŒ–
 */
 void P_PluginListPart::pluginTypeChanged(QString type_text){
 	this->m_allConfigedData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 
-	// > ÅäÖÃµÄ²å¼ş
+	// > é…ç½®çš„æ’ä»¶
 	QString cur_type = ui.comboBox_pluginType->currentText();
 	QList<C_PluginData*> data_list = QList<C_PluginData*>();
-	if (cur_type == "" || cur_type == "È«²¿ÀàĞÍ"){
+	if (cur_type == "" || cur_type == "å…¨éƒ¨ç±»å‹"){
 		data_list = this->m_allConfigedData;
 	
 	}else{
@@ -229,11 +229,11 @@ void P_PluginListPart::pluginTypeChanged(QString type_text){
 			data_list.append(p_data);
 		}
 	}
-	this->m_allConfigedData = data_list;	//£¨ĞŞ¸ÄÊı¾İ·¶Î§£©
+	this->m_allConfigedData = data_list;	//ï¼ˆä¿®æ”¹æ•°æ®èŒƒå›´ï¼‰
 	this->refreshTableAuto(0, 99);
 }
 /*-------------------------------------------------
-		ÅäÖÃµÄ²å¼ş - Ë¢ĞÂ±í¸ñ£¨ÅäÖÃµÄ²å¼ş£©
+		é…ç½®çš„æ’ä»¶ - åˆ·æ–°è¡¨æ ¼ï¼ˆé…ç½®çš„æ’ä»¶ï¼‰
 */
 void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_index){
 	if (this->m_table == nullptr){ return; }
@@ -241,7 +241,7 @@ void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_inde
 	if (start_index < 0){ start_index = 0; }
 	if (end_index <= 0){ return; }
 
-	// > ÅäÖÃµÄ²å¼ş
+	// > é…ç½®çš„æ’ä»¶
 	if (end_index >= this->m_allConfigedData.count()){ end_index = this->m_allConfigedData.count() - 1; }
 	this->m_table->setRowCount(end_index - start_index + 1);
 	for (int i = start_index; i <= end_index; i++){
@@ -253,11 +253,11 @@ void P_PluginListPart::refreshTable_configedPlugin(int start_index, int end_inde
 		this->setOneRow_configedPlugin(index, c_p->name, btn_part);
 	}
 
-	// > ¹ö¶¯ÌõÖÃ¶¥
+	// > æ»šåŠ¨æ¡ç½®é¡¶
 	ui.tableWidget_plugin->scrollToTop();
 }
 /*-------------------------------------------------
-		ÅäÖÃµÄ²å¼ş - Ìí¼ÓÒ»ĞĞ
+		é…ç½®çš„æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 */
 void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWidget* widget){
 	C_PluginData* c_p = S_PluginDataContainer::getInstance()->getPluginData(pluginName);
@@ -268,25 +268,25 @@ void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWi
 	first_item->setToolTip(pluginName);
 	this->m_table->setItem(row, 0, first_item);
 
-	// > ·Ö¸îÏß
+	// > åˆ†å‰²çº¿
 	if (pluginName.contains("---")){
 		this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
 
-	// > ²å¼şĞĞ
+	// > æ’ä»¶è¡Œ
 	}else{
 		
-		// > °´Å¥×é
+		// > æŒ‰é’®ç»„
 		if (widget != nullptr){
 			widget->setParent(this->m_table);
 			widget->setVisible(true);
-			this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//¡¾±ØĞë¼Ğ¸öÖĞ¼äwidget²ã¡¿
+			this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//ã€å¿…é¡»å¤¹ä¸ªä¸­é—´widgetå±‚ã€‘
 		}else{
 			qDebug() << row;
 			Q_ASSERT(false);
 		}
 		this->m_table->setItem(row, 1, new QTableWidgetItem());
 
-		// > ÎÄ±¾
+		// > æ–‡æœ¬
 		QString version = data.getPlugindesc_version();
 		if (version.isEmpty() == false){
 			this->m_table->setItem(row, 2, new QTableWidgetItem(version));
@@ -294,10 +294,10 @@ void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWi
 			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc_name()));
 		}else{
 			this->m_table->setItem(row, 3, new QTableWidgetItem(data.getPlugindesc_type()));
-			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//£¨¶Á²»µ½°æ±¾Ê±£¬ÏÔÊ¾È«Ãû£©
+			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));		//ï¼ˆè¯»ä¸åˆ°ç‰ˆæœ¬æ—¶ï¼Œæ˜¾ç¤ºå…¨åï¼‰
 		}
 		if (c_p == nullptr){
-			this->m_table->setItem(row, 5, new QTableWidgetItem("Î´×°ÔØ"));			//£¨ÅäÖÃÖĞÎ´ÕÒµ½µÄ£¬±ê¼Ç Î´×°ÔØ£©
+			this->m_table->setItem(row, 5, new QTableWidgetItem("æœªè£…è½½"));			//ï¼ˆé…ç½®ä¸­æœªæ‰¾åˆ°çš„ï¼Œæ ‡è®° æœªè£…è½½ï¼‰
 		}else{
 			this->m_table->setItem(row, 5, new QTableWidgetItem(c_p->status ? "ON" : "OFF"));
 		}
@@ -306,7 +306,7 @@ void P_PluginListPart::setOneRow_configedPlugin(int row, QString pluginName, QWi
 
 
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - ËÑË÷²å¼ş£¨È«²¿²å¼ş£©
+		æ–‡ä»¶å¤¹æ’ä»¶ - æœç´¢æ’ä»¶ï¼ˆå…¨éƒ¨æ’ä»¶ï¼‰
 */
 void P_PluginListPart::btn_search(){
 
@@ -314,7 +314,7 @@ void P_PluginListPart::btn_search(){
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
 	this->m_p_historicalSearchRecord->addText(m_searchText);
 
-	// > È«²¿²å¼ş
+	// > å…¨éƒ¨æ’ä»¶
 	QList<C_ScriptAnnotation> data_list = QList<C_ScriptAnnotation>();
 	if (this->m_searchText == ""){
 		data_list = this->m_allSearchedData;
@@ -322,7 +322,7 @@ void P_PluginListPart::btn_search(){
 		for (int i = 0; i < this->m_allSearchedData.count(); i++){
 			C_ScriptAnnotation data = this->m_allSearchedData.at(i);
 
-			// > É¸Ñ¡Ìõ¼ş
+			// > ç­›é€‰æ¡ä»¶
 			if (data.getName().contains(this->m_searchText)){ data_list.append(data); continue; }
 			if (data.getPlugindesc_version().contains(this->m_searchText)){ data_list.append(data); continue; }
 			if (data.getPlugindesc_name().contains(this->m_searchText)){ data_list.append(data); continue; }
@@ -330,12 +330,12 @@ void P_PluginListPart::btn_search(){
 			if (data.getPlugindesc().contains(this->m_searchText)){ data_list.append(data); continue; }
 		}
 	}
-	this->m_allSearchedData = data_list;	//£¨ĞŞ¸ÄÊı¾İ·¶Î§£©
+	this->m_allSearchedData = data_list;	//ï¼ˆä¿®æ”¹æ•°æ®èŒƒå›´ï¼‰
 	this->refreshTableAuto(0, 99);
 }
 
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - Ë¢ĞÂ±í¸ñ£¨È«²¿²å¼ş£¬º¬ËÑË÷£©
+		æ–‡ä»¶å¤¹æ’ä»¶ - åˆ·æ–°è¡¨æ ¼ï¼ˆå…¨éƒ¨æ’ä»¶ï¼Œå«æœç´¢ï¼‰
 */
 void P_PluginListPart::refreshTable_searchedPlugin(int start_index, int end_index){
 	if (this->m_table == nullptr){ return; }
@@ -343,7 +343,7 @@ void P_PluginListPart::refreshTable_searchedPlugin(int start_index, int end_inde
 	if (start_index < 0){ start_index = 0; }
 	if (end_index <= 0){ return; }
 
-	// > ÏÔÊ¾µÄ²å¼ş
+	// > æ˜¾ç¤ºçš„æ’ä»¶
 	if (end_index >= this->m_allSearchedData.count()){ end_index = this->m_allSearchedData.count() - 1; }
 	this->m_table->setRowCount(end_index - start_index + 1);
 	for (int i = start_index; i <= end_index; i++){
@@ -355,19 +355,19 @@ void P_PluginListPart::refreshTable_searchedPlugin(int start_index, int end_inde
 		this->setOneRow_searchedPlugin(index, data.getName(), btn_part);
 	}
 
-	// > ¹ö¶¯ÌõÖÃ¶¥
+	// > æ»šåŠ¨æ¡ç½®é¡¶
 	ui.tableWidget_plugin->scrollToTop();
 }
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - Ìí¼ÓÒ»ĞĞ
+		æ–‡ä»¶å¤¹æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 */
 void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWidget* widget){
 
-	// > ²»±êÀ¶Çé¿ö£¨²»±êÀ¶Ö±½Ó°´ ÅäÖÃµÄ²å¼şĞĞ Ìí¼Ó£©
+	// > ä¸æ ‡è“æƒ…å†µï¼ˆä¸æ ‡è“ç›´æ¥æŒ‰ é…ç½®çš„æ’ä»¶è¡Œ æ·»åŠ ï¼‰
 	if( this->m_searchText.isEmpty() ){
 		this->setOneRow_configedPlugin(row, pluginName, widget);
 	
-	// > ±êÀ¶Çé¿ö
+	// > æ ‡è“æƒ…å†µ
 	}else{
 		C_PluginData* c_p = S_PluginDataContainer::getInstance()->getPluginData(pluginName);
 		C_ScriptAnnotation data = S_InformationDataContainer::getInstance()->getAnnotation(pluginName);
@@ -377,18 +377,18 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 		this->m_table->setItem(row, 0, first_item);
 		this->m_table->setCellWidget(row, 0, this->getLabelWithSign(pluginName, this->m_searchText));
 
-		// > ·Ö¸îÏß
+		// > åˆ†å‰²çº¿
 		if (pluginName.contains("---")){
 			this->m_table->setItem(row, 4, new QTableWidgetItem(data.getPlugindesc()));
 
-		// > ²å¼şĞĞ
+		// > æ’ä»¶è¡Œ
 		}else{
 
-			// > °´Å¥×é
+			// > æŒ‰é’®ç»„
 			if (widget != nullptr){
 				widget->setParent(this->m_table);
 				widget->setVisible(true);
-				this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//¡¾±ØĞë¼Ğ¸öÖĞ¼äwidget²ã¡¿
+				this->m_table->setCellWidget(row, 1, TTool::_CreateQWidget_containsTarget_(widget, 0));		//ã€å¿…é¡»å¤¹ä¸ªä¸­é—´widgetå±‚ã€‘
 			}
 			else{
 				qDebug() << row;
@@ -396,7 +396,7 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 			}
 			this->m_table->setItem(row, 1, new QTableWidgetItem());
 
-			// > ÎÄ±¾
+			// > æ–‡æœ¬
 			QString version = data.getPlugindesc_version();
 			if (version.isEmpty() == false){
 				this->m_table->setItem(row, 2, new QTableWidgetItem());
@@ -412,7 +412,7 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 				this->m_table->setCellWidget(row, 4, this->getLabelWithSign(data.getPlugindesc(), this->m_searchText));
 			}
 			if (c_p == nullptr){
-				this->m_table->setItem(row, 5, new QTableWidgetItem("Î´×°ÔØ"));			//£¨ÅäÖÃÖĞÎ´ÕÒµ½µÄ£¬±ê¼Ç Î´×°ÔØ£©
+				this->m_table->setItem(row, 5, new QTableWidgetItem("æœªè£…è½½"));			//ï¼ˆé…ç½®ä¸­æœªæ‰¾åˆ°çš„ï¼Œæ ‡è®° æœªè£…è½½ï¼‰
 			}else{
 				this->m_table->setItem(row, 5, new QTableWidgetItem(c_p->status ? "ON" : "OFF"));
 			}
@@ -421,7 +421,7 @@ void P_PluginListPart::setOneRow_searchedPlugin(int row, QString pluginName, QWi
 
 }
 /*-------------------------------------------------
-		ÎÄ¼ş¼Ğ²å¼ş - ½«Ö¸¶¨×Ö·û´®±êÀ¶
+		æ–‡ä»¶å¤¹æ’ä»¶ - å°†æŒ‡å®šå­—ç¬¦ä¸²æ ‡è“
 */
 QLabel* P_PluginListPart::getLabelWithSign(QString text, QString searching_text){
 	if (text.contains(searching_text) == false){
@@ -443,7 +443,7 @@ QLabel* P_PluginListPart::getLabelWithSign(QString text, QString searching_text)
 
 
 /*-------------------------------------------------
-		ÊôĞÔ - »ñÈ¡°´Å¥×é
+		å±æ€§ - è·å–æŒ‰é’®ç»„
 */
 P_PluginAttr_ButtonPart* P_PluginListPart::getButtonPartByIndex(int index){
 	if (index < 0){ return nullptr; }
@@ -452,14 +452,14 @@ P_PluginAttr_ButtonPart* P_PluginListPart::getButtonPartByIndex(int index){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ËÑË÷µÄ×Ö·û´®±»µã»÷
+		æ§ä»¶ - æœç´¢çš„å­—ç¬¦ä¸²è¢«ç‚¹å‡»
 */
 void P_PluginListPart::searchTextClicked(QString text){
 	ui.lineEdit_searchPlugin->setText(text);
 }
 
 /*-------------------------------------------------
-		±í¸ñÊÂ¼ş - Ë«»÷±í¸ñ½Úµã
+		è¡¨æ ¼äº‹ä»¶ - åŒå‡»è¡¨æ ¼èŠ‚ç‚¹
 */
 void P_PluginListPart::tableDoubled(QTableWidgetItem *item){
 	if (this->slot_block){ return; };
@@ -472,14 +472,14 @@ void P_PluginListPart::tableDoubled(QTableWidgetItem *item){
 	this->slot_block = false;
 }
 /*-------------------------------------------------
-		±í¸ñÊÂ¼ş - ÓÒ¼ü±í¸ñ½Úµã
+		è¡¨æ ¼äº‹ä»¶ - å³é”®è¡¨æ ¼èŠ‚ç‚¹
 */
 void P_PluginListPart::tableRightClicked(QPoint p){
 	if (this->slot_block){ return; };
 	this->slot_block = true;
 
 	if (this->m_table->itemAt(p) == nullptr){ return; }
-	QTableWidgetItem* item = this->m_table->itemAt(p);	//QPoint·µ»ØµÄÊÇÊó±ê×ø±êÖµ£¬treeWidget¿ÉÒÔÍ¨¹ıitemAt()»ñÈ¡µ½item¡£
+	QTableWidgetItem* item = this->m_table->itemAt(p);	//QPointè¿”å›çš„æ˜¯é¼ æ ‡åæ ‡å€¼ï¼ŒtreeWidgetå¯ä»¥é€šè¿‡itemAt()è·å–åˆ°itemã€‚
 
 	qDebug() << this->m_table->indexAt(p);
 	//...
@@ -490,7 +490,7 @@ void P_PluginListPart::tableRightClicked(QPoint p){
 
 
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 */
 void P_PluginListPart::ui_loadConfig(){
 
@@ -498,7 +498,7 @@ void P_PluginListPart::ui_loadConfig(){
 	this->m_p_historicalSearchRecord->setData(search_str.split("|||"));
 }
 /*-------------------------------------------------
-		¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+		å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 */
 void P_PluginListPart::ui_saveConfig(){
 

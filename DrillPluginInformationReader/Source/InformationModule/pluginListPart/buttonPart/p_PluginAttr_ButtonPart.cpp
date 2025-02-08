@@ -1,17 +1,17 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "p_PluginAttr_ButtonPart.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/Utils/Common/TTool.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şÊôĞÔ °´Å¥¿é.cpp
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ’ä»¶å±æ€§ æŒ‰é’®å—.cpp
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 
-		ËµÃ÷£º		²å¼şÊôĞÔÏÔÊ¾ÓÃµÄ°´Å¥¿é¡£
+		è¯´æ˜ï¼š		æ’ä»¶å±æ€§æ˜¾ç¤ºç”¨çš„æŒ‰é’®å—ã€‚
 -----==========================================================-----
 */
 P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
@@ -20,7 +20,7 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----³õÊ¼»¯²ÎÊı
+	//----åˆå§‹åŒ–å‚æ•°
 	this->m_w_PluginAttr_Docs = nullptr;
 	this->m_w_PluginAttr_Src = nullptr;
 	this->m_w_PluginAttr_HighConsumption = nullptr;
@@ -28,7 +28,7 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
 	this->m_w_PluginAttr_ForeignKey = nullptr;
 
 	//-----------------------------------
-	//----³õÊ¼»¯ui
+	//----åˆå§‹åŒ–ui
 	ui.toolButton_src->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_src.png"));
 	ui.toolButton_word->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_word.png"));
 	ui.toolButton_highConsumption->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_highConsumption.png"));
@@ -36,7 +36,7 @@ P_PluginAttr_ButtonPart::P_PluginAttr_ButtonPart(QWidget *parent)
 	ui.toolButton_foreignKey->setIcon(QIcon(QRC_IconSrcPath + "/menu/attr_foreignKey.png"));
 
 	//-----------------------------------
-	//----ÊÂ¼ş°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 	connect(ui.toolButton_word, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_docs);
 	connect(ui.toolButton_src, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_src);
 	connect(ui.toolButton_highConsumption, &QToolButton::clicked, this, &P_PluginAttr_ButtonPart::btn_highConsumption);
@@ -50,7 +50,7 @@ P_PluginAttr_ButtonPart::~P_PluginAttr_ButtonPart(){
 
 
 /*-------------------------------------------------
-		¿Ø¼ş - Òş²ØÈ«²¿
+		æ§ä»¶ - éšè—å…¨éƒ¨
 */
 void P_PluginAttr_ButtonPart::hideAll(){
 	ui.toolButton_src->hide();
@@ -61,48 +61,48 @@ void P_PluginAttr_ButtonPart::hideAll(){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ÉèÖÃµ±Ç°²å¼şÃû
+		æ§ä»¶ - è®¾ç½®å½“å‰æ’ä»¶å
 */
 void P_PluginAttr_ButtonPart::setPluginName(QString pluginName){
 	this->m_pluginName = pluginName;
 	this->refreshBtnVisible();
 }
 /*-------------------------------------------------
-		¿Ø¼ş - »ñÈ¡µ±Ç°²å¼şÃû
+		æ§ä»¶ - è·å–å½“å‰æ’ä»¶å
 */
 QString P_PluginAttr_ButtonPart::getPluginName(){
 	return this->m_pluginName;
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ¸ù¾İÊôĞÔÏÔÊ¾°´Å¥
+		æ§ä»¶ - æ ¹æ®å±æ€§æ˜¾ç¤ºæŒ‰é’®
 */
 void P_PluginAttr_ButtonPart::refreshBtnVisible(){
 	this->hideAll();
 	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(this->m_pluginName);
 	if (detail == nullptr){ return; }
 
-	// > ×ÊÔ´Â·¾¶
+	// > èµ„æºè·¯å¾„
 	ui.toolButton_src->setVisible(detail->getSrc() != nullptr);
 
-	// > ²å¼şÎÄµµ£¨´ËÊı¾İÀàÒ»¿ªÊ¼¾Í´´½¨ÁË£©
+	// > æ’ä»¶æ–‡æ¡£ï¼ˆæ­¤æ•°æ®ç±»ä¸€å¼€å§‹å°±åˆ›å»ºäº†ï¼‰
 	ui.toolButton_word->setVisible(detail->getDocs()->hasAnyDocx());
 
-	// > ¸ßÏûºÄ
+	// > é«˜æ¶ˆè€—
 	C_ScriptHelp_Performance* performance = detail->getPerformance();
 	if (performance != nullptr &&
 		performance->isHighCost()){
 		ui.toolButton_highConsumption->setVisible(true);
 	}
 	
-	// > Ğ¡¹¤¾ßÖ§³Ö
+	// > å°å·¥å…·æ”¯æŒ
 	//...
 
-	// > Íâ¼ü
+	// > å¤–é”®
 	//...
 
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ×ÊÔ´°´Å¥
+		æ§ä»¶ - èµ„æºæŒ‰é’®
 */
 void P_PluginAttr_ButtonPart::setWindowDocs(W_PluginAttr_Docs* w){
 	this->m_w_PluginAttr_Docs = w;
@@ -121,7 +121,7 @@ void P_PluginAttr_ButtonPart::setWindowForeignKey(W_PluginAttr_ForeignKey* w){
 }
 
 /*-------------------------------------------------
-		¿Ø¼ş - ×ÊÔ´°´Å¥
+		æ§ä»¶ - èµ„æºæŒ‰é’®
 */
 void P_PluginAttr_ButtonPart::btn_docs(){
 	if (this->m_w_PluginAttr_Docs == nullptr){ return; }
@@ -149,7 +149,7 @@ void P_PluginAttr_ButtonPart::btn_foreignKey(){
 	this->showWindowAlone(this->m_w_PluginAttr_ForeignKey);
 }
 /*-------------------------------------------------
-		¿Ø¼ş - ÏÔÊ¾µ¥Ò»´°¿Ú
+		æ§ä»¶ - æ˜¾ç¤ºå•ä¸€çª—å£
 */
 void P_PluginAttr_ButtonPart::showWindowAlone(QDialog* w){
 	if (this->m_w_PluginAttr_Docs == nullptr){ return; }
@@ -187,14 +187,14 @@ void P_PluginAttr_ButtonPart::showWindowAlone(QDialog* w){
 
 
 /*-------------------------------------------------
-		¿é - ±¾µØÊı¾İ -> uiÊı¾İ
+		å— - æœ¬åœ°æ•°æ® -> uiæ•°æ®
 */
 void P_PluginAttr_ButtonPart::putDataToUi(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }
 /*-------------------------------------------------
-		¿é - uiÊı¾İ -> ±¾µØÊı¾İ
+		å— - uiæ•°æ® -> æœ¬åœ°æ•°æ®
 */
 void P_PluginAttr_ButtonPart::putUiToData(){
-	//£¨ÔİÎŞ£©
+	//ï¼ˆæš‚æ— ï¼‰
 }

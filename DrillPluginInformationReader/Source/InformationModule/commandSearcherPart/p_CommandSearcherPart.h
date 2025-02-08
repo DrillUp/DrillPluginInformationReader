@@ -1,22 +1,22 @@
-#ifndef P_CommandSearcherPart_H
+ï»¿#ifndef P_CommandSearcherPart_H
 #define P_CommandSearcherPart_H
 
 #include <QtWidgets>
 #include "ui_P_CommandSearcherPart.h"
 
 #include "helpDetailPart/p_ScriptHelp_CommandSearchCell.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/Utils/widgetForm/historicalSearchRecord/p_historicalSearchRecord.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
 /*
 -----==========================================================-----
-		Àà£º		Ö¸ÁîËÑË÷Æ÷ ±à¼­¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æŒ‡ä»¤æœç´¢å™¨ ç¼–è¾‘å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_CommandSearcherPart : public QWidget
@@ -28,39 +28,39 @@ class P_CommandSearcherPart : public QWidget
 		~P_CommandSearcherPart();
 		
 	//-----------------------------------
-	//----ËÑË÷Ö¸Áî
+	//----æœç´¢æŒ‡ä»¤
 	protected:
-		QString m_searchText;							//ËÑË÷µÄÎÄ±¾
-		QList<C_ScriptAnnotation> m_allSearchedData;	//µ±Ç°Êı¾İ£¨ÎÄ¼ş¼Ğ²å¼ş£©
+		QString m_searchText;							//æœç´¢çš„æ–‡æœ¬
+		QList<C_ScriptAnnotation> m_allSearchedData;	//å½“å‰æ•°æ®ï¼ˆæ–‡ä»¶å¤¹æ’ä»¶ï¼‰
 	private:
-										//ËÑË÷Ö¸Áî - ËÑË÷
+										//æœç´¢æŒ‡ä»¤ - æœç´¢
 		void btn_search();
-										//ËÑË÷Ö¸Áî - Ë¢ĞÂ¿Ø¼ş
+										//æœç´¢æŒ‡ä»¤ - åˆ·æ–°æ§ä»¶
 		void refreshCellAuto( int start_index, int end_index );
 
 	//-----------------------------------
-	//----ÊôĞÔ
+	//----å±æ€§
 	protected:
-		QList<P_ScriptHelp_CommandSearchCell*> m_cellPartList;					//ÊôĞÔ°´Å¥×é
+		QList<P_ScriptHelp_CommandSearchCell*> m_cellPartList;					//å±æ€§æŒ‰é’®ç»„
 	protected:
-										//ÊôĞÔ - »ñÈ¡°´Å¥×é
+										//å±æ€§ - è·å–æŒ‰é’®ç»„
 		P_ScriptHelp_CommandSearchCell* getButtonPartByIndex(int index);
 
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
-		P_PageNavigator* m_p_PageNavigator;						//·ÖÒ³¿Ø¼ş
-		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//ÀúÊ·²éÑ¯¿Ø¼ş
+		P_PageNavigator* m_p_PageNavigator;						//åˆ†é¡µæ§ä»¶
+		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//å†å²æŸ¥è¯¢æ§ä»¶
 	public slots:
-										//¿Ø¼ş - ËÑË÷µÄ×Ö·û´®±»µã»÷
+										//æ§ä»¶ - æœç´¢çš„å­—ç¬¦ä¸²è¢«ç‚¹å‡»
 		void searchTextClicked(QString text);
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 		void ui_loadConfig();
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 		void ui_saveConfig();
 	private:
 		Ui::P_CommandSearcherPart ui;

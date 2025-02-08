@@ -54,7 +54,7 @@ P_PluginBatchUpdatePart::~P_PluginBatchUpdatePart(){
 		控件 - 主工程 - 填入当前工程
 */
 void P_PluginBatchUpdatePart::btn_cur_fillCur(){
-	this->m_cur_project = S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData();
+	this->m_cur_project = S_RmmvProjectDataContainer::getInstance()->getData();
 	ui.lineEdit_curProject->setText(this->m_cur_project.getName());
 }
 /*-------------------------------------------------
@@ -71,7 +71,7 @@ void P_PluginBatchUpdatePart::btn_cur_select(){
 		控件 - 目标工程 - 填入当前工程
 */
 void P_PluginBatchUpdatePart::btn_tar_fillCur(){
-	this->m_tar_project = S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData();
+	this->m_tar_project = S_RmmvProjectDataContainer::getInstance()->getData();
 	ui.lineEdit_tarProject->setText(this->m_tar_project.getName());
 }
 /*-------------------------------------------------
@@ -119,7 +119,7 @@ bool P_PluginBatchUpdatePart::reloadPluginData(){
 	this->m_tarPluginData.clear();
 
 	// > 准备数据（主工程）
-	if (this->m_cur_project == S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData()){
+	if (this->m_cur_project == S_RmmvProjectDataContainer::getInstance()->getData()){
 		this->m_curPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	}else{
 		// > 读取插件文件
@@ -136,7 +136,7 @@ bool P_PluginBatchUpdatePart::reloadPluginData(){
 	}
 
 	// > 准备数据（目标工程）
-	if (this->m_tar_project == S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData()){
+	if (this->m_tar_project == S_RmmvProjectDataContainer::getInstance()->getData()){
 		this->m_tarPluginData = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	}else{
 		// > 读取插件文件

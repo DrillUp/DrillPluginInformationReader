@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "p_ExcelDataGenerator.h"
 
-#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/InformationModule/LinkDirector/S_LinkDirector.h"
 #include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"

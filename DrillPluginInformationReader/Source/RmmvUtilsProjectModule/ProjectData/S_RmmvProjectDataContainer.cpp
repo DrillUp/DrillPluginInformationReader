@@ -30,13 +30,13 @@ S_RmmvProjectDataContainer* S_RmmvProjectDataContainer::getInstance() {
 /*-------------------------------------------------
 		工程数据 - 修改
 */
-void S_RmmvProjectDataContainer::modify(C_RmmvProjectData data){
+void S_RmmvProjectDataContainer::modifyData(C_RmmvProjectData data){
 	this->data_RmmvProjectData = data;
 }
 /*-------------------------------------------------
 		工程数据 - 获取
 */
-C_RmmvProjectData S_RmmvProjectDataContainer::getRmmvProjectData(){
+C_RmmvProjectData S_RmmvProjectDataContainer::getData(){
 	return this->data_RmmvProjectData;
 }
 

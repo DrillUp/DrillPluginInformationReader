@@ -6,7 +6,7 @@
 #include "Source/ProjectModule/StorageGlobal/S_IniManager.h"
 #include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/InformationModule/pluginListPart/p_PluginListPart.h"
 #include "Source/InformationModule/commandSearcherPart/p_CommandSearcherPart.h"
 
@@ -179,7 +179,7 @@ void DrillPluginInformationReader::btn_importProject(){
 	ui.widget_information->setEnabled(true);
 	
 	// > 全局工程参数变化
-	S_RmmvProjectDataContainer::getInstance()->modify(this->m_temp_data);
+	S_RmmvProjectDataContainer::getInstance()->modifyData(this->m_temp_data);
 
 	// > 读取插件文件
 	QFileInfo plugin_info = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_PluginsData();
@@ -276,7 +276,7 @@ void DrillPluginInformationReader::ui_loadConfig(){
 		QJsonObject project_obj = jsonDocument.object();
 		S_RmmvProjectDataContainer::getInstance()->setAllDataFromJsonObject(project_obj);
 
-		this->m_temp_data = S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData();
+		this->m_temp_data = S_RmmvProjectDataContainer::getInstance()->getData();
 	}
 }
 /* --------------------------------------------------------------

@@ -1,19 +1,19 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "W_PluginAttr_Src.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/Utils/Common/TTool.h"
 
 
 /*
 -----==========================================================-----
-		Àà£º		ÊôÐÔËµÃ÷´°¿Ú ×ÊÔ´Â·¾¶.cpp
-		ËùÊôÄ£¿é£º	ÐÅÏ¢Ä£¿é
-		¹¦ÄÜ£º		ÊôÐÔËµÃ÷´°¿Ú¡£
+		ç±»ï¼š		å±žæ€§è¯´æ˜Žçª—å£ èµ„æºè·¯å¾„.cpp
+		æ‰€å±žæ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
+		åŠŸèƒ½ï¼š		å±žæ€§è¯´æ˜Žçª—å£ã€‚
 
-		Ê¹ÓÃ·½·¨£º
-				>´ò¿ª´°¿Ú
+		ä½¿ç”¨æ–¹æ³•ï¼š
+				>æ‰“å¼€çª—å£
 					W_PluginAttr_Src d;
 					d.exec();
 -----==========================================================-----
@@ -24,10 +24,10 @@ W_PluginAttr_Src::W_PluginAttr_Src(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----ÊÂ¼þ°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 
 	//-----------------------------------
-	//----ui³õÊ¼»¯
+	//----uiåˆå§‹åŒ–
 	this->m_p_src = new P_ScriptHelp_Src(this);
 	ui.verticalLayout_src->addWidget(this->m_p_src);
 
@@ -40,10 +40,10 @@ W_PluginAttr_Src::~W_PluginAttr_Src(){
 
 
 /*-------------------------------------------------
-		¿Ø¼þ - ÏÔÊ¾ÐÅÏ¢ - ×ÊÔ´Â·¾¶
+		æŽ§ä»¶ - æ˜¾ç¤ºä¿¡æ¯ - èµ„æºè·¯å¾„
 */
 void W_PluginAttr_Src::showInformation_src(QString pluginName){
-	this->setWindowTitle(pluginName + "ÊôÐÔ");
+	this->setWindowTitle(pluginName + "å±žæ€§");
 
 	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(pluginName);
 	if (detail == nullptr){

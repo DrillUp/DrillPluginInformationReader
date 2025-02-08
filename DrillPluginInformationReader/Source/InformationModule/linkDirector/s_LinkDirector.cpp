@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "s_LinkDirector.h"
 
-#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 
 /*
@@ -39,7 +39,7 @@ S_LinkDirector* S_LinkDirector::getInstance() {
 		数据 - 获取工程路径
 */
 QString S_LinkDirector::getProjectDir(){
-	return S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData().getRootPath();
+	return S_RmmvProjectDataContainer::getInstance()->getData().getRootPath();
 }
 /*-------------------------------------------------
 		数据 - 获取文档路径
@@ -52,7 +52,7 @@ QString S_LinkDirector::getDocDir(){
 	}
 
 	// > 示例的路径
-	QString root_path = S_RmmvProjectDataContainer::getInstance()->getRmmvProjectData().getRootPath();
+	QString root_path = S_RmmvProjectDataContainer::getInstance()->getData().getRootPath();
 	QFileInfo fileinfo(root_path);
 	QString p_path = fileinfo.absolutePath();	//（上一级文件夹）
 	QFileInfo doc_info(p_path + "/插件详细手册");

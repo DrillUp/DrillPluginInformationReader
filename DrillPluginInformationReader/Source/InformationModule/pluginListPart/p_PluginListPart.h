@@ -1,4 +1,4 @@
-#ifndef P_PluginListPart_H
+ï»¿#ifndef P_PluginListPart_H
 #define P_PluginListPart_H
 
 #include <QtWidgets>
@@ -12,18 +12,18 @@
 #include "buttonPart/w_PluginAttr_ForeignKey.h"
 
 #include "Source/RmmvUtilsPluginModule/storageData/s_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/Utils/widgetForm/historicalSearchRecord/p_historicalSearchRecord.h"
 #include "Source/Utils/widgetForm/pageNavigator/p_PageNavigator.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şÁĞ±í ±à¼­¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ’ä»¶åˆ—è¡¨ ç¼–è¾‘å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_PluginListPart : public QWidget
@@ -36,91 +36,91 @@ class P_PluginListPart : public QWidget
 
 
 	//-----------------------------------
-	//----±í¸ñ½á¹¹
+	//----è¡¨æ ¼ç»“æ„
 	public:
-		bool slot_block;					//ÊÂ¼ş×èÈû
-		QTableWidget* m_table;				//±í¸ñ½á¹¹
+		bool slot_block;					//äº‹ä»¶é˜»å¡
+		QTableWidget* m_table;				//è¡¨æ ¼ç»“æ„
 	public slots:
-										//±í¸ñ - ³õÊ¼»¯
+										//è¡¨æ ¼ - åˆå§‹åŒ–
 		void initTable(QTableWidget* table);
-										//±í¸ñ - Ë¢ĞÂºáÏò¿í¶È
+										//è¡¨æ ¼ - åˆ·æ–°æ¨ªå‘å®½åº¦
 		void refreshHorizontalSize(int table_width);
-										//±í¸ñ - ÇåÀíÏî
+										//è¡¨æ ¼ - æ¸…ç†é¡¹
 		void clearTableItem();
-										//±í¸ñ - ÏÂÀ­¿ò±ä»¯
+										//è¡¨æ ¼ - ä¸‹æ‹‰æ¡†å˜åŒ–
 		void modeChanged(QString mode_text);
-										//±í¸ñ - ÖØË¢±í¸ñ
+										//è¡¨æ ¼ - é‡åˆ·è¡¨æ ¼
 		void rebuildTable();
-										//±í¸ñ - Ë¢ĞÂ±í¸ñ£¨×Ô¶¯£©
+										//è¡¨æ ¼ - åˆ·æ–°è¡¨æ ¼ï¼ˆè‡ªåŠ¨ï¼‰
 		void refreshTableAuto( int start_index, int end_index );
 		
 
 	//-----------------------------------
-	//----ÅäÖÃµÄ²å¼ş
+	//----é…ç½®çš„æ’ä»¶
 	protected:
-		QList<C_PluginData*> m_allConfigedData;			//µ±Ç°Êı¾İ£¨ÅäÖÃµÄ²å¼ş£©
+		QList<C_PluginData*> m_allConfigedData;			//å½“å‰æ•°æ®ï¼ˆé…ç½®çš„æ’ä»¶ï¼‰
 	private:
-										//ÅäÖÃµÄ²å¼ş - ÏÂÀ­¿ò±ä»¯
+										//é…ç½®çš„æ’ä»¶ - ä¸‹æ‹‰æ¡†å˜åŒ–
 		void pluginTypeChanged(QString type_text);
-										//ÅäÖÃµÄ²å¼ş - Ë¢ĞÂ±í¸ñ£¨ÅäÖÃµÄ²å¼ş£¬º¬ËÑË÷£©
+										//é…ç½®çš„æ’ä»¶ - åˆ·æ–°è¡¨æ ¼ï¼ˆé…ç½®çš„æ’ä»¶ï¼Œå«æœç´¢ï¼‰
 		void refreshTable_configedPlugin( int start_index, int end_index );
-										//ÅäÖÃµÄ²å¼ş - Ìí¼ÓÒ»ĞĞ
+										//é…ç½®çš„æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 		void setOneRow_configedPlugin(int row, QString pluginName, QWidget* widget = nullptr);
 
 	//-----------------------------------
-	//----ÎÄ¼ş¼Ğ²å¼ş
+	//----æ–‡ä»¶å¤¹æ’ä»¶
 	protected:
-		QString m_searchText;							//ËÑË÷µÄÎÄ±¾
-		QList<C_ScriptAnnotation> m_allSearchedData;	//µ±Ç°Êı¾İ£¨ÎÄ¼ş¼Ğ²å¼ş£©
+		QString m_searchText;							//æœç´¢çš„æ–‡æœ¬
+		QList<C_ScriptAnnotation> m_allSearchedData;	//å½“å‰æ•°æ®ï¼ˆæ–‡ä»¶å¤¹æ’ä»¶ï¼‰
 	private:
-										//ÎÄ¼ş¼Ğ²å¼ş - ËÑË÷²å¼ş
+										//æ–‡ä»¶å¤¹æ’ä»¶ - æœç´¢æ’ä»¶
 		void btn_search();
-										//ÎÄ¼ş¼Ğ²å¼ş - Ë¢ĞÂ±í¸ñ£¨ÎÄ¼ş¼Ğ²å¼ş£¬º¬ËÑË÷£©
+										//æ–‡ä»¶å¤¹æ’ä»¶ - åˆ·æ–°è¡¨æ ¼ï¼ˆæ–‡ä»¶å¤¹æ’ä»¶ï¼Œå«æœç´¢ï¼‰
 		void refreshTable_searchedPlugin( int start_index, int end_index );
-										//ÎÄ¼ş¼Ğ²å¼ş - Ìí¼ÓÒ»ĞĞ
+										//æ–‡ä»¶å¤¹æ’ä»¶ - æ·»åŠ ä¸€è¡Œ
 		void setOneRow_searchedPlugin(int row, QString pluginName, QWidget* widget = nullptr);
-										//ÎÄ¼ş¼Ğ²å¼ş - ½«Ö¸¶¨×Ö·û´®±êÀ¶
+										//æ–‡ä»¶å¤¹æ’ä»¶ - å°†æŒ‡å®šå­—ç¬¦ä¸²æ ‡è“
 		QLabel* getLabelWithSign(QString text, QString searching_text);
 
 	//-----------------------------------
-	//----ÊôĞÔ
+	//----å±æ€§
 	protected:
-		QList<P_PluginAttr_ButtonPart*> m_btnPartList;					//ÊôĞÔ°´Å¥×é
-		W_PluginAttr_Docs* m_w_PluginAttr_Docs;							//ÊôĞÔËµÃ÷´°¿Ú
-		W_PluginAttr_Src* m_w_PluginAttr_Src;							//ÊôĞÔËµÃ÷´°¿Ú
-		W_PluginAttr_HighConsumption* m_w_PluginAttr_HighConsumption;	//ÊôĞÔËµÃ÷´°¿Ú
-		W_PluginAttr_HasTool* m_w_PluginAttr_HasTool;					//ÊôĞÔËµÃ÷´°¿Ú
-		W_PluginAttr_ForeignKey* m_w_PluginAttr_ForeignKey;				//ÊôĞÔËµÃ÷´°¿Ú
+		QList<P_PluginAttr_ButtonPart*> m_btnPartList;					//å±æ€§æŒ‰é’®ç»„
+		W_PluginAttr_Docs* m_w_PluginAttr_Docs;							//å±æ€§è¯´æ˜çª—å£
+		W_PluginAttr_Src* m_w_PluginAttr_Src;							//å±æ€§è¯´æ˜çª—å£
+		W_PluginAttr_HighConsumption* m_w_PluginAttr_HighConsumption;	//å±æ€§è¯´æ˜çª—å£
+		W_PluginAttr_HasTool* m_w_PluginAttr_HasTool;					//å±æ€§è¯´æ˜çª—å£
+		W_PluginAttr_ForeignKey* m_w_PluginAttr_ForeignKey;				//å±æ€§è¯´æ˜çª—å£
 	protected:
-										//ÊôĞÔ - »ñÈ¡°´Å¥×é
+										//å±æ€§ - è·å–æŒ‰é’®ç»„
 		P_PluginAttr_ButtonPart* getButtonPartByIndex(int index);
 
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
-		P_PageNavigator* m_p_PageNavigator;						//·ÖÒ³¿Ø¼ş
-		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//ÀúÊ·²éÑ¯¿Ø¼ş
+		P_PageNavigator* m_p_PageNavigator;						//åˆ†é¡µæ§ä»¶
+		P_HistoricalSearchRecord* m_p_historicalSearchRecord;	//å†å²æŸ¥è¯¢æ§ä»¶
 	public slots:
-										//¿Ø¼ş - ËÑË÷µÄ×Ö·û´®±»µã»÷
+										//æ§ä»¶ - æœç´¢çš„å­—ç¬¦ä¸²è¢«ç‚¹å‡»
 		void searchTextClicked(QString text);
 		
 	//-----------------------------------
-	//----±í¸ñÊÂ¼ş
+	//----è¡¨æ ¼äº‹ä»¶
 	public slots:
-										//±í¸ñÊÂ¼ş - Ë«»÷±í¸ñ
+										//è¡¨æ ¼äº‹ä»¶ - åŒå‡»è¡¨æ ¼
 		void tableDoubled(QTableWidgetItem *item);
-										//±í¸ñÊÂ¼ş - ÓÒ¼ü±í¸ñ
+										//è¡¨æ ¼äº‹ä»¶ - å³é”®è¡¨æ ¼
 		void tableRightClicked(QPoint p);
 	signals:
-										//ĞÅºÅ - ²å¼şÑ¡ÖĞ
+										//ä¿¡å· - æ’ä»¶é€‰ä¸­
 		void pluginTriggered(QString plugin_name);
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 		void ui_loadConfig();
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 		void ui_saveConfig();
 	private:
 		Ui::P_PluginListPart ui;

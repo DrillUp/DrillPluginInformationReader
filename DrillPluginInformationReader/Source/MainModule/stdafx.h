@@ -1,4 +1,4 @@
-#include <QtWidgets>
+﻿#include <QtWidgets>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QtCore/qmath.h>
@@ -12,4 +12,4 @@
 #define QRC_IconSrcPath QString(":/DrillPluginInformationReader/Resources/icons")
 #pragma execution_character_set("utf-8")
 
-#define DRILL_VERSION "v1.03"
+#define DRILL_VERSION "v1.04"

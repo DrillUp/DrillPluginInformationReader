@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "p_CAFunctionCheck.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/InformationModule/linkDirector/s_LinkDirector.h"
 
 #include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"

@@ -1,4 +1,4 @@
-#ifndef P_PluginDetailPart_H
+ï»¿#ifndef P_PluginDetailPart_H
 #define P_PluginDetailPart_H
 
 #include <QtWidgets>
@@ -11,16 +11,16 @@
 #include "helpDetailPart/p_ScriptHelp_Command.h"
 #include "helpDetailPart/p_ScriptHelp_Knowledge.h"
 #include "helpDetailPart/p_ScriptHelp_Performance.h"
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 
 /*
 -----==========================================================-----
-		Àà£º		²å¼şĞÅÏ¢ ±à¼­¿é.h
-		×÷Õß£º		drill_up
-		ËùÊôÄ£¿é£º	ĞÅÏ¢Ä£¿é
+		ç±»ï¼š		æ’ä»¶ä¿¡æ¯ ç¼–è¾‘å—.h
+		ä½œè€…ï¼š		drill_up
+		æ‰€å±æ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
 		
-		Ö÷¹¦ÄÜ£º	ĞÅÏ¢Ä£¿éµÄÖ÷±à¼­¿é½á¹¹¡£
-					£¨ÏêÏ¸¼ûcpp£©
+		ä¸»åŠŸèƒ½ï¼š	ä¿¡æ¯æ¨¡å—çš„ä¸»ç¼–è¾‘å—ç»“æ„ã€‚
+					ï¼ˆè¯¦ç»†è§cppï¼‰
 -----==========================================================-----
 */
 class P_PluginDetailPart : public QWidget
@@ -32,7 +32,7 @@ class P_PluginDetailPart : public QWidget
 		~P_PluginDetailPart();
 		
 	//-----------------------------------
-	//----¿Ø¼ş
+	//----æ§ä»¶
 	public:
 		QString m_curPluginName;
 		QString m_curOrgContext;
@@ -44,24 +44,24 @@ class P_PluginDetailPart : public QWidget
 		P_ScriptHelp_Knowledge* m_p_ScriptHelp_Knowledge;
 		P_ScriptHelp_Performance* m_p_ScriptHelp_Performance;
 	public slots: 
-										//¿Ø¼ş - ÏÔÊ¾Ö¸¶¨²å¼şÏêÏ¸ĞÅÏ¢
+										//æ§ä»¶ - æ˜¾ç¤ºæŒ‡å®šæ’ä»¶è¯¦ç»†ä¿¡æ¯
 		void showPluginDetail(QString plugin_name );
-										//¿Ø¼ş - ±à¼­²å¼ş
+										//æ§ä»¶ - ç¼–è¾‘æ’ä»¶
 		void btn_editPlugin();
-										//¿Ø¼ş - Õ¹¿ªÔ­ÎÄ
+										//æ§ä»¶ - å±•å¼€åŸæ–‡
 		void btn_expandOrg();
 	signals:
-										//¿Ø¼ş - Ñ¡Ôñ Õ¹¿ªÔ­ÎÄ
+										//æ§ä»¶ - é€‰æ‹© å±•å¼€åŸæ–‡
 		void selected_PluginDetailOrgContextPart();
-										//¿Ø¼ş - Ô­ÎÄ±ä»¯
+										//æ§ä»¶ - åŸæ–‡å˜åŒ–
 		void orgContextChanged(QString context);
 
 	//-----------------------------------
-	//----¿é
+	//----å—
 	public:
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI¶ÁÈ¡
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIè¯»å–
 		void ui_loadConfig();
-										//¿é - ÓÃ»§×Ô¶¨ÒåUI´æ´¢
+										//å— - ç”¨æˆ·è‡ªå®šä¹‰UIå­˜å‚¨
 		void ui_saveConfig();
 	private:
 		Ui::P_PluginDetailPart ui;

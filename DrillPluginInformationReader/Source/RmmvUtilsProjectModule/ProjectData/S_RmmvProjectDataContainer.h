@@ -30,9 +30,9 @@ class S_RmmvProjectDataContainer : public QObject, public S_StorageManagerTempla
 		C_RmmvProjectData data_RmmvProjectData;
 	public:
 										//工程数据 - 修改
-		void modify(C_RmmvProjectData data);
+		void modifyData(C_RmmvProjectData data);
 										//工程数据 - 获取
-		C_RmmvProjectData getRmmvProjectData();
+		C_RmmvProjectData getData();
 	
 
 	//-----------------------------------

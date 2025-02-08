@@ -1,5 +1,5 @@
 ﻿#include "stdafx.h"
-#include "s_InformationDataContainer.h"
+#include "S_InformationDataContainer.h"
 
 #include "Source/RmmvUtilsProjectModule/ProjectData/S_RmmvProjectDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/S_ScriptAnnotationReader.h"

@@ -1,17 +1,17 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "c_DesignTipGenerator.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelp_Subsection.h"
 
 /*
 -----==========================================================-----
-		Àà£º		Áé¸ĞÉú³ÉÆ÷-²å¼şÁé¸Ğ¼¯ºÏ Êı¾İÀà.cpp
-		ËùÊôÄ£¿é£º	²å¼şÄ£¿é
-		¹¦ÄÜ£º		Áé¸ĞÉú³ÉÆ÷ÖĞÓÃµ½µÄÊı¾İ¡£
+		ç±»ï¼š		çµæ„Ÿç”Ÿæˆå™¨-æ’ä»¶çµæ„Ÿé›†åˆ æ•°æ®ç±».cpp
+		æ‰€å±æ¨¡å—ï¼š	æ’ä»¶æ¨¡å—
+		åŠŸèƒ½ï¼š		çµæ„Ÿç”Ÿæˆå™¨ä¸­ç”¨åˆ°çš„æ•°æ®ã€‚
 
-		ËµÃ÷£º		´ËÊı¾İÀàµ¥¶À´æ´¢£¬´Ó ÒÑ¶ÁÈ¡µÄËùÓĞ²å¼ş°ïÖúĞÅÏ¢ ÖĞ½øĞĞÈ¡²Ä¡£
+		è¯´æ˜ï¼š		æ­¤æ•°æ®ç±»å•ç‹¬å­˜å‚¨ï¼Œä» å·²è¯»å–çš„æ‰€æœ‰æ’ä»¶å¸®åŠ©ä¿¡æ¯ ä¸­è¿›è¡Œå–æã€‚
 -----==========================================================-----
 */
 C_DesignTipGenerator::C_DesignTipGenerator(){
@@ -20,29 +20,29 @@ C_DesignTipGenerator::C_DesignTipGenerator(){
 C_DesignTipGenerator::~C_DesignTipGenerator(){
 }
 /*-------------------------------------------------
-		Êı¾İ - ¿ÕÅĞ¶Ï
+		æ•°æ® - ç©ºåˆ¤æ–­
 */
 bool C_DesignTipGenerator::isNull(){
 	return this->tip_list.count() == 0;
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡µ¥Ìõ
+		æ•°æ® - è·å–å•æ¡
 */
 C_DesignTip_Cell C_DesignTipGenerator::getCellByIndex(int index){
 	if (index >= this->tip_list.count() ){ return C_DesignTip_Cell(); }
 	return this->tip_list.at(index);
 }
 /*-------------------------------------------------
-		Êı¾İ - »ñÈ¡ÊıÁ¿
+		æ•°æ® - è·å–æ•°é‡
 */
 int C_DesignTipGenerator::count(){
 	return this->tip_list.count();
 }
 /*-------------------------------------------------
-		Êı¾İ - ÅĞ¶ÏÊÇ·ñÒÑº¬Ä³ÄÚÈİ£¨·ÀÖ¹¶à¸ö²å¼şµÄÉè¼ÆÄÚÈİÖØ¸´£©
+		æ•°æ® - åˆ¤æ–­æ˜¯å¦å·²å«æŸå†…å®¹ï¼ˆé˜²æ­¢å¤šä¸ªæ’ä»¶çš„è®¾è®¡å†…å®¹é‡å¤ï¼‰
 */
 bool C_DesignTipGenerator::hasContext(QString context){
-	if (context.isEmpty()){ return true; }	//£¨¿ÕÄÚÈİÖ±½ÓÅĞ¶¨ÎªÒÑº¬£©
+	if (context.isEmpty()){ return true; }	//ï¼ˆç©ºå†…å®¹ç›´æ¥åˆ¤å®šä¸ºå·²å«ï¼‰
 	for (int i = 0; i < this->tip_list.count(); i++){
 		C_DesignTip_Cell design_tip = this->tip_list.at(i);
 		if (design_tip.context == context){
@@ -52,33 +52,33 @@ bool C_DesignTipGenerator::hasContext(QString context){
 	return false;
 }
 /*-------------------------------------------------
-		Êı¾İ - ¼¯ºÏ³õÊ¼»¯
+		æ•°æ® - é›†åˆåˆå§‹åŒ–
 */
 void C_DesignTipGenerator::initData(){
 	
-	// > Çå¿Õµ±Ç°ÈİÆ÷
+	// > æ¸…ç©ºå½“å‰å®¹å™¨
 	this->tip_list.clear();
 
-	// > ²å¼şÊı¾İ±éÀú
+	// > æ’ä»¶æ•°æ®éå†
 	QList<C_ScriptAnnotation> s_data_tank = S_InformationDataContainer::getInstance()->getAnnotationTank();
 	for (int i = 0; i < s_data_tank.count(); i++){
 		C_ScriptAnnotation s_data = s_data_tank.at(i);
 
-		// > °ïÖúÊı¾İ
+		// > å¸®åŠ©æ•°æ®
 		C_ScriptHelpDetail* detail = s_data.getScriptHelpDetail();
 		if (detail == nullptr){ continue; }
 
-		// > °ïÖúÊı¾İ - ·Ö¶ÎËµÃ÷
+		// > å¸®åŠ©æ•°æ® - åˆ†æ®µè¯´æ˜
 		C_ScriptHelp_Subsection* sub = detail->getSubsection();
 		if (sub == nullptr){ continue; }
 		if (sub->hasDesignTip()){
 
 			C_ScriptHelp_SubsectionPage page = sub->getPage_DesignTip();
 
-			// > ´´½¨Éè¼ÆÄ¿Â¼
+			// > åˆ›å»ºè®¾è®¡ç›®å½•
 			for (int j = 0; j < page.context.count(); j++){
 				QString context = page.context.at(j);
-				if (this->hasContext(context)){		//£¨ÖØ¸´ÄÚÈİÌø¹ı£©
+				if (this->hasContext(context)){		//ï¼ˆé‡å¤å†…å®¹è·³è¿‡ï¼‰
 					continue;
 				}
 				C_DesignTip_Cell design_tip = C_DesignTip_Cell();

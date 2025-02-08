@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Source/RmmvUtilsPluginModule/scriptReader/s_ScriptAnnotationReader.h"
+#include "Source/RmmvUtilsPluginModule/ScriptReader/S_ScriptAnnotationReader.h"
 
 /*
 -----==========================================================-----

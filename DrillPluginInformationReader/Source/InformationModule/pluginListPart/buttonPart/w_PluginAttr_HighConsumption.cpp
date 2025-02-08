@@ -1,19 +1,19 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "W_PluginAttr_HighConsumption.h"
 
-#include "Source/RmmvInteractiveModule/custom/s_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 #include "Source/RmmvUtilsPluginModule/ScriptReader/HelpDetail/C_ScriptHelpDetail.h"
 #include "Source/Utils/Common/TTool.h"
 
 
 /*
 -----==========================================================-----
-		Àà£º		ÊôÐÔËµÃ÷´°¿Ú ¸ßÏûºÄ.cpp
-		ËùÊôÄ£¿é£º	ÐÅÏ¢Ä£¿é
-		¹¦ÄÜ£º		ÊôÐÔËµÃ÷´°¿Ú¡£
+		ç±»ï¼š		å±žæ€§è¯´æ˜Žçª—å£ é«˜æ¶ˆè€—.cpp
+		æ‰€å±žæ¨¡å—ï¼š	ä¿¡æ¯æ¨¡å—
+		åŠŸèƒ½ï¼š		å±žæ€§è¯´æ˜Žçª—å£ã€‚
 
-		Ê¹ÓÃ·½·¨£º
-				>´ò¿ª´°¿Ú
+		ä½¿ç”¨æ–¹æ³•ï¼š
+				>æ‰“å¼€çª—å£
 					W_PluginAttr_HighConsumption d;
 					d.exec();
 -----==========================================================-----
@@ -24,10 +24,10 @@ W_PluginAttr_HighConsumption::W_PluginAttr_HighConsumption(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----ÊÂ¼þ°ó¶¨
+	//----äº‹ä»¶ç»‘å®š
 
 	//-----------------------------------
-	//----ui³õÊ¼»¯
+	//----uiåˆå§‹åŒ–
 	this->m_p_Performance = new P_ScriptHelp_Performance(this);
 	ui.verticalLayout_highConsumption->addWidget(this->m_p_Performance);
 
@@ -39,10 +39,10 @@ W_PluginAttr_HighConsumption::~W_PluginAttr_HighConsumption(){
 
 
 /*-------------------------------------------------
-		¿Ø¼þ - ÏÔÊ¾ÐÅÏ¢ - ¸ßÏûºÄ
+		æŽ§ä»¶ - æ˜¾ç¤ºä¿¡æ¯ - é«˜æ¶ˆè€—
 */
 void W_PluginAttr_HighConsumption::showInformation_highConsumption(QString pluginName){
-	this->setWindowTitle(pluginName + "ÊôÐÔ");
+	this->setWindowTitle(pluginName + "å±žæ€§");
 
 	C_ScriptHelpDetail* detail = S_InformationDataContainer::getInstance()->getHelpDetail(pluginName);
 	if (detail == nullptr){

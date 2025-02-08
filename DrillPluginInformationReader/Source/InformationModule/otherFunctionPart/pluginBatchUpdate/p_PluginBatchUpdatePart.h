@@ -6,7 +6,7 @@
 
 #include "Source/RmmvUtilsProjectModule/ProjectData/C_RmmvProjectData.h"
 #include "Source/RmmvUtilsPluginModule/StorageData/S_PluginDataContainer.h"
-#include "Source/RmmvInteractiveModule/Custom/S_InformationDataContainer.h"
+#include "Source/RmmvInteractiveModule/InformationData/S_InformationDataContainer.h"
 
 /*
 -----==========================================================-----
