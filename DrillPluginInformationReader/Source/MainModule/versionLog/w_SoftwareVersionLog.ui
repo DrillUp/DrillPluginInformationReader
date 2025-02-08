@@ -156,7 +156,10 @@ padding:4px;</string>
             <bool>true</bool>
            </property>
            <property name="plainText">
-            <string>[v1.03]  
+            <string>[v1.04]  
+翻新了内部结构。
+
+[v1.03]  
 修复了窗口字符指令的显示bug。
 添加了版本日志。
 添加了展开原文功能。
