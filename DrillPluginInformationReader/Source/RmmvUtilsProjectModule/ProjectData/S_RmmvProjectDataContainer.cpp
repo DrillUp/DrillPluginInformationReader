@@ -5,6 +5,7 @@
 -----==========================================================-----
 		类：		Rmmv工程数据 数据容器.cpp
 		版本：		v1.03
+		作者：		drill_up
 		所属模块：	工程模块
 		功能：		工程数据的容器。
 					并提供一系列工程文件的获取功能。
@@ -17,7 +18,7 @@ S_RmmvProjectDataContainer::~S_RmmvProjectDataContainer() {
 }
 
 /* --------------------------------------------------------------
-----------RmmvFileManager 单例
+----------单例
 */
 S_RmmvProjectDataContainer* S_RmmvProjectDataContainer::cur_container = NULL;
 S_RmmvProjectDataContainer* S_RmmvProjectDataContainer::getInstance() {
