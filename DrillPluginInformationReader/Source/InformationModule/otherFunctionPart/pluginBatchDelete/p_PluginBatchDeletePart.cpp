@@ -58,6 +58,7 @@ void P_PluginBatchDeletePart::refreshTable(){
 	this->m_table->clearContents();
 	this->m_table->setRowCount(0);
 	this->m_allSearchedData = S_InformationDataContainer::getInstance()->getAnnotationTank();
+
 	int cur_row = 0;
 	for (int i = 0; i < this->m_allSearchedData.count(); i++){
 		C_ScriptAnnotation data = this->m_allSearchedData.at(i);
@@ -68,6 +69,19 @@ void P_PluginBatchDeletePart::refreshTable(){
 		}
 	}
 	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//行自适应
+
+	// > 没有行时
+	if (cur_row == 0){
+		ui.widget_btns->setEnabled(false);
+		ui.tableWidget_plugin->setVisible(false);
+		ui.label_tableTip->setVisible(false);
+		ui.label_noTableItemTip->setVisible(true);
+	}else{
+		ui.widget_btns->setEnabled(true);
+		ui.tableWidget_plugin->setVisible(true);
+		ui.label_tableTip->setVisible(true);
+		ui.label_noTableItemTip->setVisible(false);
+	}
 }
 /*-------------------------------------------------
 		文件夹插件 - 添加一行

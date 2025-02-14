@@ -192,6 +192,19 @@ void P_PluginBatchUpdatePart::refreshTable(){
 		}
 	}
 	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//行自适应
+	
+	// > 没有行时
+	if (cur_row == 0){
+		ui.widget_btns->setEnabled(false);
+		ui.tableWidget_plugin->setVisible(false);
+		ui.label_tableTip->setVisible(false);
+		ui.label_noTableItemTip->setVisible(true);
+	}else{
+		ui.widget_btns->setEnabled(true);
+		ui.tableWidget_plugin->setVisible(true);
+		ui.label_tableTip->setVisible(true);
+		ui.label_noTableItemTip->setVisible(false);
+	}
 }
 /*-------------------------------------------------
 		文件夹插件 - 添加一行

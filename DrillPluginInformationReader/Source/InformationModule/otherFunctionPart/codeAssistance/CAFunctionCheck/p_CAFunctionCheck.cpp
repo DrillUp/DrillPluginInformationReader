@@ -40,9 +40,11 @@ QString P_CAFunctionCheck::generate_AllAbbreviation(){
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
 		C_PluginData* plugin = plugin_list.at(i); 
-		result.append("=================================");
 		result.append("\n");
+		result.append("------");
 		result.append(plugin->name);
+		int n_count = 50 - plugin->name.count() - 6;
+		for (int n = 0; n < n_count; n++){ result.append("-"); }
 		result.append("\n");
 
 		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
@@ -72,7 +74,6 @@ QString P_CAFunctionCheck::generate_AllAbbreviation(){
 
 		}
 	}
-
 	return result;
 }
 /*-------------------------------------------------
@@ -83,10 +84,12 @@ QString P_CAFunctionCheck::generate_AllInheritFunctionName(){
 
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
-		C_PluginData* plugin = plugin_list.at(i); 
-		result.append("=================================");
+		C_PluginData* plugin = plugin_list.at(i);
 		result.append("\n");
+		result.append("------");
 		result.append(plugin->name);
+		int n_count = 50 - plugin->name.count() - 6;
+		for (int n = 0; n < n_count; n++){ result.append("-"); }
 		result.append("\n");
 
 		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
@@ -137,10 +140,12 @@ QString P_CAFunctionCheck::generate_WrongInheritFunctionName(){
 
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
-		C_PluginData* plugin = plugin_list.at(i); 
-		result.append("=================================");
+		C_PluginData* plugin = plugin_list.at(i);
 		result.append("\n");
+		result.append("------");
 		result.append(plugin->name);
+		int n_count = 50 - plugin->name.count() - 6;
+		for (int n = 0; n < n_count; n++){ result.append("-"); }
 		result.append("\n");
 
 		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
@@ -211,9 +216,11 @@ QString P_CAFunctionCheck::generate_RepeatDefinition(){
 	QList<C_PluginData*> plugin_list = S_PluginDataContainer::getInstance()->getPluginDataTank();
 	for (int i = 0; i < plugin_list.count(); i++){
 		C_PluginData* plugin = plugin_list.at(i);
-		result.append("=================================");
 		result.append("\n");
+		result.append("------");
 		result.append(plugin->name);
+		int n_count = 54 - plugin->name.count() - 6;
+		for (int n = 0; n < n_count; n++){ result.append("-"); }
 		result.append("\n");
 
 		QFileInfo fileinfo = S_RmmvProjectDataContainer::getInstance()->getRmmvFile_Plugin(plugin->name);
