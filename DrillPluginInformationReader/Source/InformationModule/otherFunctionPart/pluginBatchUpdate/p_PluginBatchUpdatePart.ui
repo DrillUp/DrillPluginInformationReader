@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>783</width>
+    <width>662</width>
     <height>453</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QGridLayout" name="gridLayout_4" columnstretch="1,2,0,2,1">
@@ -387,6 +387,9 @@
                </property>
                <property name="text">
                 <string>注意，更新只替换插件文件，插件的参数配置仍需要你去打开 插件管理器 点开插件然后确定对话框 才能更新。</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
                </property>
               </widget>
              </item>

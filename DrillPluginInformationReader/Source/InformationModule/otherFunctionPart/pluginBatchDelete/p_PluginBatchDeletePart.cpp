@@ -22,10 +22,6 @@ P_PluginBatchDeletePart::P_PluginBatchDeletePart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----初始化参数
-	
-
-	//-----------------------------------
 	//----控件初始化
 	this->m_table = ui.tableWidget_plugin;
 

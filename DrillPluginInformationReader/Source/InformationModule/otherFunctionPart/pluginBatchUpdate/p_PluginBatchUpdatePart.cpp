@@ -23,10 +23,6 @@ P_PluginBatchUpdatePart::P_PluginBatchUpdatePart(QWidget *parent)
 	ui.setupUi(this);
 
 	//-----------------------------------
-	//----初始化参数
-	
-
-	//-----------------------------------
 	//----控件初始化
 	this->m_table = ui.tableWidget_plugin;
 
@@ -44,6 +40,7 @@ P_PluginBatchUpdatePart::P_PluginBatchUpdatePart(QWidget *parent)
 	connect(ui.pushButton_selectLevelUp, &QPushButton::clicked, this, &P_PluginBatchUpdatePart::btn_selectLevelUp);
 	connect(ui.pushButton_execute, &QPushButton::clicked, this, &P_PluginBatchUpdatePart::btn_execute);
 
+	ui.stackedWidget->setCurrentIndex(0);	//（强制回到第一页）
 	this->refreshTable();
 }
 
@@ -169,32 +166,38 @@ void P_PluginBatchUpdatePart::refreshTable(){
 	this->m_table->horizontalHeader()->resizeSection(4, 220);
 	this->m_table->horizontalHeader()->resizeSection(5, 80);
 
-	if (this->m_tarPluginData.count() == 0){ return; }
-	if (this->m_curPluginData.count() == 0){ return; }
+	bool has_rows = true;
+	if (this->m_tarPluginData.count() == 0){ has_rows = false; }
+	if (this->m_curPluginData.count() == 0){ has_rows = false; }
 
-	// > 显示的插件
-	this->m_checkBoxList.clear();
-	this->m_table->clearContents();
-	this->m_table->setRowCount(0);
+	if (has_rows == true){
 
-	int cur_row = 0;
-	for (int i = 0; i < this->m_tarPluginData.count(); i++){
-		C_PluginData* tar_data = this->m_tarPluginData.at(i);
-		if (tar_data->name.contains("---")){ continue; }
+		// > 显示的插件
+		this->m_checkBoxList.clear();
+		this->m_table->clearContents();
+		this->m_table->setRowCount(0);
 
-		for (int j = 0; j < this->m_curPluginData.count(); j++){
-			C_PluginData* cur_data = this->m_curPluginData.at(j);
-			if (cur_data->name == tar_data->name){	//（匹配的插件名时，添加一行）
-				this->setOneRow_configedPlugin(cur_row, cur_data, tar_data);
-				cur_row += 1;
-				break;
+		int cur_row = 0;
+		for (int i = 0; i < this->m_tarPluginData.count(); i++){
+			C_PluginData* tar_data = this->m_tarPluginData.at(i);
+			if (tar_data->name.contains("---")){ continue; }
+
+			for (int j = 0; j < this->m_curPluginData.count(); j++){
+				C_PluginData* cur_data = this->m_curPluginData.at(j);
+				if (cur_data->name == tar_data->name){	//（匹配的插件名时，添加一行）
+					this->setOneRow_configedPlugin(cur_row, cur_data, tar_data);
+					cur_row += 1;
+					break;
+				}
 			}
 		}
+		this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//行自适应
+
+		if (cur_row == 0){ has_rows = false; }
 	}
-	this->m_table->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);		//行自适应
 	
 	// > 没有行时
-	if (cur_row == 0){
+	if (has_rows == false){
 		ui.widget_btns->setEnabled(false);
 		ui.tableWidget_plugin->setVisible(false);
 		ui.label_tableTip->setVisible(false);
@@ -450,7 +453,9 @@ void P_PluginBatchUpdatePart::btn_execute(){
 	file_plugin.close();
 
 	QMessageBox::warning(this, "提示", "更新完成。", QMessageBox::Yes);
-	this->reloadPluginData();
+
+	// > 重刷插件数据
+	bool success = this->reloadPluginData();
 }
 
 /*-------------------------------------------------
