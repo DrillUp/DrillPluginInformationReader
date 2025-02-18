@@ -80,7 +80,7 @@ void P_PluginBatchUpdatePart::btn_tar_select(){
 
 	this->m_tar_project = temp_data;
 	ui.lineEdit_tarProject->setText(temp_data.getName());
-}
+} 
 
 /*-------------------------------------------------
 		控件 - 下一步
@@ -452,10 +452,13 @@ void P_PluginBatchUpdatePart::btn_execute(){
 	file_plugin.write(plugin_context.toUtf8());
 	file_plugin.close();
 
-	QMessageBox::warning(this, "提示", "更新完成。", QMessageBox::Yes);
-
 	// > 重刷插件数据
+	//		（如果插件有300多，重刷会非常慢，暂时没深究为什么）
+	//		（不过提示还是要放在重刷之后才提示，不然太早提示用户会有种程序出bug的感觉）
 	bool success = this->reloadPluginData();
+	if (success == true){
+		QMessageBox::warning(this, "提示", "更新完成。", QMessageBox::Yes);
+	}
 }
 
 /*-------------------------------------------------
